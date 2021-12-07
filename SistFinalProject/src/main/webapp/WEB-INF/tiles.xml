@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+
+<tiles-definitions>
+	<definition name="testlayout" template="/WEB-INF/test/testlayout.jsp">
+	  <put-attribute name="main" value="/WEB-INF/test/main.jsp"/>
+	  
+	</definition>
+	
+	<!-- wild card -->
+	<definition name="/*/*" extends="testlayout">
+	  <put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
+	
+	
+	
+</tiles-definitions>
+
+
+<!-- 예시 -->
+<!-- <tiles-definitions>
+	<definition name="layout1" template="/WEB-INF/layout/layout1.jsp">
+	  <put-attribute name="title" value="/WEB-INF/layout/title.jsp"/>
+	  <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"/>
+	  <put-attribute name="info" value="/WEB-INF/layout/info.jsp"/>
+	  <put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	</definition>
+	
+	wild card
+	<definition name="/*/*" extends="layout1">
+	  <put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
+	
+	
+	
+</tiles-definitions> -->

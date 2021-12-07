@@ -1,0 +1,24 @@
+#tomcat port
+server:
+  port: 9003
+#jsp setting
+spring:
+  #mvc:
+    #view:
+      #prefix: /WEB-INF/
+      #suffix: .jsp
+  devtools:
+    livereload:
+      enabled: true
+#mysql
+  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://database-1.cbwbfergjzw7.ap-northeast-2.rds.amazonaws.com:3306/webservice
+    username: jiwon9412
+    password: 12345678
+#mybatis
+mybatis:
+  type-aliases-package: data.mapper,data.dto
+  mapper-locations:
+  - /mapper/**/*.xml
+
