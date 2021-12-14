@@ -15,4 +15,4 @@ rel="stylesheet">
 <body>
 <button type="button" class="btn btn-info" onclick="location.href='test'">Test테이블 데이터 갯수입니다.</button>
 </body>
-</html>
+</html> 
