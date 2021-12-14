@@ -8,6 +8,7 @@
 	<definition name="layout" template="/WEB-INF/layout/index.jsp">
 	  <put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	  <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"/>
+	  <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	
 	<!-- wild card -->

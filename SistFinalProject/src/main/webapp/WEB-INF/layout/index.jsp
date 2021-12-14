@@ -19,8 +19,11 @@ rel="stylesheet">
 <div>
 	<tiles:insertAttribute name="menu"/>
 </div>
-<div style="margin-top: 50px;">
+<div>
 	<tiles:insertAttribute name="main"/>
+</div>
+<div>
+	<tiles:insertAttribute name="footer"/>
 </div>
 </body>
 </html>

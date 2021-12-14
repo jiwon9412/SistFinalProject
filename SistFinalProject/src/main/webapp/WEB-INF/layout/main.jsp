@@ -64,7 +64,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> Thewayshop</strong></h1>
+                            <h1 class="m-b-20"><strong>Welcome To <br> Job히다</strong></h1>
                             <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
-                                <p class="sale">Sale</p>
+                                <p class="sale">신입</p>
                             </div>
                             <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
@@ -179,12 +179,12 @@
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="#">공고보기</a>
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $7.79</h5>
+                            <h4>당근마켓</h4>
+                            <h5> 2021-12-14 ~ 2021-12-31</h5>
                         </div>
                     </div>
                 </div>
@@ -423,7 +423,7 @@
 
 
     <!-- Start Footer  -->
-    <footer>
+    <!-- <footer>
         <div class="footer-main">
             <div class="container">
                 <div class="row">
@@ -475,7 +475,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
     <!-- End Footer  -->
 
     <!-- Start copyright  -->

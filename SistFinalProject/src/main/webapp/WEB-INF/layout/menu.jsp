@@ -5,6 +5,7 @@
 <html>
 <head>
 <c:set var="root" value="<%=request.getContextPath() %>" />
+<c:set var="loginok" value="${sessionScope.loginok }" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -47,7 +48,7 @@ rel="stylesheet">
     <header class="main-header">
         <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
+            <div class="container" style="height: 100px; margin-top: 10px; ">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +61,12 @@ rel="stylesheet">
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">채용공고</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">기업탐색</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">마이페이지</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/notices/main">채용공고</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/companies/main">기업탐색</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/mypage/main">마이페이지</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/contents/main">콘텐츠</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/position/main">포지션제안</a></li>
                         <!-- <li class="dropdown megamenu-fw">
                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
@@ -131,8 +134,7 @@ rel="stylesheet">
                                 <li><a href="shop-detail.html">Shop Detail</a></li>
                             </ul>
                         </li> -->
-                        <li class="nav-item"><a class="nav-link" href="service.html">콘텐츠</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">포지션제안</a></li>
+                        
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -140,11 +142,20 @@ rel="stylesheet">
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu"><a href="#">
-						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
-					</a></li>
+                        <li class="search"><a href="#"><i class="fa fa-search fa-lg"></i></a></li>
+                        <li class="side-menu">
+                        <c:if test="${loginok!=null }">
+                        	<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 20px; margin-top:18px;
+							color: white; width: 80px; height: 40px; font-size: 0.9em" onclick="location.href='${root}/login/main'"
+						 ><b>로그아웃</b></button>
+                        </c:if>
+                        <c:if test="${loginok==null }">
+                        	<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 20px; margin-top:18px;
+							color: white; width: 80px; height: 40px; font-size: 0.9em" onclick="location.href='${root}/login/main'"
+						 ><b>로그인</b></button>
+                        </c:if>
+						
+					</li>
                     </ul>
                 </div>
                 <!-- End Atribute Navigation -->
