@@ -13,7 +13,7 @@ public class TestController {
 	@Autowired
 	TestMapper mapper;
 	
-	@GetMapping("/")
+	@GetMapping("/test12")
 	public String home() {
 		
 		return "/test/main";
@@ -23,9 +23,7 @@ public class TestController {
 	public ModelAndView test() {
 		
 		ModelAndView mview = new ModelAndView();
-		int totalCount = mapper.getTotalCount();
 		
-		mview.addObject("totalCount", totalCount);
 		
 		mview.setViewName("/test/test");
 		return mview;

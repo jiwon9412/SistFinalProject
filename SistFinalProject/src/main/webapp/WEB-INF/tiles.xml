@@ -5,13 +5,13 @@
 
 
 <tiles-definitions>
-	<definition name="testlayout" template="/WEB-INF/test/testlayout.jsp">
-	  <put-attribute name="main" value="/WEB-INF/test/main.jsp"/>
-	  
+	<definition name="layout" template="/WEB-INF/layout/index.jsp">
+	  <put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+	  <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"/>
 	</definition>
 	
 	<!-- wild card -->
-	<definition name="/*/*" extends="testlayout">
+	<definition name="/*/*" extends="layout">
 	  <put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	
