@@ -49,11 +49,11 @@ rel="stylesheet">
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
             <div class="container">
                 <!-- Start Header Navigation -->
-                <div class="navbar-header">
+                <div class="navbar-header" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                    <a class="navbar-brand" href="index.html"><img src="${root }/images/logo.png" class="logo" alt=""></a>
+                    <a href="/"><img  src="${root }/images/joblogo.png" class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
@@ -61,9 +61,11 @@ rel="stylesheet">
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
+                        <li class="nav-item"><a class="nav-link" href="about.html">채용공고</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">기업탐색</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">마이페이지</a></li>
+                        <!-- <li class="dropdown megamenu-fw">
+                           <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
                                 <li>
                                     <div class="row">
@@ -78,7 +80,7 @@ rel="stylesheet">
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!-- end col-3 -->
+                                        end col-3
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Bottom</h6>
                                             <div class="content">
@@ -90,7 +92,7 @@ rel="stylesheet">
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!-- end col-3 -->
+                                        end col-3
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Clothing</h6>
                                             <div class="content">
@@ -113,13 +115,13 @@ rel="stylesheet">
                                                 </ul>
                                             </div>
                                         </div>
-                                        <!-- end col-3 -->
+                                        end col-3
                                     </div>
-                                    <!-- end row -->
+                                    end row
                                 </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
+                            </ul> 
+                        </li> -->
+                        <!-- <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
                                 <li><a href="cart.html">Cart</a></li>
@@ -128,9 +130,9 @@ rel="stylesheet">
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="shop-detail.html">Shop Detail</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="service.html">Our Service</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        </li> -->
+                        <li class="nav-item"><a class="nav-link" href="service.html">콘텐츠</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact-us.html">포지션제안</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
