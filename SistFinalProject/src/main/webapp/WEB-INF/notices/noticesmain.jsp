@@ -8,6 +8,7 @@
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/notices.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
 div.notice{
@@ -30,6 +31,11 @@ div.cinfo{
 	padding-top: 20px;
 	padding-left: 20px;
 	text-align: left;
+	height: 140px;
+}
+
+div.period{
+	padding-left: 20px;
 }
 
 button{
@@ -69,6 +75,18 @@ div.noticewrap{
 </head>
 <body>
 <div class="noticewrap">
+<!-- 상단 타이틀 시작 -->
+    <div class="notices-top-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>채용 공고</h2>
+                    <h4>다양한 채용 공고를 보며 원하는 회사에 지원할 수 있습니다.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 상단 타이틀 끝 -->
 <button type="button">필터</button>
 <table style="width: 1300px;">
   <tr>
@@ -76,18 +94,20 @@ div.noticewrap{
     <td>
 		<div class="notice">
 		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
+		    <img alt="" src="../images/${ndto.photo }">
 		    
 		  </div>
 		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">${ndto.subject }</b> <br>
-		    ${ndto.section }<br><br>
+		    <b style="font-size: 1.1em;">${ndto.company_id }</b> <br>
+		    ${ndto.subject }<br><br>
 		    <button class="type"><b>${ndto.type }</b></button>
 		    <button class="loc"><b>${ndto.location }</b></button>
 		    <button class="qual"><b>${ndto.personnel }명</b></button>
 		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">${ndto.period_start } ~ ${ndto.period_end }</b>
+		  </div>
+		  <div class="period">
+		    <hr style="margin-bottom: 5px;">
+		    <b style="color: gray; ">${ndto.period_start } ~ ${ndto.period_end }</b>
 		    <span class="glyphicon glyphicon-heart-empty scrap" 
 		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
 		  </div>

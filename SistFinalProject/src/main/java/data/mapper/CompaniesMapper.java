@@ -13,4 +13,7 @@ public interface CompaniesMapper {
 	public int getTotalCount();
 	
 	public List<CompaniesDto> getList();
+	
+	//채용공고에서 photo가져오기
+	public String getPhoto(String id);
 }

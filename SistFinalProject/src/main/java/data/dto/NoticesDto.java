@@ -20,4 +20,6 @@ public class NoticesDto {
 	private String period_start;
 	private String period_end;
 	private String subject;
+	//table엔 없는데 편의를 위해 추가
+	private String photo;
 }
