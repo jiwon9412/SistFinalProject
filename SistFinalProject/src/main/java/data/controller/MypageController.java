@@ -11,4 +11,22 @@ public class MypageController {
 
 		return "/mypage/mypagemain";
 	}
+	
+	@GetMapping("/mypage/resume")
+	public String resume() {
+		
+		return "/mypage/resume";
+	}
+	
+	@GetMapping("/mypage/updateuser")
+	public String updateuser() {
+		
+		return "/mypage/updateuser";
+	}
+	
+	@GetMapping("/mypage/updatecompany")
+	public String updatecompany() {
+		
+		return "/mypage/updatecompany";
+	}
 }
