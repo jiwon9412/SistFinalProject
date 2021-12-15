@@ -3,6 +3,11 @@
 
 <mapper namespace="data.mapper.LoginMapper">
 
-
+<select id="login" parameterType="HashMap" resultType="int">
+	select count(*) from user where id = #{id} and pass = #{pass}
+</select>
+<select id="getName" parameterType="String" resultType="String">
+	select name from user where id = #{id}
+</select>
 
 </mapper>
