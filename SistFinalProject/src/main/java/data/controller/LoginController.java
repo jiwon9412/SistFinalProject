@@ -20,18 +20,20 @@ public class LoginController {
 	
 	@GetMapping("/login/main")
 	public String loginform(HttpSession session) {
-
 		//아이디
 		String myid = (String)session.getAttribute("myid");
 		
 		//로그인 확인
+		String loginok = (String)session.getAttribute("loginok");
+		
+		//로그인 타입
 		String logintype = (String)session.getAttribute("logintype");
 		
-		if(logintype==null)
+		if(loginok==null)
 			return "/login/loginmain";
 		else {
 			
-			return "/login/mypage";
+			return "/login/mypage(temp)"; //마이페이지로 매핑되게 만들 예정
 		}
 	}
 
@@ -71,6 +73,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		
 		session.removeAttribute("loginok");
+		session.removeAttribute("logintype");
 		
 		return "redirect:main";
 	}
