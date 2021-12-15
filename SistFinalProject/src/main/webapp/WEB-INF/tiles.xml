@@ -6,8 +6,8 @@
 
 <tiles-definitions>
 	<definition name="layout" template="/WEB-INF/layout/index.jsp">
-	  <put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	  <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"/>
+	  <put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
 	  <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp"/>
 	</definition>
 	
@@ -15,6 +15,8 @@
 	<definition name="/*/*" extends="layout">
 	  <put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
+	
+	
 	
 	
 	
