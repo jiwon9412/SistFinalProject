@@ -72,6 +72,7 @@ div.noticewrap{
 <button type="button">필터</button>
 <table style="width: 1300px;">
   <tr>
+  <c:forEach var="ndto" items="${list }" varStatus="i">
     <td>
 		<div class="notice">
 		  <div class="logo">
@@ -79,42 +80,27 @@ div.noticewrap{
 		    
 		  </div>
 		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
+		    <b style="font-size: 1.1em;">${ndto.subject }</b> <br>
+		    ${ndto.section }<br><br>
+		    <button class="type"><b>${ndto.type }</b></button>
+		    <button class="loc"><b>${ndto.location }</b></button>
+		    <button class="qual"><b>${ndto.personnel }명</b></button>
 		    
 		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
+		    <b style="color: gray;">${ndto.period_start } ~ ${ndto.period_end }</b>
 		    <span class="glyphicon glyphicon-heart-empty scrap" 
 		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
 		  </div>
 		</div>
     </td>
+    <c:if test="${i.count%4==0 }">
+    </tr>
+    <tr>
+    </c:if>
+    </c:forEach>
     
-    <td>
-		<div class="notice">
-		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
-		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
-		  </div>
-		</div>
-    </td>
     
-    <td>
+    <!-- <td>
 		<div class="notice">
 		  <div class="logo">
 		    <img alt="" src="../images/naver123.png">
@@ -133,114 +119,7 @@ div.noticewrap{
 		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
 		  </div>
 		</div>
-    </td>
-    
-    <td>
-		<div class="notice">
-		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
-		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
-		  </div>
-		</div>
-    </td>
-  </tr>
-  
-  <tr>
-    <td>
-		<div class="notice">
-		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
-		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
-		  </div>
-		</div>
-    </td>
-    
-    <td>
-		<div class="notice">
-		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
-		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
-		  </div>
-		</div>
-    </td>
-    
-    <td>
-		<div class="notice">
-		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
-		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
-		  </div>
-		</div>
-    </td>
-    
-    <td>
-		<div class="notice">
-		  <div class="logo">
-		    <img alt="" src="../images/naver123.png">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
-		    Back-end Engineer<br><br>
-		    <button class="type"><b>인턴</b></button>
-		    <button class="loc"><b>서울</b></button>
-		    <button class="qual"><b>대졸</b></button>
-		    
-		    <hr style="margin-bottom: 10px;">
-		    <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
-		  </div>
-		</div>
-    </td>
+    </td> -->
   </tr>
 </table>
 </div>

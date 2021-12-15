@@ -3,6 +3,8 @@
 
 <mapper namespace="data.mapper.NoticesMapper">
 
-
+	<select id="getAllNotices" resultType="ndto">
+		select * from notice order by num desc
+	</select>
 
 </mapper>
