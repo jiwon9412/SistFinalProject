@@ -54,11 +54,13 @@ button.qual{
 	background-color: #98fb98   ;
 	color: #008080   ;
 }
+
+
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-notices main
+
 
 <div class="notice">
   <div class="logo">
@@ -66,15 +68,16 @@ notices main
     
   </div>
   <div class="cinfo">
-    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <span class="glyphicon glyphicon-heart-empty scrap"></span> <br>
+    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <br>
     Back-end Engineer<br><br>
     <button class="type"><b>인턴</b></button>
     <button class="loc"><b>서울</b></button>
     <button class="qual"><b>대졸</b></button>
     
-    <hr>
+    <hr style="margin-bottom: 10px;">
     <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
-    
+    <span class="glyphicon glyphicon-heart-empty scrap" 
+    style="margin-left: 25px; font-size: 20px; color: gray;"></span>
   </div>
 </div>
 
@@ -92,7 +95,7 @@ $(document).on('click','span.scrapdel',function(){
 
 	//ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
 	$(this).attr("class","glyphicon glyphicon-heart-empty scrap");
-	$(this).css("color","black");
+	$(this).css("color","gray");
 
 });
 
