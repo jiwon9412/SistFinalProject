@@ -11,39 +11,71 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-div.main{
+div.companies{
 	width: 300px;
-	height: 400px;
-	border: 2px solid gray;
+	height: 300px;
+	border: 1px solid lightgray;
 	border-radius: 20px;
 }
 
+div.pic{
+	width: 300px;
+	margin-top: 20px;
+}
 
-div.txt{
-	margin-top: 150px;
+div.pic>img{
+	margin-left: 50px;
+}
+
+div.txt>p{
+	padding-left: 20px;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+
+table{
+	margin: 0 auto;
+}
+
+div.wrapper{
+	margin-top: 80px;
+}
+
+b.title{
+	font-size: 15pt;
+	margin-left: 300px;
+	color: #424242;
 }
 </style>
 
 </head>
 <body>
-companies main
 
-
-<div class="main">
-	
-	<div class="pic">
-		<img alt="" src="">
+<div class="wrapper">
+<b class="title">Job 히다 추천공고</b>
+<table style="width: 1300px;">
+	<tr>
+	<c:forEach var="dto" items="${list}" varStatus="i">
+		<td>
+	<div class="companies">
+		<div class="pic">
+			<img alt="" src="../images/${dto.logo}">
+		</div>
+		<hr>
+		<div class="txt">
+			<p style="color: #40e0d0">${dto.major}</p>
+			<p style="font-weight: bold;">${dto.name}</p>
+			<p>${dto.addr}</p>
+		</div>
 	</div>
-	<div class="txt">
-		<p class="name">국민은행</p>
-		<p class="sub">2001년에 설립된 국민은행은 예금, 대출, 지급보증, 투자, 신탁 등의 사업을 영위하고 있는 KB금융그룹의 계열사 은행이다.</p>
-		<p>
-		<span style="float: right;">산업군 표시</span>
-		
-		</p>
-	</div>
-	
+		</td>
+		<c:if test="${i.count%4==0 }">
+		</tr>
+		<tr>
+		</c:if>
+		</c:forEach>
+	</tr>	
+</table>	
 </div>
-
 </body>
 </html>
