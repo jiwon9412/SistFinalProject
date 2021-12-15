@@ -149,7 +149,7 @@ rel="stylesheet">
                         <li class="side-menu">
                         <c:if test="${loginok!=null }">
                         	<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 20px; margin-top:18px;
-							color: white; width: 80px; height: 40px; font-size: 0.9em" onclick="location.href='${root}/login/main'"
+							color: white; width: 80px; height: 40px; font-size: 0.9em" onclick="location.href='${root}/login/logoutprocess'"
 						 ><b>로그아웃</b></button>
                         </c:if>
                         <c:if test="${loginok==null }">
