@@ -15,6 +15,8 @@ div.notice{
 	border: solid 1px gray;
 	width: 250px;
 	height: 400px;
+	cursor: pointer;
+	
 	
 }
 div.logo>img{
@@ -25,7 +27,8 @@ div.logo>img{
 
 div.cinfo{
 	padding-top: 20px;
-	text-align: center;
+	padding-left: 20px;
+	text-align: left;
 }
 
 button{
@@ -56,12 +59,14 @@ button.qual{
 </head>
 <body>
 notices main
+
 <div class="notice">
   <div class="logo">
-    <img alt="" src="../images/네이버.jpg">
+    <img alt="" src="../images/naver123.png">
+    
   </div>
   <div class="cinfo">
-    <b style="font-size: 1.1em;">백엔드 개발자 모집</b><br>
+    <b style="font-size: 1.1em;">[Naver] 백엔드, 프론트 개발자 모집</b> <span class="glyphicon glyphicon-heart-empty scrap"></span> <br>
     Back-end Engineer<br><br>
     <button class="type"><b>인턴</b></button>
     <button class="loc"><b>서울</b></button>
@@ -69,7 +74,29 @@ notices main
     
     <hr>
     <b style="color: gray;">2021-12-14 ~ 2021-12-31</b>
+    
   </div>
 </div>
+
+<script type="text/javascript">
+
+$(document).on('click','span.scrap',function(){
+
+	//ajax로 스크랩이 되면서 success에서 이거 실행하기
+	$(this).attr("class","glyphicon glyphicon-heart scrapdel");
+	$(this).css("color","red");
+
+});
+
+$(document).on('click','span.scrapdel',function(){
+
+	//ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
+	$(this).attr("class","glyphicon glyphicon-heart-empty scrap");
+	$(this).css("color","black");
+
+});
+
+
+</script>
 </body>
 </html>
