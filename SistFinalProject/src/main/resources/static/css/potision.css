@@ -38,3 +38,37 @@
      color: #ffffff;
      padding-bottom: 10px;
 }
+
+
+.suggestion{
+	width: 80%;
+	margin-left: 10%; 
+	margin-top: 5%;
+}
+
+
+/* 총 ~건의 제안이 도착했습니다 */
+#totPo{
+	display: inline;
+	margin-left: 2%;
+}
+
+
+/* 포지션 테이블 */
+#position-table{
+    border-top: 1px solid #00e1ff;
+    width: 100%;
+	max-width: 100%;
+}
+
+#position-table tr{
+	height: 40px;
+	border-top: 1px solid #00e1ff;
+}
+
+
+#position-table td{
+	padding : 20px;	
+}
+
+

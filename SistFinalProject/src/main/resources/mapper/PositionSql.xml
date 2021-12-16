@@ -3,6 +3,21 @@
 
 <mapper namespace="data.mapper.PositionMapper">
 
+	<!-- 유저 id에 해당하는 Offer 전체 갯수 -->
+	<select id="getTotalOffers" parameterType="String" resultType="int">
+		select count(*) from offer where user_id=#{myid}
+	</select>
 
 
+	<!-- 유저 id에 해당하는 Offer 정보 전체 -->
+	<!-- !!!조인문 작성완료!!! -->
+	<select id="getAllOffers" parameterType="String" resultType="odto">
+		select
+		offer.user_id as user_id,
+		offer.company_id as company_id,
+		offer.content as content,
+		company.name as name,
+		company.major as major
+		from offer join company on offer.company_id=company.id
+	</select>
 </mapper>
