@@ -6,5 +6,25 @@
 	<select id="getAllNotices" resultType="ndto">
 		select * from notice order by num desc
 	</select>
+	
+	<select id="getList" parameterType="HashMap" resultType="ndto">
+		select * from notice order by num desc limit #{start},#{perpage}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<insert id="insertScrap" parameterType="HashMap">
+		insert into scrap (user_id,notice_num) values(#{user_id},#{notice_num})
+	</insert>
+	
+	<delete id="deleteScrap" parameterType="HashMap">
+		delete from scrap where user_id=#{user_id} and notice_num=#{notice_num}
+	</delete>
+	
+	<select id="checkScrap" parameterType="HashMap" resultType="int">
+		select count(*) from scrap where user_id=#{user_id} and notice_num=#{notice_num}
+	</select>
 
 </mapper>

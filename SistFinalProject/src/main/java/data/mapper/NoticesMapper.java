@@ -10,5 +10,10 @@ import data.dto.NoticesDto;
 public interface NoticesMapper {
 	
 	public ArrayList<NoticesDto> getAllNotices();
-
+	public ArrayList<NoticesDto> getList(int start, int perpage);
+	public int getTotalCount();
+	
+	public void insertScrap(String user_id,String notice_num);
+	public void deleteScrap(String user_id,String notice_num);
+	public int checkScrap(String user_id,String notice_num);
 }
