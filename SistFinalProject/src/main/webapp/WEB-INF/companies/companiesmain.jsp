@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="../css/companies.css">
 <style type="text/css">
 div.companies{
 	width: 300px;
@@ -50,9 +50,25 @@ b.title{
 
 </head>
 <body>
+<!-- 상단 타이틀 -->
+<div class="company-top-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>기업 탐색</h2>
+				<h4 style="color: #ffffff; font-weight: bold;">Job히다에서 추천드리는 기업정보 및 기업문화를 알아보세요</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 상단 타이틀 끝 -->
+
 
 <div class="wrapper">
+
+<!-- 테이블 위 title -->
 <b class="title">Job 히다 추천공고</b>
+
 <table style="width: 1300px;">
 	<tr>
 	<c:forEach var="dto" items="${list}" varStatus="i">
