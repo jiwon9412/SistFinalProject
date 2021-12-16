@@ -1,0 +1,34 @@
+
+
+
+ .company-top-box{
+     background: url("../images/companies-bg.jpg") no-repeat center center;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -ms-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+     text-align: center;
+     background-attachment: fixed;
+     padding: 70px 0px;
+     position: relative;
+}
+
+ .company-top-box::before{
+     background: rgba(0,0,0,0.6);
+     content: "";
+     position: absolute;
+     z-index: 0;
+     width: 100%;
+     height: 100%;
+     left: 0px;
+     top: 0px;
+}
+
+ .company-top-box h2{
+     font-size: 38px;
+     font-weight: 700;
+     color: #ffffff;
+     padding-bottom: 10px;
+}
+
