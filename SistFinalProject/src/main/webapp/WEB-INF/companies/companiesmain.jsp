@@ -10,10 +10,27 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/companies.css">
-
 </head>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+/* 상단 이미지 슬라이드 */
+window.onload = function() {
+		slide_show();
+}
+	var i = 1;
+	
+	function slide_show() {	
+		if(i > 5)
+			i = 1;
+		
+		document.getElementById("slide_img").src = "../images/com_slide_" + i + ".jpg";
+		
+		setTimeout(slide_show, 3000);
+		i++;
+}
+</script>
+<body onload="slide_show()">
 
-<body>
 <!-- 상단 타이틀 -->
 <div class="company-top-box">
 	<div class="container">
@@ -26,6 +43,8 @@
 	</div>
 </div>
 <!-- 상단 타이틀 끝 -->
+
+<img id="slide_img" src="image/com_slide_1.jpg">
 
 <div class="wrapper">
 <table style="width: 1300px;">
@@ -46,7 +65,7 @@
 			</c:if>
 			
 			<p style="font-weight: bold;">${dto.name}</p>
-			<p>${dto.addr}</p>	<!-- 현재 intro null이라 addr잠시 띄움 -->
+			<p>${dto.addr}</p>
 		</div>
 	</div>
 		</td>
@@ -72,7 +91,7 @@
 	
 		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
 			<c:if test="${currentPage==pp}">
-				<li class="active"><a href="main?currentPage=${pp}">${pp}</a></li>
+				<li><a href="main?currentPage=${pp}">${pp}</a></li>
 			</c:if>
 			<c:if test="${currentPage!=pp}">
 				<li><a href="main?currentPage=${pp}">${pp}</a></li>
