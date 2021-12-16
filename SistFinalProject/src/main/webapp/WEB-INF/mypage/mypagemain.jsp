@@ -47,7 +47,7 @@ rel="stylesheet">
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item"><a class="nav-link" href="${root }/mypage/resume">이력서 관리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/mypage/resumeview?user_id=ryan123">이력서 관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/mypage/applied">지원 관리</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/mypage/scrap">스크랩 공고</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/mypage/updatemember">회원정보 수정</a></li>              

@@ -1364,7 +1364,7 @@
      padding-bottom: 30px;
 }
  .all-title-box .breadcrumb{
-     background: #d33b33;
+     background: #40e0d0;
      margin: 0px;
      display: inline-block;
      border-radius: 0px;
@@ -1604,7 +1604,7 @@
 }
  .title-left{
      font-size: 16px;
-     border-bottom: 3px solid #010101;
+     border-bottom: 3px solid #40e0d0;
      margin-bottom: 20px;
 }
  .title-left h3{

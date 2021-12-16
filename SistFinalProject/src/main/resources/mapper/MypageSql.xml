@@ -3,6 +3,57 @@
 
 <mapper namespace="data.mapper.MypageMapper">
 
+<select id="getMypageResume" parameterType="String" resultType="resumedto">
+	select * from resume where user_id=#{user_id}
+</select>
+
+<select id="checkResume" parameterType="String" resultType="int">
+	select count(*) from resume where user_id=#{user_id}
+</select>
+
+
+<!-- 
+
+
+<select id="getTotalCount" resultType="int">
+	select count(*) from springboard
+</select>
+
+<update id="updateReadCount" parameterType="String">
+	update springboard set readcount=readcount+1 where num=#{num}
+</update>
+
+<select id="getData" parameterType="String" resultType="bdto">
+	select * from springboard where num=#{num}
+</select>
+
+<select id="getMaxNum" resultType="int">
+	select ifnull(max(num),0) from springboard
+</select>
+
+<select id="getList" parameterType="HashMap" resultType="bdto">
+	select * from springboard order by num desc limit #{start},#{perpage}
+</select>
+
+<insert id="insertBoard" parameterType="bdto">
+	insert into springboard (myid,subject,content,uploadfile,writeday) values (#{myid},#{subject},#{content},#{uploadfile},now())
+</insert>
+
+<update id="updateBoard" parameterType="bdto">
+	update springboard set subject=#{subject},content=#{content}
+	<if test="uploadfile!=null">
+	,uploadfile=#{uploadfile}
+	</if>
+	where num=#{num}	
+</update>
+
+<delete id="deleteBoard" parameterType="String">
+	delete from springboard where num=#{num}
+</delete>
+
+
+
+ -->
 
 
 </mapper>
