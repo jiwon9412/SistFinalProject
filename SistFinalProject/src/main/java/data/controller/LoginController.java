@@ -196,7 +196,6 @@ public class LoginController {
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
 		
 		
-		
 		mapper.insertCorp(dto);
 		
 		return "/login/addsuccess";
