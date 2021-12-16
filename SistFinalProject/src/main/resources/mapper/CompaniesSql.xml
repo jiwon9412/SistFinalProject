@@ -7,8 +7,8 @@
 		select count(*) from company
 </select>
 
-<select id="getList" resultType="comdto">
-		select * from company
+<select id="getList" parameterType="HashMap" resultType="comdto">
+		select * from company order by rand() limit #{start},#{perpage}
 </select>
 
 <select id="getPhoto" resultType="String" parameterType="String">

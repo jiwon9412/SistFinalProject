@@ -10,45 +10,9 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/companies.css">
-<style type="text/css">
-div.companies{
-	width: 300px;
-	height: 300px;
-	border: 1px solid lightgray;
-	border-radius: 20px;
-}
-
-div.pic{
-	width: 300px;
-	margin-top: 20px;
-}
-
-div.pic>img{
-	margin-left: 50px;
-}
-
-div.txt>p{
-	padding-left: 20px;
-	padding-top: 10px;
-	margin-top: 10px;
-}
-
-table{
-	margin: 0 auto;
-}
-
-div.wrapper{
-	margin-top: 80px;
-}
-
-b.title{
-	font-size: 15pt;
-	margin-left: 300px;
-	color: #424242;
-}
-</style>
 
 </head>
+
 <body>
 <!-- 상단 타이틀 -->
 <div class="company-top-box">
@@ -63,12 +27,7 @@ b.title{
 </div>
 <!-- 상단 타이틀 끝 -->
 
-
 <div class="wrapper">
-
-<!-- 테이블 위 title -->
-<b class="title">Job 히다 추천공고</b>
-
 <table style="width: 1300px;">
 	<tr>
 	<c:forEach var="dto" items="${list}" varStatus="i">
@@ -80,8 +39,14 @@ b.title{
 		<hr>
 		<div class="txt">
 			<p style="color: #40e0d0">${dto.major}</p>
+			
+			<!-- 채용중이면 보이게 , 채용중이 아니면 안보이게 ??????-->
+			<c:if test="">
+			<button class="jobs-tag">테스트</button>
+			</c:if>
+			
 			<p style="font-weight: bold;">${dto.name}</p>
-			<p>${dto.addr}</p>
+			<p>${dto.addr}</p>	<!-- 현재 intro null이라 addr잠시 띄움 -->
 		</div>
 	</div>
 		</td>
@@ -93,5 +58,35 @@ b.title{
 	</tr>	
 </table>	
 </div>
+
+<!-- 페이징 -->
+
+<c:if test="${totalCount>0}">
+	<div style="width: 800px; text-align: center;" class="container">
+	<ul class="pagination">
+	
+	<!-- 이전 -->
+	<c:if test="${startPage>1}">
+		<li><a href="main?currentPage=${startPage-1}">⬅</a></li>
+	</c:if>
+	
+		<c:forEach var="pp" begin="${startPage}" end="${endPage}">
+			<c:if test="${currentPage==pp}">
+				<li class="active"><a href="main?currentPage=${pp}">${pp}</a></li>
+			</c:if>
+			<c:if test="${currentPage!=pp}">
+				<li><a href="main?currentPage=${pp}">${pp}</a></li>
+			</c:if>
+		</c:forEach>
+		
+	<!-- 다음 -->
+	<c:if test="${endPage<totalPage}">
+		<li><a href="main?currentPage=${endPage+1}">➡</a></li>
+	</c:if>
+		
+	</ul>
+	</div>
+</c:if>
+
 </body>
 </html>

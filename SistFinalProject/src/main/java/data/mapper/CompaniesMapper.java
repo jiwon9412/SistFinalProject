@@ -1,7 +1,7 @@
 package data.mapper;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +12,7 @@ public interface CompaniesMapper {
 
 	public int getTotalCount();
 	
-	public List<CompaniesDto> getList();
+	public ArrayList<CompaniesDto> getList(int start,int perpage);
 	
 	//채용공고에서 photo가져오기
 	public String getPhoto(String id);

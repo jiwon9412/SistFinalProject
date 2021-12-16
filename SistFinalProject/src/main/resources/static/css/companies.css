@@ -1,6 +1,4 @@
 
-
-
  .company-top-box{
      background: url("../images/companies-bg.jpg") no-repeat center center;
      -webkit-background-size: cover;
@@ -32,3 +30,52 @@
      padding-bottom: 10px;
 }
 
+div.companies{
+	width: 300px;
+	height: 300px;
+	border: 1px solid lightgray;
+	border-radius: 20px;
+	margin-bottom: 30px;
+	cursor: pointer;
+}
+
+div.pic{
+	width: 300px;
+	margin-top: 20px;
+}
+
+div.pic>img{
+	margin-left: 15%;
+	display: inline-block;
+    width: 70%;
+    height: 70px;
+   	overflow: hidden;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+div.txt>p{
+	padding-left: 20px;
+	padding-top: 10px;
+	margin-top: 10px;
+}
+
+table{
+	margin: 0 auto;
+}
+
+div.wrapper{
+	margin-top: 60px;
+}
+
+button.jobs-tag{
+	font-size: 11px;
+	height: 28px;
+	border-radius: 14px;
+	border-color: #E0F7FA; 
+	float: right;
+	margin-right: 10px;
+	padding: 0 12px;
+	color: gray;
+	background-color: #E0F7FA;
+}
