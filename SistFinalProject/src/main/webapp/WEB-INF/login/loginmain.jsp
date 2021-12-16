@@ -65,6 +65,7 @@ $(function () {
 		loginLinks[i].addEventListener("click", function () {
 			//alert($(this).attr("value"));
 			$("input[name=logintype]").attr("value",$(this).attr("value"));
+			
 		});
 	}
 	
@@ -88,28 +89,26 @@ $(function () {
 <br><br>
 <form action="loginprocess" method="post" class="form form-inline" style="display: inline-block;">
 	
+	<input type="hidden" name="logintype">
+	<input type="text" name="id" placeholder="&nbsp;아이디"  style="width: 280px; height: 50px;" class="form form-control">
+	<button type="submit" class="login_button">로그인</button><br>
+	<input type="password" name="pass" placeholder="&nbsp;비밀번호"  style="width: 280px; height: 50px;" class="form form-control">
 	
+	<br>
 	
-	<div id="job_seeker">
-		<input type="hidden" name="logintype">
-		<input type="text" name="id" placeholder="&nbsp;아이디"  style="width: 280px; height: 50px;" class="form form-control">
-		<button type="submit" class="login_button">로그인</button><br>
-		<input type="password" name="pass" placeholder="&nbsp;비밀번호"  style="width: 280px; height: 50px;" class="form form-control">
-		<br>
-		<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: left;"
+	<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: left;"
 		onclick="location.href='useradd'" class="glyphicon glyphicon-user">회원가입</span>
-		<span class="user_search" style="margin-top: 5px;">비밀번호 찾기</span>
-		<span class="user_search" style="margin-top: 5px;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-		<span class="user_search" style="margin-top: 5px;">아이디 찾기</span>
-		
-		<br>
-		<div class="sns_login">네이버 로그인</div>
-		<div class="sns_login" style="float: right;">카카오 로그인</div>
-	</div>
+	<span class="user_search" style="margin-top: 5px;">비밀번호 찾기</span>
+	<span class="user_search" style="margin-top: 5px;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+	<span class="user_search" style="margin-top: 5px;">아이디 찾기</span>
+	<br>
 	
-	<div id="corp">
+	<div class="sns_login">네이버 로그인</div>
+	<div class="sns_login" style="float: right;">카카오 로그인</div>
+	<br>
 	
-	</div>
+	<button type="button" style="float: left;" class="btn btn-default" onclick="location.href='corpadd'">기업 회원가입</button>
+
 </form>
 </div>
 </body>

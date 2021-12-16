@@ -16,5 +16,18 @@
 	<select id="getIdCheck" parameterType="String" resultType="int">
 		select count(*) from user where id = #{id}
 	</select>
+	<select id="corplogin" parameterType="HashMap" resultType="int">
+		select count(*) from company where id = #{id} and pass = #{pass}
+	</select>
+	<select id="getCorpName" parameterType="String" resultType="String">
+		select name from company where id = #{id}
+	</select>
+	<insert id="insertCorp" parameterType="comdto">
+		insert into company (id, pass, name, logo, photo, intro, addr, hp, ceo, employees, establishment, sales, major, insurance, site)
+		values(#{id}, #{pass}, #{name}, #{logo}, #{photo}, #{intro}, #{addr}, #{hp}, #{ceo}, #{employees}, #{establishment}, #{sales}, #{major}, #{insurance}, #{site})
+	</insert>
+	<select id="getCorpIdCheck" parameterType="String" resultType="int">
+		select count(*) from company where id = #{id}
+	</select>
 
 </mapper>
