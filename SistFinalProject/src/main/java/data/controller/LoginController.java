@@ -36,7 +36,7 @@ public class LoginController {
 		if(loginok==null)
 			return "/login/loginmain";
 		else {
-			return "/login/mypage(temp)"; //마이페이지로 매핑되게 만들 예정
+			return "redirect:/mypage/main";
 		}
 	}
 	
@@ -68,6 +68,7 @@ public class LoginController {
 	@GetMapping("/login/logoutprocess")
 	public String logout(HttpSession session) {
 		
+		session.removeAttribute("myid");
 		session.removeAttribute("loginok");
 		session.removeAttribute("logintype");
 		

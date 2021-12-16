@@ -28,11 +28,46 @@
 	cursor: pointer;
 }
 
+.btn-active {
+	border: 1px solid #40e0d0;
+	border-bottom: none;
+	background-color: white;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+
 .sns_login {
 	display: inline-block;
 	cursor: pointer;
 }
 </style>
+
+<script type="text/javascript">
+
+$(function () {
+	
+	var loginLinks = document.querySelectorAll(".btn-l");
+	
+	function clickLoginHandler() {
+		for(var i=0; i<loginLinks.length; i++) {
+			loginLinks[i].classList.remove("btn-active");
+		}
+		this.classList.add("btn-active");
+	}
+
+	for (var i=0; i<loginLinks.length; i++) {
+		loginLinks[i].addEventListener("click", clickLoginHandler);
+		loginLinks[i].addEventListener("click", function () {
+			//alert($(this).attr("value"));
+			$("input[name=logintype]").attr("value",$(this).attr("value"));
+		});
+	}
+	
+});
+
+
+</script>
 
 <title>Insert title here</title>
 </head>
@@ -40,21 +75,28 @@
 <body>
 <div style="display: flex; justify-content: center;">
 	<img alt="" src="${root }/images/joblogo.png">
+	
 </div>
+<div style="text-align: center; margin: auto;">
+<input type="button" value="개인회원" id="userbtn" class="btn-l" style="width: 200px; height: 40px;">
+<input type="button" value="기업회원" id="corpbtn" class="btn-l" style="width: 200px; height: 40px;">
 
-<div style="display: flex; justify-content: center;">
-<form action="loginprocess" method="post" class="form form-inline">
+<br><br>
+<form action="loginprocess" method="post" class="form form-inline" style="display: inline-block;">
+	
+	
+	
 	<div id="job_seeker">
-		
+		<input type="hidden" name="logintype">
 		<input type="text" name="id" placeholder="&nbsp;아이디"  style="width: 280px; height: 50px;" class="form form-control">
 		<button type="submit" class="login_button">로그인</button><br>
 		<input type="password" name="pass" placeholder="&nbsp;비밀번호"  style="width: 280px; height: 50px;" class="form form-control">
 		<br>
-		<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline;"
-		onclick="location.href='useradd'">회원가입</span>
-		<span class="user_search">비밀번호 찾기</span>
-		<span class="user_search">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-		<span class="user_search">아이디 찾기</span>
+		<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: left;"
+		onclick="location.href='useradd'" class="glyphicon glyphicon-user">회원가입</span>
+		<span class="user_search" style="margin-top: 5px;">비밀번호 찾기</span>
+		<span class="user_search" style="margin-top: 5px;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+		<span class="user_search" style="margin-top: 5px;">아이디 찾기</span>
 		
 		<br>
 		<div class="sns_login">네이버 로그인</div>
