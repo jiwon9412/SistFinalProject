@@ -146,7 +146,7 @@ a:active {
   <c:forEach var="ndto" items="${list }" varStatus="i">
   
     <td>
-		<div class="notice">
+		<div class="notice" num=${ndto.num }>
 		  <div class="logo">
 		    <img alt="" src="../images/${ndto.photo }">
 		    
@@ -299,8 +299,14 @@ $("#btntype").click(function(){
 	
 	
 	//alert(hireType);
+
+});
+
+$("div.notice").click(function(){
 	
+	var num = $(this).attr("num");
 	
+	location.href="detail?num="+num;
 });
 
 

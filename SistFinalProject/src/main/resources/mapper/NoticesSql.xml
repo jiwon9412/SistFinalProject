@@ -34,5 +34,9 @@
 	<select id="getTypeCount" parameterType="String" resultType="int">
 		select count(*) from notice where type=#{type}
 	</select>
+	
+	<select id="getNotice" parameterType="String" resultType="ndto">
+		select * from notice where num=#{num}
+	</select>
 
 </mapper>
