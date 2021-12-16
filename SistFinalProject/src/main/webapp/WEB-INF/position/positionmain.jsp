@@ -36,9 +36,18 @@
 	<div class="suggestion">
          <div class="title-left">
              <h3 style="display: inline;">포지션 제안</h3>
+             
              <c:if test="${totalPosition>0}">
              	<h5 id="totPo"><b>총 ${totalPosition}건의 제안이 도착했습니다</b></h5>
              </c:if>
+
+             <!-- 포지션 제안받기 버튼 -->             
+	         <h4 style="display: inline; margin-left: 50%;"><b>포지션 제안 받기</b></h4>
+	          
+             <label style="float: right;" class="switch-button">
+	            <input type="checkbox"/>
+	            <span class="onoff-switch"></span>
+             </label>
          </div>
          
         <!-- 총갯수에 따른 변화 -->
