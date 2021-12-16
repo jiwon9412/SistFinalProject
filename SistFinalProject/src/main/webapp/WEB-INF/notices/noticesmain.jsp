@@ -6,7 +6,7 @@
 <head>
 <c:set var="root" value="<%=request.getServletPath() %>" />
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Gamja+Flower&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/notices.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -65,7 +65,6 @@ button.qual{
 table{
 	margin: 0 auto;
 	
-	
 }
 
 
@@ -73,7 +72,13 @@ div.noticewrap{
 	margin-top: 30px;
 }
 
-
+select option{
+	
+	font-size: 16px;
+	/* font-weight: bolder;
+	color: #40e0d0;  */
+	/* font-family: Gamja Flower; */
+}
 
 /* a.hover{
 	color: black;
@@ -111,21 +116,29 @@ a:active {
     </div>
     <!-- 상단 타이틀 끝 -->
 
-<table style="width: 1300px; caption-side: top;">
-<caption>
-<select class="form-control" style="width: 130px;">
-	<option>전체</option>
-	<option>신입</option>
-	<option>경력</option>
-	<option>인턴</option>
-	<option>무관</option>
+<table style="width: 1300px;">
+<caption class="form-inline">
+<select class="form-control" style="width: 160px; height: 30px;" id="seltype">
+	<option value="전체">고용선택 전체</option>
+	<option value="신입">신입</option>
+	<option value="경력">경력</option>
+	<option value="인턴">인턴</option>
+	<option value="무관">무관</option>
 </select> 
+&nbsp;&nbsp;&nbsp;
+<button style="background-color: white; border: solid 1px #ddd; border-radius: 20px;
+ width: 60px; height: 35px; font-size: 0.8em; color: gray;" id="btntype"><b>검색</b></button>
 </caption>
   <tr>
   <c:if test="${totalCount==0 }">
   
     <td align="center">
-      <b>해당 채용 공고가 존재하지 않습니다</b>
+      <h2><b>해당 채용 공고가 존재하지 않습니다</b></h2>
+      <h4>다른 고용 형태를 검색해보세요</h4>
+      <div style="border: 1px solid white; height: 300px;">
+      
+      </div>
+      
     </td>
   
   </c:if>
@@ -269,6 +282,25 @@ $(document).on('click','span.scrapdel',function(){
 	
 	
 
+});
+
+$("#btntype").click(function(){
+	
+	var idx = $("#seltype option").index($("#seltype option:selected"));
+	if(idx==0){
+		location.href='main';
+		return;
+	}else{
+		var hireType=$("#seltype option:selected").text();
+		location.href='typelist?type='+hireType;
+		return;
+	}
+	
+	
+	
+	//alert(hireType);
+	
+	
 });
 
 

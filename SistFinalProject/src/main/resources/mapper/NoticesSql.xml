@@ -26,5 +26,13 @@
 	<select id="checkScrap" parameterType="HashMap" resultType="int">
 		select count(*) from scrap where user_id=#{user_id} and notice_num=#{notice_num}
 	</select>
+	
+	<select id="getTypeList" parameterType="HashMap" resultType="ndto">
+		select * from notice where type=#{type} order by num desc limit #{start},#{perpage}
+	</select>
+	
+	<select id="getTypeCount" parameterType="String" resultType="int">
+		select count(*) from notice where type=#{type}
+	</select>
 
 </mapper>

@@ -16,4 +16,8 @@ public interface NoticesMapper {
 	public void insertScrap(String user_id,String notice_num);
 	public void deleteScrap(String user_id,String notice_num);
 	public int checkScrap(String user_id,String notice_num);
+	
+	public ArrayList<NoticesDto> getTypeList(String type,int start, int perpage);
+	public int getTypeCount(String type);
+	
 }
