@@ -44,6 +44,7 @@ public class LoginController {
 	public String loginProcess(
 			@RequestParam String id,
 			@RequestParam String pass,
+			@RequestParam String logintype,
 			HttpSession session
 			) {
 		
