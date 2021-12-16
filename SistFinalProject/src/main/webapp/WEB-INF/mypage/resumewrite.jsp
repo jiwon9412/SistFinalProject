@@ -123,15 +123,11 @@ small.photo, span.photo{
 	
 	<!-- 작성/수정 페이지 구분 위해 표시 -->
     <div style=" position: absolute; left: 50%; width: 300px; margin-left: -150px; text-align: center;">
-    	<h4>이력서 수정</h4>
+    	<h4>이력서 작성</h4>
     </div>
-
+    
     <div class="cart-box-main">
-    	<form action="resume_update" method="post" enctype="multipart/form-data">
-    	
-		<input type="hidden" name="user_id" value="${resumedto.user_id}">
-		<input type="hidden" name="loginok" value="${loginok}">
-
+    	<form action="resume_insert" method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="row new-account-login">
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -182,17 +178,17 @@ small.photo, span.photo{
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
 								<label for="license">어학시험/자격증</label>
 									<input type="text" class="form-control" id="license1" name="license1" placeholder="어학시험/자격증 이름 입력"
-									value="${resumedto.license1}">
+									value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px;">
 									<label for="license">급수/점수</label>
 									<input type="text" class="form-control" id="license2" name="license2" placeholder="급수/점수 입력"
-									value="${resumedto.license2}">
+									value="">
                                 </div>                                
                                 <div style="width: 160px;">
 									<label for="license">취득월</label>
 									<input type="text" class="form-control" id="license3" name="license3" placeholder="취득월 입력"
-									value="${resumedto.license3}" onfocus="(this.type='month')">
+									value="" onfocus="(this.type='month')">
                                 </div>
 						</div>
 					</div>
@@ -206,36 +202,30 @@ small.photo, span.photo{
                             <div class="row">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
                                     <label for="highschool">고등학교 *</label>
-                                    <input type="text" class="form-control" id="highschool1" name="highschool1" placeholder="출신 고등학교 입력"
-                                    value="${resumedto.highschool1}">
+                                    <input type="text" class="form-control" id="highschool1" name="highschool1" placeholder="출신 고등학교 입력" value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px;">
                                     <label for="highschool">입학 *</label>
-                                    <input type="text" class="form-control" id="highschool2" name="highschool2" placeholder="입학월"
-                                    value="${resumedto.highschool2}"
+                                    <input type="text" class="form-control" id="highschool2" name="highschool2" placeholder="입학월" value=""
                                     onfocus="(this.type='month')">
                                 </div>                                
                                 <div style="width: 160px;">
                                     <label for="highschool">졸업 *</label>
-                                    <input type="text" class="form-control" id="highschool3" name="highschool3" placeholder="졸업월"
-                                    value="${resumedto.highschool3}"
+                                    <input type="text" class="form-control" id="highschool3" name="highschool3" placeholder="졸업월" value=""
                                     onfocus="(this.type='month')">
                                 </div>
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
                                     <label for="college">대학교 *</label>
-                                    <input type="text" class="form-control" id="college1" name="college1" placeholder="출신 대학교 입력"
-                                    value="${resumedto.college1}">
+                                    <input type="text" class="form-control" id="college1" name="college1" placeholder="출신 대학교 입력" value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px; margin-top: 30px;">
                                     <label for="college">입학 *</label>
-                                    <input type="text" class="form-control" id="college2" name="college2" placeholder="입학월"
-                                    value="${resumedto.college2}"
+                                    <input type="text" class="form-control" id="college2" name="college2" placeholder="입학월" value=""
                                     onfocus="(this.type='month')">
                                 </div>
                                 <div style="width: 160px; margin-top: 30px;">
                                     <label for="college">졸업(예정) *</label>
-                                    <input type="text" class="form-control" id="college3" name="college3" placeholder="졸업월"
-                                    value="${resumedto.college3}"
+                                    <input type="text" class="form-control" id="college3" name="college3" placeholder="졸업월" value=""
                                     onfocus="(this.type='month')">
                                 </div>
                                 <div style="margin-left: 20px; margin-right: 20px; margin-top: 30px;">
@@ -260,19 +250,16 @@ small.photo, span.photo{
 						<div class="row">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
                                     <label for="activity">대외활동명</label>
-                                    <input type="text" class="form-control" id="activity1" name="activity1" placeholder="대외활동명 입력" 
-                                    value="${resumedto.activity1}">
+                                    <input type="text" class="form-control" id="activity1" name="activity1" placeholder="대외활동명 입력" value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px;">
                                     <label for="activity">시작일</label>
-                                    <input type="text" class="form-control" id="activity2" name="activity2" placeholder="시작" 
-                                    value="${resumedto.activity2}"
+                                    <input type="text" class="form-control" id="activity2" name="activity2" placeholder="시작" value=""
                                     onfocus="(this.type='month')">
                                 </div>
                                 <div style="width: 160px;">
                                     <label for="activity">종료일</label>
-                                    <input type="text" class="form-control" id="activity3" name="activity3" placeholder="종료" 
-                                    value="${resumedto.activity3}"
+                                    <input type="text" class="form-control" id="activity3" name="activity3" placeholder="종료" value=""
                                     onfocus="(this.type='month')">
                                 </div>
 						</div>
@@ -285,29 +272,24 @@ small.photo, span.photo{
 						<div class="row">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
                                     <label for="career">회사명</label>
-                                    <input type="text" class="form-control" id="career1" name="career1" placeholder="회사명" 
-                                    value="${resumedto.career1}">
+                                    <input type="text" class="form-control" id="career1" name="career1" placeholder="회사명" value="">
                                 </div>
                                 <div style="width: 160px;">
                                     <label for="career">부서명</label>
-                                    <input type="text" class="form-control" id="career2" name="career2" placeholder="부서명" 
-                                    value="${resumedto.career2}">
+                                    <input type="text" class="form-control" id="career2" name="career2" placeholder="부서명" value="">
                                 </div>
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
                                     <label for="career">직급/직책</label>
-                                    <input type="text" class="form-control" id="career3" name="career3" placeholder="직급/직책" 
-                                    value="${resumedto.career3}">
+                                    <input type="text" class="form-control" id="career3" name="career3" placeholder="직급/직책" value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px; margin-top: 30px;">
                                     <label for="career">입사월</label>
-                                    <input type="text" class="form-control" id="career4" name="career4" placeholder="입사월" 
-                                    value="${resumedto.career4}"
+                                    <input type="text" class="form-control" id="career4" name="career4" placeholder="입사월" value=""
                                     onfocus="(this.type='month')">
                                 </div>
                                 <div style="width: 160px; margin-top: 30px;">
                                     <label for="career">퇴사월</label>
-                                    <input type="text" class="form-control" id="career5" name="career5" placeholder="퇴사월" 
-                                    value="${resumedto.career5}"
+                                    <input type="text" class="form-control" id="career5" name="career5" placeholder="퇴사월" value=""
                                     onfocus="(this.type='month')">
                                 </div>
 						</div>
@@ -322,7 +304,7 @@ small.photo, span.photo{
                                 </div>
                                 <div class="rounded p-2 bg-light">
                                     <div class="media mb-2 border-bottom">
-                                        <textarea class="form-control" id="introduce" name="introduce" style="height: 200px;">${resumedto.introduce}</textarea>
+                                        <textarea class="form-control" id="introduce" name="introduce" style="height: 200px;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -333,8 +315,7 @@ small.photo, span.photo{
                                     <h3 class="resume_mini_title">포트폴리오</h3>
                                 </div>
                                 <div class="mb-4">
-                                	<input type="file" class="form-control" name="uploadportfolio" style="height: 40px;" 
-                                	value="${resumedto.uploadportfolio}">
+                                	<input type="file" class="form-control" name="uploadportfolio" style="height: 40px;">
                                 </div>
                             </div>
                         </div>
