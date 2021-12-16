@@ -52,13 +52,22 @@ public class LoginController {
 		map.put("id", id);
 		map.put("pass", pass);
 		
-		int check = mapper.login(map);
+		int check = 0;
+		
+		if(logintype.equals("개인회원")) {
+			check = mapper.login(map);
+		} else {
+			
+		}
 		
 		if(check==1) {
 			session.setAttribute("myid", id);
 			session.setAttribute("loginok", "yes");
-			session.setAttribute("logintype", "user");
-			
+			if(logintype.equals("개인회원")) {
+				session.setAttribute("logintype", "user");
+			} else {
+				session.setAttribute("logintype", "corp");
+			}
 			//체크했을때 on, 안하면 null
 			return "redirect:main";
 		} else {
