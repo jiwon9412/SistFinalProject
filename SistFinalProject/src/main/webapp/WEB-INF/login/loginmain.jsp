@@ -49,6 +49,10 @@ $(function () {
 	
 	var loginLinks = document.querySelectorAll(".btn-l");
 	
+	window.onload = function() {
+		loginLinks[0].click();
+	}
+	
 	function clickLoginHandler() {
 		for(var i=0; i<loginLinks.length; i++) {
 			loginLinks[i].classList.remove("btn-active");
