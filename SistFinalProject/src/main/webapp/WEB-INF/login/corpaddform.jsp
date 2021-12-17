@@ -15,8 +15,6 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 
 $(function () {
 	
-	chnIdnType("1", "호텔·여행·항공");
-	
 	//input file
 	$("span.photo").click(function () {
 		
