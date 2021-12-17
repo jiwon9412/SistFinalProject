@@ -16,10 +16,14 @@ div.notice{
 	border: solid 1px gray;
 	width: 250px;
 	height: 400px;
-	cursor: pointer;
+	
 	margin-top: 30px;
 	
 	
+}
+
+div.godetail{
+	cursor: pointer;
 }
 div.logo>img{
 	border-radius: 20px 20px 0px 0px;
@@ -146,7 +150,8 @@ a:active {
   <c:forEach var="ndto" items="${list }" varStatus="i">
   
     <td>
-		<div class="notice" num=${ndto.num }>
+		<div class="notice">
+		<div class="godetail" num=${ndto.num }>
 		  <div class="logo">
 		    <img alt="" src="../images/${ndto.photo }">
 		    
@@ -159,6 +164,7 @@ a:active {
 		    <button class="qual"><b>${ndto.personnel }명</b></button>
 		    
 		  </div>
+		  </div>
 		  <div class="period">
 		    <hr style="margin-bottom: 5px;">
 		    <b style="color: gray; ">${ndto.period_start } ~ ${ndto.period_end }</b>
@@ -166,13 +172,13 @@ a:active {
 		    
 		    <c:if test="${ndto.check==0 }">
 		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray;" 
+		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
 		    num="${ndto.num }" userId="${myid }"></span>
 		    </c:if>
 		    
 		    <c:if test="${ndto.check==1 }">
 		    <span class="glyphicon glyphicon-heart scrapdel" 
-		    style="margin-left: 25px; font-size: 20px; color: red;" 
+		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
 		    num="${ndto.num }" userId="${myid }"></span>
 		    </c:if>
 		  </div>
@@ -302,7 +308,7 @@ $("#btntype").click(function(){
 
 });
 
-$("div.notice").click(function(){
+$("div.godetail").click(function(){
 	
 	var num = $(this).attr("num");
 	

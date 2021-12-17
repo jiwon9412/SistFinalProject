@@ -34,7 +34,10 @@ table th{
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>${dto.company_id }</h2>
+                    <h2>
+                    	<img alt="" src="../images/coupang_logo.jpg" style="border: 1px solid white; width: 80px; height:50px; ">
+                    	${dto.company_id }
+                    </h2>
                     <h4>회사설명</h4>
                 </div>
             </div>
