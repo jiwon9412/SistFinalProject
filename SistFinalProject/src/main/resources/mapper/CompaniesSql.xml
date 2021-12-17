@@ -19,12 +19,12 @@
 		select * from company where id=#{id}
 </select>
 
-<select id="getMajorList" parameterType="HashMap" resultType="comdto">
-	select * from company where major=#{major} order by id desc limit #{start},#{perpage}
+<select id="getIndustryList" parameterType="HashMap" resultType="comdto">
+	select * from company where industry=#{industry} order by id desc limit #{start},#{perpage}
 </select>
 
-<select id="getMajorCount" parameterType="String" resultType="int">
-	select count(*) from company where major=#{major}
+<select id="getIndustryCount" parameterType="String" resultType="int">
+	select count(*) from company where industry=#{industry}
 </select>
 
 </mapper>

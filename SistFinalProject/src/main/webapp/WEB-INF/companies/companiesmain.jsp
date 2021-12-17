@@ -49,23 +49,24 @@ window.onload = function() {
 <div class="wrapper">
 <table style="width: 1300px;">
 <caption class="form-inline">
-<select class="form-control" style="width: 200px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0" id="selmajor">
-	<option value="산업군전체">산업군 전체</option>            
-	<option value="전자상거래소매업">전자상거래 소매업</option>
-	<option value="인터넷관련소프트웨어">인터넷관련소프트웨어</option>
-	<option value="모바일APP">모바일 APP</option>
-	<option value="서비스/온라인정보제공업">서비스/온라인정보제공업</option>
-	<option value="반도체">반도체</option>
-	<option value="응용소프트웨어개발,공급">응용 소프트웨어 개발,공급</option>		<!-- value 바뀔예정 일단 레이아웃 -->
+<select class="form-control" style="width: 200px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0;" id="selmajor">
+	<option value="전체">산업군 전체</option>
+	<option value="서비스업">서비스업</option>
+    <option value="금융은행업">금융은행업</option>
+    <option value="IT·정보통신산업">IT·정보통신산업</option>
+    <option value="판매·유통업">판매·유통업</option>
+    <option value="제조·생산·화학업">제조·생산·화학업</option>
+    <option value="미디어·광고업">미디어·광고업</option>
+    <option value="기관·협회">기관·협회</option>
 </select>
 &nbsp;&nbsp;&nbsp;
 <button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
- width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검색</b></button>
+width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검색</b></button>
 </caption>
 	<tr>
 	<c:forEach var="dto" items="${list}" varStatus="i">
 		<td>
-	<div class="companies">
+	<div class="companies" id=${dto.id}>
 		<div class="pic">
 			<img alt="" src="../images/${dto.logo}">
 		</div>
@@ -74,9 +75,9 @@ window.onload = function() {
 			<p style="color: #40e0d0">${dto.major}</p>
 			
 			<!-- 채용중이면 보이게 , 채용중이 아니면 안보이게 ??????-->
-			<c:if test="">
+			
 			<button class="jobs-tag">테스트</button>
-			</c:if>
+			
 			
 			<p style="font-weight: bold;">${dto.name}</p>
 			<p>${dto.addr}</p>
@@ -91,6 +92,25 @@ window.onload = function() {
 	</tr>	
 </table>	
 </div>
+
+<!-- 다른 리스트 넣으려고 대충 레이아웃 -->
+<table style="width: 1300px;">
+<h3 style="margin-left: 295px;"><b>Job히다 커리어 홈<b></h3>
+<caption> <b>Job 히다의 채용중인 기업을 알아보세요</b> </caption>
+	<tr>
+		<c:forEach var="hiredto" items="${list}" varStatus="i">
+		<td>
+		<div class="a" style="border: 1px solid gray; width: 300px; height: 300px; border-radius: 20px; margin-bottom: 30px;">
+			
+		</div>
+		</td>
+		<c:if test="${i.count%4==0 }">
+		</tr>
+		<tr>
+		</c:if>
+		</c:forEach>
+	</tr>
+</table>
 
 <!-- 페이징 -->
 
@@ -130,13 +150,20 @@ $("#btnmajor").click(function(){
 		location.href='main';
 		return;
 	}else{
-		var majorType=$("#selmajor option:selected").text();
-		location.href='majorlist?major='+majorType;
+		var industryType=$("#selmajor option:selected").text();
+		location.href='industrylist?industry='+industryType;
 		return;
 		
-		alert(majorType);
+		
 	}
 		
+});
+/* 기업 상세로 이동하게 */
+$("div.companies").click(function(){
+	
+	var id = $(this).attr("id");
+	
+	location.href="detail?id="+id;
 });
 </script>
 

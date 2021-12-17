@@ -75,15 +75,15 @@ public class CompaniesController {
 		return mview;
 	}
 	
-	@GetMapping("/companies/majorlist")
+	@GetMapping("/companies/industrylist")
 	public ModelAndView majorlist(
 			@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
-			@RequestParam String major
+			@RequestParam String industry
 			)
 	{
 		ModelAndView mview = new ModelAndView();
 		
-		int totalCount=mapper.getMajorCount(major);
+		int totalCount=mapper.getIndustryCount(industry);
 		
 		//페이징 처리에 필요한 변수
 		int totalPage; //총 페이지 수
@@ -114,7 +114,7 @@ public class CompaniesController {
 		start=(currentPage-1)*perPage;
 
 		//각페이지에서 필요한 게시글 가져오기
-		List<CompaniesDto> list=mapper.getMajorList(major, start, perPage);
+		List<CompaniesDto> list=mapper.getIndustryList(industry, start, perPage);
 
 		//각글앞에 붙힐 시작번호 구하기
 		//총글이 20개일겨웅 1페이지 20,2페이지 15부터
@@ -129,6 +129,21 @@ public class CompaniesController {
 		mview.addObject("totalCount", totalCount);
 				
 		mview.setViewName("/companies/companiesmain");
+		
+		return mview;
+	}
+	
+	// 기업리스트에서 -> 기업선택해서 누르면 상세페이지로 이동하게	
+	@GetMapping("/companies/detail")
+	public ModelAndView companiesdetail(@RequestParam String id)
+	{
+		ModelAndView mview=new ModelAndView();
+		
+		CompaniesDto dto=mapper.getData(id);
+		
+		mview.addObject("dto", dto);
+		
+		mview.setViewName("/companies/companiesdetail");
 		
 		return mview;
 	}
