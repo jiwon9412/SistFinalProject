@@ -65,7 +65,7 @@ rel="stylesheet">
                         <li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/notices/main">채용공고</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/companies/main">기업탐색</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${root }/mypage/main?user_id=${myid}&loginok=${loginok}">마이페이지</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${root }/mypage/main">마이페이지</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/contents/main">콘텐츠</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/position/main">포지션제안</a></li>
                         <!-- <li class="dropdown megamenu-fw">

@@ -73,13 +73,13 @@ a.nav-link{
 				<h2>마이페이지</h2>
                     <ul class="mypage_category">
                         <c:if test="${sessionScope.logintype=='user'}">
-							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main?user_id=${myid}&loginok=${loginok}">이력서 관리</a></li>
+							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main">이력서 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applications">지원 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/scraps">스크랩 공고</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updateuser">회원정보 수정</a></li>
 						</c:if>
 						<c:if test="${sessionScope.logintype=='corp'}">
-							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/notice">공고 관리</a></li>
+							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/main">공고 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applicants">지원자 현황</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updatecompany">기업정보 수정</a></li>
 						</c:if>
@@ -129,7 +129,7 @@ a.nav-link{
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td>user테이블에서 가져올것</td>
+							<td>${resumedto.addr}</td>
 						</tr>			
 					</table>
                 </div>
@@ -220,7 +220,7 @@ a.nav-link{
 
                         <button type="button" class="btn btn-primary" style="background-color: #40e0d0; border: 0px;
                         border-radius: 20px; width: 110px; height: 50px; font-weight: bold; margin-left: 450px;
-                        margin-top: 60px;" onclick="location.href='resume_update?user_id=${myid}'">이력서 수정</button>
+                        margin-top: 60px;" onclick="location.href='resume_update_form'">이력서 수정</button>
                     </div>
                 </div>
             </div>

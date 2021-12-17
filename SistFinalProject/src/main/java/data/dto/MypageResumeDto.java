@@ -27,5 +27,6 @@ public class MypageResumeDto {
 	private String military;
 	private String introduce;
 	private String job;
+	private String addr;
 
 }

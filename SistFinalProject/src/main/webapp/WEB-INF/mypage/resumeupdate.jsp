@@ -104,13 +104,13 @@ small.photo, span.photo{
 				<h2>마이페이지</h2>
                     <ul class="mypage_category">
                         <c:if test="${sessionScope.logintype=='user'}">
-							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main?user_id=${myid}&loginok=${loginok}">이력서 관리</a></li>
+							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main">이력서 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applications">지원 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/scraps">스크랩 공고</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updateuser">회원정보 수정</a></li>
 						</c:if>
 						<c:if test="${sessionScope.logintype=='corp'}">
-							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/notice">공고 관리</a></li>
+							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/main">공고 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applicants">지원자 현황</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updatecompany">기업정보 수정</a></li>
 						</c:if>
@@ -141,7 +141,7 @@ small.photo, span.photo{
                     <table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
 						<tr>
 							<th width="90">이름</th>
-							<td width="310">${userdto.name}</td>
+							<td width="310">${resumedto.name}</td>
 							<td rowspan="5">
 								<div class="resumephoto" style="width: 120px; height: 160px; border: 1px solid lightgray;" >
 									<input type="file" name="photoo" id="photoo" style="display: none;">
@@ -153,23 +153,23 @@ small.photo, span.photo{
 						</tr>
 						<tr>
 							<th>생년월일</th>
-							<td>${userdto.birth}</td>
+							<td>${resumedto.birth}</td>
 						</tr>
 						<tr>
 							<th>성별</th>
-							<td>userdto에 gender 없음</td>
+							<td>${resumedto.gender}</td>
 						</tr>
 						<tr>
 							<th>연락처</th>
-							<td>${userdto.hp}</td>
+							<td>${resumedto.hp}</td>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td>${userdto.email}</td>
+							<td>${resumedto.email}</td>
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td>address는 테이블에도 없음</td>
+							<td>${resumedto.addr}</td>
 						</tr>
 			
 					</table>

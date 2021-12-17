@@ -23,9 +23,9 @@
 
 <insert id="insertMypageResume" parameterType="resumedto">
 	insert into resume (user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,
-	license,portfolio,military,introduce,job)
+	license,portfolio,military,introduce,job,addr)
 	values (#{user_id},#{name},#{birth},#{photo},#{gender},#{email},#{hp},#{highschool},#{college},
-	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job})
+	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job},#{addr})
 </insert>
 <!-- 
 
