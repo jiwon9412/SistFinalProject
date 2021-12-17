@@ -14,10 +14,12 @@ public interface LoginMapper {
 	public String getName(String id);
 	public void insertUser(UserDto dto);
 	public int getIdCheck(String id);
+	public String getUserData(String id);
 	
 	public int corplogin(HashMap<String, String>map);
 	public String getCorpName(String id);
 	public void insertCorp(CompaniesDto comdto);
 	public int getCorpIdCheck(String id);
+	public String getCorpData(String id);
 
 }

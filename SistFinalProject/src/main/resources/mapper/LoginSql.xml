@@ -3,6 +3,7 @@
 
 <mapper namespace="data.mapper.LoginMapper">
 
+	<!-- user 테이블 -->
 	<select id="login" parameterType="HashMap" resultType="int">
 		select count(*) from user where id = #{id} and pass = #{pass}
 	</select>
@@ -16,6 +17,11 @@
 	<select id="getIdCheck" parameterType="String" resultType="int">
 		select count(*) from user where id = #{id}
 	</select>
+	<select id="getUserData" parameterType="String" resultType="udto">
+		select * from user where id = #{id}	
+	</select>
+	
+	<!-- company -->
 	<select id="corplogin" parameterType="HashMap" resultType="int">
 		select count(*) from company where id = #{id} and pass = #{pass}
 	</select>
@@ -28,6 +34,9 @@
 	</insert>
 	<select id="getCorpIdCheck" parameterType="String" resultType="int">
 		select count(*) from company where id = #{id}
+	</select>
+	<select id="getCorpData" parameterType="String" resultType="comdto">
+		select * from company where id = #{id}	
 	</select>
 
 </mapper>
