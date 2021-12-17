@@ -8,6 +8,7 @@ import org.apache.jasper.tagplugins.jstl.core.Redirect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -72,4 +73,15 @@ public class PositionController {
 		return mview;
 	}
 		
+	
+	//Offer 삭제
+	//실제 학제
+	@GetMapping("/position/delete")
+	public String delete(@RequestParam String company_id) {
+			
+		//dao호출
+		mapper.deleteOffer(company_id);
+		
+		return "redirect:main";
+	}
 }

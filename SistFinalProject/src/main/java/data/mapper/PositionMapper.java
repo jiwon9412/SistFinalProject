@@ -18,4 +18,7 @@ public interface PositionMapper {
 	
 	//랜덤으로 출력
 	public List<CompaniesDto> getRndList();
+	
+	//오퍼 삭제
+	public void deleteOffer(String company_id);
 }

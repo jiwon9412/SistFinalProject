@@ -79,7 +79,7 @@
 					<td>${list.content}</td>
 					<td>
 						<button type="button" class="btn btn-default" style="width: 100px;"
-						onclick="location.href='#'">삭제</button>
+						onclick="location.href='delete?company_id=${list.company_id}'">삭제</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="service-desc">
                                     <h4>마이페이지</h4>
-                                    <p>이력서 수정하고 경쟁력높이기</p>
+                                    <p><b>이력서 수정하고 경쟁력높이기</b></p>
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="service-desc">
                                     <h4>콘텐츠</h4>
-                                    <p>취업을 위해서 가장 내게 필요한 것은?</p>
+                                    <p><b>취업을 위해서 가장 내게 필요한 것은?</b></p>
                                 </div>
                             </div>
                         </div>

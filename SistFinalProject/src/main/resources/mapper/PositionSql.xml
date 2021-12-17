@@ -26,4 +26,10 @@
 	<select id="getRndList" resultType="comdto">
 		select * from company order by rand()
 	</select>
+	
+	
+	<!-- Offer 삭제 -->
+	<delete id="deleteOffer" parameterType="String">
+		delete from offer where company_id=#{company_id}
+	</delete>
 </mapper>
