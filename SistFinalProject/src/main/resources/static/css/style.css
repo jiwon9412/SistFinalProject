@@ -1604,6 +1604,7 @@
 }
  .title-left{
      font-size: 16px;
+     padding-bottom: 10px;
      border-bottom: 3px solid #40e0d0;
      margin-bottom: 20px;
 }

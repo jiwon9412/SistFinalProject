@@ -19,5 +19,5 @@ public interface NoticesMapper {
 	
 	public ArrayList<NoticesDto> getTypeList(String type,int start, int perpage);
 	public int getTypeCount(String type);
-	
+	public NoticesDto getNotice(String num);
 }

@@ -205,6 +205,20 @@ public class NoticesController {
 		return mview;
 	}
 	
+	@GetMapping("/notices/detail")
+	public ModelAndView noticesDetail(
+			@RequestParam String num
+			) {
+		
+		ModelAndView mview = new ModelAndView();
+		NoticesDto dto = mapper.getNotice(num);
+		
+		mview.addObject("dto", dto);
+		
+		mview.setViewName("/notices/noticesdetail");
+		return mview;
+		
+	}
 	
 	
 }

@@ -72,12 +72,12 @@ a.nav-link{
 			<div class="col-lg-12">
 				<h2>마이페이지</h2>
                     <ul class="mypage_category">
-                        <%-- <c:if test="${sessionScope.logintype=='user'}"> --%>
+                        <c:if test="${sessionScope.logintype=='user'}">
 							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main?user_id=${myid}&loginok=${loginok}">이력서 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applications">지원 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/scraps">스크랩 공고</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updateuser">회원정보 수정</a></li>
-						<%-- </c:if> --%>
+						</c:if>
 						<c:if test="${sessionScope.logintype=='corp'}">
 							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/notice">공고 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applicants">지원자 현황</a></li>
@@ -107,7 +107,7 @@ a.nav-link{
 							<td width="310">${resumedto.name}</td>
 							<td rowspan="5">
 								<div class="resumephoto" style="width: 120px; height: 160px; border: 1px solid lightgray;" >
-									<img alt="" src="테스트이미지.jpg" id="photoo_preview" style="width: 118px; height: 158px;">
+									<img alt="" src="테스트이미지.jpg" id="photoo_preview" style="width: 117px; height: 157.5px;">
 								</div>
 							</td>
 						</tr>
@@ -201,8 +201,8 @@ a.nav-link{
                                 </div>
                                 <div class="rounded p-2 bg-light">
                                     <div class="media mb-2 border-bottom">
-                                        <textarea readonly class="form-control" style="height: 200px; background-color: white;">
-                                        ${resumedto.introduce}</textarea>
+                                        <textarea readonly class="form-control" style="height: 200px; 
+                                        background-color: white;">${resumedto.introduce}</textarea>
                                     </div>
                                 </div>
                             </div>

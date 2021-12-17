@@ -10,18 +10,28 @@
 <select id="checkResume" parameterType="String" resultType="int">
 	select count(*) from resume where user_id=#{user_id}
 </select>
+<!-- user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,license,portfolio,military,introduce,job -->
+<update id="updateMypageResume" parameterType="String">
+	update resume set highschool=#{highschool},college=#{college},career=#{career},activity=#{activity},license=#{license},
+	military=#{military},introduce=#{introduce},job=#{job}
+	<!-- photo, portfolio 파일 수정 -->
+	<!-- <if test="uploadfile!=null">
+	,uploadfile=#{uploadfile}
+	</if> -->
+	where user_id=#{user_id}	
+</update>
 
-
+<insert id="insertMypageResume" parameterType="resumedto">
+	insert into resume (user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,
+	license,portfolio,military,introduce,job)
+	values (#{user_id},#{name},#{birth},#{photo},#{gender},#{email},#{hp},#{highschool},#{college},
+	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job})
+</insert>
 <!-- 
-
 
 <select id="getTotalCount" resultType="int">
 	select count(*) from springboard
 </select>
-
-<update id="updateReadCount" parameterType="String">
-	update springboard set readcount=readcount+1 where num=#{num}
-</update>
 
 <select id="getData" parameterType="String" resultType="bdto">
 	select * from springboard where num=#{num}

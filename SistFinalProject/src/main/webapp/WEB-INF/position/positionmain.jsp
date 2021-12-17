@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <link rel="stylesheet" href="../css/potision.css">
 
@@ -14,6 +14,8 @@
 </head>
 <body>
 
+	<!-- 로그인 안됐을 경우 컨트롤러에서 login으로 이동-->
+	
 	<!-- 개인회원 로그인했을 경우 -->
 
     <!-- 상단 타이틀 시작 -->
@@ -28,10 +30,63 @@
         </div>
     </div>
     <!-- 상단 타이틀 끝 -->
+    
+	
+	<!-- 도착한 Offer 갯수 -->
+	<div class="suggestion">
+         <div class="title-left">
+             <h3 style="display: inline;">포지션 제안</h3>
+             
+             <c:if test="${totalPosition>0}">
+             	<h5 id="totPo"><b>총 ${totalPosition}건의 제안이 도착했습니다</b></h5>
+             </c:if>
+
+             <!-- 포지션 제안받기 버튼 -->             
+	         <h4 style="display: inline; margin-left: 50%;"><b>포지션 제안 받기</b></h4>
+	          
+             <label style="float: right;" class="switch-button">
+	            <input type="checkbox"/>
+	            <span class="onoff-switch"></span>
+             </label>
+         </div>
+         
+        <!-- 총갯수에 따른 변화 -->
+		<table id="position-table" style="border-top: #00e1ff">
+			<tr bgcolor="#40e0d0">
+				<th width="100"><center>회사명</center></th>
+				<th width="200"><center>업종</center></th>
+				<th width="350"><center>제안</center></th>
+				<th width="30"><center>관리</center></th>				
+			</tr>
+			
+			 <!-- 받은 제안이 0개일때 -->
+	         <c:if test="${totalPosition==0}">
+				<tr height="50">
+					<td colspan="4" align="center">
+						<h4><b>도착한 제안이 없습니다</b></h4>
+					</td>
+				</tr>
+			</c:if>
+			
+		<!-- 받은 제안이 존재할때 -->
+		<c:if test="${totalPosition>0}">
+			<c:forEach var="list" items="${list}">
+				<tr align="center">
+					<td><b>${list.name}</b></td>
+					<td>${list.major}</td>
+					<td>${list.content}</td>
+					<td>
+						<button type="button" class="btn btn-default" style="width: 100px;"
+						onclick="location.href='#'">삭제</button>
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>	
+		</table>
+	</div>
 
 
-
-    <!-- Start My Account  -->
+    <!-- Start My Account  -->	
     <div class="my-account-box-main">
         <div class="container">
             <div class="my-account-page">
