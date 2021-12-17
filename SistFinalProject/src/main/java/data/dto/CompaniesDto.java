@@ -29,6 +29,7 @@ public class CompaniesDto {
 	private String hp1;
 	private String hp2;
 	private String hp3;
+	private String industry;
 	
 	
 }

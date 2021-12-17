@@ -15,6 +15,8 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 
 $(function () {
 	
+	chnIdnType("1", "호텔·여행·항공");
+	
 	//input file
 	$("span.photo").click(function () {
 		
@@ -87,6 +89,57 @@ const inputImage = document.getElementById("input-image")
 inputImage.addEventListener("change", e => {
     readImage(e.target)
 });
+
+function idnChange(e) {
+	
+	//서비스업
+	var idn_1 = ["호텔·여행·항공", "음식료·외식·프렌차이즈", "스포츠·여가·레저", "뷰티·미용", "서치펌·헤드헌팅"];
+	
+	//금융은행업
+	var idn_2 = ["은행·금융", "캐피탈·대출", "증권·보험·카드"];
+	
+	//IT·정보통신산업
+	var idn_3 = ["솔루션·SI·RM·ERP", "웹에이전시", "쇼핑몰·오픈마켓·소셜커머스", "포털·컨텐츠·커뮤니티", 
+		"네트워크·통신·서비스", "정보보안", "컴퓨터·하드웨어·장비", "게임·애니메이션", "모바일·APP", "IT컨설팅"];
+	
+	//판매·유통업
+	var idn_4 = ["백화점·유통·도소매", "무역·상사", "물류·운송·배송"];
+	
+	//제조생산·화학업
+	var idn_5 = ["전기·전자·제어", "반도체·디스플레이·광학", "기계·기계설비", "자동차·조선·철강·항공", "금속·재료·자재", 
+		"화학·에너지·환경", "섬유·의류·패션", "생활화학·화장품", "생활용품·소비재·기타",
+		"목재·제지·가구", "식품가공", "농축산·어업·임업"];
+	
+	//미디어·광고업
+	var idn_6 = ["방송·케이블·프로덕션", "신문·잡지·언론사", "광고·홍보·전시", "영화·음반·배급",
+		"연예·엔터테인먼트", "출판·인쇄·사진"];
+	
+	//기관·협회
+	var idn_7 = ["공기업·공공기관", "협회·단체", "컨설팅·연구조사", "회계·세무·법무"];
+	
+	
+	var target = document.getElementById("idnResult");
+	
+	if(e.value == "1") var result = idn_1;
+	else if (e.value == "2") var result = idn_2;
+	else if (e.value == "3") var result = idn_3;
+	else if (e.value == "4") var result = idn_4;
+	else if (e.value == "5") var result = idn_5;
+	else if (e.value == "6") var result = idn_6;
+	else if (e.value == "7") var result = idn_7;
+	
+	
+	
+	target.options.length = 0;
+	
+	for (x in result) {
+		var opt = document.createElement("option");
+		opt.value = result[x];
+		opt.innerHTML = result[x];
+		target.appendChild(opt);
+	}
+	
+}
 
 </script>
 <title>Insert title here</title>
@@ -180,10 +233,21 @@ inputImage.addEventListener("change", e => {
 	<br>
 	
 	<!-- select로 바꿀 예정 -->
-	<span style="font-weight: bold; font-size: 1.1em;">주요사업</span>
-	<input type="text" name="major" class="form-control" 
-	style="width: 400px; height: 40px;" required="required">
-	<br>
+	<span style="font-weight: bold; font-size: 1.1em;">주요산업</span><br>
+	<select name="industryType" class="form-control" style="display: inline; width: 190px; height: 40px;"
+	onchange="idnChange(this)">
+		<option>산업 선택</option>
+		<option value="1">서비스업</option>
+		<option value="2">금융은행업</option>
+		<option value="3">IT·정보통신산업</option>
+		<option value="4">판매·유통업</option>
+		<option value="5">제조·생산·화학업</option>
+		<option value="6">미디어·광고업</option>
+		<option value="7">기관·협회</option>
+	</select>
+	<select name="major" id="idnResult" class="form-control" 
+	style="width: 190px; height: 40px; display: inline; margin-left: 10px;">산업 상세</select>
+	<br><br>
 	
 	<span style="font-weight: bold; font-size: 1.1em;">4대보험</span><br>
 	<label><input type="checkbox" name="insurance" class="form-control" 
