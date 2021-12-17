@@ -366,16 +366,10 @@ public class MypageController {
 		return "/mypage/applicantslist";
 	}
 	
-	@GetMapping("/mypage/updateuser")
+	@GetMapping("/mypage/updatpassform")
 	public String updateuser() {
 		
-		return "/mypage/updateuser";
-	}
-	
-	@GetMapping("/mypage/updatecompany")
-	public String updatecompany() {
-		
-		return "/mypage/updatecompany";
+		return "/mypage/updatepassform";
 	}
 	
 	

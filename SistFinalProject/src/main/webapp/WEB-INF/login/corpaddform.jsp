@@ -230,8 +230,9 @@ function idnChange(e) {
 	style="width: 400px; height: 40px;" placeholder="0조 000억">
 	<br>
 	
-	<span style="font-weight: bold; font-size: 1.1em;">주요산업</span><br>
-	<select name="industry" class="form-control" style="display: inline; width: 190px; height: 40px;"
+	<span style="font-weight: bold; font-size: 1.1em;">주요산업</span>
+	<span style="color: red;">*</span><br>
+	<select name="industry" class="form-control" style="display: inline; width: 190px; height: 40px;" required="required"
 	onchange="idnChange(this)">
 		<option>산업 선택</option>
 		<option value="1">서비스업</option>
@@ -242,7 +243,7 @@ function idnChange(e) {
 		<option value="6">미디어·광고업</option>
 		<option value="7">기관·협회</option>
 	</select>
-	<select name="major" id="idnResult" class="form-control" 
+	<select name="major" id="idnResult" class="form-control" required="required"
 	style="width: 190px; height: 40px; display: inline; margin-left: 10px;">산업 상세</select>
 	<br><br>
 	

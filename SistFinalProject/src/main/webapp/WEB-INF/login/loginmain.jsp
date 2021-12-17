@@ -95,9 +95,6 @@ $(function () {
 	<input type="password" name="pass" placeholder="&nbsp;비밀번호"  style="width: 280px; height: 50px;" class="form form-control">
 	
 	<br>
-	
-	<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: left;"
-		onclick="location.href='useradd'" class="glyphicon glyphicon-user">회원가입</span>
 	<span class="user_search" style="margin-top: 5px;">비밀번호 찾기</span>
 	<span class="user_search" style="margin-top: 5px;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
 	<span class="user_search" style="margin-top: 5px;">아이디 찾기</span>
@@ -107,7 +104,16 @@ $(function () {
 	<div class="sns_login" style="float: right;">카카오 로그인</div>
 	<br>
 	
-	<button type="button" style="float: left;" class="btn btn-default" onclick="location.href='corpadd'">기업 회원가입</button>
+	<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: right;"
+		onclick="location.href='useradd'" class="glyphicon glyphicon-user">개인회원가입</span>
+	<span style="font-size: 0.8em; float: right; margin-right: 10px;">좋은 일을 찾으시나요?</span>
+	<br>
+	
+	<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: right;"
+		onclick="location.href='corpadd'" class="glyphicon glyphicon-briefcase">기업회원가입</span>
+	<span style="font-size: 0.8em; float: right; margin-right: 10px;">좋은 인재를 구하시나요?</span>
+	<br>
+	
 
 </form>
 </div>

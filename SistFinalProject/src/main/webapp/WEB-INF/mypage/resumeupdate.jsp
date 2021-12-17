@@ -107,12 +107,12 @@ small.photo, span.photo{
 							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main">이력서 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applications">지원 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/scraps">스크랩 공고</a></li>
-	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updateuser">회원정보 수정</a></li>
+	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updatpassform">회원정보 수정</a></li>
 						</c:if>
 						<c:if test="${sessionScope.logintype=='corp'}">
 							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/main">공고 관리</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applicants">지원자 현황</a></li>
-	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updatecompany">기업정보 수정</a></li>
+	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updatpassform">기업정보 수정</a></li>
 						</c:if>
                     </ul>
 			</div>
