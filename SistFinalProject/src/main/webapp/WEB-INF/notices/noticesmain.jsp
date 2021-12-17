@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <c:set var="root" value="<%=request.getServletPath() %>" />
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Gamja+Flower&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
@@ -238,6 +239,7 @@ $(document).on('click','span.scrap',function(){
 	var user_id = $(this).attr("userId");
 	var notice_num = $(this).attr("num");
 	//alert(user_id+","+notice_num);
+	
 	
 	if(${sessionScope.myid==null}){
 		 alert("로그인이 필요한 서비스입니다");

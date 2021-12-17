@@ -91,12 +91,15 @@ public class NoticesController {
 		mview.addObject("currentPage", currentPage);
 		
 		
-		/*
-		 * String user_id = (String) session.getAttribute("myid"); for(NoticesDto dto :
-		 * list) { String photo = cmapper.getPhoto(dto.getCompany_id()); int check =
-		 * mapper.checkScrap(user_id, dto.getNum()); dto.setCheck(check);
-		 * dto.setPhoto(photo); }
-		 */
+		
+		  String user_id = (String) session.getAttribute("myid"); 
+		  for(NoticesDto dto :list) { 
+			  
+			  int check = mapper.checkScrap(user_id, dto.getNum()); 
+			  dto.setCheck(check);
+		   
+		  }
+		 
 		
 		
 		mview.addObject("list", list);
