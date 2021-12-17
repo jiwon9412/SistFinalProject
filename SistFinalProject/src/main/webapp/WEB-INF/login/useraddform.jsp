@@ -78,23 +78,28 @@ function check(f) {
 	<div id="job_seeker">
 	
 		<span style="font-weight: bold; font-size: 1.1em;">아이디</span>
+		<span style="color: red;">*</span>
 		<input type="text" name="id" id="id" class="form-control"
 		style="width: 400px; height: 40px;" required="required" placeholder="&nbsp;아이디">
 		<b class="idmsg" style="font-size: 0.5em; "></b><br>
 		
 		<span style="font-weight: bold; font-size: 1.1em;">비밀번호</span>
+		<span style="color: red;">*</span>
 		<input type="password" name="pass" class="form-control"
 		style="width: 400px; height: 40px;" required="required" placeholder="&nbsp;비밀번호(8~16자의 영문, 숫자, 특수기호)"><br>
 		
 		<span style="font-weight: bold; font-size: 1.1em;">비밀번호 재확인</span>
+		<span style="color: red;">*</span>
 		<input type="password" name="pass2" class="form-control"
 		style="width: 400px; height: 40px;" required="required" placeholder="&nbsp;비밀번호(8~16자의 영문, 숫자, 특수기호)"><br>
 		
 		<span style="font-weight: bold; font-size: 1.1em;">이름</span>
+		<span style="color: red;">*</span>
 		<input type="text" name="name" class="form-control"
 		style="width: 400px; height: 40px;" required="required" placeholder="&nbsp;이름(실명)"><br>
 		
-		<span style="font-weight: bold; font-size: 1.1em;">생년월일</span><br>
+		<span style="font-weight: bold; font-size: 1.1em;">생년월일</span>
+		<span style="color: red;">*</span><br>
 		<input type="text" name="birth1" class="form-control"
 		style="width: 125px; height: 40px; display: inline;" required="required" placeholder="&nbsp;년(4자)">
 		<select name="birth2" class="form-control" style="width: 125px; height: 40px; display: inline; margin-left: 10px;" required="required">
@@ -107,6 +112,7 @@ function check(f) {
 		style="width: 125px; height: 40px; display: inline; margin-left: 10px;" required="required" placeholder="&nbsp;일"><br><br>
 		
 		<span style="font-weight: bold; font-size: 1.1em;">성별</span>
+		<span style="color: red;">*</span>
 		<select name="gender" class="form-control" style="width: 400px; height: 40px;">
 			<option value="">성별</option>
 			<option value="남자">남자</option>
@@ -114,7 +120,8 @@ function check(f) {
 			<option value="선택안함">선택안함</option>				
 		</select><br>
 		
-		<span style="font-weight: bold; font-size: 1.1em;">이메일</span><br>
+		<span style="font-weight: bold; font-size: 1.1em;">이메일</span>
+		<span style="color: red;">*</span><br>
 		<input type="text" name="email1" class="form-control"
 		style="width: 130px; height: 40px; display: inline;" required="required" placeholder="이메일">
 		<b>@</b>
@@ -128,7 +135,15 @@ function check(f) {
 			<option value="hanmail.net">다음</option>				
 		</select><br><br>
 		
-		<span style="font-weight: bold; font-size: 1.1em;">연락처</span><br>
+		<!-- 주소 API 불러올 예정 -->
+		<span style="font-weight: bold; font-size: 1.1em;">주소</span>
+		<span style="color: red;">*</span>
+		<input type="text" name="addr" class="form-control" 
+		style="width: 400px; height: 40px;" required="required" placeholder="주소">
+		<br>
+		
+		<span style="font-weight: bold; font-size: 1.1em;">연락처</span>
+		<span style="color: red;">*</span><br>
 		<input type="text" name="hp1" id="email2" class="form-control"
 		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="000">
 		<b>-</b>

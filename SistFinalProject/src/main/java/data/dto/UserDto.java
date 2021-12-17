@@ -22,6 +22,8 @@ public class UserDto {
 	private String hp1;
 	private String hp2;
 	private String hp3;
+	private String gender;
+	private String addr;
 	
 	
 	

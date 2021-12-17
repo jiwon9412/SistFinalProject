@@ -74,7 +74,7 @@ public class LoginController {
 				session.setAttribute("logintype", "corp");
 			}
 			//체크했을때 on, 안하면 null
-			return "redirect:main";
+			return "redirect:/";
 		} else {
 			return "/login/passfail";
 		}
