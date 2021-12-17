@@ -14,7 +14,8 @@ public class OfferDto {
 	private String content;
 
 	
-	//Companies Dto 끌어오기
+	//Companies Dto 끌어오기	private String id;
 	private String name;
 	private String major;
+	private String id;
 }

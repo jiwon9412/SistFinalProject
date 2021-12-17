@@ -20,4 +20,10 @@
 		company.major as major
 		from offer join company on offer.company_id=company.id
 	</select>
+	
+	
+	<!-- 이런공고는 어떠신가요? 랜덤출력 -->
+	<select id="getRndList" resultType="comdto">
+		select * from company order by rand()
+	</select>
 </mapper>

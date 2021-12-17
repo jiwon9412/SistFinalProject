@@ -33,7 +33,7 @@ window.onload = function() {
 
 <!-- 상단 타이틀 -->
 <div class="company-top-box">
-	<div class="container">
+	<div class="container" style="margin-top: 4%;">
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>기업 탐색</h2>

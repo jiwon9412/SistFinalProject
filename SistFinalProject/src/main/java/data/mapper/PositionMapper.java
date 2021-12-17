@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import data.dto.CompaniesDto;
 import data.dto.OfferDto;
 
 @Mapper
@@ -14,4 +15,7 @@ public interface PositionMapper {
 	
 	//id값에 따른 포지션별 전체출력 & 페이징 처리
 	public List<OfferDto> getAllOffers(String myid);
+	
+	//랜덤으로 출력
+	public List<CompaniesDto> getRndList();
 }

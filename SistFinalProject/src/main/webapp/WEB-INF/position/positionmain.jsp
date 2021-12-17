@@ -33,6 +33,8 @@
     
 	
 	<!-- 도착한 Offer 갯수 -->
+	<br>
+	
 	<div class="suggestion">
          <div class="title-left">
              <h3 style="display: inline;">포지션 제안</h3>
@@ -41,7 +43,7 @@
              	<h5 id="totPo"><b>총 ${totalPosition}건의 제안이 도착했습니다</b></h5>
              </c:if>
 
-             <!-- 포지션 제안받기 버튼 -->             
+             <!-- 포지션 제안받기 버튼: 나중에 default값 주고 window함수로 자동 클릭시켜야 할듯 -->             
 	         <h4 style="display: inline; margin-left: 50%;"><b>포지션 제안 받기</b></h4>
 	          
              <label style="float: right;" class="switch-button">
@@ -86,20 +88,70 @@
 	</div>
 
 
-    <!-- Start My Account  -->	
-    <div class="my-account-box-main">
-        <div class="container">
+
+    <!-- 이런 제안은 어떠신가요?  -->	
+    <div style="margin-top: 100px;">
+         <div class="title-left suggestion">
+             <h3 style="margin-bottom: 5px;">이런 기업은 어떠세요?</h3>
+         </div>
+         
+         <div class="container">
             <div class="my-account-page">
+                <div class="row">
+                	<!-- 회사정보 반복해서 뿌려주기 -->
+	                    <div class="wrapper">
+							<table style="width: 130%; margin-left: 3%;">
+								<tr>
+									<c:forEach var="dto" items="${list2}" varStatus="i" begin="0" end="5">
+										<td>
+											<div class="companies" id=${dto.id} onclick="location.href='../companies/detail?id=${dto.id}'">
+												<div class="pic">
+													<img alt="" src="../images/${dto.logo}">
+												</div>
+												
+												<hr>
+												
+												<div class="txt">
+													<p>${dto.major}</p>
+										
+														<!-- 채용중이면 보이게 , 채용중이 아니면 안보이게 ??????-->
+														<button class="jobs-tag">테스트</button>			
+														<p style="font-weight: bold;">${dto.name}</p>
+														<p>${dto.addr}</p>
+												</div>
+											</div>
+										</td>
+									<c:if test="${i.count%3==0 }">
+										</tr>
+										<tr>
+									</c:if>
+								</c:forEach>
+							</tr>	
+						</table>	
+					</div>  
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    	
+    
+    <div class="how-about">
+        <div class="container">
+          <h4><b>더 둘러보기</b></h4>
                 <div class="row">
                     <div class="col-lg-4 col-md-12">
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                                    <a href="../notices/main"> <i class="fa fa-gift"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Your Orders</h4>
-                                    <p>Track, return, or buy things again</p>
+                                    <h4>채용공고</h4>
+                                    <p><b>선물같은 구직소식이 한가득</b></p>
                                 </div>
                             </div>
                         </div>
@@ -108,11 +160,11 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"><i class="fa fa-lock"></i> </a>
+                                    <a href="../mypage/main"><i class="fa fa-lock"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Login &amp; security</h4>
-                                    <p>Edit login, name, and mobile number</p>
+                                    <h4>마이페이지</h4>
+                                    <p>이력서 수정하고 경쟁력높이기</p>
                                 </div>
                             </div>
                         </div>
@@ -121,56 +173,16 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-location-arrow"></i> </a>
+                                    <a href="../contents/main"> <i class="fa fa-location-arrow"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Your Addresses</h4>
-                                    <p>Edit addresses for orders and gifts</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-credit-card"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Payment options</h4>
-                                    <p>Edit or add payment methods</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-paypal"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>PayPal</h4>
-                                    <p>View benefits and payment settings</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
+                                    <h4>콘텐츠</h4>
+                                    <p>취업을 위해서 가장 내게 필요한 것은?</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <!-- End My Account -->

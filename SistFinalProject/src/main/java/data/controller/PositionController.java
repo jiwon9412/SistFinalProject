@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import data.dto.CompaniesDto;
 import data.dto.OfferDto;
 import data.mapper.PositionMapper;
 
@@ -46,10 +47,13 @@ public class PositionController {
 		//id값에 해당되는 Offer 전체출력
 		List<OfferDto> list = mapper.getAllOffers(myid);
 		
+		//랜덤 출력용
+		List<CompaniesDto> list2 = mapper.getRndList();
+		
 		//총 갯수 + list 넣어주기
 		mview.addObject("totalPosition", totalPosition);
 		mview.addObject("list",list);
-		
+		mview.addObject("list2",list2);
 		
 		//만약 로그인 한했을 경우 로그인으로 이동
 		if(loginok==null) {
