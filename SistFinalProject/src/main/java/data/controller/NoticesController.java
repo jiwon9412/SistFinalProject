@@ -1,6 +1,11 @@
 package data.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -211,9 +216,34 @@ public class NoticesController {
 			) {
 		
 		ModelAndView mview = new ModelAndView();
-		NoticesDto dto = mapper.getNotice(num);
+		//NoticesDto dto = mapper.getNotice(num);
+		NoticesDto dto = mapper.getNoticeInfo(num);
 		
+		//D-day
+		String endDate = dto.getPeriod_end();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(System.currentTimeMillis()));
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());  //오늘날짜 (yyyy-MM-dd)
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			Date end = new Date(sdf.parse(endDate).getTime());
+			Date to = new Date(sdf.parse(today).getTime());
+			
+			long calculate = end.getTime() - to.getTime();
+			
+			int dDay = (int) (calculate/(24*60*60*1000));
+			mview.addObject("dDay", dDay);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
 		mview.addObject("dto", dto);
+		
+		
 		
 		mview.setViewName("/notices/noticesdetail");
 		return mview;

@@ -20,4 +20,6 @@ public interface NoticesMapper {
 	public ArrayList<NoticesDto> getTypeList(String type,int start, int perpage);
 	public int getTypeCount(String type);
 	public NoticesDto getNotice(String num);
+	//notice detail page에 필요한 모든 정보 담는 dto얻기
+	public NoticesDto getNoticeInfo(String num);
 }

@@ -23,4 +23,9 @@ public class NoticesDto {
 	//table엔 없는데 편의를 위해 추가
 	private String photo;
 	private int check;
+	private String logo;
+	private String name;
+	private String addr;
+	private String site;
+	private String intro;
 }

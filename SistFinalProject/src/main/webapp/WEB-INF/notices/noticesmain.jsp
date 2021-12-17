@@ -122,7 +122,7 @@ a:active {
 
 <table style="width: 1300px;">
 <caption class="form-inline">
-<select class="form-control" style="width: 160px; height: 30px;" id="seltype">
+<select class="form-control" style="width: 160px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0" id="seltype">
 	<option value="전체">고용선택 전체</option>
 	<option value="신입">신입</option>
 	<option value="경력">경력</option>
@@ -130,8 +130,8 @@ a:active {
 	<option value="무관">무관</option>
 </select> 
 &nbsp;&nbsp;&nbsp;
-<button style="background-color: white; border: solid 1px #ddd; border-radius: 20px;
- width: 60px; height: 35px; font-size: 0.8em; color: gray;" id="btntype"><b>검색</b></button>
+<button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
+ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btntype"><b>검색</b></button>
 </caption>
   <tr>
   <c:if test="${totalCount==0 }">
