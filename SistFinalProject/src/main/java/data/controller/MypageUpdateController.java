@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import data.dto.CompaniesDto;
+import data.dto.UserDto;
 import data.mapper.LoginMapper;
 
 @Controller
@@ -18,9 +21,11 @@ public class MypageUpdateController {
 	LoginMapper loginmapper;
 	
 	@PostMapping("/mypage/updateuserpasscheck")
-	public String updateUserPassCheck(
+	public ModelAndView updateUserPassCheck(
 			@RequestParam String pass,
 			HttpSession session) {
+		
+		ModelAndView mview = new ModelAndView();
 		
 		//세션에서 아이디, 로그인 유형
 		String myid = (String)session.getAttribute("myid");
@@ -41,16 +46,21 @@ public class MypageUpdateController {
 		
 		if(loginCheck==1) {
 			if(logintype.equals("user")) {
-				return "/mypage/updateuserform";
+				UserDto dto = loginmapper.getUserData(myid);
+				mview.addObject("dto", dto);
+				mview.setViewName("/mypage/updateuserform");
 			}
 			else {
-				return "/mypage/updatecorpform";
+				CompaniesDto dto = loginmapper.getCorpData(myid);
+				mview.addObject("dto", dto);
+				mview.setViewName("/mypage/updatecorpform");
 			}
 		}
 			
-		else {
-			return "/login/passfail";
-		}
+		else 
+			mview.setViewName("/login/passfail");
+		
+		return mview;
 	}
 	
 }

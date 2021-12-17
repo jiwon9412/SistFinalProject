@@ -22,8 +22,8 @@ th, td {
 <body>
 
 <div style="display: inline;">
-<form action="updateuserpasscheck" method="post" style="margin-left: 300px; margin-top: 50px; width: 800px;">
-	<span style="font-size: 1.5em; font-weight: bold;">비밀번호 확인</span>
+<form action="updateuserpasscheck" method="post" style="width: 800px; margin: auto; margin-top: 50px;">
+	<span style="font-size: 1.5em; font-weight: bold; float: left;">비밀번호 확인</span>
 	<table class="table table-bordered">
 		<caption> <span style="font-size: 8pt;">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 입력해 주세요.</span> </caption>
 		<tr>
