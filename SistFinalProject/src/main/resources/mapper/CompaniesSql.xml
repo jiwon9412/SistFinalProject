@@ -15,4 +15,8 @@
 		select photo from company where id=#{id}
 </select>
 
+<select id="getData" parameterType="String" resultType="comdto">
+		select * from company where id=#{id}
+</select>
+
 </mapper>

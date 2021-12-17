@@ -16,4 +16,9 @@ public interface CompaniesMapper {
 	
 	//채용공고에서 photo가져오기
 	public String getPhoto(String id);
+	
+	//단일 데이터조회
+	public CompaniesDto getData(String id);
+	
+	
 }
