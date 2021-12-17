@@ -183,6 +183,12 @@ public class LoginController {
 			photo = photo.substring(0, photo.length()-1); //photo 쉼표 제거
 		}
 		
+		String[] type = {"선택안함", "서비스업", "금융은행업", "IT·정보통신산업", "판매·유통업", "제조·생산·화학업", "미디어·광고업", "기관·협회"};
+		for(int i=0; i<type.length; i++) {
+			if(dto.getIndustry().equals(Integer.toString(i)))
+				dto.setIndustry(type[i]);
+		}
+		
 		//로고 이미지 dto에 저장
 		dto.setLogo(logo);
 		

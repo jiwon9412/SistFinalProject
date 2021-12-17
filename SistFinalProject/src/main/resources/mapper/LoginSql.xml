@@ -30,7 +30,7 @@
 	</select>
 	<insert id="insertCorp" parameterType="comdto">
 		insert into company (id, pass, name, logo, photo, intro, addr, hp, ceo, employees, establishment, sales, major, insurance, site, industry)
-		values(#{id}, #{pass}, #{name}, #{logo}, #{photo}, #{intro}, #{addr}, #{hp}, #{ceo}, #{employees}, #{establishment}, #{sales}, #{major}, #{insurance}, #{site}. #{industry})
+		values(#{id}, #{pass}, #{name}, #{logo}, #{photo}, #{intro}, #{addr}, #{hp}, #{ceo}, #{employees}, #{establishment}, #{sales}, #{major}, #{insurance}, #{site}, #{industry})
 	</insert>
 	<select id="getCorpIdCheck" parameterType="String" resultType="int">
 		select count(*) from company where id = #{id}
