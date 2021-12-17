@@ -14,6 +14,7 @@ public interface MypageMapper {
 	public int checkResume(String user_id);
 	
 	public void insertMypageNotice(NoticesDto ndto);
+	public int getNoticeCountByCompany(String company_id);
 	public void updateMypageNotice(NoticesDto ndto);
 
 }

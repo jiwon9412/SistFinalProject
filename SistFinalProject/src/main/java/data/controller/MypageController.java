@@ -95,6 +95,7 @@ public class MypageController {
 		return mv;
 	}
 	
+	//공고리스트 가기
 	@GetMapping("/mypage/noticelist_map") //NoticesController 복사해오기
 	public ModelAndView noticelist(@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
 			HttpSession session) {
@@ -153,10 +154,10 @@ public class MypageController {
 		mview.addObject("currentPage", currentPage);
 		
 		
-		String user_id = (String) session.getAttribute("myid");
+		String myid = (String) session.getAttribute("myid");
 		for(NoticesDto dto : list) {
 			String photo = comapper.getPhoto(dto.getCompany_id());
-			int check = nomapper.checkScrap(user_id, dto.getNum());
+			int check = nomapper.checkScrap(myid, dto.getNum());
 			dto.setCheck(check);
 			dto.setPhoto(photo);
 		}
@@ -164,10 +165,13 @@ public class MypageController {
 		
 		mview.addObject("list", list);
 		
+		int noticesCount = mymapper.getNoticeCountByCompany(myid);
+		mview.addObject("noticesCount",noticesCount);
 		mview.setViewName("/mypage/mynoticelist");
 		return mview;
 	}
 	
+	//이력서 작성 폼으로 가기
 	@GetMapping("/mypage/resume_write_map")
 	public ModelAndView resumewrite(HttpSession session) {
 		String myid = (String) session.getAttribute("myid");
@@ -183,13 +187,14 @@ public class MypageController {
 		return mv;
 	}
 	
+	// 이력서 작성 폼으로 가기
 	@GetMapping("/mypage/notice_write_map")
 	public String noticewrite() {
 		
 		return "/mypage/mynoticewrite";
 	}
 	
-	
+	// 이력서 등록
 	@PostMapping("/mypage/resume_insert")
 	public String insert(@ModelAttribute MypageResumeDto rdto,
 			HttpSession session) {
@@ -242,6 +247,7 @@ public class MypageController {
 		return "redirect:main"; 
 	}
 	
+	// 공고 등록
 	@PostMapping("/mypage/notice_insert")
 	public String notice_insert(@ModelAttribute NoticesDto ndto,
 			HttpSession session) {
@@ -251,17 +257,16 @@ public class MypageController {
 		
 		// 세션에서 id 얻어서 dto에 저장
 		String myid = (String) session.getAttribute("myid");
-		UserDto udto = loginmapper.getUserData(myid);
+		ndto.setCompany_id(myid);
 		
 		System.out.println("[notice_insert] loginok:"+ loginok + ", id:" + myid);
-		
-		
 		//insert
 		mymapper.insertMypageNotice(ndto);
 		
 		return "redirect:main"; 
 	}
 	
+	// 이력서 수정 폼으로 가기
 	@GetMapping("/mypage/resume_update_form")
 	public ModelAndView updateform(HttpSession session) {
 		
@@ -299,6 +304,7 @@ public class MypageController {
 		return mv;
 	}
 	
+	//이력서 수정
 	@PostMapping("/mypage/resume_update")
 	public String update(@ModelAttribute MypageResumeDto rdto,
 			HttpSession session) {
@@ -339,6 +345,26 @@ public class MypageController {
 	}
 	
 	
+	//개인 - 지원 관리
+	@GetMapping("/mypage/applications")
+	public String applications() {
+		
+		return "/mypage/notice_applied_list";
+	}
+	
+	//개인 - 스크랩 공고
+	@GetMapping("/mypage/scraps")
+	public String scraps() {
+		
+		return "/mypage/notice_scrapped_list";
+	}
+	
+	//기업- 지원자 현황 가기
+	@GetMapping("/mypage/applicants")
+	public String applicants() {
+		
+		return "/mypage/applicantslist";
+	}
 	
 	@GetMapping("/mypage/updateuser")
 	public String updateuser() {

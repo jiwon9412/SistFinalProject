@@ -79,8 +79,8 @@ a.nav-link{
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updateuser">회원정보 수정</a></li>
 						</c:if>
 						<c:if test="${sessionScope.logintype=='corp'}">
-							<li class="mypage_category"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/main">공고 관리</a></li>
-	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/applicants">지원자 현황</a></li>
+							<li class="mypage_category"><a class="nav-link" href="${root }/mypage/main">공고 관리</a></li>
+	                        <li class="mypage_category active"><a class="nav-link" style="color: #40e0d0;" href="${root }/mypage/applicants">지원자 현황</a></li>
 	                        <li class="mypage_category active"><a class="nav-link" href="${root }/mypage/updatecompany">기업정보 수정</a></li>
 						</c:if>
                     </ul>
@@ -89,32 +89,6 @@ a.nav-link{
 	</div>
 </div>
 <!-- 상단 바 끝-->
-    
-    <div class="cart-box-main">
-    	<form action="resume_view" method="post" enctype="multipart/form-data">
-        <div class="container">
-			<c:if test="${noticesCount==0}">
-				<div style="float: center; color: black; font-weight: bold; font-size: 30px; 
-				padding-top:60px; padding-bottom:30px;">등록된 공고가 없습니다.</div>
-			</c:if>
-			
-	        <button type="button" class="btn btn-primary" style="background-color: #40e0d0; border: 0px;
-	        border-radius: 20px; width: 110px; height: 50px; font-weight: bold;" 
-	        onclick="location.href='notice_write_map'">공고 추가</button>    
-			
-			<c:if test="${noticesCount==0}">
-				<div style="padding-top:60px; padding-bottom:30px;"></div>
-			</c:if>
-			
-			<c:if test="${noticesCount>0}">
-				<span style="float: right;">${noticesCount} 개의 공고를 등록하셨습니다.</span>
-				
-				<br><br>공고리스트는 나중에 채용공고 부분 완성되면 복붙할 예정~~
-			</c:if>
-        </div>
-        </form>
-    </div>
-    <!-- End Cart -->
-
+applicants list
 </body>
 </html>

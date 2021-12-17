@@ -143,11 +143,7 @@ small.photo, span.photo{
                                     <label for="section">모집부문</label>
                                     <input type="text" class="form-control" id="section" name="section" placeholder="모집부문" value="">
                                 </div>
-                                <div style="width: 30%; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
-                                    <label for="personnel">모집인원 *</label>
-                                    <input type="text" class="form-control" id="personnel" name="personnel" placeholder="모집인원" value="">
-                                </div>
-                                <div style="width: 30%; margin-right: 20px; margin-top: 30px;">
+                                <div style="width: 28.6%; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
                                     <label for="type">고용형태 *</label>
                                     <select class="form-control" id="type" name="type" style="height: 34px;">
 										<option value="" selected disabled hidden>고용형태</option>
@@ -156,6 +152,14 @@ small.photo, span.photo{
 										<option value="무관">무관</option>
 										<option value="인턴">인턴</option>
 									</select>
+                                </div>
+                                <div style="width: 28.6%; margin-right: 20px; margin-top: 30px;">
+                                    <label for="type">지점 *</label>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="지점" value="">
+                                </div>
+                                <div style="width: 28.6%; margin-right: 20px; margin-top: 30px;">
+                                    <label for="personnel">모집인원 *</label>
+                                    <input type="text" class="form-control" id="personnel" name="personnel" placeholder="모집인원" value="">
                                 </div>
 						</div>
                 </div>
