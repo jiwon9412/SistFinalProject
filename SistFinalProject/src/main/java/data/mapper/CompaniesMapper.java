@@ -20,5 +20,7 @@ public interface CompaniesMapper {
 	//단일 데이터조회
 	public CompaniesDto getData(String id);
 	
-	
+	//major별 출력
+	public ArrayList<CompaniesDto> getMajorList(String major,int start,int perpage);
+	public int getMajorCount(String major);
 }

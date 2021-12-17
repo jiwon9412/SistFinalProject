@@ -48,6 +48,20 @@ window.onload = function() {
 
 <div class="wrapper">
 <table style="width: 1300px;">
+<caption class="form-inline">
+<select class="form-control" style="width: 200px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0" id="selmajor">
+	<option value="산업군전체">산업군 전체</option>            
+	<option value="전자상거래소매업">전자상거래 소매업</option>
+	<option value="인터넷관련소프트웨어">인터넷관련소프트웨어</option>
+	<option value="모바일APP">모바일 APP</option>
+	<option value="서비스/온라인정보제공업">서비스/온라인정보제공업</option>
+	<option value="반도체">반도체</option>
+	<option value="응용소프트웨어개발,공급">응용 소프트웨어 개발,공급</option>		<!-- value 바뀔예정 일단 레이아웃 -->
+</select>
+&nbsp;&nbsp;&nbsp;
+<button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
+ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검색</b></button>
+</caption>
 	<tr>
 	<c:forEach var="dto" items="${list}" varStatus="i">
 		<td>
@@ -106,6 +120,25 @@ window.onload = function() {
 	</ul>
 	</div>
 </c:if>
+
+<script type="text/javascript">
+/* 산업군별 select 검색되게 */
+$("#btnmajor").click(function(){
+	
+	var idx = $("#selmajor option").index($("#selmajor option:selected"));
+	if(idx==0){
+		location.href='main';
+		return;
+	}else{
+		var majorType=$("#selmajor option:selected").text();
+		location.href='majorlist?major='+majorType;
+		return;
+		
+		alert(majorType);
+	}
+		
+});
+</script>
 
 </body>
 </html>
