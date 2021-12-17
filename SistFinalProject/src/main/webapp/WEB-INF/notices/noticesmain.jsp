@@ -157,7 +157,7 @@ a:active {
 		    
 		  </div>
 		  <div class="cinfo">
-		    <b style="font-size: 1.1em;">${ndto.company_id }</b> <br>
+		    <b style="font-size: 1.1em;">${ndto.name }</b> <br>
 		    ${ndto.subject }<br><br>
 		    <button class="type"><b>${ndto.type }</b></button>
 		    <button class="loc"><b>${ndto.location }</b></button>

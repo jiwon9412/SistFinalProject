@@ -22,4 +22,6 @@ public interface NoticesMapper {
 	public NoticesDto getNotice(String num);
 	//notice detail page에 필요한 모든 정보 담는 dto얻기
 	public NoticesDto getNoticeInfo(String num);
+	//notice main page에 필요한 모든 정보 담는 dto얻기
+	public ArrayList<NoticesDto> getListInfo(int start, int perpage);
 }

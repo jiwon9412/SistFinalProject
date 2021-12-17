@@ -75,7 +75,7 @@ public class NoticesController {
 		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
-		List<NoticesDto> list = mapper.getList(start, perPage);
+		List<NoticesDto> list = mapper.getListInfo(start, perPage);
 		
 		
 		//각 글앞에 붙힐 시작번호 구하기
@@ -91,13 +91,12 @@ public class NoticesController {
 		mview.addObject("currentPage", currentPage);
 		
 		
-		String user_id = (String) session.getAttribute("myid");
-		for(NoticesDto dto : list) {
-			String photo = cmapper.getPhoto(dto.getCompany_id());
-			int check = mapper.checkScrap(user_id, dto.getNum());
-			dto.setCheck(check);
-			dto.setPhoto(photo);
-		}
+		/*
+		 * String user_id = (String) session.getAttribute("myid"); for(NoticesDto dto :
+		 * list) { String photo = cmapper.getPhoto(dto.getCompany_id()); int check =
+		 * mapper.checkScrap(user_id, dto.getNum()); dto.setCheck(check);
+		 * dto.setPhoto(photo); }
+		 */
 		
 		
 		mview.addObject("list", list);

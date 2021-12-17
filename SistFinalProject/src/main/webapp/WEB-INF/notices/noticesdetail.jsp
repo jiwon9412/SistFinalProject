@@ -35,7 +35,38 @@ div#dDay{
 	border-radius: 20px;
 	width: 270px;
 	height: 180px;
+	/* background-clip: content-box; */
 }
+
+div#genderRatio{
+	margin-top: 50px;
+	border: 1px solid #40e0d0;
+	border-radius: 20px;
+	width: 270px;
+	height: 400px;
+}
+
+div#graph{
+	border: 1px solid #40e0d0;
+	border-radius: 10px;
+	width: 250px;
+	height: 250px;
+	margin-top: 10px;
+	margin-left: 10px;
+	
+}
+
+div#man, div#woman{
+	border: 1px solid #ddd;
+	width: 40px;
+	height: 180px;
+	float: left;
+	margin-left: 56px;
+	margin-top: 20px;
+	background-clip: content-box;
+}
+
+
 </style>
 </head>
 <body>
@@ -46,9 +77,9 @@ div#dDay{
                 <div class="col-lg-12">
                     <h2>
                     	<img alt="" src="../images/${dto.logo }" style="border: 1px solid white; width: 80px; height:50px; ">
-                    	${dto.company_id }
+                    	${dto.name }
                     </h2>
-                    <h4>회사설명</h4>
+                    <h4>${dto.intro }</h4>
                 </div>
             </div>
         </div>
@@ -61,7 +92,7 @@ div#dDay{
 	<tr>
 	  <th rowspan="6">지원분야</th>
 	  <td width="700px;"><b>모집부분</b></td>
-	  <td rowspan="10" style="vertical-align: top;">
+	  <td rowspan="24" style="vertical-align: top;">
 	    <div id="dDay">
 	    <div style="margin-top: 10px; " id="day">
 	      <font style="color: #40e0d0; font-size: 40px; margin-left: 80px; ">D - ${dDay }</font>
@@ -78,6 +109,17 @@ div#dDay{
 	        </tr>
 	      </table>
 	      
+	      </div>
+	    </div>
+	    
+	    <div id="genderRatio">
+	      <div style="margin-top: 20px;">
+	        <b style="margin-left: 60px; margin-top: 40px; font-size: 20px;">지원자 성별 비율</b>
+	      </div>
+	      <div id="graph" >
+	        <div id="man" style="padding-top: 90px; background-color: #40e0d0"></div>
+	        <div id="woman" style="padding-top: 120px; background-color: #40e0d0"></div>
+	        
 	      </div>
 	    </div>
 	  </td>
@@ -153,7 +195,7 @@ div#dDay{
 	</tr>
 	
 	<tr>
-	  <td>${dto.site }<br><br></td>
+	  <td><a href="${dto.site }">${dto.site }</a><br><br></td>
 	</tr>
 	
 	<tr>
@@ -161,7 +203,7 @@ div#dDay{
 	</tr>
 	
 	<tr>
-	  <td>${dto.addr} &nbsp;&nbsp;&nbsp; ${dto.location }&nbsp;지사<br><br><br><br><br><br></td>
+	  <td>${dto.addr} <br> (${dto.location }&nbsp;지사)<br><br><br><br><br><br></td>
 	</tr>
 	 
 
