@@ -232,9 +232,8 @@ function idnChange(e) {
 	style="width: 400px; height: 40px;" placeholder="0조 000억">
 	<br>
 	
-	<!-- select로 바꿀 예정 -->
 	<span style="font-weight: bold; font-size: 1.1em;">주요산업</span><br>
-	<select name="industryType" class="form-control" style="display: inline; width: 190px; height: 40px;"
+	<select name="industry" class="form-control" style="display: inline; width: 190px; height: 40px;"
 	onchange="idnChange(this)">
 		<option>산업 선택</option>
 		<option value="1">서비스업</option>
