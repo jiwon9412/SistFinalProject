@@ -221,6 +221,21 @@ public class NoticesController {
 		//NoticesDto dto = mapper.getNotice(num);
 		NoticesDto dto = mapper.getNoticeInfo(num);
 		
+		//지원자 수 비율
+		int totalAppCnt = mapper.getTotalAppCount(num);
+		int manAppCnt = mapper.getManAppCount(num);
+		int womanAppCnt = mapper.getWomanAppCount(num);
+		double manAppRatio;
+		double womanAppRatio;
+		if(totalAppCnt==0) {
+			manAppRatio = 0;
+			womanAppRatio = 0;
+		}else {
+			manAppRatio = (double) manAppCnt/totalAppCnt;
+			womanAppRatio = (double) womanAppCnt/totalAppCnt;
+		}
+		
+		
 		//D-day
 		String endDate = dto.getPeriod_end();
 		Calendar cal = Calendar.getInstance();
@@ -244,13 +259,37 @@ public class NoticesController {
 		
 
 		mview.addObject("dto", dto);
-		
+		/* mview.addObject("totalAppCnt", totalAppCnt); */
+		mview.addObject("manAppRatio", manAppRatio);
+		mview.addObject("womanAppRatio", womanAppRatio);
 		
 		
 		mview.setViewName("/notices/noticesdetail");
 		return mview;
 		
 	}
+	
+	@GetMapping("/notices/apply")
+	public String apply(
+			HttpSession session
+			) {
+		
+		String myid = (String) session.getAttribute("myid");
+		String logintype = (String) session.getAttribute("logintype");
+		if(myid==null) {
+			return "/notices/requestlogin";
+		}else if(logintype=="기업회원") {
+			
+			return "notices/requestuser";
+		}else {
+			
+			return "redirect:../mypage/applications";
+		}
+		
+		
+		
+	}
+	
 	
 	
 }

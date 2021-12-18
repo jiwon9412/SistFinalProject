@@ -15,8 +15,8 @@ rel="stylesheet">
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 <body>
 <script type="text/javascript">
-  alert("로그인이 필요한 서비스입니다");
-  location.href='${root}/login/main';
+  alert("개인회원만 이용 가능한 서비스입니다");
+  history.back();
 
 </script>
 </body>

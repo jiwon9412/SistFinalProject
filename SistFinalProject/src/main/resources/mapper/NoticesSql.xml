@@ -51,5 +51,17 @@
 		b.intro from notice a join company b on a.company_id=b.id limit #{start},#{perpage}
 	</select>
 	
+	<!-- 공고 지원자 수 -->
+	<select id="getTotalAppCount" parameterType="String" resultType="int">
+		select count(*) from application where notice_num=#{notice_num}
+	</select>
+	
+	<select id="getManAppCount" parameterType="String" resultType="int">
+		select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='남성'
+	</select>
+	
+	<select id="getWomanAppCount" parameterType="String" resultType="int">
+		select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='여성'
+	</select>
 
 </mapper>

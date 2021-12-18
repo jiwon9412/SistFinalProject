@@ -20,6 +20,7 @@ div.detail{
 
 table{
 	margin: 0 auto;
+	
 }
 table th{
 	width:200px; 
@@ -31,7 +32,7 @@ table td{
 }
 
 div#dDay{
-	border: 1px solid #40e0d0;
+	border: 1px solid gray;
 	border-radius: 20px;
 	width: 270px;
 	height: 180px;
@@ -40,14 +41,14 @@ div#dDay{
 
 div#genderRatio{
 	margin-top: 50px;
-	border: 1px solid #40e0d0;
+	border: 1px solid gray;
 	border-radius: 20px;
 	width: 270px;
 	height: 400px;
 }
 
 div#graph{
-	border: 1px solid #40e0d0;
+	border: 1px solid gray;
 	border-radius: 10px;
 	width: 250px;
 	height: 250px;
@@ -117,8 +118,8 @@ div#man, div#woman{
 	        <b style="margin-left: 60px; margin-top: 40px; font-size: 20px;">지원자 성별 비율</b>
 	      </div>
 	      <div id="graph" >
-	        <div id="man" style="padding-top: 90px; background-color: #40e0d0"></div>
-	        <div id="woman" style="padding-top: 120px; background-color: #40e0d0"></div>
+	        <div id="man" style="padding-top: ${180-(manAppRatio*180)}px; background-color: #00bfff "></div>
+	        <div id="woman" style="padding-top: ${180-(womanAppRatio*180)}px; background-color: #ffc0cb   "></div>
 	        
 	      </div>
 	    </div>
@@ -210,11 +211,15 @@ div#man, div#woman{
 	<tr>
 	  <td colspan="2" align="center" >
 	    <button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
- 		width: 700px; height: 40px; font-size: 10pt; color: white;" id="btntype"><b>지원하기</b></button>
+ 		width: 700px; height: 40px; font-size: 10pt; color: white;" 
+ 		onclick="location.href='apply'"><b>지원하기</b></button>
 	  </td>
 	</tr>
 	
   </table>
+  
+  
+  
 </div>
 </body>
 </html>

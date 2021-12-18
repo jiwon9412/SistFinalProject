@@ -24,4 +24,10 @@ public interface NoticesMapper {
 	public NoticesDto getNoticeInfo(String num);
 	//notice main page에 필요한 모든 정보 담는 dto얻기
 	public ArrayList<NoticesDto> getListInfo(int start, int perpage);
+	
+	//application table
+	//해당 공고 지원자 총수
+	public int getTotalAppCount(String notice_num);
+	public int getManAppCount(String notice_num);
+	public int getWomanAppCount(String notice_num);
 }
