@@ -40,14 +40,12 @@
 	</select>
 	
 	<select id="getNoticeInfo" parameterType="String" resultType="ndto">
-		select a.num, a.company_id, a.section, a.task, a.type, a.personnel, a.qualification, a.preference, 
-		a.location, a.period_start, a.period_end, a.subject, b.logo, b.name, b.addr, b.site, b.photo, 
+		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
 		b.intro from notice a join company b on a.company_id=b.id and a.num=#{num}
 	</select>
 	
 	<select id="getListInfo" parameterType="HashMap" resultType="ndto">
-		select a.num, a.company_id, a.section, a.task, a.type, a.personnel, a.qualification, a.preference, 
-		a.location, a.period_start, a.period_end, a.subject, b.logo, b.name, b.addr, b.site, b.photo, 
+		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
 		b.intro from notice a join company b on a.company_id=b.id limit #{start},#{perpage}
 	</select>
 	
