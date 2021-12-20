@@ -82,7 +82,7 @@ public class MypageController {
 				} else { // 로그인한 개인아이디에 이력서 없으면 이력서 작성 페이지로
 					mv.setViewName("redirect:resume_write_map");
 				}
-			} else { // 기업 로그인
+			}  else if(logintype == "corp") { // 기업 로그인
 				mv.setViewName("redirect:noticelist_map");
 			}
 		} else { // 로그인 안했을 때
@@ -237,12 +237,13 @@ public class MypageController {
 		rdto.setEmail(udto.getEmail());
 		rdto.setAddr(udto.getAddr());
 		
-		rdto.setLicense(rdto.getLicense1()+"`"+rdto.getLicense2()+"`"+rdto.getLicense3());
+		//rdto.setLicense(rdto.getLicense1()+"`"+rdto.getLicense2()+"`"+rdto.getLicense3());
 		rdto.setHighschool(rdto.getHighschool1()+"`"+rdto.getHighschool2()+"`"+rdto.getHighschool3());
 		rdto.setCollege(rdto.getCollege1()+"`"+rdto.getCollege2()+"`"+rdto.getCollege3()+"`");
 		rdto.setActivity(rdto.getActivity1()+"`"+rdto.getActivity2()+"`"+rdto.getActivity3()+"`");
 		rdto.setCareer(rdto.getCareer1()+"`"+rdto.getCareer2()+"`"+rdto.getCareer3()+"`"+rdto.getCareer4()+"`"+rdto.getCareer5()+"`");
 		
+		System.out.println(license1);
 		//insert
 		mymapper.insertMypageResume(rdto);
 		
