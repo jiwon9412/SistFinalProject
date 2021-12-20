@@ -19,7 +19,7 @@
 	<!-- 개인회원 로그인했을 경우 -->
 
     <!-- 상단 타이틀 시작 -->
-    <div class="potision-top-box">
+    <div class="potision-top-box" id="suggestion">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -78,8 +78,8 @@
 					<td>${list.major}</td>
 					<td>${list.content}</td>
 					<td>
-						<button type="button" class="btn btn-default" style="width: 100px;"
-						onclick="location.href='delete?company_id=${list.company_id}'">삭제</button>
+						<button type="button" class="btn btn-default btndel" style="width: 100px;" 
+						company_id="${list.company_id}">삭제</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -205,5 +205,31 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+    
+    
+    <script type="text/javascript">
+	//댓글 삭제
+	$("button.btndel").click(function(){
+		
+		//삭제 버튼에 id값을 넣어놓는다.
+		var company_id= $(this).attr("company_id");
+		
+		console.log(company_id);
+		
+		//Ajax로 비동기 삭제처리
+		$.ajax({
+			
+			type:"get",
+			dataType:"json",
+			url:"delete",
+			data : {"company_id" : company_id},
+			success:function(){
+				
+				 alert("company_id");
+			}
+		});
+	});
+    
+    </script>
 </body>
 </html>
