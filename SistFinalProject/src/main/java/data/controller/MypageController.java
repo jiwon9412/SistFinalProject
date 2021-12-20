@@ -1,5 +1,6 @@
 package data.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -197,6 +198,7 @@ public class MypageController {
 	// 이력서 등록
 	@PostMapping("/mypage/resume_insert")
 	public String insert(@ModelAttribute MypageResumeDto rdto,
+			//@RequestParam ArrayList<String> license,
 			HttpSession session) {
 		
 		// 세션 만료됐을 경우를 위해 다시한번 loginok 얻기
