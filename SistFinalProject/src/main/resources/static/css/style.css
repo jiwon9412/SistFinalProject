@@ -2028,7 +2028,7 @@
      text-align: center;
      background: #ffffff;
      padding: 30px;
-     border: 1px solid #010101;
+     border: 2px solid #40e0d0;
 }
  .bottom-box {
      border-top: 1px solid #eee;
@@ -2040,7 +2040,8 @@
      min-height: 205px;
 }
  .account-box {
-     border: 2px solid #010101;
+     border: 2px solid #40e0d0;
+     border-radius: 20px;
      margin-top: 15px;
 }
  .my-account-page a{
@@ -2063,7 +2064,7 @@
      font-weight: 700;
 }
  .service-icon a{
-     background: rgba(0, 53, 68, 0.9);
+     background: #40e0d0;
      -webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
      -moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
      transition: transform ease-out 0.1s, background 0.2s;
