@@ -285,19 +285,32 @@ public class NoticesController {
 	
 	@GetMapping("/notices/apply")
 	public String apply(
-			HttpSession session
+			HttpSession session,
+			@RequestParam String company_id,
+			@RequestParam String notice_num
 			) {
 		
 		String myid = (String) session.getAttribute("myid");
 		String logintype = (String) session.getAttribute("logintype");
+		System.out.println(logintype);
 		if(myid==null) {
 			return "/notices/requestlogin";
-		}else if(logintype=="기업회원") {
+		}else if(logintype.equals("corp")) {
 			
-			return "notices/requestuser";
+			return "/notices/requestuser";
 		}else {
 			
-			return "redirect:../mypage/applications";
+			int check = mapper.checkApplication(myid, company_id, notice_num);
+			if(check==0) {
+				mapper.insertApplication(myid, company_id, notice_num);
+				return "redirect:../mypage/applications";
+			}else {
+				return "/notices/alreadyapp";
+			}
+			
+			
+			
+			
 		}
 		
 		

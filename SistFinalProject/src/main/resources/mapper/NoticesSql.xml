@@ -1,77 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="data.mapper.NoticesMapper">
 
-	<select id="getAllNotices" resultType="ndto">
-		select * from notice order by num desc
-	</select>
-	
-	<select id="getList" parameterType="HashMap" resultType="ndto">
-		select * from notice order by num desc limit #{start},#{perpage}
-	</select>
-	
-	<select id="getTotalCount" resultType="int">
-		select count(*) from notice
-	</select>
-	
-	<insert id="insertScrap" parameterType="HashMap">
-		insert into scrap (user_id,notice_num) values(#{user_id},#{notice_num})
-	</insert>
-	
-	<delete id="deleteScrap" parameterType="HashMap">
-		delete from scrap where user_id=#{user_id} and notice_num=#{notice_num}
-	</delete>
-	
-	<select id="checkScrap" parameterType="HashMap" resultType="int">
-		select count(*) from scrap where user_id=#{user_id} and notice_num=#{notice_num}
-	</select>
-	
-	<select id="getTypeList" parameterType="HashMap" resultType="ndto">
-		select * from notice where type=#{type} order by num desc limit #{start},#{perpage}
-	</select>
-	
-	<select id="getTypeCount" parameterType="String" resultType="int">
-		select count(*) from notice where type=#{type}
-	</select>
-	
-	<select id="getNotice" parameterType="String" resultType="ndto">
-		select * from notice where num=#{num}
-	</select>
-	
-	<!-- 내부조인활용 -->
-	<select id="getNoticeInfo" parameterType="String" resultType="ndto">
-		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
-		b.intro from notice a join company b on a.company_id=b.id and a.num=#{num}
-	</select>
-	
-	<select id="getListInfo" parameterType="HashMap" resultType="ndto">
-		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
-		b.intro from notice a join company b on a.company_id=b.id limit #{start},#{perpage}
-	</select>
-	
-	<select id="getTypeInfo" parameterType="HashMap" resultType="ndto">
-		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
-		b.intro from notice a join company b on a.company_id=b.id and a.type=#{type} limit #{start},#{perpage}
-	</select>
-	
-	<select id="getHireList" parameterType="String" resultType="ndto">
-		select distinct a.*, b.name, b.photo from company b join notice a on a.period_end<![CDATA[
+   <select id="getAllNotices" resultType="ndto">
+      select * from notice order by num desc
+   </select>
+   
+   <select id="getList" parameterType="HashMap" resultType="ndto">
+      select * from notice order by num desc limit #{start},#{perpage}
+   </select>
+   
+   <select id="getTotalCount" resultType="int">
+      select count(*) from notice
+   </select>
+   
+   <insert id="insertScrap" parameterType="HashMap">
+      insert into scrap (user_id,notice_num) values(#{user_id},#{notice_num})
+   </insert> 
+   
+   <delete id="deleteScrap" parameterType="HashMap">
+      delete from scrap where user_id=#{user_id} and notice_num=#{notice_num}
+   </delete>
+   
+   <select id="checkScrap" parameterType="HashMap" resultType="int">
+      select count(*) from scrap where user_id=#{user_id} and notice_num=#{notice_num}
+   </select>
+   
+   <select id="getTypeList" parameterType="HashMap" resultType="ndto">
+      select * from notice where type=#{type} order by num desc limit #{start},#{perpage}
+   </select>
+   
+   <select id="getTypeCount" parameterType="String" resultType="int">
+      select count(*) from notice where type=#{type}
+   </select>
+   
+   <select id="getNotice" parameterType="String" resultType="ndto">
+      select * from notice where num=#{num}
+   </select>
+   
+   <!-- 내부조인활용 -->
+   <select id="getNoticeInfo" parameterType="String" resultType="ndto">
+      select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
+      b.intro from notice a join company b on a.company_id=b.id and a.num=#{num}
+   </select>
+   
+   <select id="getListInfo" parameterType="HashMap" resultType="ndto">
+      select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
+      b.intro from notice a join company b on a.company_id=b.id limit #{start},#{perpage}
+   </select>
+   
+   <select id="getTypeInfo" parameterType="HashMap" resultType="ndto">
+      select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
+      b.intro from notice a join company b on a.company_id=b.id and a.type=#{type} limit #{start},#{perpage}
+   </select>
+   
+   <select id="getHireList" parameterType="String" resultType="ndto">
+      select distinct a.*, b.name, b.photo from company b join notice a on a.period_end<![CDATA[
 >
 ]]> #{today} and b.id=a.company_id order by rand()
-	</select>
-	
-	<!-- 공고 지원자 수 -->
-	<select id="getTotalAppCount" parameterType="String" resultType="int">
-		select count(*) from application where notice_num=#{notice_num}
-	</select>
-	
-	<select id="getManAppCount" parameterType="String" resultType="int">
-		select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='남성'
-	</select>
-	
-	<select id="getWomanAppCount" parameterType="String" resultType="int">
-		select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='여성'
-	</select>
+   </select>
+   
+   <!-- 공고 지원자 수 -->
+   <select id="getTotalAppCount" parameterType="String" resultType="int">
+      select count(*) from application where notice_num=#{notice_num}
+   </select>
+   
+   <select id="getManAppCount" parameterType="String" resultType="int">
+      select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='남성'
+   </select>
+   
+   <select id="getWomanAppCount" parameterType="String" resultType="int">
+      select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='여성'
+   </select>
 
 </mapper>

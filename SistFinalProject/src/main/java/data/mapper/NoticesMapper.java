@@ -29,6 +29,11 @@ public interface NoticesMapper {
 	//채용중인 공고리스트
 	public ArrayList<NoticesDto> getHireList(String today);
 	
+	//지원하기
+	public void insertApplication(String user_id, String company_id, String notice_num);
+	//이미 지원했는지 확인
+	public int checkApplication(String user_id, String company_id, String notice_num);
+	
 	//application table
 	//해당 공고 지원자 총수
 	public int getTotalAppCount(String notice_num);

@@ -305,7 +305,7 @@ button.qual{
 	  <td colspan="2" align="center" >
 	    <button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
  		width: 700px; height: 40px; font-size: 10pt; color: white;" 
- 		onclick="location.href='apply'"><b>지원하기</b></button>
+ 		onclick="location.href='apply?notice_num=${dto.num}&company_id=${dto.company_id}'"><b>지원하기</b></button>
 	  </td>
 	</tr>
 	
