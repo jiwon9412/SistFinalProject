@@ -73,11 +73,7 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 	
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: #eeeeee;">
-	<br><br>
-
-	<div id="map" style="width: 40%; height: 300px;"></div>
-	
+<div id="map" style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: #eeeeee;">
 </div>
 
 <!-- 4대보험 -->
@@ -85,9 +81,10 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 	<br><br>
 	<p style="margin-left: 50px;"> <span class="glyphicon glyphicon-plus" style="width: 50px; height: 50px;"></span> <b>복리후생</b></p>
 </div>
+
 <div style="border: 1px solid fff; float: left; width: 60%; height: 300px; background-color: white">
 	<br><br>
-	
+	${dto.insurance}
 </div>
 
 <!-- 채용중인 리스트 -->
@@ -130,7 +127,7 @@ $("div.companies").click(function(){
 });
 </script> 
 
-<!-- 주소 aqi --> <!-- 안됑,,,,왜 안됑?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+<!-- 지도 api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d4fe90bf7dbc0b8a909c29abf8e342f1&libraries=services"></script>
 <script>
 /* var container = document.getElementById('map');
