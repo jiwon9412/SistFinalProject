@@ -1,5 +1,7 @@
 package data.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +23,8 @@ public class MypageResumeDto {
 	private String college,college1,college2,college3;
 	private String career,career1,career2,career3,career4,career5;
 	private String activity,activity1,activity2,activity3;
-	private String license,license1,license2,license3;
+	private String license;
+	private List<String> license1,license2,license3;
 	private String portfolio;
 	private MultipartFile uploadportfolio;
 	private String military;

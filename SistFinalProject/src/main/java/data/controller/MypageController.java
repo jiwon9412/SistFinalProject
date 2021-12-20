@@ -57,10 +57,7 @@ public class MypageController {
 					MypageResumeDto rdto = mymapper.getMypageResume(myid); // 로그인한아이디(myid)가져와서 resumedto 얻어오기
 
 					// 학력,경력,자격증,대외활동 분리 후 다시 dto에 담기
-					String[] li = rdto.getLicense().split("`");
-					rdto.setLicense1(li[0]);
-					rdto.setLicense2(li[1]);
-					rdto.setLicense3(li[2]);
+					
 					String[] hi = rdto.getHighschool().split("`");
 					rdto.setHighschool1(hi[0]);
 					rdto.setHighschool2(hi[1]);
@@ -83,10 +80,10 @@ public class MypageController {
 					mv.addObject("resumedto", rdto);
 					mv.setViewName("/mypage/resumeview");
 				} else { // 로그인한 개인아이디에 이력서 없으면 이력서 작성 페이지로
-					mv.setViewName("resume_write_map");
+					mv.setViewName("redirect:resume_write_map");
 				}
 			} else { // 기업 로그인
-				mv.setViewName("noticelist_map");
+				mv.setViewName("redirect:noticelist_map");
 			}
 		} else { // 로그인 안했을 때
 			System.out.println("loginok==null");
@@ -199,6 +196,9 @@ public class MypageController {
 	@PostMapping("/mypage/resume_insert")
 	public String insert(@ModelAttribute MypageResumeDto rdto,
 			//@RequestParam ArrayList<String> license,
+			@RequestParam List<String> license1,
+			@RequestParam List<String> license2,
+			@RequestParam List<String> license3,
 			HttpSession session) {
 		
 		// 세션 만료됐을 경우를 위해 다시한번 loginok 얻기
@@ -277,10 +277,6 @@ public class MypageController {
 		//System.out.println(user_id);
 
 		// 학력,경력,자격증,대외활동 분리 후 다시 dto에 담기
-		String[] li = rdto.getLicense().split("`");
-		rdto.setLicense1(li[0]);
-		rdto.setLicense2(li[1]);
-		rdto.setLicense3(li[2]);
 		String[] hi = rdto.getHighschool().split("`");
 		rdto.setHighschool1(hi[0]);
 		rdto.setHighschool2(hi[1]);

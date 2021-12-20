@@ -177,17 +177,17 @@ small.photo, span.photo{
 						<div class="row">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
 								<label for="license">어학시험/자격증</label>
-									<input type="text" class="form-control" id="license1" name="license1" placeholder="어학시험/자격증 이름 입력"
+									<input type="text" class="form-control" id="license1" name="license1[]" placeholder="어학시험/자격증 이름 입력"
 									value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px;">
 									<label for="license">급수/점수</label>
-									<input type="text" class="form-control" id="license2" name="license2" placeholder="급수/점수 입력"
+									<input type="text" class="form-control" id="license2" name="license2[]" placeholder="급수/점수 입력"
 									value="">
                                 </div>                                
                                 <div style="width: 160px;">
 									<label for="license">취득월</label>
-									<input type="text" class="form-control" id="license3" name="license3" placeholder="취득월 입력"
+									<input type="text" class="form-control" id="license3" name="license3[]" placeholder="취득월 입력"
 									value="" onfocus="(this.type='month')">
                                 </div>
 						<button type="button" id="btnPlus">+</button>
@@ -337,13 +337,13 @@ small.photo, span.photo{
          $('#plus_license').append("<div class='row' id='plus_license'>")
          $('#plus_license').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px;'>")
          $('#plus_license').append("<label for='license'>어학시험/자격증</label>")
-         $('#plus_license').append("<input type='text' class='form-control' id='license1' name='license1' placeholder='어학시험/자격증 이름 입력' value=''></div>")
+         $('#plus_license').append("<input type='text' class='form-control' id='license1' name='license1[]' placeholder='어학시험/자격증 이름 입력' value=''></div>")
          $('#plus_license').append("<div style='width: 160px; margin-right: 10px;'>")
          $('#plus_license').append("<label for='license'>급수/점수</label>")
-         $('#plus_license').append("<input type='text' class='form-control' id='license2' name='license2' placeholder='급수/점수 입력' value=''></div>")
+         $('#plus_license').append("<input type='text' class='form-control' id='license2' name='license2[]' placeholder='급수/점수 입력' value=''></div>")
          $('#plus_license').append("<div style='width: 160px;'>")
          $('#plus_license').append("<label for='license'>취득월</label>")
-         $('#plus_license').append("<input type='text' class='form-control' id='license3' name='license3' placeholder='취득월 입력' value='' onfocus='(this.type='month')'></div>")
+         $('#plus_license').append("<input type='text' class='form-control' id='license3' name='license3[]' placeholder='취득월 입력' value='' onfocus='(this.type='month')'></div>")
          $('#plus_license').append("</div>");
          
       });
