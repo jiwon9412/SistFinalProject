@@ -196,7 +196,7 @@ public class LoginController {
 		dto.setPhoto(photo);
 		
 		//날짜 형식으로 저장
-		dto.setEstablishment(dto.getBirth1() + "-" + dto.getBirth2() + "-" + dto.getBirth3());
+		dto.setEstablishment(dto.getBirth1() + ". " + dto.getBirth2() + ". " + dto.getBirth3());
 		
 		//연락처 형식으로 저장
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());

@@ -115,8 +115,8 @@ function check(f) {
 		<span style="color: red;">*</span>
 		<select name="gender" class="form-control" style="width: 400px; height: 40px;">
 			<option value="">성별</option>
-			<option value="남자">남자</option>
-			<option value="여자">여자</option>
+			<option value="남성">남성</option>
+			<option value="여성">여성</option>
 			<option value="선택안함">선택안함</option>				
 		</select><br>
 		

@@ -249,8 +249,8 @@ function idnChange(e) {
 	
 	<span style="font-weight: bold; font-size: 1.1em;">4대보험</span><br>
 	<label><input type="checkbox" name="insurance" class="form-control" 
-	style="width: 20px; height: 20px; display: inline; margin-top: 10px;" value="연금보험">
-	연금보험</label>
+	style="width: 20px; height: 20px; display: inline; margin-top: 10px;" value="국민연금">
+	국민연금</label>
 	<label><input type="checkbox" name="insurance" class="form-control" 
 	style="width: 20px; height: 20px; display: inline; margin-left: 20px;" value="건강보험">
 	건강보험</label><label><input type="checkbox" name="insurance" class="form-control" 

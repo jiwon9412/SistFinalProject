@@ -38,5 +38,17 @@
 	<select id="getCorpData" parameterType="String" resultType="comdto">
 		select * from company where id = #{id}	
 	</select>
+	<update id="updateCorp" parameterType="comdto">
+		update company set name = #{name}, intro = #{intro}, addr = #{addr}, hp = #{hp}, ceo = #{ceo}, 
+		employees = #{employees}, sales = #{sales}, industry = #{industry}, major = #{major}, insurance = #{insurance},
+		establishment = #{establishment} 
+		<if test="logo!='no'">
+			, logo = #{logo}
+		</if>
+		<if test="photo!='no'">
+			, photo = #{photo}
+		</if>
+		where id = #{id}
+	</update>
 
 </mapper>

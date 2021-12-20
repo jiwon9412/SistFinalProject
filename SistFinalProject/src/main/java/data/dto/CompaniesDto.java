@@ -22,6 +22,10 @@ public class CompaniesDto {
 	private String sales;
 	private String major;
 	private String insurance;
+	private String ins1;
+	private String ins2;
+	private String ins3;
+	private String ins4;
 	private String site;
 	private String photo;
 	private String intro;

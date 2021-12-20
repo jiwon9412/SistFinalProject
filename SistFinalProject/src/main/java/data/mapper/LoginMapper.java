@@ -15,11 +15,13 @@ public interface LoginMapper {
 	public void insertUser(UserDto dto);
 	public int getIdCheck(String id);
 	public UserDto getUserData(String id);
+	public void updateUser(UserDto dto);
 	
 	public int corplogin(HashMap<String, String>map);
 	public String getCorpName(String id);
 	public void insertCorp(CompaniesDto comdto);
 	public int getCorpIdCheck(String id);
 	public CompaniesDto getCorpData(String id);
+	public void updateCorp(CompaniesDto dto);
 
 }
