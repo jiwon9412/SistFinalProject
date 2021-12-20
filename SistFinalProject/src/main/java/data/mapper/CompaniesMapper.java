@@ -23,4 +23,6 @@ public interface CompaniesMapper {
 	//major별 출력
 	public ArrayList<CompaniesDto> getIndustryList(String industry,int start,int perpage);
 	public int getIndustryCount(String industry);
+	
+	public ArrayList<CompaniesDto> getHireList(String today);
 }

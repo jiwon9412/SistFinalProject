@@ -26,28 +26,87 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 	</div>
 </div>
 <!-- 상단 타이틀 끝 -->
-									<!-- 레이아웃 만드는중 !! -->
-<div class="detailwrapper">
 
-<div class="companyname">
-	<h4><b>기업 소개</b></h4>
-</div>
+<div class="companywrapper">
+<br><br>
 
-<div class="companytxt">
-	<b>업계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.industry}</b>	<br><br>
-	<b>대표자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.ceo}</b>								<br><br>
-	<b>매출액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.sales}</b>							<br><br>
-	<b>설립일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.establishment}</b>					<br><br>
-	<b>사원수&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.employees} 명</b>						<br><br>
-	<b>주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.addr}</b>		<br><br>
-	<b>${dto.intro}</b>
-</div>
+<!-- 기업소개,이미지 div -->
+<h4 class="companytitle" style="margin-left: 50px;"><b>기업 소개</b></h4><br><br>
+				
+<div style="border: 1px solid fff; float: left; width: 20%; height: 500px; background-color: white">
 
-<div class="companypic">
-	< 사진이 들어갈 곳 >
-</div>
+	<p style="margin-left: 50px;">업계</p>
+	<p style="margin-left: 50px;">대표자</p>
+	<p style="margin-left: 50px;">설립일</p>
+	<p style="margin-left: 50px;">사원수</p>
+	<p style="margin-left: 50px;">업계</p>
+	<p style="margin-left: 50px;">매출액</p>
 
 </div>
+<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
 
+	<p>${dto.industry}</p>
+	<p>${dto.ceo}</p>
+	<p>${dto.establishment}</p>
+	<p>${dto.employees} 명</p>
+	<p>${dto.sales}</p>
+	<p>${dto.intro}</p>
+
+</div>
+<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
+
+	<img alt="" src="../images/${dto.photo}" style="width: 100%; height: 350px; border-radius: 20px; border: 4px solid lightgray;">
+
+</div>
+<!-- 기업소개,이미지 div 끝 -->
+
+<!-- 기업 위치, aqi -->
+<div style="border: 1px solid fff; float: left; width: 20%; height: 500px; background-color: white">
+
+	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px;"></span></a>기업 위치</b>
+	
+
+</div>
+<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
+
+	<p>${dto.addr}</p>
+	
+
+</div>
+<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
+
+	API 위치
+
+</div>
+<!-- 기업 위치, aqi -->
+
+
+<!-- 채용중인 리스트 -->
+<table style="width: 1300px;" id="hirelist">
+<caption> <b>Job 히다의 채용중인 기업을 알아보세요</b> </caption>
+	<tr>
+		<c:forEach var="hdto" items="${hlist}" varStatus="i">
+		<td>
+	<div class="companies" id=${hdto.id}>
+		<div class="pic">
+			<img alt="" src="../images/${hdto.logo}">
+		</div>
+		<hr>
+		<div class="txt">
+			<p style="color: #40e0d0">${hdto.major}</p>
+			<p style="font-weight: bold;">${hdto.name}</p>
+			<p>${hdto.addr}</p>
+		</div>
+	</div>
+		</td>
+		<c:if test="${i.count%4==0 }">
+		</tr>
+		<tr>
+		</c:if>
+		</c:forEach>
+	</tr>
+</table>
+
+</div>
 </body>
 </html>

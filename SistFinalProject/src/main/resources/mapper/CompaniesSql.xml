@@ -27,4 +27,10 @@
 	select count(*) from company where industry=#{industry}
 </select>
 
+<select id="getHireList" parameterType="String" resultType="comdto">
+	select distinct a.* from company a join notice b on b.period_end<![CDATA[
+>
+]]> #{today} and a.id=b.company_id
+</select>
+
 </mapper>
