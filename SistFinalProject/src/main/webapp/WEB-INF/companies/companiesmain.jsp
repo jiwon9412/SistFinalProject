@@ -47,6 +47,8 @@ window.onload = function() {
 <img id="slide_img" src="image/com_slide_1.jpg">
 
 <div class="wrapper">
+
+<!-- 기업 랜덤 리스트 -->
 <table style="width: 1300px;">
 <caption class="form-inline">
 <select class="form-control" style="width: 200px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0;" id="selmajor">
@@ -73,12 +75,6 @@ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검�
 		<hr>
 		<div class="txt">
 			<p style="color: #40e0d0">${dto.major}</p>
-			
-			<!-- 채용중이면 보이게 , 채용중이 아니면 안보이게 ??????-->
-			
-			<button class="jobs-tag">테스트</button>
-			
-			
 			<p style="font-weight: bold;">${dto.name}</p>
 			<p>${dto.addr}</p>
 		</div>
@@ -93,16 +89,24 @@ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검�
 </table>	
 </div>
 
-<!-- 다른 리스트 넣으려고 대충 레이아웃 -->
-<table style="width: 1300px;">
+<!-- 채용중인 리스트 -->
+<table style="width: 1300px;" id="hirelist">
 <h3 style="margin-left: 295px;"><b>Job히다 커리어 홈<b></h3>
 <caption> <b>Job 히다의 채용중인 기업을 알아보세요</b> </caption>
 	<tr>
-		<c:forEach var="hiredto" items="${list}" varStatus="i">
+		<c:forEach var="hdto" items="${hlist}" varStatus="i">
 		<td>
-		<div class="a" style="border: 1px solid gray; width: 300px; height: 300px; border-radius: 20px; margin-bottom: 30px;">
-			
+	<div class="companies" id=${hdto.id}>
+		<div class="pic">
+			<img alt="" src="../images/${hdto.logo}">
 		</div>
+		<hr>
+		<div class="txt">
+			<p style="color: #40e0d0">${hdto.major}</p>
+			<p style="font-weight: bold;">${hdto.name}</p>
+			<p>${hdto.addr}</p>
+		</div>
+	</div>
 		</td>
 		<c:if test="${i.count%4==0 }">
 		</tr>

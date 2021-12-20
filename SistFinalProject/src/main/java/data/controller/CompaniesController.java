@@ -1,6 +1,11 @@
 package data.controller;
 
 
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +62,18 @@ public class CompaniesController {
 
 		//각페이지에서 필요한 게시글 가져오기
 		List<CompaniesDto> list=mapper.getList(start, perPage);
-
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		Date to = cal.getTime();
+		String today = sdf.format(to);
+		
+		ArrayList<CompaniesDto> hlist = mapper.getHireList(today);
+		mview.addObject("size", hlist.size());
+		
+		mview.addObject("hlist", hlist);
+		
 		//각글앞에 붙힐 시작번호 구하기
 		//총글이 20개일겨웅 1페이지 20,2페이지 15부터
 		//출력해서 1씩 감소해가면서 출력할것
@@ -69,6 +85,7 @@ public class CompaniesController {
 		mview.addObject("totalPage",totalPage);
 		mview.addObject("currentPage",currentPage);
 		mview.addObject("totalCount", totalCount);
+		
 		
 		mview.setViewName("/companies/companiesmain");
 		
@@ -116,6 +133,17 @@ public class CompaniesController {
 		//각페이지에서 필요한 게시글 가져오기
 		List<CompaniesDto> list=mapper.getIndustryList(industry, start, perPage);
 
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		Date to = cal.getTime();
+		String today = sdf.format(to);
+		
+		ArrayList<CompaniesDto> hlist = mapper.getHireList(today);
+		mview.addObject("size", hlist.size());
+		
+		mview.addObject("hlist", hlist);
+		
 		//각글앞에 붙힐 시작번호 구하기
 		//총글이 20개일겨웅 1페이지 20,2페이지 15부터
 		//출력해서 1씩 감소해가면서 출력할것
@@ -140,6 +168,16 @@ public class CompaniesController {
 		ModelAndView mview=new ModelAndView();
 		
 		CompaniesDto dto=mapper.getData(id);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		Date to = cal.getTime();
+		String today = sdf.format(to);
+		
+		ArrayList<CompaniesDto> hlist = mapper.getHireList(today);
+		mview.addObject("size", hlist.size());
+		
+		mview.addObject("hlist", hlist);
 		
 		mview.addObject("dto", dto);
 		
