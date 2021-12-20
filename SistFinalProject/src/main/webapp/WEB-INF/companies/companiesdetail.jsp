@@ -33,7 +33,7 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 <!-- 기업소개,이미지 div -->
 <h4 class="companytitle" style="margin-left: 50px;"><b>기업 소개</b></h4><br><br>
 				
-<div style="border: 1px solid fff; float: left; width: 20%; height: 500px; background-color: white">
+<div style="border: 1px solid fff; float: left; width: 20%; height: 400px;">
 
 	<p style="margin-left: 50px;">업계</p>
 	<p style="margin-left: 50px;">대표자</p>
@@ -43,7 +43,7 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 	<p style="margin-left: 50px;">매출액</p>
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
+<div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
 
 	<p>${dto.industry}</p>
 	<p>${dto.ceo}</p>
@@ -53,7 +53,7 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 	<p>${dto.intro}</p>
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
+<div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
 
 	<img alt="" src="../images/${dto.photo}" style="width: 100%; height: 350px; border-radius: 20px; border: 4px solid lightgray;">
 
@@ -61,29 +61,38 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 <!-- 기업소개,이미지 div 끝 -->
 
 <!-- 기업 위치, aqi -->
-<div style="border: 1px solid fff; float: left; width: 20%; height: 500px; background-color: white">
-
+<div style="border: 1px solid fff; float: left; width: 20%; height: 300px; background-color: #eeeeee;">
+	<br><br>
 	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px;"></span></a>기업 위치</b>
 	
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
-
+<div style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: #eeeeee;">
+	<br><br>
 	<p>${dto.addr}</p>
 	
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 500px; background-color: white">
+<div style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: #eeeeee;">
+	<br><br>
 
-	API 위치
-
+	<div id="map" style="width: 40%; height: 300px;"></div>
+	
 </div>
-<!-- 기업 위치, aqi -->
 
+<!-- 4대보험 -->
+<div style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: white">
+	<br><br>
+	<p style="margin-left: 50px;"> <span class="glyphicon glyphicon-plus" style="width: 50px; height: 50px;"></span> <b>복리후생</b></p>
+</div>
+<div style="border: 1px solid fff; float: left; width: 60%; height: 300px; background-color: white">
+	<br><br>
+	
+</div>
 
 <!-- 채용중인 리스트 -->
-<table style="width: 1300px;" id="hirelist">
-<caption> <b>Job 히다의 채용중인 기업을 알아보세요</b> </caption>
+<table style="width: 1300px;">
+<caption> <h3><b class="hiretitle" style="margin-top: 20px;">채용 공고</b></h3> </caption>
 	<tr>
 		<c:forEach var="hdto" items="${hlist}" varStatus="i">
 		<td>
@@ -108,5 +117,78 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 </table>
 
 </div>
+
+
+
+<script type="text/javascript">
+/* 기업 상세로 이동하게 */
+$("div.companies").click(function(){
+	
+	var id = $(this).attr("id");
+	
+	location.href="detail?id="+id;
+});
+</script> 
+
+<!-- 주소 aqi --> <!-- 안됑,,,,왜 안됑?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d4fe90bf7dbc0b8a909c29abf8e342f1&libraries=services"></script>
+<script>
+/* var container = document.getElementById('map');
+var options = {
+	center: new kakao.maps.LatLng(33.450701, 126.570667),
+	level: 3
+};
+
+var map = new kakao.maps.Map(container, options);
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map); */
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+};  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('${dto.addr}', function(result, status) {
+
+// 정상적으로 검색이 완료됐으면 
+ if (status === kakao.maps.services.Status.OK) {
+
+    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+    // 결과값으로 받은 위치를 마커로 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: coords
+    });
+
+    // 인포윈도우로 장소에 대한 설명을 표시합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content: '<div style="width:150px;text-align:center;padding:6px 0;">${dto.name}</div>'
+    });
+    infowindow.open(map, marker);
+
+    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    map.setCenter(coords);
+} 
+});    
+
+</script>
 </body>
 </html>
