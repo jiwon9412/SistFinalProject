@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="data.mapper.NoticesMapper">
@@ -17,7 +17,7 @@
    
    <insert id="insertScrap" parameterType="HashMap">
       insert into scrap (user_id,notice_num) values(#{user_id},#{notice_num})
-   </insert> 
+   </insert>
    
    <delete id="deleteScrap" parameterType="HashMap">
       delete from scrap where user_id=#{user_id} and notice_num=#{notice_num}
@@ -61,6 +61,10 @@
 ]]> #{today} and b.id=a.company_id order by rand()
    </select>
    
+   <select id="checkApplication" parameterType="HashMap" resultType="int">
+      select count(*) from application where user_id=#{user_id} and company_id=#{company_id} and notice_num=#{notice_num}
+   </select>
+   
    <!-- 공고 지원자 수 -->
    <select id="getTotalAppCount" parameterType="String" resultType="int">
       select count(*) from application where notice_num=#{notice_num}
@@ -73,5 +77,9 @@
    <select id="getWomanAppCount" parameterType="String" resultType="int">
       select count(*) from  application a join user b on a.user_id = b.id and a.notice_num=#{notice_num} and b.gender='여성'
    </select>
+   
+   <insert id="insertApplication" parameterType="HashMap">
+      insert into application values(#{user_id},#{company_id},#{notice_num})
+   </insert>
 
 </mapper>
