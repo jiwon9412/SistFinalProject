@@ -106,6 +106,7 @@ a:active {
 <title>Insert title here</title>
 </head>
 <c:set var="myid" value="${sessionScope.myid }"/>
+<c:set var="logintype" value="${sessionScope.logintype }"></c:set>
 <body>
 <div class="noticewrap">
 <!-- 상단 타이틀 시작 -->
@@ -174,13 +175,13 @@ a:active {
 		    <c:if test="${ndto.check==0 }">
 		    <span class="glyphicon glyphicon-heart-empty scrap" 
 		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
-		    num="${ndto.num }" userId="${myid }"></span>
+		    num="${ndto.num }" userId="${myid }" ></span>
 		    </c:if>
 		    
 		    <c:if test="${ndto.check==1 }">
 		    <span class="glyphicon glyphicon-heart scrapdel" 
 		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
-		    num="${ndto.num }" userId="${myid }"></span>
+		    num="${ndto.num }" userId="${myid }" ></span>
 		    </c:if>
 		  </div>
 		</div>
@@ -245,6 +246,9 @@ $(document).on('click','span.scrap',function(){
 		 alert("로그인이 필요한 서비스입니다");
 		 location.href='/login/main';
 		 return;
+	}else if(${sessionScope.logintype.equals("corp")}){
+		alert("개인 회원만 이용 가능한 서비스입니다");
+		return;
 	}
 	
 	$.ajax({

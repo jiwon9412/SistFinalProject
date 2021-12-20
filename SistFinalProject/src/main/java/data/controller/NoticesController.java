@@ -226,6 +226,8 @@ public class NoticesController {
 		int totalAppCnt = mapper.getTotalAppCount(num);
 		int manAppCnt = mapper.getManAppCount(num);
 		int womanAppCnt = mapper.getWomanAppCount(num);
+		System.out.println(manAppCnt);
+		System.out.println(womanAppCnt);
 		double manAppRatio;
 		double womanAppRatio;
 		if(totalAppCnt==0) {

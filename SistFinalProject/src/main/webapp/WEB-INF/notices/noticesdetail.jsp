@@ -446,6 +446,9 @@ background-color: #ccc;">
 			 alert("로그인이 필요한 서비스입니다");
 			 location.href='/login/main';
 			 return;
+		}else if(${sessionScope.logintype.equals("corp")}){
+			alert("개인 회원만 이용 가능한 서비스입니다");
+			return;
 		}
 		
 		$.ajax({
