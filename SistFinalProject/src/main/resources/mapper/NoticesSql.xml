@@ -39,6 +39,7 @@
 		select * from notice where num=#{num}
 	</select>
 	
+	<!-- 내부조인활용 -->
 	<select id="getNoticeInfo" parameterType="String" resultType="ndto">
 		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
 		b.intro from notice a join company b on a.company_id=b.id and a.num=#{num}
@@ -47,6 +48,17 @@
 	<select id="getListInfo" parameterType="HashMap" resultType="ndto">
 		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
 		b.intro from notice a join company b on a.company_id=b.id limit #{start},#{perpage}
+	</select>
+	
+	<select id="getTypeInfo" parameterType="HashMap" resultType="ndto">
+		select a.*, b.logo, b.name, b.addr, b.site, b.photo, 
+		b.intro from notice a join company b on a.company_id=b.id and a.type=#{type} limit #{start},#{perpage}
+	</select>
+	
+	<select id="getHireList" parameterType="String" resultType="ndto">
+		select distinct a.*, b.name, b.photo from company b join notice a on a.period_end<![CDATA[
+>
+]]> #{today} and b.id=a.company_id order by rand()
 	</select>
 	
 	<!-- 공고 지원자 수 -->

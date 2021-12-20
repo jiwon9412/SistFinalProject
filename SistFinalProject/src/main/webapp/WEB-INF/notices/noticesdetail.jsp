@@ -14,8 +14,15 @@ rel="stylesheet">
 <title>Insert title here</title>
 <style type="text/css">
 
+ a:link { color: gray; text-decoration: underline;}
+ a:visited { color: gray; text-decoration: underline;}
+ a:hover { color: gray; text-decoration: underline;}
+
+
+
 div.detail{
 	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 table{
@@ -51,7 +58,7 @@ div#graph{
 	border: 1px solid gray;
 	border-radius: 10px;
 	width: 250px;
-	height: 250px;
+	height: 280px;
 	margin-top: 10px;
 	margin-left: 10px;
 	
@@ -62,7 +69,7 @@ div#man, div#woman{
 	width: 40px;
 	height: 180px;
 	float: left;
-	margin-left: 56px;
+	margin-left: 32px; 
 	margin-top: 20px;
 	background-clip: content-box;
 }
@@ -73,6 +80,62 @@ div#map{
 	border-radius: 20px;
 	width: 270px;
 	height: 200px;
+}
+
+/* 아래 채용 리스트 */
+div.notice{
+	border-radius: 20px;
+	border: solid 1px gray;
+	width: 250px;
+	height: 400px;
+	
+	margin-top: 30px;
+	
+	
+}
+
+div.godetail{
+	cursor: pointer;
+}
+div.logo>img{
+	border-radius: 20px 20px 0px 0px;
+	width: 250px;
+	height: 200px; 	
+}
+
+div.cinfo{
+	padding-top: 20px;
+	padding-left: 20px;
+	text-align: left;
+	height: 140px;
+}
+
+div.period{
+	padding-left: 20px;
+}
+
+button{
+	border: solid 1px white;
+	border-radius: 20px;
+	font-size: 0.9em;
+	width: 60px;
+	height: 30px;
+	
+}
+
+button.type{
+	background-color: #6495ed     ;
+	color: #0000cd  ;
+}
+
+button.loc{
+	background-color: #fffacd    ;
+	color: #deb887   ;
+}
+
+button.qual{
+	background-color: #98fb98   ;
+	color: #008080   ;
 }
 
 </style>
@@ -94,8 +157,7 @@ div#map{
     </div>
     <!-- 상단 타이틀 끝 -->
 
-<!-- ****************div height 나중에 지워주기 보기좋으라고일단해놓은거!***********************  -->
-<div class="detail" style="height: 1500px;">
+<div class="detail" >
   <table id="wrap">
 	<tr>
 	  <th rowspan="6">지원분야</th>
@@ -125,10 +187,32 @@ div#map{
 	        <b style="margin-left: 60px; margin-top: 40px; font-size: 20px;">지원자 성별 비율</b>
 	      </div>
 	      <div id="graph" >
-	        <div id="man" style="padding-top: ${180-(manAppRatio*180)}px; background-color: #00bfff "></div>
-	        <div id="woman" style="padding-top: ${180-(womanAppRatio*180)}px; background-color: #ffc0cb   "></div>
+	      <table style="width: 200px;">
+	        <tr>
+	          <td align="center">${manAppCnt }</td>
+	          <td align="center">${womanAppCnt }</td>
+	        </tr>
+	        <tr>
+	        <td align="center">
+	          <div id="man" style="padding-top: ${180-(manAppRatio*180)}px; background-color: #00bfff "></div>
+	        </td>
+	        <td align="center">
+	          <div id="woman" style="padding-top: ${180-(womanAppRatio*180)}px; background-color: #ffc0cb   "></div>
+	        </td>
+	        </tr>
+	        
+	        <tr height="30px;" style="vertical-align: bottom;">
+	          <td align="center"><b>남자</b></td>
+	          <td align="center"><b>여자</b></td>
+	        </tr>
+	      </table>
+	        
 	        
 	      </div>
+	      <div style="margin-top: 20px;">
+	        <b style="margin-left: 80px; margin-top: 40px; font-size: 15px;">총 지원자수 : ${totalAppCnt }명</b>
+	      </div>
+	      
 	    </div>
 	    
 	    <div id="map" ></div>
@@ -226,7 +310,66 @@ div#map{
 	</tr>
 	
   </table>
+ 
+ <hr>
+ 
+ 
+  <table style="width: 1100px;">
+  <caption>
+  	<b>채용 중인 공고</b>
+  	<a href="main" style="float: right; "><b>더보기</b></a>
+  </caption>
+    <tr>
+    <c:forEach var="hdto" items="${hlist }" varStatus="i" end="3">
   
+    <td>
+		<div class="notice">
+		<div class="godetail" num=${hdto.num }>
+		  <div class="logo">
+		    <img alt="" src="../images/${hdto.photo }">
+		    
+		  </div>
+		  <div class="cinfo">
+		    <b style="font-size: 1.1em;">${hdto.name }</b> <br>
+		    ${hdto.subject }<br><br>
+		    <button class="type"><b>${hdto.type }</b></button>
+		    <button class="loc"><b>${hdto.location }</b></button>
+		    <button class="qual"><b>${hdto.personnel }명</b></button>
+		    
+		  </div>
+		  </div>
+		  <div class="period">
+		    <hr style="margin-bottom: 5px;">
+		    <b style="color: gray; ">${hdto.period_start } ~ ${hdto.period_end }</b>
+		  
+		    
+		    <c:if test="${hdto.check==0 }">
+		    <span class="glyphicon glyphicon-heart-empty scrap" 
+		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+		    num="${hdto.num }" userId="${myid }"></span>
+		    </c:if>
+		    
+		    <c:if test="${hdto.check==1 }">
+		    <span class="glyphicon glyphicon-heart scrapdel" 
+		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+		    num="${ndto.num }" userId="${myid }"></span>
+		    </c:if>
+		  </div>
+		</div>
+    </td>
+    <c:if test="${i.count==4 }">
+    </tr>
+    <tr>
+    </c:if>
+    </c:forEach>
+    
+    
+  </tr>
+  
+  </table>
+  
+
+</div>
   <!-- 카카오맵 -->
 <!-- <div class="kakao" style=" float: left; margin-top: 60px; margin-left: 50px;;
 background-color: #ccc;">
@@ -290,8 +433,75 @@ background-color: #ccc;">
 	        map.setCenter(coords);
 	    } 
 	});    
+	
+	$(document).on('click','span.scrap',function(){
+		
+		var tag = $(this);
+		var user_id = $(this).attr("userId");
+		var notice_num = $(this).attr("num");
+		//alert(user_id+","+notice_num);
+		
+		
+		if(${sessionScope.myid==null}){
+			 alert("로그인이 필요한 서비스입니다");
+			 location.href='/login/main';
+			 return;
+		}
+		
+		$.ajax({
+			
+			type: "get",
+			url: "insertscrap",
+			data: {"user_id":user_id,"notice_num":notice_num},
+			success: function(data){
+				
+				//ajax로 스크랩이 되면서 success에서 이거 실행하기
+				tag.attr("class","glyphicon glyphicon-heart scrapdel");
+				tag.css("color","red");
+					
+				
+			}
+			
+		});
+		
+		
+
+	});
+
+	$(document).on('click','span.scrapdel',function(){
+		var tag = $(this);
+		var user_id = $(this).attr("userId");
+		var notice_num = $(this).attr("num");
+		
+		$.ajax({
+			
+			type: "get",
+			url: "deletetscrap",
+			data: {"user_id":user_id,"notice_num":notice_num},
+			success: function(data){
+				
+				//ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
+				tag.attr("class","glyphicon glyphicon-heart-empty scrap");
+				tag.css("color","gray");
+					
+				
+			}
+			
+		});
+		
+		
+
+	});
+
+
+	$("div.godetail").click(function(){
+		
+		var num = $(this).attr("num");
+		
+		location.href="detail?num="+num;
+	});
+	
 	</script>
   
-</div>
 </body>
 </html>

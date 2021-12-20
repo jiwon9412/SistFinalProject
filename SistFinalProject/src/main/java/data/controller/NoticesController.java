@@ -180,7 +180,7 @@ public class NoticesController {
 		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
 		
 		
-		List<NoticesDto> list = mapper.getTypeList(type, start, perPage);
+		List<NoticesDto> list = mapper.getTypeInfo(type, start, perPage);
 		
 		
 		
@@ -199,10 +199,10 @@ public class NoticesController {
 		
 		String user_id = (String) session.getAttribute("myid");
 		for(NoticesDto dto : list) {
-			String photo = cmapper.getPhoto(dto.getCompany_id());
+			
 			int check = mapper.checkScrap(user_id, dto.getNum());
 			dto.setCheck(check);
-			dto.setPhoto(photo);
+			
 		}
 		
 		
@@ -214,7 +214,8 @@ public class NoticesController {
 	
 	@GetMapping("/notices/detail")
 	public ModelAndView noticesDetail(
-			@RequestParam String num
+			@RequestParam String num,
+			HttpSession session
 			) {
 		
 		ModelAndView mview = new ModelAndView();
@@ -259,10 +260,23 @@ public class NoticesController {
 		
 
 		mview.addObject("dto", dto);
-		/* mview.addObject("totalAppCnt", totalAppCnt); */
+		mview.addObject("totalAppCnt", totalAppCnt);
+		mview.addObject("manAppCnt", manAppCnt);
+		mview.addObject("womanAppCnt", womanAppCnt);
 		mview.addObject("manAppRatio", manAppRatio);
 		mview.addObject("womanAppRatio", womanAppRatio);
 		
+		String todayStr = sdf.format(cal.getTime());
+		ArrayList<NoticesDto> hlist = mapper.getHireList(todayStr);
+		//System.out.println(todayStr);
+		String user_id = (String) session.getAttribute("myid");
+		for(NoticesDto hdto : hlist) {
+			
+			int check = mapper.checkScrap(user_id, hdto.getNum());
+			hdto.setCheck(check);
+			
+		}
+		mview.addObject("hlist", hlist);
 		
 		mview.setViewName("/notices/noticesdetail");
 		return mview;
