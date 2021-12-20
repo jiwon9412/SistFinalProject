@@ -56,20 +56,31 @@ public class PositionController {
 		mview.addObject("list2",list2);
 		
 		//만약 로그인 한했을 경우 로그인으로 이동
-		if(loginok==null) {
+		if(loginok!=null) {
 			
-			//여기 매우 중요!!!
+			//유저 로그인인 경우
+			if(logintype == "user") {
+				
+				//포워드
+				mview.setViewName("/position/positionmain");
+				return mview;	
+				
+			} else {
+				
+				//포워드
+				mview.setViewName("/position/positionCor");			
+				return mview;	
+			}
+
+		} else {
+			
+			//여기 매우 중요!!! - 로그인 안했을 경우
 			//setViewName으로 하면 주소가 그대로 position에 main이 되기에 Redirect로 매핑 주소로 쏴줌
 			//그러나 return type이 String형이 아니기때문에 ModelAndView 형식의 Redirect 써줌
-			mview.setView(new RedirectView("/login/main",true));
+			mview.setView(new RedirectView("/login/main",true));			
 			
-		} else {
-			//포워드
-			mview.setViewName("/position/positionmain");
-		}
-
-		
-		return mview;
+			return mview;
+		}		
 	}
 		
 	

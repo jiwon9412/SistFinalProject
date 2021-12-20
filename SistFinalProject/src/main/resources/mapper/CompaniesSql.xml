@@ -25,7 +25,7 @@
 
 <select id="getIndustryCount" parameterType="String" resultType="int">
 	select count(*) from company where industry=#{industry}
-</select>
+</select> 
 
 <select id="getHireList" parameterType="String" resultType="comdto">
 	select distinct a.* from company a join notice b on b.period_end<![CDATA[
