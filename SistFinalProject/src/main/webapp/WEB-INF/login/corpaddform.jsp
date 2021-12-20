@@ -186,7 +186,7 @@ function idnChange(e) {
 	<div id="image_container" style="float: right; margin-right: 200px;" ></div>
 	<br><br><br>
 	
-	<span style="font-weight: bold; font-size: 1.1em;">회사 사진</span>
+	<span style="font-weight: bold; font-size: 1.1em;">기업 사진</span>
 	<span style="color: red;">*</span>
 	<input type="file" name="photoimage" class="form-control" multiple="multiple"
 	style="width: 400px; height: 40px;" required="required">

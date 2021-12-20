@@ -215,18 +215,20 @@
 		var company_id= $(this).attr("company_id");
 		
 		console.log(company_id);
+
 		
 		//Ajax로 비동기 삭제처리
 		$.ajax({
 			
 			type:"get",
-			dataType:"json",
 			url:"delete",
 			data : {"company_id" : company_id},
-			success:function(){
-				
-				 alert("company_id");
-			}
+			success:function(){		
+				 location.reload();
+			},
+			error:function(request,status,error){
+		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);   
+		    }
 		});
 	});
     
