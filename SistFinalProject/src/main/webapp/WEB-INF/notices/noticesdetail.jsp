@@ -155,6 +155,8 @@ div.intro{
 
 </style>
 </head>
+<c:set var="myid" value="${sessionScope.myid }"/>
+<c:set var="logintype" value="${sessionScope.logintype }"/>
 <body>
 <!-- 상단 타이틀 시작 -->
     <div class="notices-top-box" style="background: url('../images/notices-bg.jpg') no-repeat center center;">
@@ -371,13 +373,13 @@ div.intro{
 		    <c:if test="${hdto.check==0 }">
 		    <span class="glyphicon glyphicon-heart-empty scrap" 
 		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
-		    num="${hdto.num }" userId="${myid }"></span>
+		    num="${hdto.num }" userId="${myid }" logintype="${logintype }"></span>
 		    </c:if>
 		    
 		    <c:if test="${hdto.check==1 }">
 		    <span class="glyphicon glyphicon-heart scrapdel" 
 		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
-		    num="${ndto.num }" userId="${myid }"></span>
+		    num="${ndto.num }" userId="${myid }" logintype="${logintype }"></span>
 		    </c:if>
 		  </div>
 		</div>
@@ -464,33 +466,36 @@ background-color: #ccc;">
 		var tag = $(this);
 		var user_id = $(this).attr("userId");
 		var notice_num = $(this).attr("num");
+		var logintype = $(this).attr("logintype");
 		//alert(user_id+","+notice_num);
 		
 		
-		if(${sessionScope.myid==null}){
+		if(${sessionScope.loginok==null}){
 			 alert("로그인이 필요한 서비스입니다");
 			 location.href='/login/main';
 			 return;
-		}else if(${sessionScope.logintype.equals("corp")}){
+		}else if(logintype=="corp"){
 			alert("개인 회원만 이용 가능한 서비스입니다");
 			return;
+		}else{
+			$.ajax({
+				
+				type: "get",
+				url: "insertscrap",
+				data: {"user_id":user_id,"notice_num":notice_num},
+				success: function(data){
+					
+					//ajax로 스크랩이 되면서 success에서 이거 실행하기
+					tag.attr("class","glyphicon glyphicon-heart scrapdel");
+					tag.css("color","red");
+						
+					
+				}
+				
+			});
 		}
 		
-		$.ajax({
-			
-			type: "get",
-			url: "insertscrap",
-			data: {"user_id":user_id,"notice_num":notice_num},
-			success: function(data){
-				
-				//ajax로 스크랩이 되면서 success에서 이거 실행하기
-				tag.attr("class","glyphicon glyphicon-heart scrapdel");
-				tag.css("color","red");
-					
-				
-			}
-			
-		});
+		
 		
 		
 
@@ -521,6 +526,7 @@ background-color: #ccc;">
 
 	});
 
+	
 
 	$("div.godetail").click(function(){
 		
