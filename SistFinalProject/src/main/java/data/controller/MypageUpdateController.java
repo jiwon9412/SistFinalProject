@@ -75,11 +75,49 @@ public class MypageUpdateController {
 		
 		UserDto dto = loginmapper.getUserData(myid);
 		
+		if(dto.getBirth()!=null) {
+			String[] birth = dto.getBirth().split("-");
+			dto.setBirth1(birth[0]);
+			dto.setBirth2(birth[1]);
+			dto.setBirth3(birth[2]);
+		}
+		
+		if(dto.getEmail()!=null) {
+			String[] email = dto.getEmail().split("@");
+			dto.setEmail1(email[0]);
+			dto.setEmail2(email[1]);
+		}
+		
+		if(dto.getHp()!=null) {
+			String[] hp = dto.getHp().split("-");
+			dto.setHp1(hp[0]);
+			dto.setHp2(hp[1]);
+			dto.setHp3(hp[2]);
+		}
+		
 		mview.addObject("dto", dto);
 		mview.setViewName("/mypage/updateuserform");
 		
 		return mview;
 	}
+	
+	@PostMapping("/mypage/updateuserpproc")
+	public String updateUserProc(
+			@ModelAttribute UserDto dto, 
+			HttpSession session) {
+		
+		String myid = (String)session.getAttribute("myid");
+		
+		dto.setId(myid);
+		dto.setBirth(dto.getBirth1() + "-" + dto.getBirth2() + "-" + dto.getBirth3());
+		dto.setEmail(dto.getEmail1() + "@" + dto.getEmail2());
+		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
+		
+		loginmapper.updateUser(dto);
+		
+		return "redirect:/mypage/main";
+	}
+	
 	
 	@GetMapping("/mypage/updatecorpform")
 	public ModelAndView updateCorpForm(HttpSession session) {

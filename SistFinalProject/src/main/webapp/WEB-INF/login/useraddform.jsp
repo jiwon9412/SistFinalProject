@@ -120,6 +120,17 @@ function check(f) {
 			<option value="선택안함">선택안함</option>				
 		</select><br>
 		
+		<span style="font-weight: bold; font-size: 1.1em;">연락처</span>
+		<span style="color: red;">*</span><br>
+		<input type="text" name="hp1" id="email2" class="form-control"
+		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="000">
+		<b>-</b>
+		<input type="text" name="hp2" id="email2" class="form-control"
+		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="0000">
+		<b>-</b>
+		<input type="text" name="hp3" id="email2" class="form-control"
+		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="0000"><br><br>
+		
 		<span style="font-weight: bold; font-size: 1.1em;">이메일</span>
 		<span style="color: red;">*</span><br>
 		<input type="text" name="email1" class="form-control"
@@ -141,17 +152,6 @@ function check(f) {
 		<input type="text" name="addr" class="form-control" 
 		style="width: 400px; height: 40px;" required="required" placeholder="주소">
 		<br>
-		
-		<span style="font-weight: bold; font-size: 1.1em;">연락처</span>
-		<span style="color: red;">*</span><br>
-		<input type="text" name="hp1" id="email2" class="form-control"
-		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="000">
-		<b>-</b>
-		<input type="text" name="hp2" id="email2" class="form-control"
-		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="0000">
-		<b>-</b>
-		<input type="text" name="hp3" id="email2" class="form-control"
-		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="0000">
 		
 		<br><br>
 		<button type="submit" style="width: 400px; height: 40px; color: white; background-color: #40e0d0;

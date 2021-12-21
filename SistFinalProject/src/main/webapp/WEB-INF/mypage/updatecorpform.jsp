@@ -17,9 +17,13 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 $(function () {
 	
 	//input file
-	$("span.photo").click(function () {
+	$("span.logofile").click(function () {
 		
 		$("#logofile").trigger("click");
+	});
+	$("span.photofile").click(function () {
+		
+		$("#photofile").trigger("click");
 	});
 	
 	//4대보험 기존값 비교 후 체크
@@ -41,12 +45,10 @@ $(function () {
 	if(ins4 == insChk4)
 		$("input:checkbox[id='ins4']").prop("checked", true);
 	
-	var birth2 = document.getElementById("birth1").value;
-	var birthChk2 = document.getElementById("birthChk1").value;
+	var indChk = document.getElementById("indChk").value;
 	
-	if(birth2 == birthChk2) {
-		
-	}
+	var birthChk2 = document.getElementById("birthChk2").value;
+	$("#birth2 option:eq(" + birthChk2 + ")").prop("selected", true);
 	
 });
 
@@ -122,6 +124,8 @@ function idnChange(e) {
 		target.appendChild(opt);
 	}
 	
+	
+	
 }
 </script>
 
@@ -178,7 +182,7 @@ function idnChange(e) {
 			<td>
 				<input type="file" name="logoimage" id="logofile" accept="image/*" onchange="setThumbnail(event);"
 					style="width: 100px; height: 40px; display: none;">
-				<span class="photo" style="cursor: pointer; width: 100px;">
+				<span class="logofile" style="cursor: pointer; width: 100px;">
 				<button type="button" class="btn btn-default">사진 선택</button>
 				</span>
 				<div id="image_container" style="float: right;">
@@ -192,7 +196,10 @@ function idnChange(e) {
 				기업 사진
 			</th>
 			<td>
-				<input type="file" name="photoimage" class="form-control" style="width: 200px; height: 30px;">
+				<input type="file" name="photoimage" id="photofile" style="width: 100px; height: 40px; display: none;">
+				<span class="photofile" style="cursor: pointer; width: 100px;">
+				<button type="button" class="btn btn-default">사진 선택</button>
+				</span>
 			</td>
 		</tr>
 		

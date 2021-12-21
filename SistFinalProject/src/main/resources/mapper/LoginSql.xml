@@ -20,6 +20,10 @@
 	<select id="getUserData" parameterType="String" resultType="udto">
 		select * from user where id = #{id}	
 	</select>
+	<update id="updateUser" parameterType="udto">
+		update user set name = #{name}, birth = #{birth}, gender = #{gender}, hp = #{hp}, email = #{email}, addr = #{addr} 
+		where id = #{id}
+	</update>
 	
 	<!-- company -->
 	<select id="corplogin" parameterType="HashMap" resultType="int">
