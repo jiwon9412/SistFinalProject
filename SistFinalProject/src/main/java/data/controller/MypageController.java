@@ -41,124 +41,137 @@ public class MypageController {
 	
 	@GetMapping("/mypage/main")
 	public ModelAndView mypagemain(HttpSession session) {
-		
+
 		String loginok = (String) session.getAttribute("loginok");
 		String myid = (String) session.getAttribute("myid");
 		String logintype = (String) session.getAttribute("logintype");
 
-		System.out.println("[mypagemain(login/noticelist/resumeview)] loginok:" + loginok + ", id:" + myid + ", logintype:" + logintype);
+		System.out.println("[mypagemain(login/noticelist/resumeview)] loginok:" + loginok + ", id:" + myid
+				+ ", logintype:" + logintype);
 
 		ModelAndView mv = new ModelAndView();
 
 		if (loginok != null) { // 로그인 했을 때
-			//System.out.println("loginok=yes");
+			// System.out.println("loginok=yes");
 			if (logintype == "user") { // 개인 로그인
-				//System.out.println(mymapper.checkResume(myid));
+				// System.out.println(mymapper.checkResume(myid));
 				if (mymapper.checkResume(myid) != 0) { // 로그인한 개인아이디에 이력서 있으면 이력서 보기 페이지로
-					MypageResumeDto rdto = mymapper.getMypageResume(myid); // 로그인한아이디(myid)가져와서 resumedto 얻어오기
-
-					// 자격증 분리 후 리스트에 담기					
-					List<String> license1 = new ArrayList<String>();
-					List<String> license2 = new ArrayList<String>();
-					List<String> license3 = new ArrayList<String>();
-					
-					//System.out.println("getLicense: "+rdto.getLicense());					
-					String[] licenseList = rdto.getLicense().split("\\|");
-					for (int i = 0; i < licenseList.length; i++) {
-						// System.out.println("licenseList["+i+"]"+licenseList[i]);
-						String[] licenseList2 = licenseList[i].split("`");
-						for (int j = 0; j < 1; j++) {
-							//System.out.println("licenseList2[" + j + "]" + licenseList2[j]);
-							license1.add(licenseList2[0]);
-							license2.add(licenseList2[1]);
-							license3.add(licenseList2[2]);
-						}
-					}
-//					System.out.println("license1: "+license1);
-//					System.out.println("license2: "+license2);
-//					System.out.println("license3: "+license3);		
-					
-					// 대외활동 분리 후 리스트에 담기					
-					List<String> activity1 = new ArrayList<String>();
-					List<String> activity2 = new ArrayList<String>();
-					List<String> activity3 = new ArrayList<String>();
-
-					//System.out.println("getactivity: "+rdto.getactivity());					
-					String[] activityList = rdto.getActivity().split("\\|");
-					for (int i = 0; i < activityList.length; i++) {
-						// System.out.println("activityList["+i+"]"+activityList[i]);
-						String[] activityList2 = activityList[i].split("`");
-						for (int j = 0; j < 1; j++) {
-							//System.out.println("activityList2[" + j + "]" + activityList2[j]);
-							activity1.add(activityList2[0]);
-							activity2.add(activityList2[1]);
-							activity3.add(activityList2[2]);
-						}
-					}
-//					System.out.println("activity1: "+activity1);
-//					System.out.println("activity2: "+activity2);
-//					System.out.println("activity3: "+activity3);
-
-					// 경력 분리 후 리스트에 담기
-					List<String> career1 = new ArrayList<String>();
-					List<String> career2 = new ArrayList<String>();
-					List<String> career3 = new ArrayList<String>();
-					List<String> career4 = new ArrayList<String>();
-					List<String> career5 = new ArrayList<String>();
-
-					//System.out.println("getcareer: "+rdto.getcareer());					
-					String[] careerList = rdto.getCareer().split("\\|");
-					for (int i = 0; i < careerList.length; i++) {
-						// System.out.println("careerList["+i+"]"+careerList[i]);
-						String[] careerList2 = careerList[i].split("`");
-						for (int j = 0; j < 1; j++) {
-							//System.out.println("careerList2[" + j + "]" + careerList2[j]);
-							career1.add(careerList2[0]);
-							career2.add(careerList2[1]);
-							career3.add(careerList2[2]);
-							career4.add(careerList2[3]);
-							career5.add(careerList2[4]);
-						}
-					}
-//					System.out.println("career1: "+career1);
-//					System.out.println("career2: "+career2);
-//					System.out.println("career3: "+career3);
-//					System.out.println("career4: "+career4);
-//					System.out.println("career5: "+career5);
-				
-					String[] hi = rdto.getHighschool().split("`");
-					rdto.setHighschool1(hi[0]);
-					rdto.setHighschool2(hi[1]);
-					rdto.setHighschool3(hi[2]);
-					String[] co = rdto.getCollege().split("`");
-					rdto.setCollege1(co[0]);
-					rdto.setCollege2(co[1]);
-					rdto.setCollege3(co[2]);
-
-					mv.addObject("license1", license1);
-					mv.addObject("license2", license2);
-					mv.addObject("license3", license3);
-					mv.addObject("activity1", activity1);
-					mv.addObject("activity2", activity2);
-					mv.addObject("activity3", activity3);
-					mv.addObject("career1", career1);
-					mv.addObject("career2", career2);
-					mv.addObject("career3", career3);
-					mv.addObject("career4", career4);
-					mv.addObject("career5", career5);
-					//mv.addObject("licenses", licenses);
-					mv.addObject("resumedto", rdto);
-					mv.setViewName("/mypage/resumeview");
+					mv.setViewName("redirect:resume_view_map");
 				} else { // 로그인한 개인아이디에 이력서 없으면 이력서 작성 페이지로
 					mv.setViewName("redirect:resume_write_map");
 				}
-			}  else if(logintype == "corp") { // 기업 로그인
+			} else if (logintype == "corp") { // 기업 로그인
 				mv.setViewName("redirect:noticelist_map");
 			}
 		} else { // 로그인 안했을 때
-			System.out.println("loginok==null");
+			//System.out.println("loginok==null");
 			mv.setViewName("redirect:../login/main");
 		}
+		return mv;
+	}
+	
+	//이력서 보기 페이지
+	@GetMapping("/mypage/resume_view_map")
+	public ModelAndView resumeview(HttpSession session) {
+
+		String myid = (String) session.getAttribute("myid");
+
+		System.out.println("이력서 보기 페이지~~");
+
+		ModelAndView mv = new ModelAndView();
+		MypageResumeDto rdto = mymapper.getMypageResume(myid); // 로그인한아이디(myid)가져와서 resumedto 얻어오기
+
+		// 자격증 분리 후 리스트에 담기
+		List<String> license1 = new ArrayList<String>();
+		List<String> license2 = new ArrayList<String>();
+		List<String> license3 = new ArrayList<String>();
+
+		// System.out.println("getLicense: "+rdto.getLicense());
+		String[] licenseList = rdto.getLicense().split("\\|");
+		for (int i = 0; i < licenseList.length; i++) {
+			// System.out.println("licenseList["+i+"]"+licenseList[i]);
+			String[] licenseList2 = licenseList[i].split("`");
+			for (int j = 0; j < 1; j++) {
+				// System.out.println("licenseList2[" + j + "]" + licenseList2[j]);
+				license1.add(licenseList2[0]);
+				license2.add(licenseList2[1]);
+				license3.add(licenseList2[2]);
+			}
+		}
+//		System.out.println("license1: "+license1);
+//		System.out.println("license2: "+license2);
+//		System.out.println("license3: "+license3);		
+
+		// 대외활동 분리 후 리스트에 담기
+		List<String> activity1 = new ArrayList<String>();
+		List<String> activity2 = new ArrayList<String>();
+		List<String> activity3 = new ArrayList<String>();
+
+		// System.out.println("getactivity: "+rdto.getactivity());
+		String[] activityList = rdto.getActivity().split("\\|");
+		for (int i = 0; i < activityList.length; i++) {
+			// System.out.println("activityList["+i+"]"+activityList[i]);
+			String[] activityList2 = activityList[i].split("`");
+			for (int j = 0; j < 1; j++) {
+				// System.out.println("activityList2[" + j + "]" + activityList2[j]);
+				activity1.add(activityList2[0]);
+				activity2.add(activityList2[1]);
+				activity3.add(activityList2[2]);
+			}
+		}
+//		System.out.println("activity1: "+activity1);
+//		System.out.println("activity2: "+activity2);
+//		System.out.println("activity3: "+activity3);
+
+		// 경력 분리 후 리스트에 담기
+		List<String> career1 = new ArrayList<String>();
+		List<String> career2 = new ArrayList<String>();
+		List<String> career3 = new ArrayList<String>();
+		List<String> career4 = new ArrayList<String>();
+		List<String> career5 = new ArrayList<String>();
+
+		// System.out.println("getcareer: "+rdto.getcareer());
+		String[] careerList = rdto.getCareer().split("\\|");
+		for (int i = 0; i < careerList.length; i++) {
+			// System.out.println("careerList["+i+"]"+careerList[i]);
+			String[] careerList2 = careerList[i].split("`");
+			for (int j = 0; j < 1; j++) {
+				// System.out.println("careerList2[" + j + "]" + careerList2[j]);
+				career1.add(careerList2[0]);
+				career2.add(careerList2[1]);
+				career3.add(careerList2[2]);
+				career4.add(careerList2[3]);
+				career5.add(careerList2[4]);
+			}
+		}
+//		System.out.println("career1: "+career1);
+//		System.out.println("career2: "+career2);
+//		System.out.println("career3: "+career3);
+//		System.out.println("career4: "+career4);
+//		System.out.println("career5: "+career5);
+
+		String[] hi = rdto.getHighschool().split("`");
+		rdto.setHighschool1(hi[0]);
+		rdto.setHighschool2(hi[1]);
+		rdto.setHighschool3(hi[2]);
+		String[] co = rdto.getCollege().split("`");
+		rdto.setCollege1(co[0]);
+		rdto.setCollege2(co[1]);
+		rdto.setCollege3(co[2]);
+
+		mv.addObject("license1", license1);
+		mv.addObject("license2", license2);
+		mv.addObject("license3", license3);
+		mv.addObject("activity1", activity1);
+		mv.addObject("activity2", activity2);
+		mv.addObject("activity3", activity3);
+		mv.addObject("career1", career1);
+		mv.addObject("career2", career2);
+		mv.addObject("career3", career3);
+		mv.addObject("career4", career4);
+		mv.addObject("career5", career5);
+		mv.addObject("resumedto", rdto);
+		mv.setViewName("/mypage/resumeview");
 
 		return mv;
 	}
@@ -255,7 +268,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	// 이력서 작성 폼으로 가기
+	// 공고 작성 폼으로 가기
 	@GetMapping("/mypage/notice_write_map")
 	public String noticewrite() {
 		
