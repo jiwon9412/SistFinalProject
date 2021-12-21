@@ -12,7 +12,58 @@
   <link href="https://fonts.googleapis.com/css2?
 family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/companiesdetail.css">
+
+<style type="text/css">
+/* notice에서 가져온 리스트 css */
+div.notice{
+	border-radius: 20px;
+	border: solid 1px gray;
+	width: 300px;
+	height: 400px;
+	margin-top: 30px;
+	
+}
+div.godetail{
+	cursor: pointer;
+}
+div.logo>img{
+	border-radius: 20px 20px 0px 0px;
+	width: 300px;
+	height: 200px; 	
+}
+div.cinfo{
+	padding-top: 20px;
+	padding-left: 20px;
+	text-align: left;
+	height: 140px;
+}
+div.period{
+	padding-left: 20px;
+}
+button{
+	border: solid 1px white;
+	border-radius: 20px;
+	font-size: 0.9em;
+	width: 60px;
+	height: 30px;
+}
+button.type{
+	background-color: #6495ed     ;
+	color: #0000cd  ;
+}
+button.loc{
+	background-color: #fffacd    ;
+	color: #deb887   ;
+}
+button.qual{
+	background-color: #98fb98   ;
+	color: #008080   ;
+}
+/* notice에서 가져온 리스트 css 끝 */
+</style>
+
 </head>
+
 <body>
 <!-- 상단 타이틀 -->
 <div class="companiesdetail-top-box">
@@ -25,71 +76,90 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 		</div>
 	</div>
 </div>
-<!-- 상단 타이틀 끝 -->
+
 
 <div class="companywrapper">
 <br><br>
 
 <!-- 기업소개,이미지 div -->
-<h4 class="companytitle" style="margin-left: 50px;"><b>기업 소개</b></h4><br><br>
+<h4 class="companytitle" style="margin-left: 50px;"><b>기업 소개</b></h4>
 				
-<div style="border: 1px solid fff; float: left; width: 20%; height: 400px;">
+<div style="border: 1px solid fff; float: left; width: 20%; height: 300px;">
 
 	<p style="margin-left: 50px;">업계</p>
 	<p style="margin-left: 50px;">대표자</p>
 	<p style="margin-left: 50px;">설립일</p>
 	<p style="margin-left: 50px;">사원수</p>
-	<p style="margin-left: 50px;">업계</p>
 	<p style="margin-left: 50px;">매출액</p>
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
+
+<div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
 
 	<p>${dto.industry}</p>
 	<p>${dto.ceo}</p>
 	<p>${dto.establishment}</p>
 	<p>${dto.employees} 명</p>
-	<p>${dto.sales}</p>
-	<p>${dto.intro}</p>
+	<p>${dto.sales}</p> <br>
+	<p>#${dto.intro}</p>
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
 
-	<img alt="" src="../images/${dto.photo}" style="width: 100%; height: 350px; border-radius: 20px; border: 4px solid lightgray;">
+<div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
+
+	<img alt="" src="../images/${dto.photo}" style="width: 100%; height: 290px; border-radius: 20px; border: 4px solid lightgray;">
 
 </div>
-<!-- 기업소개,이미지 div 끝 -->
+
+
+
 
 <!-- 기업 위치, aqi -->
-<div style="border: 1px solid fff; float: left; width: 20%; height: 300px; background-color: #eeeeee;">
-	<br><br>
-	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px;"></span></a>기업 위치</b>
+<div style="border: 1px solid fff; float: left; width: 20%; height: 300px;">
+
+	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px; color: gray"></span></a>기업 위치</b>
 	
 
 </div>
-<div style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: #eeeeee;">
-	<br><br>
+
+<div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
+
 	<p>${dto.addr}</p>
-	
+	<p>${dto.hp}</p>
 
 </div>
-<div id="map" style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: #eeeeee;">
+
+<div id="map" style="border-radius: 20px; border: 4px solid lightgray; float: left; width: 40%; height: 300px;">
 </div>
+
+
+
 
 <!-- 4대보험 -->
-<div style="border: 1px solid fff; float: left; width: 40%; height: 300px; background-color: white">
+<div style="border: 1px solid fff; float: left; width: 20%; height: 300px; background-color: #eeeeee;">
 	<br><br>
-	<p style="margin-left: 50px;"> <span class="glyphicon glyphicon-plus" style="width: 50px; height: 50px;"></span> <b>복리후생</b></p>
+	<p style="margin-left: 50px;"> <span class="glyphicon glyphicon-plus" style="width: 50px; height: 50px;"></span> <b>복리 후생</b></p>
 </div>
 
-<div style="border: 1px solid fff; float: left; width: 60%; height: 300px; background-color: white">
+<div style="border: 1px solid fff; float: left; width: 80%; height: 300px; background-color: #eeeeee">
 	<br><br>
-	${dto.insurance}
+	<button type="button" style="width: 300px; height: 200px; border: 5px solid #eeeeee; background-color: white; border-radius: 70px; ">
+	${dto.insurance}</button>
+	
+	
+	<img alt="" src="../images/${dto.logo}" style="width: 300px; height: 200px; border-radius: 70px; border: 5px solid #eeeeee;">
+	
+	<img alt="" src="../images/${dto.photo}" style="width: 300px; height: 200px; border-radius: 70px; border: 5px solid #eeeeee;">
+	
+	<img alt="" src="../images/com_image.jpg" style="width: 300px; height: 200px; border-radius: 70px; border: 5px solid #eeeeee;">
 </div>
+
+
+
 
 <!-- 채용중인 리스트 -->
 <table style="width: 1300px;">
-<caption> <h3><b class="hiretitle" style="margin-top: 20px;">채용 공고</b></h3> </caption>
+<caption> <h5><b class="hiretitle" style="margin-top: 20px; color: black;">Job히다의 채용중인 기업 정보를 알아보세요</b></h5> </caption>
 	<tr>
 		<c:forEach var="hdto" items="${hlist}" varStatus="i">
 		<td>
@@ -113,7 +183,49 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 	</tr>
 </table>
 
-</div>
+
+
+<!-- 해당 기업의 해당 공고리스트 가져오기 notice에서 가져옴-->
+
+<table style="width: 1300px;">
+    <tr>
+    <c:forEach var="hdto" items="${onelist }" varStatus="i" end="3">
+  	<b style="margin-left: 300px;">${hdto.name}의 채용 소식을 알아보세요</b>
+    <td>
+		<div class="notice">
+		<div class="godetail" num=${hdto.num }>
+		  <div class="logo">
+		    <img alt="" src="../images/${hdto.photo }">
+		    
+		  </div>
+		  <div class="cinfo">
+		    <b style="font-size: 1.1em;">${hdto.name }</b> <br>
+		    ${hdto.subject }<br><br>
+		    <button class="type"><b>${hdto.type }</b></button>
+		    <button class="loc"><b>${hdto.location }</b></button>
+		    <button class="qual"><b>${hdto.personnel }명</b></button>
+		    
+		  </div>
+		  </div>
+		  <div class="period">
+		    <hr style="margin-bottom: 5px;">
+		    <b style="color: gray; ">${hdto.period_start } ~ ${hdto.period_end }</b>
+		  </div>
+		</div>
+    </td>
+    <c:if test="${i.count==4 }">
+    </tr>
+    <tr>
+    </c:if>
+    </c:forEach>
+    
+    
+  </tr>
+  
+  </table>
+
+
+</div><!-- wrapper 끝 -->
 
 
 
@@ -125,7 +237,17 @@ $("div.companies").click(function(){
 	
 	location.href="detail?id="+id;
 });
+
+/* 채용 공고로 이동하게 */
+$("div.godetail").click(function(){
+	
+	var num = $(this).attr("num");
+	
+	location.href="detail?num="+num;
+});
+
 </script> 
+
 
 <!-- 지도 api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d4fe90bf7dbc0b8a909c29abf8e342f1&libraries=services"></script>

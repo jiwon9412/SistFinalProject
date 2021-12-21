@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.CompaniesDto;
+import data.dto.NoticesDto;
 import data.mapper.CompaniesMapper;
 
 @Controller
@@ -169,6 +170,7 @@ public class CompaniesController {
 		
 		CompaniesDto dto=mapper.getData(id);
 		
+		//채용중인 기업 리스트
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		Date to = cal.getTime();
@@ -179,10 +181,18 @@ public class CompaniesController {
 		
 		mview.addObject("hlist", hlist);
 		
+		//해당된 기업의 채용중인 공고 리스트
+		ArrayList<NoticesDto> onelist=mapper.getOneHireList(today, id);
+		mview.addObject("onelist", onelist);
+		
+		mview.addObject("onesize", onelist.size());
+		
 		mview.addObject("dto", dto);
 		
 		mview.setViewName("/companies/companiesdetail");
 		
 		return mview;
 	}
+	
+	
 }

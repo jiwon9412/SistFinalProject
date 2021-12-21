@@ -19,6 +19,10 @@
 		select * from company where id=#{id}
 </select>
 
+<select id="getOneNotice" parameterType="String" resultType="ndto">
+		select * from notice where num=#{num}
+</select>
+
 <select id="getIndustryList" parameterType="HashMap" resultType="comdto">
 	select * from company where industry=#{industry} order by id desc limit #{start},#{perpage}
 </select>
@@ -31,6 +35,12 @@
 	select distinct a.* from company a join notice b on b.period_end<![CDATA[
 >
 ]]> #{today} and a.id=b.company_id
+</select>
+
+<select id="getOneHireList" parameterType="String" resultType="ndto">
+	select b.*,a.name, a.photo from company a join notice b on b.period_end<![CDATA[
+>
+]]> #{today} and a.id=b.company_id and a.id = #{id}
 </select>
 
 </mapper>
