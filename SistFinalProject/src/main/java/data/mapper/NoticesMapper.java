@@ -26,13 +26,15 @@ public interface NoticesMapper {
 	public ArrayList<NoticesDto> getListInfo(int start, int perpage);
 	//notice type page에 필요한 모든 정보 담는 dto얻기
 	public ArrayList<NoticesDto> getTypeInfo(String type,int start, int perpage);
-	//채용중인 공고리스트
+	//채용중인 공고리스트(마감날짜 지나지않은 공고)
 	public ArrayList<NoticesDto> getHireList(String today);
 	
 	//지원하기
 	public void insertApplication(String user_id, String company_id, String notice_num);
 	//이미 지원했는지 확인
 	public int checkApplication(String user_id, String company_id, String notice_num);
+	
+	
 	
 	//application table
 	//해당 공고 지원자 총수

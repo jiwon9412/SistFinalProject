@@ -25,16 +25,17 @@
      top: 0px;
 }
 
- .notices-top-box h2{
-     font-size: 38px;
+ .notices-top-box h3{
+     font-size: 25px;
      font-weight: 700;
      color: #ffffff;
      padding-bottom: 10px;
 }
 
- .notices-top-box h4{
-     font-size: 18px;
-     font-weight: 700;
+ .notices-top-box h5{
+     font-size: 15px;
+     font-weight: 600;
      color: #ffffff;
      padding-bottom: 10px;
+     
 }

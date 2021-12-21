@@ -289,7 +289,8 @@ public class NoticesController {
 	public String apply(
 			HttpSession session,
 			@RequestParam String company_id,
-			@RequestParam String notice_num
+			@RequestParam String notice_num,
+			@RequestParam int dDay
 			) {
 		
 		String myid = (String) session.getAttribute("myid");
@@ -304,8 +305,15 @@ public class NoticesController {
 			
 			int check = mapper.checkApplication(myid, company_id, notice_num);
 			if(check==0) {
-				mapper.insertApplication(myid, company_id, notice_num);
-				return "redirect:../mypage/applications";
+				
+				if(dDay<0) {
+					return "/notices/deadline";
+				}else {
+					mapper.insertApplication(myid, company_id, notice_num);
+					return "redirect:../mypage/applications";
+				}
+				
+				
 			}else {
 				return "/notices/alreadyapp";
 			}

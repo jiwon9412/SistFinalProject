@@ -46,15 +46,15 @@ div.period{
 button{
 	border: solid 1px white;
 	border-radius: 20px;
-	font-size: 0.9em;
-	width: 60px;
+	font-size: 3px;
+	width: 50px;
 	height: 30px;
 	
 }
 
 button.type{
-	background-color: #6495ed     ;
-	color: #0000cd  ;
+	background-color: #87cefa;
+	color: #4169e1    ;
 }
 
 button.loc{
@@ -62,9 +62,9 @@ button.loc{
 	color: #deb887   ;
 }
 
-button.qual{
-	background-color: #98fb98   ;
-	color: #008080   ;
+button.perso{
+	background-color: #afeeee   ;
+	color: #3cb371     ;
 }
 
 table{
@@ -163,7 +163,7 @@ a:active {
 		    ${ndto.subject }<br><br>
 		    <button class="type"><b>${ndto.type }</b></button>
 		    <button class="loc"><b>${ndto.location }</b></button>
-		    <button class="qual"><b>${ndto.personnel }명</b></button>
+		    <button class="perso"><b>${ndto.personnel }명</b></button>
 		    
 		  </div>
 		  </div>

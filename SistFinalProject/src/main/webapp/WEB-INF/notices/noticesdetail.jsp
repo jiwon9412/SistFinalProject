@@ -10,7 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Pen+Script&display=swap"
 rel="stylesheet">
-<link rel="stylesheet" href="../css/notices.css">
+<link rel="stylesheet" href="../css/noticesdetail.css">
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -138,6 +138,21 @@ button.qual{
 	color: #008080   ;
 }
 
+div.com_name{
+	float: left;
+	margin-right: 180px;
+	color: white;
+	
+}
+
+div.intro{
+	
+	width: 100px;
+	float: right;
+	color: white;
+	align: left;
+}
+
 </style>
 </head>
 <body>
@@ -145,13 +160,22 @@ button.qual{
     <div class="notices-top-box" style="background: url('../images/notices-bg.jpg') no-repeat center center;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2>
-                    	<img alt="" src="../images/${dto.logo }" style="border: 1px solid white; width: 80px; height:50px; ">
+                <div >
+                <div class="com_name">
+                	<h3 >
+                    	<img alt="" src="../images/${dto.logo }" style="border: 1px solid white; width: 50px; height:50px; border-radius: 100%">
                     	${dto.name }
-                    </h2>
-                    <h4>${dto.intro }</h4>
+                    </h3>
                 </div>
+                
+                
+                    
+                    
+                </div>
+                <div class="com_intro" style="text-align: left; width: 600px;">
+                	<h5 >${dto.intro }</h5>
+                </div> 
+                
             </div>
         </div>
     </div>
@@ -165,7 +189,8 @@ button.qual{
 	  <td rowspan="24" style="vertical-align: top;">
 	    <div id="dDay">
 	    <div style="margin-top: 10px; " id="day">
-	      <font style="color: #40e0d0; font-size: 40px; margin-left: 80px; ">D - ${dDay }</font>
+	      <font style="color: #40e0d0; font-size: 40px; margin-left: 80px; ">
+	      D <c:if test="${dDay<0 }">+ ${dDay*-1}</c:if> <c:if test="${dDay>=0 }">- ${dDay }</c:if> </font>
 	    </div>
 	      <hr>
 	      <div id="period" >
@@ -305,7 +330,7 @@ button.qual{
 	  <td colspan="2" align="center" >
 	    <button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
  		width: 700px; height: 40px; font-size: 10pt; color: white;" 
- 		onclick="location.href='apply?notice_num=${dto.num}&company_id=${dto.company_id}'"><b>지원하기</b></button>
+ 		onclick="location.href='apply?notice_num=${dto.num}&company_id=${dto.company_id}&dDay=${dDay }'"><b>지원하기</b></button>
 	  </td>
 	</tr>
 	
