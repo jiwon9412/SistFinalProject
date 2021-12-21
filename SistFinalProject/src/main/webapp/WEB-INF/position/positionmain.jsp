@@ -10,6 +10,14 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <link rel="stylesheet" href="../css/potision.css">
 
+<style type="text/css">
+
+span.content, #list_company_name{
+	cursor: pointer;
+}
+
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -47,7 +55,7 @@
 	         <h4 style="display: inline; margin-left: 50%;"><b>포지션 제안 받기</b></h4>
 	          
              <label style="float: right;" class="switch-button">
-	            <input type="checkbox"/>
+	            <input type="checkbox">
 	            <span class="onoff-switch"></span>
              </label>
          </div>
@@ -74,9 +82,9 @@
 		<c:if test="${totalPosition>0}">
 			<c:forEach var="list" items="${list}">
 				<tr align="center">
-					<td><b>${list.name}</b></td>
+					<td><b id="list_company_name" onclick="location.href='../companies/detail?id=${list.company_id}'">${list.name}</b></td>
 					<td>${list.major}</td>
-					<td>${list.content}</td>
+					<td><span class="content">${list.content}</span></td>
 					<td>
 						<button type="button" class="btn btn-default btndel" style="width: 100px;" 
 						company_id="${list.company_id}">삭제</button>
@@ -207,6 +215,33 @@
     <script src="js/custom.js"></script>
     
     
+    <!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal-dialog">
+	   
+		<!-- Modal Content -->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	         <h4 class="modal-title">댓글 수정</h4>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	         <input type="text" id="ucontent" class="form-control">
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal"
+	        id="btnaupdate">수정</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
+    
+    
     <script type="text/javascript">
 	//댓글 삭제
 	$("button.btndel").click(function(){
@@ -232,6 +267,14 @@
 		});
 	});
     
+	
+	//모달 나오게 하기
+	$("span.content").click(function(){
+		
+		
+		$("#myModal").modal();
+		
+		});
     </script>
 </body>
 </html>
