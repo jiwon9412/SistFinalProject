@@ -21,8 +21,10 @@ public class MypageResumeDto {
 	private String hp;
 	private String highschool,highschool1,highschool2,highschool3;
 	private String college,college1,college2,college3;
-	private String career,career1,career2,career3,career4,career5;
-	private String activity,activity1,activity2,activity3;
+	private String career;
+	private List<String> career1,career2,career3,career4,career5;
+	private String activity;
+	private List<String> activity1,activity2,activity3;
 	private String license;
 	private List<String> license1,license2,license3;
 	private String portfolio;

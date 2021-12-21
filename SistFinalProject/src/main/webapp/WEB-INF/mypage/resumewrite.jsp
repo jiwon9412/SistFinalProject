@@ -170,28 +170,29 @@ small.photo, span.photo{
 			
 					</table>
                 </div>
-					<div class="col-sm-6 col-lg-6 mb-3" id="plus_license">
+					<div class="col-sm-6 col-lg-6 mb-3">
 						<div class="title-left">
 							<h3 class="resume_mini_title">어학/자격증</h3>
 						</div>
-						<div class="row">
+						<div class="row" id="plus_license">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
-								<label for="license">어학시험/자격증</label>
-									<input type="text" class="form-control" id="license1" name="license1[]" placeholder="어학시험/자격증 이름 입력"
+									<label for="license">어학시험/자격증</label>
+									<input type="text" class="form-control" id="license1" name="license1" placeholder="어학시험/자격증 이름 입력"
 									value="">
                                 </div>
                                 <div style="width: 160px; margin-right: 10px;">
 									<label for="license">급수/점수</label>
-									<input type="text" class="form-control" id="license2" name="license2[]" placeholder="급수/점수 입력"
+									<input type="text" class="form-control" id="license2" name="license2" placeholder="급수/점수 입력"
 									value="">
                                 </div>                                
                                 <div style="width: 160px;">
 									<label for="license">취득월</label>
-									<input type="text" class="form-control" id="license3" name="license3[]" placeholder="취득월 입력"
+									<input type="text" class="form-control" id="license3" name="license3" placeholder="취득월 입력"
 									value="" onfocus="(this.type='month')">
                                 </div>
-						<button type="button" id="btnPlus">+</button>
+                                
 						</div>
+						<button type="button" id="btnPlusLicense">+</button>
 					</div>
 				</div>
             <div class="row">
@@ -248,7 +249,7 @@ small.photo, span.photo{
 						<div class="title-left">
 							<h3 class="resume_mini_title">대외활동</h3>
 						</div>
-						<div class="row">
+						<div class="row" id="plus_activity">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
                                     <label for="activity">대외활동명</label>
                                     <input type="text" class="form-control" id="activity1" name="activity1" placeholder="대외활동명 입력" value="">
@@ -264,13 +265,14 @@ small.photo, span.photo{
                                     onfocus="(this.type='month')">
                                 </div>
 						</div>
+						<button type="button" id="btnPlusActivity">+</button>
 					</div>
 					
 					<div class="col-sm-6 col-lg-6 mb-3">
 						<div class="title-left">
 							<h3 class="resume_mini_title">경력</h3>
 						</div>
-						<div class="row">
+						<div class="row" id="plus_career">
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
                                     <label for="career">회사명</label>
                                     <input type="text" class="form-control" id="career1" name="career1" placeholder="회사명" value="">
@@ -294,6 +296,7 @@ small.photo, span.photo{
                                     onfocus="(this.type='month')">
                                 </div>
 						</div>
+						<button type="button" id="btnPlusCareer">+</button>
 					</div>
 					
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -333,19 +336,58 @@ small.photo, span.photo{
     </div>
 
 <script type='text/javascript'>
-      $('#btnPlus').click(function() {
-         $('#plus_license').append("<div class='row' id='plus_license'>")
-         $('#plus_license').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px;'>")
-         $('#plus_license').append("<label for='license'>어학시험/자격증</label>")
-         $('#plus_license').append("<input type='text' class='form-control' id='license1' name='license1[]' placeholder='어학시험/자격증 이름 입력' value=''></div>")
-         $('#plus_license').append("<div style='width: 160px; margin-right: 10px;'>")
-         $('#plus_license').append("<label for='license'>급수/점수</label>")
-         $('#plus_license').append("<input type='text' class='form-control' id='license2' name='license2[]' placeholder='급수/점수 입력' value=''></div>")
-         $('#plus_license').append("<div style='width: 160px;'>")
-         $('#plus_license').append("<label for='license'>취득월</label>")
-         $('#plus_license').append("<input type='text' class='form-control' id='license3' name='license3[]' placeholder='취득월 입력' value='' onfocus='(this.type='month')'></div>")
-         $('#plus_license').append("</div>");
-         
+      $('#btnPlusLicense').click(function() {
+    	  $('#plus_license').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;'>")
+    	  $('#plus_license').append("<label for='license'>어학시험/자격증</label>")
+    	  $('#plus_license').append("<input type='text' class='form-control' id='license1' name='license1' placeholder='어학시험/자격증 이름 입력' value=''>")
+    	  $('#plus_license').append("</div>")
+    	  $('#plus_license').append("<div style='width: 160px; margin-right: 10px; margin-top: 30px;'>")
+    	  $('#plus_license').append("<label for='license'>급수/점수</label>")
+    	  $('#plus_license').append("<input type='text' class='form-control' id='license2' name='license2' placeholder='급수/점수 입력' value=''>")
+    	  $('#plus_license').append("</div>")
+    	  $('#plus_license').append("<div style='width: 160px; margin-top: 30px;'>")
+    	  $('#plus_license').append("<label for='license'>취득월</label>")
+    	  $('#plus_license').append("<input type='month' class='form-control' id='license3' name='license3' placeholder='취득월 입력' value=''>")
+    	  $('#plus_license').append("</div>")
+      });
+      
+      $('#btnPlusActivity').click(function() {	    
+		  $('#plus_activity').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;'>")
+		  $('#plus_activity').append("<label for='activity'>대외활동명</label>")
+		  $('#plus_activity').append("<input type='text' class='form-control' id='activity1' name='activity1' placeholder='대외활동명 입력' value=''>")
+		  $('#plus_activity').append("</div>")
+		  $('#plus_activity').append("<div style='width: 160px; margin-right: 10px; margin-top: 30px;'>")
+		  $('#plus_activity').append("<label for='activity'>시작일</label>")
+		  $('#plus_activity').append("<input type='month' class='form-control' id='activity2' name='activity2' placeholder='시작' value=''>")
+		  $('#plus_activity').append("</div>")
+		  $('#plus_activity').append("<div style='width: 160px; margin-top: 30px;'>")
+		  $('#plus_activity').append("<label for='activity'>종료일</label>")
+		  $('#plus_activity').append("<input type='month' class='form-control' id='activity3' name='activity3' placeholder='종료' value=''>")
+		  $('#plus_activity').append("</div>")
+      });
+      
+  
+      $('#btnPlusCareer').click(function() {
+		  $('#plus_career').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px;'>")
+		  $('#plus_career').append("<label for='career'>회사명</label>")
+		  $('#plus_career').append("<input type='text' class='form-control' id='career1' name='career1' placeholder='회사명' value=''>")
+		  $('#plus_career').append("</div>")
+		  $('#plus_career').append("<div style='width: 160px;'>")
+		  $('#plus_career').append("<label for='career'>부서명</label>")
+		  $('#plus_career').append("<input type='text' class='form-control' id='career2' name='career2' placeholder='부서명' value=''>")
+		  $('#plus_career').append("</div>")
+		  $('#plus_career').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;'>")
+		  $('#plus_career').append("<label for='career'>직급/직책</label>")
+		  $('#plus_career').append("<input type='text' class='form-control' id='career3' name='career3' placeholder='직급/직책' value=''>")
+		  $('#plus_career').append("</div>")
+		  $('#plus_career').append("<div style='width: 160px; margin-right: 10px; margin-top: 30px;'>")
+		  $('#plus_career').append("<label for='career'>입사월</label>")
+		  $('#plus_career').append("<input type='month' class='form-control' id='career4' name='career4' placeholder='입사월' value=''>")
+		  $('#plus_career').append("</div>")
+		  $('#plus_career').append("<div style='width: 160px; margin-top: 30px;'>")
+		  $('#plus_career').append("<label for='career'>퇴사월</label>")
+		  $('#plus_career').append("<input type='month' class='form-control' id='career5' name='career5' placeholder='퇴사월' value=''>")
+		  $('#plus_career').append("</div>")
       });
 </script>
    

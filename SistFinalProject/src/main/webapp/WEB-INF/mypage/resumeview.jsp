@@ -138,10 +138,12 @@ a.nav-link{
 							<h3 class="resume_mini_title">어학/자격증</h3>
 						</div>
                     <table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
-						<tr>
-							<th width="20">■</th>
-							<td>${resumedto.license1} &nbsp; | &nbsp; 급수/점수: ${resumedto.license2} &nbsp; | &nbsp; 취득일: ${resumedto.license3}</td>
-						</tr>
+						<c:forEach items="${license1}" var="li" varStatus="status">
+							<tr>
+								<th width="20">■</th>
+								<td><b>${li}</b> &nbsp; | &nbsp; 급수/점수: ${license2[status.index]} &nbsp; | &nbsp; 취득일: ${license3[status.index]} </td>
+							</tr>
+						</c:forEach>
 					</table>
 					</div>
 				</div>
@@ -172,11 +174,13 @@ a.nav-link{
 						<div class="title-left">
 							<h3 class="resume_mini_title">대외활동</h3>
 						</div>
-                    <table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
-						<tr>
-							<th width="20">■</th>
-							<td>${resumedto.activity1} (${resumedto.activity2} ~ ${resumedto.activity3})</td>
-						</tr>
+					<table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
+						<c:forEach items="${activity1}" var="li" varStatus="status">
+							<tr>
+								<th width="20">■</th>
+								<td><b>${li}</b> (${activity2[status.index]}  ~ ${activity3[status.index]}) </td>
+							</tr>
+						</c:forEach>
 					</table>
 					</div>
 					
@@ -184,11 +188,13 @@ a.nav-link{
 						<div class="title-left">
 							<h3 class="resume_mini_title">경력</h3>
 						</div>
-                    <table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
-						<tr>
-							<th width="20">■</th>
-							<td>${resumedto.career1} ${resumedto.career2} ${resumedto.career3} (${resumedto.career4} ~ ${resumedto.career5})</td>
-						</tr>
+					<table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
+						<c:forEach items="${career1}" var="li" varStatus="status">
+							<tr>
+								<th width="20">■</th>
+								<td><b>${li}</b> ${career2[status.index]} ${career3[status.index]} (${career4[status.index]} ~ ${career5[status.index]})</td>
+							</tr>
+						</c:forEach>
 					</table>
 					</div>
 					
