@@ -191,16 +191,31 @@ small.photo, span.photo{
                             <h3 class="resume_mini_title">지원자격</h3>
                         </div>
 						<div class="row">
-                                <div style="width:100%; margin-left: 20px; margin-right: 20px;">
+							<div>
+                                <div style="width:530px; margin-left: 20px; margin-right: 20px;" id="plus_qualification">
 								<label for="qualification">지원자격을 작성해주세요.</label>
-									<input type="text" class="form-control" id="qualification1" name="qualification1"
+									<input type="text" class="form-control" id="qualification" name="qualification"
 									style="margin-top: 15px;" placeholder="지원자격" value="">
+									<!-- <input type='text' class='form-control' id='qualification' name='qualification1' style='margin-top: 15px;' placeholder='지원자격' value=''> -->
                                 </div>
-                                <div style="width:100%; margin-left: 20px; margin-right: 20px; margin-top: 40px;">
-								<label for="qualification">우대사항을 작성해주세요.</label>
-									<input type="text" class="form-control" id="preference1" name="preference1"
+                            </div>
+							<button type="button" id="btnPlusQualification" style="border: 0; background-color: transparent;">
+								<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+								margin-top: 20px; margin-left: 235px;"></span>
+							</button>
+							
+							<div>
+                                <div style="width:530px; margin-left: 20px; margin-right: 20px; margin-top: 40px;" id="plus_preference">
+								<label for="preference">우대사항을 작성해주세요.</label>
+									<input type="text" class="form-control" id="preference" name="preference"
 									style="margin-top: 15px;" placeholder="우대사항" value="">
+									<!-- <input type='text' class='form-control' id='preference' name='preference1' style='margin-top: 15px;' placeholder='우대사항' value=''> -->
                                 </div>
+                            </div>
+							<button type="button" id="btnPlusPreference" style="border: 0; background-color: transparent;">
+								<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+								margin-top: 20px; margin-left: 235px;"></span>
+							</button>
 						</div>
                     </div>
                 </div>
@@ -210,12 +225,16 @@ small.photo, span.photo{
 							<h3 class="resume_mini_title">업무내용</h3>
 						</div>
 						<div class="row">
-                                <div style="width:100%; margin-left: 20px; margin-right: 20px;">
+                                <div style="width:530px; margin-left: 20px; margin-right: 20px;" id="plus_task">
 								<label for="task">업무내용을 작성해주세요.</label>
-									<input type="text" class="form-control" id="task1" name="task1" style="margin-top: 15px;" placeholder="업무내용"
-									value="">
+									<input type="text" class="form-control" id="task" name="task" style="margin-top: 15px;" placeholder="업무내용" value="">
+									<!-- <input type='text' class='form-control' id='task1' name='task1' style='margin-top: 15px;' placeholder='업무내용' value=''> -->
                                 </div>
 						</div>
+						<button type="button" id="btnPlusTask" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
                         <button type="submit" class="btn btn-primary" style="background-color: #40e0d0; border: 0px;
                         border-radius: 20px; width: 110px; height: 50px; font-weight: bold; margin-left: 450px;
                         margin-top: 60px;">공고 추가</button>
@@ -227,5 +246,18 @@ small.photo, span.photo{
         </form>
     </div>
 
+<script type='text/javascript'>
+      $('#btnPlusQualification').click(function() {
+    	  $('#plus_qualification').append("<input type='text' class='form-control' id='qualification' name='qualification' style='margin-top: 15px;' placeholder='지원자격' value=''>")
+      });
+      
+      $('#btnPlusPreference').click(function() {	    
+		  $('#plus_preference').append("<input type='text' class='form-control' id='preference' name='preference' style='margin-top: 15px;' placeholder='우대사항' value=''>")
+      });
+  
+      $('#btnPlusTask').click(function() {
+		  $('#plus_task').append("<input type='text' class='form-control' id='task' name='task' style='margin-top: 15px;' placeholder='업무내용' value=''>")
+      });
+</script>
 </body>
 </html>

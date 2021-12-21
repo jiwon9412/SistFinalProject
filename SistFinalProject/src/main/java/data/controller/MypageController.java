@@ -45,7 +45,6 @@ public class MypageController {
 		String loginok = (String) session.getAttribute("loginok");
 		String myid = (String) session.getAttribute("myid");
 		String logintype = (String) session.getAttribute("logintype");
-
 		System.out.println("[mypagemain(login/noticelist/resumeview)] loginok:" + loginok + ", id:" + myid
 				+ ", logintype:" + logintype);
 
@@ -391,6 +390,9 @@ public class MypageController {
 	// 공고 등록
 	@PostMapping("/mypage/notice_insert")
 	public String notice_insert(@ModelAttribute NoticesDto ndto,
+			@RequestParam List<String> qualification,
+			@RequestParam List<String> preference,
+			@RequestParam List<String> task,
 			HttpSession session) {
 		
 		// 세션 만료됐을 경우를 위해 다시한번 loginok 얻기
@@ -398,9 +400,34 @@ public class MypageController {
 		
 		// 세션에서 id 얻어서 dto에 저장
 		String myid = (String) session.getAttribute("myid");
+		System.out.println("[notice_insert] loginok:"+ loginok + ", id:" + myid);
+
+		// qualification 합쳐서 스트링 형태로 rdto에 넣기
+		String qualificationStr = "";
+		for (int i = 0; i < qualification.size(); i++) {
+			qualificationStr += qualification.get(i) + " - ";
+		}
+		qualificationStr = qualificationStr.substring(0, qualificationStr.length() - 3);
+		ndto.setQualification(qualificationStr);
+		
+		// preference 합쳐서 스트링 형태로 rdto에 넣기
+		String preferenceStr = "";
+		for (int i = 0; i < preference.size(); i++) {
+			preferenceStr += preference.get(i) + " - ";
+		}
+		preferenceStr=preferenceStr.substring(0, preferenceStr.length() - 3);
+		ndto.setPreference(preferenceStr);
+		
+		// task 합쳐서 스트링 형태로 rdto에 넣기
+		String taskStr = "";
+		for (int i = 0; i < task.size(); i++) {
+			taskStr += task.get(i) + " - ";
+		}
+		taskStr=taskStr.substring(0, taskStr.length() - 3);
+		ndto.setTask(taskStr);		
+		
 		ndto.setCompany_id(myid);
 		
-		System.out.println("[notice_insert] loginok:"+ loginok + ", id:" + myid);
 		//insert
 		mymapper.insertMypageNotice(ndto);
 		

@@ -190,9 +190,11 @@ small.photo, span.photo{
 									<input type="text" class="form-control" id="license3" name="license3" placeholder="취득월 입력"
 									value="" onfocus="(this.type='month')">
                                 </div>
-                                
 						</div>
-						<button type="button" id="btnPlusLicense">+</button>
+						<button type="button" id="btnPlusLicense" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
 					</div>
 				</div>
             <div class="row">
@@ -265,7 +267,10 @@ small.photo, span.photo{
                                     onfocus="(this.type='month')">
                                 </div>
 						</div>
-						<button type="button" id="btnPlusActivity">+</button>
+						<button type="button" id="btnPlusActivity" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
 					</div>
 					
 					<div class="col-sm-6 col-lg-6 mb-3">
@@ -296,7 +301,10 @@ small.photo, span.photo{
                                     onfocus="(this.type='month')">
                                 </div>
 						</div>
-						<button type="button" id="btnPlusCareer">+</button>
+						<button type="button" id="btnPlusCareer" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
 					</div>
 					
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -368,11 +376,11 @@ small.photo, span.photo{
       
   
       $('#btnPlusCareer').click(function() {
-		  $('#plus_career').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px;'>")
+		  $('#plus_career').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;'>")
 		  $('#plus_career').append("<label for='career'>회사명</label>")
 		  $('#plus_career').append("<input type='text' class='form-control' id='career1' name='career1' placeholder='회사명' value=''>")
 		  $('#plus_career').append("</div>")
-		  $('#plus_career').append("<div style='width: 160px;'>")
+		  $('#plus_career').append("<div style='width: 160px; margin-top: 30px;'>")
 		  $('#plus_career').append("<label for='career'>부서명</label>")
 		  $('#plus_career').append("<input type='text' class='form-control' id='career2' name='career2' placeholder='부서명' value=''>")
 		  $('#plus_career').append("</div>")
