@@ -220,3 +220,10 @@ button.jobs-tag{
 a { text-decoration:none !important }
 a:hover { text-decoration:none !important }
 
+
+.modal-content{
+	right: 20%;
+	width: 700px;
+	margin-right: 500px;  
+	height: 500px; 
+}

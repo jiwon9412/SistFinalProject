@@ -21,4 +21,7 @@ public interface PositionMapper {
 	
 	//오퍼 삭제
 	public void deleteOffer(String company_id);
+	
+	//모달 출력을 위한 데이터
+	public OfferDto getOffer(String user_id, String company_id);
 }

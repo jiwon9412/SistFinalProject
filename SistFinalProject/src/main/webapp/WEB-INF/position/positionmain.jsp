@@ -222,13 +222,13 @@ span.content, #list_company_name{
 		<!-- Modal Content -->
 	    <div class="modal-content">
 	      <div class="modal-header">
+	      	<h4 class="modal-title"></h4>
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	         <h4 class="modal-title">댓글 수정</h4>
 	      </div>
 	
 	      <!-- Modal body -->
-	      <div class="modal-body">
-	         <input type="text" id="ucontent" class="form-control">
+	      <div class="modal-body" id="modal-body">
+	         
 	      </div>
 	
 	      <!-- Modal footer -->
@@ -270,7 +270,7 @@ span.content, #list_company_name{
 	
 	//모달 나오게 하기
 	$("span.content").click(function(){
-		
+				
 		
 		$("#myModal").modal();
 		
