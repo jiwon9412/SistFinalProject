@@ -13,6 +13,8 @@ public class CompaniesDto {
 	private String name;
 	private String logo;
 	private String addr;
+	private String addr1;
+	private String addr2;
 	private String ceo;
 	private String employees;
 	private String birth1;

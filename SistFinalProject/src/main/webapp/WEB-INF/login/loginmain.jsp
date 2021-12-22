@@ -101,8 +101,10 @@ $(function () {
 	<br>
 	
 	<div class="sns_login">네이버 로그인</div>
-	<div class="sns_login" style="float: right;">카카오 로그인</div>
-	<br>
+	<div class="sns_login" style="float: right;">
+		<img alt="" src="${root }/images/kakao_login.png" width="100px;">
+	</div>
+	<br><br><br><br>
 	
 	<span style="cursor: pointer; font-size: 0.8em; font-weight: bold; text-decoration: underline; float: right;"
 		onclick="location.href='useradd'" class="glyphicon glyphicon-user">개인회원가입</span>

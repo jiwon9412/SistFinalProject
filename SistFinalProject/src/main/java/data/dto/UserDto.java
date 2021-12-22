@@ -24,7 +24,8 @@ public class UserDto {
 	private String hp3;
 	private String gender;
 	private String addr;
-	
+	private String addr1;
+	private String addr2;
 	
 	
 }

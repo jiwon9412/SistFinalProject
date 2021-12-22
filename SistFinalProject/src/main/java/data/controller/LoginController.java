@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -120,6 +121,9 @@ public class LoginController {
 		//연락처 형식으로 넣어주기
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
 		
+		//주소 붙여서 저장
+		dto.setAddr(dto.getAddr1() + " " + dto.getAddr2());
+		
 		mapper.insertUser(dto);
 		
 		return "/login/addsuccess";
@@ -201,9 +205,17 @@ public class LoginController {
 		//연락처 형식으로 저장
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
 		
+		//주소 붙여서 저장
+		dto.setAddr(dto.getAddr1() + " " + dto.getAddr2());
+		
 		
 		mapper.insertCorp(dto);
 		
 		return "/login/addsuccess";
 	}
+	
+	
+	
+	
+	
 }
