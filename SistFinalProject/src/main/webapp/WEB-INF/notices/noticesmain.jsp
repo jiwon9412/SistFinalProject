@@ -162,6 +162,7 @@ a:active {
 		  <div class="cinfo">
 		    <b style="font-size: 1.1em;">${ndto.name }</b> <br>
 		    ${ndto.subject }<br><br>
+		   
 		    <button class="type"><b>${ndto.type }</b></button>
 		    <button class="loc"><b>${ndto.location }</b></button>
 		    <button class="perso"><b>${ndto.personnel }명</b></button>

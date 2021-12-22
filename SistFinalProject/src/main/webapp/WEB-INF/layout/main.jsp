@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <!-- Basic -->
@@ -34,9 +36,82 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style type="text/css">
+    /* 아래 채용 리스트 */
+    table{
+	margin: 0 auto;
+	
+}
+    
+div.notice{
+	border-radius: 20px;
+	border: solid 1px gray;
+	width: 250px;
+	height: 400px;
+	
+	margin-top: 30px;
+	
+	
+}
+
+div.godetail{
+	cursor: pointer;
+}
+div.logo>img{
+	border-radius: 20px 20px 0px 0px;
+	width: 250px;
+	height: 200px; 	
+}
+
+div.cinfo{
+	padding-top: 20px;
+	padding-left: 20px;
+	text-align: left;
+	height: 150px;
+	font-size: 14px;
+}
+
+div.period{
+	padding-left: 20px;
+}
+
+
+button.type, button.loc, button.perso{
+	border: solid 1px white;
+	border-radius: 20px;
+	font-size: 0.9em;
+	width: 60px;
+	height: 30px;
+	
+}
+
+button.type{
+	background-color: #87cefa;
+	color: #4169e1    ;
+}
+
+button.loc{
+	background-color: #fffacd    ;
+	color: #deb887   ;
+}
+
+button.perso{
+	background-color: #afeeee   ;
+	color: #3cb371     ;
+}
+
+div.com_name{
+	float: left;
+	margin-right: 180px;
+	color: white;
+	
+}
+    </style>
 
 </head>
-
+<c:set var="myid" value="${sessionScope.myid }"/>
+<c:set var="logintype" value="${sessionScope.logintype }"/>
 <body>
 
     
@@ -102,6 +177,63 @@
         </div>
     </div>
     <!-- End Slider -->
+
+<table style="width: 1100px; margin-top: 30px;" class="deadline">
+  <caption>
+  	<b style="font-size: 18px; color: black">마감 임박 공고</b>
+  	<a href="main" style="float: right; "><b>더보기</b></a>
+  </caption>
+    <tr>
+    <c:forEach var="ddto" items="${dlist }" varStatus="i" end="3">
+  
+    <td>
+		<div class="notice">
+		<div class="godetail" num=${ddto.num }>
+		  <div class="logo">
+		    <img alt="" src="../images/${ddto.photo }">
+		    
+		  </div>
+		  <div class="cinfo">
+		    <b style="font-size: 15px;">${ddto.name }</b> <br>
+		    ${ddto.subject }<br><br>
+		    <button class="type"><b>${ddto.type }</b></button>
+		    <button class="loc"><b>${ddto.location }</b></button>
+		    <button class="perso"><b>${ddto.personnel }명</b></button>
+		  </div>
+		  
+		    
+		 
+		  </div>
+		  
+		  <div class="period">
+		    <hr style="margin-bottom: 5px;">
+		    <b style="color: gray; ">${ddto.period_start } ~ ${ddto.period_end }</b>
+		  
+		    
+		    <c:if test="${ddto.check==0 }">
+		    <span class="glyphicon glyphicon-heart-empty scrap" 
+		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+		    num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </c:if>
+		    
+		    <c:if test="${ddto.check==1 }">
+		    <span class="glyphicon glyphicon-heart scrapdel" 
+		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+		    num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </c:if>
+		  </div>
+		</div>
+    </td>
+    <c:if test="${i.count==8 }">
+    </tr>
+    <tr>
+    </c:if>
+    </c:forEach>
+    
+    
+  </tr>
+  
+  </table>
 
     <!-- Start Categories  -->
     <div class="categories-shop">
@@ -503,6 +635,7 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+   
 </body>
 
 </html>

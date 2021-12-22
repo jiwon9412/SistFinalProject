@@ -144,9 +144,11 @@ rel="stylesheet">
                 <div class="attr-nav">
                     <ul>
                     	<li class="search">
-                        	<input type="text" style="width: 100px; margin-top: 22px;" class="form-control"></li>
+                        	<input type="text" style="width: 140px; margin-top: 22px;" class="form-control" id="keyword"></li>
                         <li class="search1">
-                        	<a href="#"><i class="fa fa-search fa-lg"></i></a></li>
+                        	<!-- <a href="notices/searchlist?search=서울"><i class="fa fa-search fa-lg"></i></a> -->
+                        	<a><span id="searchgo" style="cursor: pointer;"><i class="fa fa-search fa-lg"></i></span></a>
+                        	</li>
                         <li class="side-menu">
                         <c:if test="${loginok!=null }">
                         	<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 20px; margin-top:18px;
@@ -169,5 +171,14 @@ rel="stylesheet">
         <!-- End Navigation -->
     </header>
     <!-- End Main Top -->
+    <script type="text/javascript">
+    	$("#searchgo").click(function(){
+    		
+    		var keyword = $("#keyword").val();
+    		location.href="${root}/notices/searchlist?search="+keyword;
+    		
+    	});
+    
+    </script>
 </body>
 </html>

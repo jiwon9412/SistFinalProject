@@ -65,6 +65,17 @@
       select count(*) from application where user_id=#{user_id} and company_id=#{company_id} and notice_num=#{notice_num}
    </select>
    
+   <select id="getSearchList" parameterType="String" resultType="ndto">
+      select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id and 
+      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%') or b.major like concat('%',#{search},'%'))
+   </select>
+   
+   <select id="getSearchCount" parameterType="String" resultType="int">
+      select count(*) from notice a join company b on a.company_id=b.id and 
+      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%') or b.major like concat('%',#{search},'%'))
+   </select>
+   
+   
    <!-- 공고 지원자 수 -->
    <select id="getTotalAppCount" parameterType="String" resultType="int">
       select count(*) from application where notice_num=#{notice_num}
@@ -81,5 +92,14 @@
    <insert id="insertApplication" parameterType="HashMap">
       insert into application values(#{user_id},#{company_id},#{notice_num})
    </insert>
+   
+   <!-- 메인페이지 -->
+   <!-- 마감 임박 순 8개 -->
+   <select id="getDeadlineList" parameterType="String" resultType="ndto">
+   	  select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id and 
+   	  a.period_end<![CDATA[
+>=
+]]>#{today} order by a.period_end asc limit 0,8
+   </select>
 
 </mapper>
