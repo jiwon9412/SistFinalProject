@@ -4,15 +4,19 @@
 <mapper namespace="data.mapper.MypageMapper">
 
 <!-- 개인-이력서 시작 -->
+<insert id="insertMypageResume" parameterType="resumedto">
+	insert into resume (user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,
+	license,portfolio,military,introduce,job,addr)
+	values (#{user_id},#{name},#{birth},#{photo},#{gender},#{email},#{hp},#{highschool},#{college},
+	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job},#{addr})
+</insert>
+
 <select id="getMypageResume" parameterType="String" resultType="resumedto">
 	select * from resume where user_id=#{user_id}
 </select>
 
-<select id="checkResume" parameterType="String" resultType="int">
-	select count(*) from resume where user_id=#{user_id}
-</select>
 <!-- user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,license,portfolio,military,introduce,job -->
-<update id="updateMypageResume" parameterType="String">
+<update id="updateMypageResume" parameterType="resumedto">
 	update resume set highschool=#{highschool},college=#{college},career=#{career},activity=#{activity},license=#{license},
 	military=#{military},introduce=#{introduce},job=#{job}
 	<!-- photo, portfolio 파일 수정 -->
@@ -22,12 +26,9 @@
 	where user_id=#{user_id}	
 </update>
 
-<insert id="insertMypageResume" parameterType="resumedto">
-	insert into resume (user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,
-	license,portfolio,military,introduce,job,addr)
-	values (#{user_id},#{name},#{birth},#{photo},#{gender},#{email},#{hp},#{highschool},#{college},
-	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job},#{addr})
-</insert>
+<select id="checkResume" parameterType="String" resultType="int">
+	select count(*) from resume where user_id=#{user_id}
+</select>
 <!-- 개인-이력서 끝 -->
 
 <!-- 기업-공고 시작-->
@@ -41,6 +42,12 @@
 <select id="getNoticeCountByCompany" parameterType="String" resultType="int">
 	select count(*) from notice where company_id=#{company_id}
 </select>
+
+<update id="updateMypageNotice" parameterType="ndto">
+	update notice set subject=#{subject},section=#{section},personnel=#{personnel},type=#{type},
+	location=#{location},task=#{task},qualification=#{qualification},preference=#{preference},
+	period_start=#{period_start},period_end=#{period_end} where num=#{num}	
+</update>
 
 <!-- 기업-공고 끝-->
 

@@ -189,6 +189,15 @@ div.intro{
 	  <th rowspan="6">지원분야</th>
 	  <td width="700px;"><b>모집부분</b></td>
 	  <td rowspan="24" style="vertical-align: top;">
+	  
+	  <!-- 로그인한 아이디가 공고 작성한 회사아이디와 같으면 '공고 수정' 버튼 보이기 -->
+	  <c:if test="${myid==dto.company_id}">
+		  <button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
+	 	  width: 100%; height: 40px; font-size: 10pt; color: white; margin-bottom: 20px;" 
+	 	  onclick="location.href='/mypage/notice_update_form?notice_num=${dto.num}'"><b>공고 수정</b></button>
+	 	  <!-- MypageController 매핑주소로 이동 -->
+ 	  </c:if>
+ 	  
 	    <div id="dDay">
 	    <div style="margin-top: 10px; " id="day">
 	      <font style="color: #40e0d0; font-size: 40px; margin-left: 80px; ">

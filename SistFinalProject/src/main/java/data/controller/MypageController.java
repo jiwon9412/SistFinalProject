@@ -430,7 +430,7 @@ public class MypageController {
 	
 	// 이력서 수정 폼으로 가기
 	@GetMapping("/mypage/resume_update_form")
-	public ModelAndView updateform(HttpSession session) {
+	public ModelAndView updateresumeform(HttpSession session) {
 		
 		String myid = (String) session.getAttribute("myid");
 		MypageResumeDto rdto = mymapper.getMypageResume(myid);
@@ -532,7 +532,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	//이력서 수정
+	// 이력서 수정
 	@PostMapping("/mypage/resume_update")
 	public String update(@ModelAttribute MypageResumeDto rdto,
 			@RequestParam List<String> license1,
@@ -631,6 +631,90 @@ public class MypageController {
 		return "redirect:main"; 
 	}
 	
+	// 공고 수정 폼으로 가기
+	@GetMapping("/mypage/notice_update_form")
+	public ModelAndView updatenoticeform(HttpSession session,
+			@RequestParam String notice_num) {
+
+		String myid = (String) session.getAttribute("myid");
+		NoticesDto ndto = nomapper.getNoticeInfo(notice_num);
+
+		//지원자격 항목 나누어서 리스트에 담기
+		List<String> qual = new ArrayList<String>();
+		String[] qList = ndto.getQualification().split(" - ");
+		for (int i = 0; i < qList.length; i++) {
+			qual.add(qList[i]);
+		}
+		
+		//우대사항 항목 나누어서 리스트에 담기
+		List<String> pref = new ArrayList<String>();
+		String[] pList = ndto.getPreference().split(" - ");
+		for (int i = 0; i < pList.length; i++) {
+			pref.add(pList[i]);
+		}
+		
+		//업무내용 항목 나누어서 리스트에 담기
+		List<String> task = new ArrayList<String>();
+		String[] tList = ndto.getTask().split(" - ");
+		for (int i = 0; i < tList.length; i++) {
+			task.add(tList[i]);
+		}
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("qual", qual);
+		mv.addObject("pref", pref);
+		mv.addObject("task", task);
+		mv.addObject("noticedto", ndto);
+		mv.setViewName("/mypage/mynoticeupdate");
+		return mv;
+	}
+	
+	// 공고 수정
+	@PostMapping("/mypage/notice_update")
+	public String notice_update(@ModelAttribute NoticesDto ndto,
+			@RequestParam List<String> qualification,
+			@RequestParam List<String> preference,
+			@RequestParam List<String> task,
+			@RequestParam String num,
+			HttpSession session) {
+		
+		String loginok = (String) session.getAttribute("loginok");
+		String myid = (String) session.getAttribute("myid");
+		
+		System.out.println("[notice_update] id:"+myid+", loginok:"+loginok);
+
+		// qualification 합쳐서 스트링 형태로 ndto에 넣기
+		String qualificationStr = "";
+		for (int i = 0; i < qualification.size(); i++) {
+			qualificationStr += qualification.get(i) + " - ";
+		}
+		qualificationStr = qualificationStr.substring(0, qualificationStr.length() - 3);
+		ndto.setQualification(qualificationStr);
+		
+		// preference 합쳐서 스트링 형태로 ndto에 넣기
+		String preferenceStr = "";
+		for (int i = 0; i < preference.size(); i++) {
+			preferenceStr += preference.get(i) + " - ";
+		}
+		preferenceStr=preferenceStr.substring(0, preferenceStr.length() - 3);
+		ndto.setPreference(preferenceStr);
+		
+		// task 합쳐서 스트링 형태로 ndto에 넣기
+		String taskStr = "";
+		for (int i = 0; i < task.size(); i++) {
+			taskStr += task.get(i) + " - ";
+		}
+		taskStr=taskStr.substring(0, taskStr.length() - 3);
+		ndto.setTask(taskStr);		
+		
+		ndto.setCompany_id(myid);
+		ndto.setNum(num);
+		
+		//update
+		mymapper.updateMypageNotice(ndto);
+
+		return "redirect:/notices/detail?num="+ndto.getNum(); 
+	}
 	
 	//개인 - 지원 관리
 	@GetMapping("/mypage/applications")
