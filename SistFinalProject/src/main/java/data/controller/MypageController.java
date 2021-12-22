@@ -1,5 +1,7 @@
 package data.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.CompaniesDto;
@@ -275,6 +278,7 @@ public class MypageController {
 	// 이력서 등록
 	@PostMapping("/mypage/resume_insert")
 	public String insert(@ModelAttribute MypageResumeDto rdto,
+			@RequestParam MultipartFile rphoto,
 			@RequestParam List<String> license1,
 			@RequestParam List<String> license2,
 			@RequestParam List<String> license3,
@@ -294,26 +298,35 @@ public class MypageController {
 		// 세션에서 id 얻어서 dto에 저장
 		String myid = (String) session.getAttribute("myid");
 		UserDto udto = loginmapper.getUserData(myid);
-/*
+
 		// 업로드할 폴더 지정
-		String path = session.getServletContext().getRealPath("/photo");
-		System.out.println(path);
+		String path = session.getServletContext().getRealPath("/images");
+		System.out.println("path: "+path);
 
-		// 업로드할 파일명
-		if (rdto.getUpload().getOriginalFilename().equals(""))
-			rdto.setUploadfile("no");
+		// 사진 업로드
+		if (rphoto.getOriginalFilename().equals(""))
+			rdto.setPhoto("no");
 		else {
-			String uploadfile = rdto.getUpload().getOriginalFilename();
-			rdto.setUploadfile(uploadfile);
-
-			// 실제 업로드
+			rdto.setPhoto(rphoto.getOriginalFilename());
 			try {
-				rdto.getUpload().transferTo(new File(path + "\\" + uploadfile));
+				rphoto.transferTo(new File(path + "\\" + rphoto.getOriginalFilename()));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
-		*/
+		
+		// 포트폴리오 업로드
+		if (rdto.getUploadportfolio().getOriginalFilename().equals(""))
+			rdto.setPortfolio("no");
+		else {
+			rdto.setPortfolio(rdto.getUploadportfolio().getOriginalFilename());
+			try {
+				rdto.getUploadportfolio().transferTo(new File(path + "\\" + rdto.getUploadportfolio().getOriginalFilename()));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		System.out.println("[resume_insert] loginok:"+ loginok + ", id:" + myid);
 		rdto.setUser_id(myid);
 
@@ -535,6 +548,7 @@ public class MypageController {
 	// 이력서 수정
 	@PostMapping("/mypage/resume_update")
 	public String update(@ModelAttribute MypageResumeDto rdto,
+			@RequestParam MultipartFile rphoto,
 			@RequestParam List<String> license1,
 			@RequestParam List<String> license2,
 			@RequestParam List<String> license3,
@@ -552,78 +566,81 @@ public class MypageController {
 		String myid = (String) session.getAttribute("myid");
 		
 		System.out.println("[resume_update] user_id:"+myid+", loginok:"+loginok);
-		/*
+		
 		// 업로드할 폴더 지정
 		String path = session.getServletContext().getRealPath("/images");
-		
-		// 업로드할 파일명
-		if (rdto.getUploadportfolio().getOriginalFilename().equals(""))
-			rdto.setPortfolio(null);
-		else {
-			String uploadfile = rdto.getUploadportfolio().getOriginalFilename();
-			rdto.setPortfolio(uploadfile);
+		System.out.println("path: "+path);
 
-			// 실제 업로드
+		// 사진 업로드
+		if (rphoto.getOriginalFilename().equals(""))
+			rdto.setPhoto("no");
+		else {
+			rdto.setPhoto(rphoto.getOriginalFilename());
 			try {
-				rdto.getUploadportfolio().transferTo(new File(path + "\\" + uploadfile));
+				rphoto.transferTo(new File(path + "\\" + rphoto.getOriginalFilename()));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
-		*/
+				
+		// 포트폴리오 업로드
+		if (rdto.getUploadportfolio().getOriginalFilename().equals(""))
+			rdto.setPortfolio("no");
+		else {
+			rdto.setPortfolio(rdto.getUploadportfolio().getOriginalFilename());
+			try {
+				rdto.getUploadportfolio().transferTo(new File(path + "\\" + rdto.getUploadportfolio().getOriginalFilename()));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		rdto.setUser_id(myid);
 		rdto.setHighschool(rdto.getHighschool1()+"`"+rdto.getHighschool2()+"`"+rdto.getHighschool3());
 		rdto.setCollege(rdto.getCollege1()+"`"+rdto.getCollege2()+"`"+rdto.getCollege3()+"`");
 
 		//license 세 항목 합쳐서 스트링 형태로 rdto에 넣기
-				rdto.setLicense1(license1);
-				rdto.setLicense2(license2);
-				rdto.setLicense3(license3);
-				String licenseStr = "";
-				for (int i = 0; i < license1.size(); i++) {
-					licenseStr += license1.get(i) + "`";
-					licenseStr += license2.get(i) + "`";
-					licenseStr += license3.get(i) + "|";
-				}
-				licenseStr.substring(0, licenseStr.length() - 1);
-				rdto.setLicense(licenseStr);
-				
-				//activity 세 항목 합쳐서 스트링 형태로 rdto에 넣기
-				rdto.setActivity1(activity1);
-				rdto.setActivity2(activity2);
-				rdto.setActivity3(activity3);
-				String activityStr = "";
-				for (int i = 0; i < activity1.size(); i++) {
-					activityStr += activity1.get(i) + "`";
-					activityStr += activity2.get(i) + "`";
-					activityStr += activity3.get(i) + "|";
-				}
-				activityStr.substring(0, activityStr.length() - 1);
-				rdto.setActivity(activityStr);
-				
-				//career 다섯 항목 합쳐서 스트링 형태로 rdto에 넣기
-				rdto.setCareer1(career1);
-				rdto.setCareer2(career2);
-				rdto.setCareer3(career3);
-				rdto.setCareer3(career4);
-				rdto.setCareer3(career5);
-				String careerStr = "";
-				for (int i = 0; i < career1.size(); i++) {
-					careerStr += career1.get(i) + "`";
-					careerStr += career2.get(i) + "`";
-					careerStr += career3.get(i) + "`";
-					careerStr += career4.get(i) + "`";
-					careerStr += career5.get(i) + "|";
-				}
-				careerStr.substring(0, careerStr.length() - 1);
-				rdto.setCareer(careerStr);
-				
-//				System.out.println("license(set): "+licenseStr);
-//				System.out.println("license1: "+license1);
-//				System.out.println("license2: "+license2);
-//				System.out.println("license3: "+license3);
-
+		rdto.setLicense1(license1);
+		rdto.setLicense2(license2);
+		rdto.setLicense3(license3);
+		String licenseStr = "";
+		for (int i = 0; i < license1.size(); i++) {
+			licenseStr += license1.get(i) + "`";
+			licenseStr += license2.get(i) + "`";
+			licenseStr += license3.get(i) + "|";
+		}
+		licenseStr.substring(0, licenseStr.length() - 1);
+		rdto.setLicense(licenseStr);
+		
+		//activity 세 항목 합쳐서 스트링 형태로 rdto에 넣기
+		rdto.setActivity1(activity1);
+		rdto.setActivity2(activity2);
+		rdto.setActivity3(activity3);
+		String activityStr = "";
+		for (int i = 0; i < activity1.size(); i++) {
+			activityStr += activity1.get(i) + "`";
+			activityStr += activity2.get(i) + "`";
+			activityStr += activity3.get(i) + "|";
+		}
+		activityStr.substring(0, activityStr.length() - 1);
+		rdto.setActivity(activityStr);
+		
+		//career 다섯 항목 합쳐서 스트링 형태로 rdto에 넣기
+		rdto.setCareer1(career1);
+		rdto.setCareer2(career2);
+		rdto.setCareer3(career3);
+		rdto.setCareer3(career4);
+		rdto.setCareer3(career5);
+		String careerStr = "";
+		for (int i = 0; i < career1.size(); i++) {
+			careerStr += career1.get(i) + "`";
+			careerStr += career2.get(i) + "`";
+			careerStr += career3.get(i) + "`";
+			careerStr += career4.get(i) + "`";
+			careerStr += career5.get(i) + "|";
+		}
+		careerStr.substring(0, careerStr.length() - 1);
+		rdto.setCareer(careerStr);
 		
 		//update
 		mymapper.updateMypageResume(rdto);

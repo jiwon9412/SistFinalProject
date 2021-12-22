@@ -44,13 +44,13 @@ rel="stylesheet">
 	
 $(function(){
 	$("span.photo").click(function(){
-		$("#photoo").trigger("click");
+		$("#rphoto").trigger("click");
 	});
 	$("small.photo").click(function(){
-		$("#photoo").trigger("click");
+		$("#rphoto").trigger("click");
 	});
 	
-	$('#photoo').change(function(){
+	$('#rphoto').change(function(){
 		setImageFromFile(this, '#photoo_preview');
 		});
 		 
@@ -144,8 +144,8 @@ small.photo, span.photo{
 							<td width="310">${resumedto.name}</td>
 							<td rowspan="5">
 								<div class="resumephoto" style="width: 120px; height: 160px; border: 1px solid lightgray;" >
-									<input type="file" name="photoo" id="photoo" style="display: none;">
-									<img alt="" src="" id="photoo_preview" style="width: 117px; height: 157.5px;">
+									<input type="file" name="rphoto" id="rphoto" style="display: none;">
+									<img alt="" src="${root}/images/${resumedto.photo}" id="photoo_preview" style="width: 117.8px; height: 157.8px;">
 								</div>
 								<span class="glyphicon glyphicon-camera photo" style="margin-left: 14px;"></span>
 								<small class="text-muted photo">증명사진 첨부</small>
@@ -348,7 +348,7 @@ small.photo, span.photo{
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-12">
+                        <div class="col-md-12 col-lg-12" style="margin-top: 50px;">
                             <div class="shipping-method-box">
                                 <div class="title-left">
                                     <h3 class="resume_mini_title">포트폴리오</h3>

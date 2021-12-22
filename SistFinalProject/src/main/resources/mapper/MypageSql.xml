@@ -20,9 +20,12 @@
 	update resume set highschool=#{highschool},college=#{college},career=#{career},activity=#{activity},license=#{license},
 	military=#{military},introduce=#{introduce},job=#{job}
 	<!-- photo, portfolio 파일 수정 -->
-	<!-- <if test="uploadfile!=null">
-	,uploadfile=#{uploadfile}
-	</if> -->
+	<if test="photo!='no'">
+	,photo=#{photo}
+	</if>
+	<if test="portfolio!='no'">
+	,portfolio=#{portfolio}
+	</if>
 	where user_id=#{user_id}	
 </update>
 

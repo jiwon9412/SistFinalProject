@@ -107,7 +107,7 @@ a.nav-link{
 							<td width="310">${resumedto.name}</td>
 							<td rowspan="5">
 								<div class="resumephoto" style="width: 120px; height: 160px; border: 1px solid lightgray;" >
-									<img alt="" src="테스트이미지.jpg" id="photoo_preview" style="width: 117px; height: 157.5px;">
+									<img alt="" src="${root}/images/${resumedto.photo}" id="photoo_preview" style="width: 117.8px; height: 157.8px;">
 								</div>
 							</td>
 						</tr>
@@ -213,13 +213,17 @@ a.nav-link{
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-12">
+                        <div class="col-md-12 col-lg-12" style="margin-top: 50px;">
                             <div class="shipping-method-box">
                                 <div class="title-left">
                                     <h3 class="resume_mini_title">포트폴리오</h3>
                                 </div>
                                 <div class="mb-4">
-                                	<input type="file" class="form-control" name="portfolio" style="height: 40px;">
+									<c:if test="${resumedto.portfolio!='no'}">
+										<span>
+											<a href="download?clip=${resumedto.portfolio}"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;${resumedto.portfolio}</a>
+										</span>
+									</c:if>
                                 </div>
                             </div>
                         </div>
