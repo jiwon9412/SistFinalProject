@@ -34,8 +34,4 @@
 	</delete>
 	
 	
-	<!-- 하나의 파라미터 -->
-	<select id="getOffer" parameterType="HashMap" resultType="badto">
-		select * from boardanswer where idx=#{idx}
-	</select>
 </mapper>
