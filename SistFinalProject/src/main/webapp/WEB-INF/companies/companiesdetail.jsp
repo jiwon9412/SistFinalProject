@@ -17,10 +17,10 @@ family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel=
 /* notice에서 가져온 리스트 css */
 div.notice{
 	border-radius: 20px;
-	border: solid 1px gray;
+	border: solid 1px lightgray;
 	width: 300px;
 	height: 400px;
-	margin-top: 30px;
+	margin-top: 10px;
 	
 }
 div.godetail{
@@ -84,7 +84,7 @@ button.qual{
 <!-- 기업소개,이미지 div -->
 <h4 class="companytitle" style="margin-left: 50px;"><b>기업 소개</b></h4>
 				
-<div style="border: 1px solid fff; float: left; width: 20%; height: 300px;">
+<div style="border: 1px solid fff; float: left; width: 20%; height: 400px;">
 
 	<p style="margin-left: 50px;">업계</p>
 	<p style="margin-left: 50px;">대표자</p>
@@ -94,7 +94,7 @@ button.qual{
 
 </div>
 
-<div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
+<div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
 
 	<p>${dto.industry}</p>
 	<p>${dto.ceo}</p>
@@ -105,9 +105,9 @@ button.qual{
 
 </div>
 
-<div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
+<div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
 
-	<img alt="" src="../images/${dto.photo}" style="width: 100%; height: 290px; border-radius: 20px; border: 4px solid lightgray;">
+	<img alt="" src="../images/${dto.photo}" style="width: 100%; height: 390px; border-radius: 20px; border: 4px solid lightgray;">
 
 </div>
 
@@ -117,7 +117,7 @@ button.qual{
 <!-- 기업 위치, aqi -->
 <div style="border: 1px solid fff; float: left; width: 20%; height: 300px;">
 
-	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px; color: gray"></span></a>기업 위치</b>
+	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px; color: gray; cursor: pointer;"></span></a>기업 위치</b>
 	
 
 </div>
@@ -159,7 +159,7 @@ button.qual{
 
 <!-- 채용중인 리스트 -->
 <table style="width: 1300px;">
-<caption> <h5><b class="hiretitle" style="margin-top: 20px; color: black;">Job히다의 채용중인 기업 정보를 알아보세요</b></h5> </caption>
+	<caption style="text-align: center; font-size: 1.2em; font-weight: bold; color: gray; margin-top: 20px; margin-bottom: 20px;">Job히다의 채용중인 공고를 확인하세요</caption>
 	<tr>
 		<c:forEach var="hdto" items="${hlist}" varStatus="i">
 		<td>
@@ -169,6 +169,7 @@ button.qual{
 		</div>
 		<hr>
 		<div class="txt">
+			<button class="hirebtn" type="button">채용중</button>
 			<p style="color: #40e0d0">${hdto.major}</p>
 			<p style="font-weight: bold;">${hdto.name}</p>
 			<p>${hdto.addr}</p>
@@ -187,11 +188,24 @@ button.qual{
 
 <!-- 해당 기업의 해당 공고리스트 가져오기 notice에서 가져옴-->
 
-<table style="width: 1300px;">
-    <tr>
+<table style="width: 1300px; margin-bottom: 30px;">
+<tr>
+    
+    <c:if test="${onesize==0}">
+    <td align="center">
+      <div style="width: 100%; height: 200px; background: #eeeeee; border-radius: 70px; border: 5px solid white">
+      <b style="margin-top: 100px;"><b style="color: #40e0d0; line-height: 200px;">${dto.name}</b>의 채용중인 공고가 없습니다</b>
+      </div>
+    </td>
+	</c:if>
+    
+    <c:if test="${onesize>0}">
+    	<h5 style="text-align: center; font-size: 1.2em; font-weight: bold; color: gray;">${dto.name}의 채용중인 공고를 알아보세요</h5>
+    </c:if>
+    
     <c:forEach var="hdto" items="${onelist }" varStatus="i" end="3">
-  	<b style="margin-left: 300px;">${hdto.name}의 채용 소식을 알아보세요</b>
-    <td>
+  
+  	 <td>
 		<div class="notice">
 		<div class="godetail" num=${hdto.num }>
 		  <div class="logo">
@@ -219,10 +233,8 @@ button.qual{
     </c:if>
     </c:forEach>
     
-    
-  </tr>
-  
-  </table>
+</tr>
+</table>
 
 
 </div><!-- wrapper 끝 -->
@@ -243,7 +255,7 @@ $("div.godetail").click(function(){
 	
 	var num = $(this).attr("num");
 	
-	location.href="detail?num="+num;
+	location.href="../notices/detail?num="+num;
 });
 
 </script> 

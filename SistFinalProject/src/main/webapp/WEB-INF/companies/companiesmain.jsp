@@ -66,6 +66,15 @@ window.onload = function() {
 width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검색</b></button>
 </caption>
 	<tr>
+	
+	<c:if test="${totalCount==0}">
+    <td align="center">
+      <div style="width: 100%; height: 200px; background: #eeeeee; border-radius: 70px; border: 5px solid white">
+      <b style="line-height: 200px;">해당 산업별 공고가 없습니다</b>
+      </div>
+    </td>
+	</c:if>
+	
 	<c:forEach var="dto" items="${list}" varStatus="i">
 		<td>
 	<div class="companies" id=${dto.id}>
@@ -91,8 +100,7 @@ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검�
 
 <!-- 채용중인 리스트 -->
 <table style="width: 1300px;" id="hirelist">
-<h3 style="margin-left: 295px;"><b>Job히다 커리어 홈<b></h3>
-<caption> <b>Job 히다의 채용중인 기업을 알아보세요</b> </caption>
+<caption style="text-align: center; font-size: 1.2em; font-weight: bold; color: gray; margin-top: 20px; margin-bottom: 20px;"> <b>Job 히다의 채용중인 기업을 알아보세요</b> </caption>
 	<tr>
 		<c:forEach var="hdto" items="${hlist}" varStatus="i">
 		<td>
@@ -102,6 +110,7 @@ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검�
 		</div>
 		<hr>
 		<div class="txt">
+			<button class="hirebtn" type="button">채용중</button>
 			<p style="color: #40e0d0">${hdto.major}</p>
 			<p style="font-weight: bold;">${hdto.name}</p>
 			<p>${hdto.addr}</p>

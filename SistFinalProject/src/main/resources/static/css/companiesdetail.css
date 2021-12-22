@@ -68,3 +68,19 @@ div.wrapper{
 	margin-top: 30px;
 }
 
+div.txt>.hirebtn{
+	
+	background-color:#40e0d0;
+    color:#fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    display: inline-block;
+    padding: 10px 10px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0px 0px rgb(85, 30, 32);
+    height: 40px;
+    float: right;
+    margin-right: 10px;
+    
+}
