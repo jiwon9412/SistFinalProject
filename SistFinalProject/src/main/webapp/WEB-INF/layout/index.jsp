@@ -16,7 +16,7 @@ div.main{
 	margin: auto 0;
 }
 </style>
-<title>Insert title here</title>
+<title>Job히다 - 대한민국 대표 취업플랫폼</title>
 </head>
 <body>
 

@@ -179,22 +179,32 @@ small.photo, span.photo{
 							<h3 class="resume_mini_title">어학/자격증</h3>
 						</div>
 						<div class="row">
-                                <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
+                                <div style="width: 180px; margin-left: 20px; margin-right: 20px;" id="plus_license1">
 								<label for="license">어학시험/자격증</label>
+									<c:forEach items="${license1}" var="li" varStatus="status">
 									<input type="text" class="form-control" id="license1" name="license1" placeholder="어학시험/자격증 이름 입력"
-									value="${resumedto.license1}">
+									value="${li}" style="margin-bottom: 5px;">
+									</c:forEach>
                                 </div>
-                                <div style="width: 160px; margin-right: 10px;">
+                                <div style="width: 160px; margin-right: 10px;" id="plus_license2">
 									<label for="license">급수/점수</label>
+									<c:forEach items="${license2}" var="li" varStatus="status">
 									<input type="text" class="form-control" id="license2" name="license2" placeholder="급수/점수 입력"
-									value="${resumedto.license2}">
+									value="${li}" style="margin-bottom: 5px;">
+									</c:forEach>
                                 </div>                                
-                                <div style="width: 160px;">
+                                <div style="width: 160px;" id="plus_license3">
 									<label for="license">취득월</label>
-									<input type="text" class="form-control" id="license3" name="license3" placeholder="취득월 입력"
-									value="${resumedto.license3}" onfocus="(this.type='month')">
+									<c:forEach items="${license3}" var="li" varStatus="status">
+									<input type="month" class="form-control" id="license3" name="license3" placeholder="취득월 입력"
+									value="${li}" style="margin-bottom: 5px;">
+									</c:forEach>
                                 </div>
 						</div>
+						<button type="button" id="btnPlusLicense" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
 					</div>
 				</div>
             <div class="row">
@@ -211,15 +221,13 @@ small.photo, span.photo{
                                 </div>
                                 <div style="width: 160px; margin-right: 10px;">
                                     <label for="highschool">입학 *</label>
-                                    <input type="text" class="form-control" id="highschool2" name="highschool2" placeholder="입학월"
-                                    value="${resumedto.highschool2}"
-                                    onfocus="(this.type='month')">
+                                    <input type="month" class="form-control" id="highschool2" name="highschool2" placeholder="입학월"
+                                    value="${resumedto.highschool2}">
                                 </div>                                
                                 <div style="width: 160px;">
                                     <label for="highschool">졸업 *</label>
-                                    <input type="text" class="form-control" id="highschool3" name="highschool3" placeholder="졸업월"
-                                    value="${resumedto.highschool3}"
-                                    onfocus="(this.type='month')">
+                                    <input type="month" class="form-control" id="highschool3" name="highschool3" placeholder="졸업월"
+                                    value="${resumedto.highschool3}">
                                 </div>
                                 <div style="width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
                                     <label for="college">대학교 *</label>
@@ -228,19 +236,17 @@ small.photo, span.photo{
                                 </div>
                                 <div style="width: 160px; margin-right: 10px; margin-top: 30px;">
                                     <label for="college">입학 *</label>
-                                    <input type="text" class="form-control" id="college2" name="college2" placeholder="입학월"
-                                    value="${resumedto.college2}"
-                                    onfocus="(this.type='month')">
+                                    <input type="month" class="form-control" id="college2" name="college2" placeholder="입학월"
+                                    value="${resumedto.college2}">
                                 </div>
                                 <div style="width: 160px; margin-top: 30px;">
                                     <label for="college">졸업(예정) *</label>
-                                    <input type="text" class="form-control" id="college3" name="college3" placeholder="졸업월"
-                                    value="${resumedto.college3}"
-                                    onfocus="(this.type='month')">
+                                    <input type="month" class="form-control" id="college3" name="college3" placeholder="졸업월"
+                                    value="${resumedto.college3}">
                                 </div>
                                 <div style="margin-left: 20px; margin-right: 20px; margin-top: 30px;">
                                     <label for="military">병역 *</label>
-                                    <select class="form-control" id="military" name="military" style="height: 30px;">
+                                    <select class="form-control" id="military" name="military" style="height: 30px;" value="${resumedto.military}">
 										<option value="" selected disabled hidden>병역사항</option>
 										<option value="군필">군필</option>
 										<option value="미필">미필</option>
@@ -258,59 +264,74 @@ small.photo, span.photo{
 							<h3 class="resume_mini_title">대외활동</h3>
 						</div>
 						<div class="row">
-                                <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
+                                <div style="width: 180px; margin-left: 20px; margin-right: 20px;" id="plus_activity1">
                                     <label for="activity">대외활동명</label>
-                                    <input type="text" class="form-control" id="activity1" name="activity1" placeholder="대외활동명 입력" 
-                                    value="${resumedto.activity1}">
+                                    <c:forEach items="${activity1}" var="li" varStatus="status">
+	                                    <input type="text" class="form-control" id="activity1" name="activity1" placeholder="대외활동명 입력" 
+	                                    value="${li}" style="margin-bottom: 5px;">
+									</c:forEach>
                                 </div>
-                                <div style="width: 160px; margin-right: 10px;">
+                                <div style="width: 160px; margin-right: 10px;" id="plus_activity2">
                                     <label for="activity">시작일</label>
-                                    <input type="text" class="form-control" id="activity2" name="activity2" placeholder="시작" 
-                                    value="${resumedto.activity2}"
-                                    onfocus="(this.type='month')">
+                                    <c:forEach items="${activity2}" var="li" varStatus="status">
+	                                    <input type="month" class="form-control" id="activity2" name="activity2" placeholder="시작" 
+	                                    value="${li}" style="margin-bottom: 5px;">
+									</c:forEach>
                                 </div>
-                                <div style="width: 160px;">
+                                <div style="width: 160px;" id="plus_activity3">
                                     <label for="activity">종료일</label>
-                                    <input type="text" class="form-control" id="activity3" name="activity3" placeholder="종료" 
-                                    value="${resumedto.activity3}"
-                                    onfocus="(this.type='month')">
+                                    <c:forEach items="${activity3}" var="li" varStatus="status">
+	                                    <input type="month" class="form-control" id="activity3" name="activity3" placeholder="종료" 
+	                                    value="${li}" style="margin-bottom: 5px;">
+									</c:forEach>
                                 </div>
 						</div>
+						<button type="button" id="btnPlusActivity" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
 					</div>
 					
 					<div class="col-sm-6 col-lg-6 mb-3">
 						<div class="title-left">
 							<h3 class="resume_mini_title">경력</h3>
 						</div>
-						<div class="row">
-                                <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
+						<div id="plus_hr">
+						<div class="row" id="plus_career">
+							<c:forEach items="${career1}" var="li" varStatus="status">
+                                <div style="width: 180px; margin-left: 20px; margin-right: 20px; margin-bottom: 15px;">
                                     <label for="career">회사명</label>
                                     <input type="text" class="form-control" id="career1" name="career1" placeholder="회사명" 
-                                    value="${resumedto.career1}">
+                                    value="${li}">
                                 </div>
-                                <div style="width: 160px;">
+                                <div style="width: 160px; margin-bottom: 15px;">
                                     <label for="career">부서명</label>
                                     <input type="text" class="form-control" id="career2" name="career2" placeholder="부서명" 
-                                    value="${resumedto.career2}">
+                                    value="${career2[status.index]}">
                                 </div>
-                                <div style="width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
+                                <div style="width: 180px; margin-left: 20px; margin-right: 20px;">
                                     <label for="career">직급/직책</label>
                                     <input type="text" class="form-control" id="career3" name="career3" placeholder="직급/직책" 
-                                    value="${resumedto.career3}">
+                                    value="${career3[status.index]}">
                                 </div>
-                                <div style="width: 160px; margin-right: 10px; margin-top: 30px;">
+                                <div style="width: 160px; margin-right: 10px;">
                                     <label for="career">입사월</label>
-                                    <input type="text" class="form-control" id="career4" name="career4" placeholder="입사월" 
-                                    value="${resumedto.career4}"
-                                    onfocus="(this.type='month')">
+                                    <input type="month" class="form-control" id="career4" name="career4" placeholder="입사월" 
+                                    value="${career4[status.index]}">
                                 </div>
-                                <div style="width: 160px; margin-top: 30px;">
+                                <div style="width: 160px;">
                                     <label for="career">퇴사월</label>
-                                    <input type="text" class="form-control" id="career5" name="career5" placeholder="퇴사월" 
-                                    value="${resumedto.career5}"
-                                    onfocus="(this.type='month')">
+                                    <input type="month" class="form-control" id="career5" name="career5" placeholder="퇴사월" 
+                                    value="${career5[status.index]}">
                                 </div>
+                                <div style='width: 100%; margin-left: 20px; margin-right: 20px; margin-top: 15px;'><hr style='border:solid 0.05px #c6f7f2;'></div>
+							</c:forEach>
 						</div>
+						</div>
+						<button type="button" id="btnPlusCareer" style="border: 0; background-color: transparent;">
+							<span class="glyphicon glyphicon-plus-sign" style="font-size:40px; color: #40e0d0;
+							margin-top: 20px; margin-left: 235px;"></span>
+						</button>
 					</div>
 					
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -349,6 +370,41 @@ small.photo, span.photo{
         </div>
         </form>
     </div>
-
+<script type='text/javascript'>
+      $('#btnPlusLicense').click(function() {
+    	  $('#plus_license1').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 15px;'>")
+    	  $('#plus_license1').append("<input type='text' class='form-control' id='license1' name='license1' placeholder='어학시험/자격증 이름 입력' value=''>")
+    	  $('#plus_license1').append("</div>")
+    	  $('#plus_license2').append("<div style='width: 160px; margin-right: 10px; margin-top: 15px;'>")
+    	  $('#plus_license2').append("<input type='text' class='form-control' id='license2' name='license2' placeholder='급수/점수 입력' value=''>")
+    	  $('#plus_license2').append("</div>")
+    	  $('#plus_license3').append("<div style='width: 160px; margin-top: 15px;'>")
+    	  $('#plus_license3').append("<input type='month' class='form-control' id='license3' name='license3' placeholder='취득월 입력' value=''>")
+    	  $('#plus_license3').append("</div>")
+      });
+      
+      $('#btnPlusActivity').click(function() {	    
+		  $('#plus_activity1').append("<div style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 15px;'>")
+		  $('#plus_activity1').append("<input type='text' class='form-control' id='activity1' name='activity1' placeholder='대외활동명 입력' value=''>")
+		  $('#plus_activity1').append("</div>")
+		  $('#plus_activity2').append("<div style='width: 160px; margin-right: 10px; margin-top: 15px;'>")
+		  $('#plus_activity2').append("<input type='month' class='form-control' id='activity2' name='activity2' placeholder='시작' value=''>")
+		  $('#plus_activity2').append("</div>")
+		  $('#plus_activity3').append("<div style='width: 160px; margin-top: 15px;'>")
+		  $('#plus_activity3').append("<input type='month' class='form-control' id='activity3' name='activity3' placeholder='종료' value=''>")
+		  $('#plus_activity3').append("</div>")
+      });
+      
+      $('#btnPlusCareer').click(function() {
+		  $('#plus_career').append("<div>")
+		  $('#plus_career').append("<input type='text' style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 15px;' class='form-control' id='career1' name='career1' placeholder='회사명' value=''>")
+		  $('#plus_career').append("<input type='text' style='width: 160px; margin-top: 15px;' class='form-control' id='career2' name='career2' placeholder='부서명' value=''>")
+		  $('#plus_career').append("</div>")
+		  $('#plus_career').append("<input type='text' style='width: 180px; margin-left: 20px; margin-right: 20px; margin-top: 15px;' class='form-control' id='career3' name='career3' placeholder='직급/직책' value=''>")
+		  $('#plus_career').append("<input type='month' style='width: 160px; margin-right: 10px; margin-top: 15px;' class='form-control' id='career4' name='career4' placeholder='입사월' value=''>")
+		  $('#plus_career').append("<input type='month' style='width: 160px; margin-top: 15px;' class='form-control' id='career5' name='career5' placeholder='퇴사월' value=''>")
+		  $('#plus_career').append("<div style='width: 100%; margin-left: 20px; margin-right: 20px; margin-top: 15px;'><hr style='border:solid 0.05px #c6f7f2;'></div>")
+      });
+</script>
 </body>
 </html>
