@@ -197,45 +197,50 @@ a.nav-link{
 						</c:forEach>
 					</table>
 					</div>
+
+					<div class="col-sm-6 col-lg-6 mb-3">
+						<div class="title-left">
+							<h3 class="resume_mini_title">자기소개서</h3>
+						</div>
+						<div class="rounded p-2 bg-light">
+							<div class="media mb-2 border-bottom">
+								<textarea readonly class="form-control" style="height: 200px;
+								background-color: white;">${resumedto.introduce}</textarea>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6 col-lg-6 mb-3">
+						<div class="title-left">
+							<h3 class="resume_mini_title">관심산업</h3>
+						</div>
+					<table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
+							<tr>
+								<td><b>${resumedto.job}</b></td>
+							</tr>
+					</table>
+					</div>
+
+					<div class="col-sm-6 col-lg-6 mb-3">
+						<div class="title-left">
+							<h3 class="resume_mini_title">포트폴리오</h3>
+						</div>
+						<div class="mb-4">
+							<c:if test="${resumedto.portfolio!='no'}">
+								<span> <a href="download?clip=${resumedto.portfolio}">
+									<span class="glyphicon glyphicon-download-alt"></span>&nbsp;${resumedto.portfolio}</a>
+								</span>
+							</c:if>
+						</div>
+						
+						<button type="button" class="btn btn-primary" style="background-color: #40e0d0; border: 0px; border-radius: 20px;
+						width: 110px; height: 50px; font-weight: bold; margin-left: 430px; margin-top: 60px;"
+						onclick="location.href='resume_update_form'">이력서 수정</button>
+					</div>
+
 					
-                <div class="col-sm-6 col-lg-6 mb-3">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="odr-box">
-                                <div class="title-left">
-                                    <h3 class="resume_mini_title">자기소개서</h3>
-                                </div>
-                                <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <textarea readonly class="form-control" style="height: 200px; 
-                                        background-color: white;">${resumedto.introduce}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-12" style="margin-top: 50px;">
-                            <div class="shipping-method-box">
-                                <div class="title-left">
-                                    <h3 class="resume_mini_title">포트폴리오</h3>
-                                </div>
-                                <div class="mb-4">
-									<c:if test="${resumedto.portfolio!='no'}">
-										<span>
-											<a href="download?clip=${resumedto.portfolio}"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;${resumedto.portfolio}</a>
-										</span>
-									</c:if>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="button" class="btn btn-primary" style="background-color: #40e0d0; border: 0px;
-                        border-radius: 20px; width: 110px; height: 50px; font-weight: bold; margin-left: 450px;
-                        margin-top: 60px;" onclick="location.href='resume_update_form'">이력서 수정</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+				</div>
+       		</div>
         </form>
     </div>
     <!-- End Cart -->

@@ -145,8 +145,9 @@ small.photo, span.photo{
                                     <input type="text" class="form-control" id="section" name="section" placeholder="모집부문" value="${noticedto.section}">
                                 </div>
                                 <div style="width: 28.6%; margin-left: 20px; margin-right: 20px; margin-top: 30px;">
+                                	<input type="hidden" id="notice_type" value="${noticedto.type}">
                                     <label for="type">고용형태 *</label>
-                                    <select class="form-control" id="type" name="type" style="height: 34px;">
+                                    <select class="form-control type" id="type" name="type" style="height: 34px;">
 										<option value="" selected disabled hidden>고용형태</option>
 										<option value="경력">경력</option>
 										<option value="신입">신입</option>
@@ -264,6 +265,11 @@ small.photo, span.photo{
       $('#btnPlusTask').click(function() {
 		  $('#plus_task').append("<input type='text' class='form-control' id='task' name='task' style='margin-top: 15px;' placeholder='업무내용' value=''>")
       });
+      
+      $(document).ready(function () {
+    	  notice_val = $('#notice_type').val();
+		  $('select.type option[value=' + notice_val + ']').attr('selected', 'selected');
+	  });
 </script>
 </body>
 </html>
