@@ -1,6 +1,8 @@
 package data.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import data.dto.CompaniesDto;
+import data.dto.MypageResumeDto;
 import data.dto.OfferDto;
+import data.dto.UserDto;
+import data.mapper.LoginMapper;
+import data.mapper.MypageMapper;
 import data.mapper.PositionMapper;
 
 @Controller
@@ -21,39 +27,20 @@ public class PositionController {
 	@Autowired
 	PositionMapper mapper;
 	
+	@Autowired
+	LoginMapper loginmapper;
+	
 	
 	//포지션 메인으로 이동
 	//id에 따른 Offer 전체 갯수 출력 & 전체리스트 출력
 	@GetMapping("/position/main")
-	public ModelAndView loginform(HttpSession session) {
-		
-		//id값 식별
-		String myid = (String)session.getAttribute("myid");
-		
-		//로그인 확인
-		String loginok = (String)session.getAttribute("loginok");
-						
-		//로그인 타입
-		String logintype = (String)session.getAttribute("logintype");
-
-		
+	public String loginform(HttpSession session) {
+	
 		//넣어줄 Model 생성
 		ModelAndView mview = new ModelAndView();
 		
-		
-		//총 포지션 제안수
-		int totalPosition = mapper.getTotalOffers(myid);
-		
-		//id값에 해당되는 Offer 전체출력
-		List<OfferDto> list = mapper.getAllOffers(myid);
-		
-		//랜덤 출력용
-		List<CompaniesDto> list2 = mapper.getRndList();
-		
-		//총 갯수 + list 넣어주기
-		mview.addObject("totalPosition", totalPosition);
-		mview.addObject("list",list);
-		mview.addObject("list2",list2);
+		String loginok = (String)session.getAttribute("loginok");
+		String logintype = (String)session.getAttribute("logintype");
 		
 		//만약 로그인 한했을 경우 로그인으로 이동
 		if(loginok!=null) {
@@ -62,14 +49,12 @@ public class PositionController {
 			if(logintype == "user") {
 				
 				//포워드
-				mview.setViewName("/position/positionmain");
-				return mview;	
+				return "redirect:/position/user";	
 				
 			} else {
 				
 				//포워드
-				mview.setViewName("/position/positionCor");			
-				return mview;	
+				return "redirect:/position/corp";
 			}
 
 		} else {
@@ -77,12 +62,66 @@ public class PositionController {
 			//여기 매우 중요!!! - 로그인 안했을 경우
 			//setViewName으로 하면 주소가 그대로 position에 main이 되기에 Redirect로 매핑 주소로 쏴줌
 			//그러나 return type이 String형이 아니기때문에 ModelAndView 형식의 Redirect 써줌
-			mview.setView(new RedirectView("/login/main",true));			
+			//mview.setView(new RedirectView("/login/main",true));			
 			
-			return mview;
+			return "redirect:/login/main";
 		}		
 	}
 		
+	@GetMapping("/position/user")
+	public ModelAndView postionUserForm(HttpSession session) {
+		
+		ModelAndView mview = new ModelAndView();
+		
+		//id값 식별
+		String myid = (String)session.getAttribute("myid");
+				
+		//로그인 확인
+		String loginok = (String)session.getAttribute("loginok");
+		
+		//총 포지션 제안수
+		int totalPosition = mapper.getTotalOffers(myid);
+				
+		//id값에 해당되는 Offer 전체출력
+		List<OfferDto> list = mapper.getAllOffers(myid);
+				
+		//랜덤 출력용
+		List<CompaniesDto> list2 = mapper.getRndList();
+				
+		//총 갯수 + list 넣어주기
+		mview.addObject("totalPosition", totalPosition);
+		mview.addObject("list",list);
+		mview.addObject("list2",list2);
+		
+		mview.setViewName("/position/positionmain");
+		
+		
+		return mview;
+	}
+	
+	
+	@GetMapping("/position/corp")
+	public ModelAndView postionCorpForm() {
+		
+		ModelAndView mview = new ModelAndView();
+		
+		List<UserDto> user_list = mapper.getAllResume();
+		
+		for(UserDto dto : user_list) {
+			if(dto.getIntroduce().length()>=10) {
+				String introduce = dto.getIntroduce().substring(0, 13);
+				dto.setIntroduce(introduce + "...");
+			}
+		}
+		
+		
+		mview.addObject("user_list", user_list);
+		
+		mview.setViewName("/position/positionCorp");
+		
+		return mview;
+		
+	}
 	
 	//Offer 삭제
 	//실제 학제
@@ -92,5 +131,26 @@ public class PositionController {
 		//dao호출
 		mapper.deleteOffer(company_id);
 		
+	}
+	
+	@GetMapping("/position/getOffer")
+	public @ResponseBody HashMap<String, String> getOffer(
+			@RequestParam String user_id, 
+			@RequestParam String company_id) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("user_id", user_id);
+		map.put("company_id", company_id);
+		
+		OfferDto dto = mapper.getOffer(map);
+		
+		String content = dto.getContent();
+		
+		System.out.println(content);
+		
+		map.put("content", content);
+		
+		return map;
 	}
 }

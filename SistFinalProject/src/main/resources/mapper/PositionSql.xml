@@ -15,9 +15,11 @@
 		select
 		offer.user_id as user_id,
 		offer.company_id as company_id,
+		offer.notice_num as notice_num,
 		offer.content as content,
 		company.name as name,
-		company.major as major
+		company.major as major,
+		company.logo as logo
 		from offer join company on offer.company_id=company.id
 	</select>
 	
@@ -32,6 +34,24 @@
 	<delete id="deleteOffer" parameterType="String">
 		delete from offer where company_id=#{company_id}
 	</delete>
+	
+	<select id="getOffer" parameterType="HashMap" resultType="odto">
+		select * from offer a where user_id = #{user_id} and company_id = #{company_id}
+	</select>
+	
+	<select id="getAllResume" resultType="udto">
+		select 
+		user.*, 
+		resume.num,
+		resume.job,
+		resume.career,
+		resume.introduce
+		from user join resume on user.id = resume.user_id
+	</select>
+	
+	<select id="getResume" parameterType="String" resultType="resumedto">
+		select * from resume where num = #{num}
+	</select>
 	
 	
 </mapper>

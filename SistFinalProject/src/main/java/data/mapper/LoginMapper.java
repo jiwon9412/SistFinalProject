@@ -1,6 +1,7 @@
 package data.mapper;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,6 +17,7 @@ public interface LoginMapper {
 	public int getIdCheck(String id);
 	public UserDto getUserData(String id);
 	public void updateUser(UserDto dto);
+	public List<UserDto> getAllUser();
 	
 	public int corplogin(HashMap<String, String>map);
 	public String getCorpName(String id);

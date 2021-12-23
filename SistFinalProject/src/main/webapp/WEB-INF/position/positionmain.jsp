@@ -84,7 +84,7 @@ span.content, #list_company_name{
 				<tr align="center">
 					<td><b id="list_company_name" onclick="location.href='../companies/detail?id=${list.company_id}'">${list.name}</b></td>
 					<td>${list.major}</td>
-					<td><span class="content">${list.content}</span></td>
+					<td><span class="content" notice_num = ${list.notice_num } content = ${list.content } company_name = ${list.name } logo = ${list.logo }>${list.content}</span></td>
 					<td>
 						<button type="button" class="btn btn-default btndel" style="width: 100px;" 
 						company_id="${list.company_id}">삭제</button>
@@ -222,19 +222,20 @@ span.content, #list_company_name{
 		<!-- Modal Content -->
 	    <div class="modal-content">
 	      <div class="modal-header">
-	      	<h4 class="modal-title"></h4>
+	      	<div class="modal-title" id="offer_subject" style="display:inline; width: 650px;"></div>
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	      </div>
 	
 	      <!-- Modal body -->
 	      <div class="modal-body" id="modal-body">
 	         
+	         
 	      </div>
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal"
-	        id="btnaupdate">수정</button>
+	        <button type="button" class="btn btn-default" id="notice_check">공고 확인</button>
+	        <button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
 	      </div>
 	
 	    </div>
@@ -270,11 +271,39 @@ span.content, #list_company_name{
 	
 	//모달 나오게 하기
 	$("span.content").click(function(){
-				
 		
+		var company_id = $(this).attr("company_id");
+		var user_id = $(this).attr("myid");
+		var content = $(this).attr("content");
+		var company_name = $(this).attr("company_name");
+		var logo = $(this).attr("logo");
+		$("#offer_subject").html("<span style='font-size:1.5em; display:inline;'><b>" + company_name + "</b><img src='../images/"+logo+"' style='width:100px; display:inline; float:right;'><br>" + content + "</span>");
+		
+		var s = "";
+		s += "<span>포지션 내용</span>";
+		$("#modal-body").html(s);
+		
+		var notice_num = $(this).attr("notice_num");
+		document.getElementById("notice_check").onclick = function () {
+			location.href="/notices/detail?num="+notice_num;
+		}
+		
+		
+	/* 	$.ajax({
+			type: "get",
+			dataType: "json",
+			url: "getOffer",
+			data: {"user_id":user_id, "company_id":company_id},
+			success:function(data) {
+				$("#offercontent").val(data.content);
+				$.each(data, function (index, item) {
+					
+				});
+			}
+		}); */
 		$("#myModal").modal();
+	});
 		
-		});
     </script>
 </body>
 </html>

@@ -24,6 +24,9 @@
 		update user set name = #{name}, birth = #{birth}, gender = #{gender}, hp = #{hp}, email = #{email}, addr = #{addr} 
 		where id = #{id}
 	</update>
+	<select id="getAllUser" resultType="udto">
+		select * from user
+	</select>
 	
 	<!-- company -->
 	<select id="corplogin" parameterType="HashMap" resultType="int">

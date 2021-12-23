@@ -1,11 +1,15 @@
 package data.mapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import data.dto.CompaniesDto;
+import data.dto.MypageResumeDto;
 import data.dto.OfferDto;
+import data.dto.UserDto;
 
 @Mapper
 public interface PositionMapper {
@@ -23,5 +27,11 @@ public interface PositionMapper {
 	public void deleteOffer(String company_id);
 	
 	//모달 출력을 위한 데이터
-	public OfferDto getOffer(String user_id, String company_id);
+	public OfferDto getOffer(HashMap<String, String> map);
+	
+	//모든 이력서 데이터
+	public List<UserDto> getAllResume();
+	
+	//num에 따른 이력서 데이터
+	public MypageResumeDto getResume(String num);
 }

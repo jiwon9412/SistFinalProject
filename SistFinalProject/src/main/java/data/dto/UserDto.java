@@ -27,5 +27,10 @@ public class UserDto {
 	private String addr1;
 	private String addr2;
 	
+	//position/positionCorp
+	private String num;
+	private String job;
+	private String career;
+	private String introduce;
 	
 }
