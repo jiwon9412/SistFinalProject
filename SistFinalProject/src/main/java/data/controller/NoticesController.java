@@ -110,6 +110,8 @@ public class NoticesController {
 	
 	
 	
+	
+	
 	@GetMapping("/notices/insertscrap")
 	@ResponseBody
 	public void insertScrap(
@@ -289,6 +291,172 @@ public class NoticesController {
 		
 	}
 	
+	@GetMapping("/notices/deadlinelist")
+	public ModelAndView deadline(@RequestParam (
+			value = "currentPage", defaultValue = "1") int currentPage,
+			HttpSession session
+			) {
+		
+		ModelAndView mview = new ModelAndView();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(System.currentTimeMillis()));
+		String today =sdf.format(cal.getTime());  //오늘날짜 (yyyy-MM-dd)
+		
+		int totalCount = mapper.getHireCnt(today);
+		//페이징처리에 필요한 변수
+		
+		int totalPage;   //총 페이지수
+		int startPage;   //각 블럭의 시작페이지
+		int endPage;   //각 블럭의 끝페이지
+		int start;   //각페이지의 시작번호
+		int perPage=16;  //한페이지에 보여질 글수
+		int perBlock=5;  //한페이지에 보여지는 페이지 개수
+		//int no;
+
+
+		//총페이지개수구하기
+		totalPage = totalCount/perPage + (totalCount%perPage==0?0:1);
+
+		//각블럭의 시작페이지
+		//예: 현재페이지:3, startPage:1,endPage:5
+		//예: 현재페이지:6, startPage:6,endPage:10;
+		startPage = (currentPage-1)/perBlock*perBlock+1;
+		endPage = startPage+perBlock-1;
+
+		//만약 총페이지수가 8일경우
+		//2번째 블럭은 start:6, endPage:10되야?
+		//이때는 endpage를 8로 수정해준다
+		if(endPage>totalPage){
+			endPage=totalPage;
+		}
+
+		//각 페이지에서 불러올 시작번호
+		//현재페이지가 1 일경우 start는 1,  2일 경우6...
+		start=(currentPage-1)*perPage;
+
+		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
+		
+		
+		List<NoticesDto> list = mapper.getDeadlineList(today);
+		
+		
+		
+		//각 글앞에 붙힐 시작번호 구하기
+		//총글이 20개일경우 1페이지는 20, 2페이지는 15부터
+		//출력해서 1씩 감소해가며 출력할것
+		//no = totalCount-(currentPage-1)*perPage;
+
+		mview.addObject("totalCount", totalCount);
+		mview.addObject("list", list);
+		mview.addObject("startPage", startPage);
+		mview.addObject("endPage", endPage);
+		mview.addObject("totalPage", totalPage);
+		mview.addObject("currentPage", currentPage);
+		
+		
+		String user_id = (String) session.getAttribute("myid");
+		for(NoticesDto dto : list) {
+			
+			int check = mapper.checkScrap(user_id, dto.getNum());
+			dto.setCheck(check);
+			
+		}
+		
+		
+		mview.addObject("list", list);
+		
+		mview.setViewName("/notices/noticesmain");
+		
+		
+		return mview;
+		
+	}
+	
+	@GetMapping("/notices/appcntlist")
+	public ModelAndView appCnt(@RequestParam (
+			value = "currentPage", defaultValue = "1") int currentPage,
+			HttpSession session
+			) {
+		
+		ModelAndView mview = new ModelAndView();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(System.currentTimeMillis()));
+		String today =sdf.format(cal.getTime());  //오늘날짜 (yyyy-MM-dd)
+		
+		int totalCount = mapper.getHireCnt(today);
+		//페이징처리에 필요한 변수
+		
+		int totalPage;   //총 페이지수
+		int startPage;   //각 블럭의 시작페이지
+		int endPage;   //각 블럭의 끝페이지
+		int start;   //각페이지의 시작번호
+		int perPage=16;  //한페이지에 보여질 글수
+		int perBlock=5;  //한페이지에 보여지는 페이지 개수
+		//int no;
+
+
+		//총페이지개수구하기
+		totalPage = totalCount/perPage + (totalCount%perPage==0?0:1);
+
+		//각블럭의 시작페이지
+		//예: 현재페이지:3, startPage:1,endPage:5
+		//예: 현재페이지:6, startPage:6,endPage:10;
+		startPage = (currentPage-1)/perBlock*perBlock+1;
+		endPage = startPage+perBlock-1;
+
+		//만약 총페이지수가 8일경우
+		//2번째 블럭은 start:6, endPage:10되야?
+		//이때는 endpage를 8로 수정해준다
+		if(endPage>totalPage){
+			endPage=totalPage;
+		}
+
+		//각 페이지에서 불러올 시작번호
+		//현재페이지가 1 일경우 start는 1,  2일 경우6...
+		start=(currentPage-1)*perPage;
+
+		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
+		
+		
+		List<NoticesDto> list = mapper.getAppCntList(today);
+		
+		
+		
+		//각 글앞에 붙힐 시작번호 구하기
+		//총글이 20개일경우 1페이지는 20, 2페이지는 15부터
+		//출력해서 1씩 감소해가며 출력할것
+		//no = totalCount-(currentPage-1)*perPage;
+
+		mview.addObject("totalCount", totalCount);
+		mview.addObject("list", list);
+		mview.addObject("startPage", startPage);
+		mview.addObject("endPage", endPage);
+		mview.addObject("totalPage", totalPage);
+		mview.addObject("currentPage", currentPage);
+		
+		
+		String user_id = (String) session.getAttribute("myid");
+		for(NoticesDto dto : list) {
+			
+			int check = mapper.checkScrap(user_id, dto.getNum());
+			dto.setCheck(check);
+			
+		}
+		
+		
+		mview.addObject("list", list);
+		
+		mview.setViewName("/notices/noticesmain");
+		
+		
+		return mview;
+		
+	}
+	
 	
 	@GetMapping("/notices/detail")
 	public ModelAndView noticesDetail(
@@ -373,7 +541,7 @@ public class NoticesController {
 		
 		String myid = (String) session.getAttribute("myid");
 		String logintype = (String) session.getAttribute("logintype");
-		System.out.println(logintype);
+		//System.out.println(logintype);
 		if(myid==null) {
 			return "/notices/requestlogin";
 		}else if(logintype.equals("corp")) {
@@ -388,6 +556,7 @@ public class NoticesController {
 					return "/notices/deadline";
 				}else {
 					mapper.insertApplication(myid, company_id, notice_num);
+					mapper.updateAppCnt(notice_num);
 					return "redirect:../mypage/applications";
 				}
 				

@@ -101,5 +101,22 @@
 >=
 ]]>#{today} order by a.period_end asc limit 0,8
    </select>
+   
+   <select id="getAppCntList" parameterType="String" resultType="ndto">
+      select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id and 
+   	  a.period_end<![CDATA[
+>=
+]]>#{today} order by a.app_cnt desc limit 0,8
+   </select>
+   
+   <update id="updateAppCnt" parameterType="String">
+   	  update notice set app_cnt=app_cnt+1 where num=#{num}
+   </update>
+   
+   <select id="getHireCnt" parameterType="String" resultType="int">
+      select count(*) from notice where period_end<![CDATA[
+>=
+]]>#{today}
+   </select>
 
 </mapper>

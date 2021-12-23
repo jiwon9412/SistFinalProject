@@ -181,7 +181,7 @@ div.com_name{
 <table style="width: 1100px; margin-top: 30px;" class="deadline">
   <caption>
   	<b style="font-size: 18px; color: black">마감 임박 공고</b>
-  	<a href="main" style="float: right; "><b>더보기</b></a>
+  	<a href="notices/deadlinelist" style="float: right; "><b>더보기</b></a>
   </caption>
     <tr>
     <c:forEach var="ddto" items="${dlist }" varStatus="i" end="3">
@@ -220,6 +220,65 @@ div.com_name{
 		    <span class="glyphicon glyphicon-heart scrapdel" 
 		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
 		    num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </c:if>
+		  </div>
+		</div>
+    </td>
+    <c:if test="${i.count==8 }">
+    </tr>
+    <tr>
+    </c:if>
+    </c:forEach>
+    
+    
+  </tr>
+  
+  </table>
+  
+  <hr width="1100px" align="center" style="margin-top: 30px;">
+  
+  <table style="width: 1100px; margin-top: 30px;" class="deadline">
+  <caption>
+  	<b style="font-size: 18px; color: black">지원자가 많은 공고</b>
+  	<a href="notices/appcntlist" style="float: right; "><b>더보기</b></a>
+  </caption>
+    <tr>
+    <c:forEach var="appdto" items="${applist }" varStatus="i" end="3">
+  
+    <td>
+		<div class="notice">
+		<div class="godetail" num=${appdto.num }>
+		  <div class="logo">
+		    <img alt="" src="../images/${appdto.photo }">
+		    
+		  </div>
+		  <div class="cinfo">
+		    <b style="font-size: 15px;">${appdto.name }</b> <br>
+		    ${appdto.subject }<br><br>
+		    <button class="type"><b>${appdto.type }</b></button>
+		    <button class="loc"><b>${appdto.location }</b></button>
+		    <button class="perso"><b>${appdto.personnel }명</b></button>
+		  </div>
+		  
+		    
+		 
+		  </div>
+		  
+		  <div class="period">
+		    <hr style="margin-bottom: 5px;">
+		    <b style="color: gray; ">${appdto.period_start } ~ ${appdto.period_end }</b>
+		  
+		    
+		    <c:if test="${appdto.check==0 }">
+		    <span class="glyphicon glyphicon-heart-empty scrap" 
+		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </c:if>
+		    
+		    <c:if test="${appdto.check==1 }">
+		    <span class="glyphicon glyphicon-heart scrapdel" 
+		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
 		    </c:if>
 		  </div>
 		</div>
@@ -635,7 +694,100 @@ div.com_name{
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
-   
+   <script type="text/javascript">
+
+$(document).on('click','span.scrap',function(){
+	
+	var tag = $(this);
+	var user_id = $(this).attr("userId");
+	var notice_num = $(this).attr("num");
+	var logintype = $(this).attr("logintype");
+	//alert(user_id+","+notice_num);
+	
+	
+	if(${sessionScope.loginok==null}){
+		 alert("로그인이 필요한 서비스입니다");
+		 location.href='/login/main';
+		 return;
+	}else if(logintype=="corp"){
+		alert("개인 회원만 이용 가능한 서비스입니다");
+		return;
+	}else{
+		$.ajax({
+			
+			type: "get",
+			url: "notices/insertscrap",
+			data: {"user_id":user_id,"notice_num":notice_num},
+			success: function(data){
+				
+				//ajax로 스크랩이 되면서 success에서 이거 실행하기
+				tag.attr("class","glyphicon glyphicon-heart scrapdel");
+				tag.css("color","red");
+					
+				
+			}
+			
+		});
+	}
+	
+	
+	
+	
+
+});
+
+$(document).on('click','span.scrapdel',function(){
+	var tag = $(this);
+	var user_id = $(this).attr("userId");
+	var notice_num = $(this).attr("num");
+	
+	$.ajax({
+		
+		type: "get",
+		url: "notices/deletetscrap",
+		data: {"user_id":user_id,"notice_num":notice_num},
+		success: function(data){
+			
+			//ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
+			tag.attr("class","glyphicon glyphicon-heart-empty scrap");
+			tag.css("color","gray");
+				
+			
+		}
+		
+	});
+	
+	
+
+});
+
+$("#btntype").click(function(){
+	
+	var idx = $("#seltype option").index($("#seltype option:selected"));
+	if(idx==0){
+		location.href='main';
+		return;
+	}else{
+		var hireType=$("#seltype option:selected").text();
+		location.href='notices/typelist?type='+hireType;
+		return;
+	}
+	
+	
+	
+	//alert(hireType);
+
+});
+
+$("div.godetail").click(function(){
+	
+	var num = $(this).attr("num");
+	
+	location.href="notices/detail?num="+num;
+});
+
+
+</script>
 </body>
 
 </html>

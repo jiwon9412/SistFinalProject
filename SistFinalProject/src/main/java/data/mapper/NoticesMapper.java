@@ -37,11 +37,16 @@ public interface NoticesMapper {
 	public ArrayList<NoticesDto> getSearchList(String search);
 	public int getSearchCount(String search);
 	
+	//채용중인 공고리스트 수
+	public int getHireCnt(String today);
+	
 	
 	//지원하기
 	public void insertApplication(String user_id, String company_id, String notice_num);
 	//이미 지원했는지 확인
 	public int checkApplication(String user_id, String company_id, String notice_num);
+	//지원자수 업데이트
+	public void updateAppCnt(String notice_num);
 	
 	//application table
 	//해당 공고 지원자 총수
@@ -52,6 +57,8 @@ public interface NoticesMapper {
 	//메인 페이지
 	//마감 임박 순 리스트
 	public ArrayList<NoticesDto> getDeadlineList(String today);
+	//지원자 순 리스트
+	public ArrayList<NoticesDto> getAppCntList(String today);
 	
 	
 	

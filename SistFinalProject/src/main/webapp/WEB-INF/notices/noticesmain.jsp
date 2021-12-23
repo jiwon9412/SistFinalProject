@@ -149,6 +149,10 @@ a:active {
     </td>
   
   </c:if>
+  <c:if test="${totalCount<4} }">
+  
+  
+  </c:if>
   <c:if test="${totalCount>0 }">
   <c:forEach var="ndto" items="${list }" varStatus="i">
   
