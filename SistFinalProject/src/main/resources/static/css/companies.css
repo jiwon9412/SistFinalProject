@@ -8,7 +8,7 @@
      background-size: cover;
      text-align: center;
      background-attachment: fixed;
-     padding: 70px 0px;
+     padding: 200px 0px;
      position: relative;
 }
 
@@ -24,7 +24,7 @@
 }
 
  .company-top-box h2{
-     font-size: 38px;
+     font-size: 25px;
      font-weight: 700;
      color: #ffffff;
      padding-bottom: 10px;
@@ -68,14 +68,6 @@ div.wrapper{
 	margin-top: 30px;
 }
 
-#slide_img{
-	
-	/* text-align: center; */
-	width: 100%;
-	height: 630px;
-	border: 0px solid #fff;
-	
-}
 
 div.txt>button{
 	

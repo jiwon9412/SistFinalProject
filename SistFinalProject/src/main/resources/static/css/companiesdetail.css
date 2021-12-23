@@ -8,7 +8,7 @@
      background-size: cover;
      text-align: center;
      background-attachment: fixed;
-     padding: 250px 0px;
+     padding: 200px 0px;
      position: relative;
 }
 
@@ -24,7 +24,7 @@
 }
 
  .companiesdetail-top-box h4{
-     font-size: 38px;
+     font-size: 25px;
      font-weight: 700;
      color: #ffffff;
      padding-bottom: 10px;

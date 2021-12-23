@@ -12,24 +12,8 @@
 <link rel="stylesheet" href="../css/companies.css">
 </head>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-/* 상단 이미지 슬라이드 */
-window.onload = function() {
-		slide_show();
-}
-	var i = 1;
-	
-	function slide_show() {	
-		if(i > 5)
-			i = 1;
-		
-		document.getElementById("slide_img").src = "../images/com_slide_" + i + ".jpg";
-		
-		setTimeout(slide_show, 3000);
-		i++;
-}
-</script>
-<body onload="slide_show()">
+
+<body>
 
 <!-- 상단 타이틀 -->
 <div class="company-top-box">
@@ -44,7 +28,6 @@ window.onload = function() {
 </div>
 <!-- 상단 타이틀 끝 -->
 
-<img id="slide_img" src="image/com_slide_1.jpg">
 
 <div class="wrapper">
 
