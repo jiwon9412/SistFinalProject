@@ -1,10 +1,49 @@
 @charset "utf-8";
 
+.contentsdetail-top-box{
+     background: url("../images/contentsdetail-bg.jpg") no-repeat center center;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -ms-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+     text-align: center;
+     background-attachment: fixed;
+     padding: 200px 0px;
+     position: relative;
+}
 
-#condetailblock{
+ .contentsdetail-top-box::before{
+     background: rgba(0,0,0,0.6);
+     content: "";
+     position: absolute;
+     z-index: 0;
+     width: 100%;
+     height: 100%;
+     left: 0px;
+     top: 0px;
+}
+
+ .contentsdetail-top-box h5{
+     font-size: 25px;
+     font-weight: 700;
+     color: #ffffff;
+     padding-bottom: 40px;
+}
+
+
+#condetailblock1{
 	
 	width: 50%;
 	height: 500px;
+	float: left;
+	background: #f5f5f5;
+}
+
+#condetailblock2{
+	
+	width: 50%;
+	height: 260px;
 	float: left;
 	background: white;
 }
@@ -14,11 +53,88 @@
 	width: 100%;
 	height: 500px;
 	border-radius: 20px;
-	border: 5px solid black;
+	border: 5px solid gray;
 }
 
-#contentstxt{
+#subtitle{
 	
-	line-height: 500px;
+	float: left;
+	margin-top: 200px;
+	font-size: 15pt;
+	margin-left: 380px;
+}
+
+#subbtn{
+	
+	border: 5px dashed #fff8e1;
+	background: #e0e0e0;
+	font-size: 15pt;
+	border-radius: 100px;
+	padding: 20px;
+	float: right;
+	margin-right: 250px;
+	margin-top: 170px;
+	color: #757575;
+}
+
+#subtxt{
+	
+	line-height: 260px;
 	text-align: center;
+	margin-left: 10px;
+	font-weight: bold;
+	font-size: 20pt;
+	font-family: Nanum Pen Script;
+}
+
+#contxt{
+	
+	margin-top: 100px;
+	line-height: 25px;
+	text-align: center;
+	font-family: Nanum Pen Script;
+	font-size: 18pt;
+}
+
+#backbtn{
+	
+	background-color:#eeeeee;
+    color: orange;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    display: inline-block;
+    padding: 10px 10px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0px 0px rgb(85, 30, 32);
+    height: 40px;
+    float: right;
+    margin-right: 10px;
+}
+
+#condetailblock3{
+	
+	width: 25%;
+	height: 300px;
+	float: left;
+	background: white;
+}
+
+#anotherimg{
+	
+	width: 100%;
+	height: 250px;
+	border: 3px solid gray;
+	border-radius: 20px;
+}
+
+span.job{
+	
+	color: #b2ebf2;
+	font-weight: bold;
+}
+
+#anothertxt{
+	
+	font-size: 13pt;
 }
