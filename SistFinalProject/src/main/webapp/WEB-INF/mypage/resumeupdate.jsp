@@ -142,7 +142,7 @@ small.photo, span.photo{
 							class="resume_table">
 							<tr>
 								<th width="90">이름</th>
-								<td width="310">${resumedto.name}</td>
+								<td width="310">${userdto.name}</td>
 								<td rowspan="5">
 									<div class="resumephoto"
 										style="width: 120px; height: 160px; border: 1px solid lightgray;">
@@ -157,23 +157,23 @@ small.photo, span.photo{
 							</tr>
 							<tr>
 								<th>생년월일</th>
-								<td>${resumedto.birth}</td>
+								<td>${userdto.birth}</td>
 							</tr>
 							<tr>
 								<th>성별</th>
-								<td>${resumedto.gender}</td>
+								<td>${userdto.gender}</td>
 							</tr>
 							<tr>
 								<th>연락처</th>
-								<td>${resumedto.hp}</td>
+								<td>${userdto.hp}</td>
 							</tr>
 							<tr>
 								<th>이메일</th>
-								<td>${resumedto.email}</td>
+								<td>${userdto.email}</td>
 							</tr>
 							<tr>
 								<th>주소</th>
-								<td>${resumedto.addr}</td>
+								<td>${userdto.addr}</td>
 							</tr>
 
 						</table>

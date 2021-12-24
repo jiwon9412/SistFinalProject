@@ -297,7 +297,7 @@ public class MypageController {
 
 		// 세션에서 id 얻어서 dto에 저장
 		String myid = (String) session.getAttribute("myid");
-		UserDto udto = loginmapper.getUserData(myid);
+//		UserDto udto = loginmapper.getUserData(myid);
 
 		// 업로드할 폴더 지정
 		String path = session.getServletContext().getRealPath("/images");
@@ -330,12 +330,12 @@ public class MypageController {
 		System.out.println("[resume_insert] loginok:"+ loginok + ", id:" + myid);
 		rdto.setUser_id(myid);
 
-		rdto.setName(udto.getName());
-		rdto.setBirth(udto.getBirth());
-		rdto.setGender(udto.getGender());
-		rdto.setHp(udto.getHp());
-		rdto.setEmail(udto.getEmail());
-		rdto.setAddr(udto.getAddr());
+//		rdto.setName(udto.getName());
+//		rdto.setBirth(udto.getBirth());
+//		rdto.setGender(udto.getGender());
+//		rdto.setHp(udto.getHp());
+//		rdto.setEmail(udto.getEmail());
+//		rdto.setAddr(udto.getAddr());
 		
 		//rdto.setLicense(rdto.getLicense1()+"`"+rdto.getLicense2()+"`"+rdto.getLicense3());
 		rdto.setHighschool(rdto.getHighschool1()+"`"+rdto.getHighschool2()+"`"+rdto.getHighschool3());
@@ -526,6 +526,8 @@ public class MypageController {
 		rdto.setCollege1(co[0]);
 		rdto.setCollege2(co[1]);
 		rdto.setCollege3(co[2]);
+
+		UserDto udto = loginmapper.getUserData(myid);
 				
 		ModelAndView mv = new ModelAndView();
 		
@@ -540,6 +542,7 @@ public class MypageController {
 		mv.addObject("career3", career3);
 		mv.addObject("career4", career4);
 		mv.addObject("career5", career5);
+		mv.addObject("userdto", udto);
 		mv.addObject("resumedto", rdto);
 		mv.setViewName("/mypage/resumeupdate");
 		return mv;
@@ -749,9 +752,17 @@ public class MypageController {
 	
 	//기업- 지원자 현황 가기
 	@GetMapping("/mypage/applicants")
-	public String applicants() {
+	public ModelAndView applicants(HttpSession session) {
+		String company_id = (String) session.getAttribute("myid");
+		List<NoticesDto> ndtoList = mymapper.getNoticesInfo(company_id);
+		int applicantsCount = mymapper.getTotalNoticesApplicantsCount(company_id);
+		ModelAndView mv = new ModelAndView();
 		
-		return "/mypage/applicantslist";
+		mv.addObject("noticesdtolist",ndtoList);
+		mv.addObject("applicantsCount",applicantsCount);
+		mv.setViewName("/mypage/applicantslist");
+		
+		return mv;
 	}
 	
 	@GetMapping("/mypage/updatpassform")

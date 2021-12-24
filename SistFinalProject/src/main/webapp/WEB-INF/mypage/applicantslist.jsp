@@ -89,6 +89,65 @@ a.nav-link{
 	</div>
 </div>
 <!-- 상단 바 끝-->
-applicants list
+
+    <div class="wishlist-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-main table-responsive">
+                        <table class="table">
+                        <caption>총 지원자 수: ${applicantsCount}명 </caption>
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>공고 제목</th>
+                                    <th>접수기간</th>
+                                    <th>모집인원</th>
+                                    <th>지원자 수</th>
+                                    <th>상세 보기</th>
+                                </tr>
+                            </thead>
+							<tbody>
+							<c:forEach items="${noticesdtolist}" var="no" varStatus="n">
+								<tr>
+									<td align="center">${n.count}</td>
+									<td><a style="color: black;" href="../notices/detail?num=${no.num}">${no.subject}</a></td>
+									<td style="font-size: 0.9em;">${no.period_start} ~ ${no.period_end}</td>
+									<td align="center">${no.personnel}</td>
+									<td align="center"></td>
+									<td>
+										<button type="button" class="btn btn-primary" style="background-color: #40e0d0;
+										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
+										onclick="location.href=#">지원자 리스트 보기</button>
+									</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+    
 </body>
 </html>

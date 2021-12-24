@@ -5,15 +5,28 @@
 
 <!-- 개인-이력서 시작 -->
 <insert id="insertMypageResume" parameterType="resumedto">
+	insert into resume (user_id,photo,highschool,college,career,activity,
+	license,portfolio,military,introduce,job)
+	values (#{user_id},#{photo},#{highschool},#{college},
+	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job})
+</insert>
+<!-- <insert id="insertMypageResume" parameterType="resumedto">
 	insert into resume (user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,
 	license,portfolio,military,introduce,job,addr)
 	values (#{user_id},#{name},#{birth},#{photo},#{gender},#{email},#{hp},#{highschool},#{college},
 	#{career},#{activity},#{license},#{portfolio},#{military},#{introduce},#{job},#{addr})
-</insert>
+</insert> -->
 
 <select id="getMypageResume" parameterType="String" resultType="resumedto">
-	select * from resume where user_id=#{user_id}
+	select r.num, r.user_id, u.name, u.birth, r.photo, u.gender, u.email, u.hp, r.highschool, r.college,
+	r.career, r.activity, r.license, r.portfolio, r.military, r.introduce, r.job, u.addr
+	from resume r join user u
+	on r.user_id = u.id
+	where r.user_id=#{user_id}
 </select>
+<!-- <select id="getMypageResume" parameterType="String" resultType="resumedto">
+	select * from resume where user_id=#{user_id}
+</select> -->
 
 <!-- user_id,name,birth,photo,gender,email,hp,highschool,college,career,activity,license,portfolio,military,introduce,job -->
 <update id="updateMypageResume" parameterType="resumedto">
@@ -52,46 +65,18 @@
 	period_start=#{period_start},period_end=#{period_end} where num=#{num}	
 </update>
 
+<select id="getNoticesInfo" parameterType="String" resultType="ndto">
+	select * from notice where company_id=#{company_id}
+</select>
+
+<select id="getTotalNoticesApplicantsCount" parameterType="String" resultType="int">
+	select count(*) from application where company_id=#{company_id}
+</select>
+
+<select id="getOneNoticeApplicantsCount" parameterType="String" resultType="int">
+	select count(*) from application where company_id=#{company_id}
+</select>
+
 <!-- 기업-공고 끝-->
-
-
-<!-- 
-
-<select id="getTotalCount" resultType="int">
-	select count(*) from springboard
-</select>
-
-<select id="getData" parameterType="String" resultType="bdto">
-	select * from springboard where num=#{num}
-</select>
-
-<select id="getMaxNum" resultType="int">
-	select ifnull(max(num),0) from springboard
-</select>
-
-<select id="getList" parameterType="HashMap" resultType="bdto">
-	select * from springboard order by num desc limit #{start},#{perpage}
-</select>
-
-<insert id="insertBoard" parameterType="bdto">
-	insert into springboard (myid,subject,content,uploadfile,writeday) values (#{myid},#{subject},#{content},#{uploadfile},now())
-</insert>
-
-<update id="updateBoard" parameterType="bdto">
-	update springboard set subject=#{subject},content=#{content}
-	<if test="uploadfile!=null">
-	,uploadfile=#{uploadfile}
-	</if>
-	where num=#{num}	
-</update>
-
-<delete id="deleteBoard" parameterType="String">
-	delete from springboard where num=#{num}
-</delete>
-
-
-
- -->
-
 
 </mapper>

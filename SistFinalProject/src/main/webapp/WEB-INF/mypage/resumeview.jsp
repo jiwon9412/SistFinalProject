@@ -216,7 +216,7 @@ a.nav-link{
 						</div>
 					<table style="border-collapse: collapse; margin-bottom: 50px;" class="resume_table">
 							<tr>
-								<td><b>${resumedto.job}</b></td>
+								<td><b>관심산업군 :&nbsp; ${resumedto.job}</b></td>
 							</tr>
 					</table>
 					</div>
@@ -226,10 +226,13 @@ a.nav-link{
 							<h3 class="resume_mini_title">포트폴리오</h3>
 						</div>
 						<div class="mb-4">
-							<c:if test="${resumedto.portfolio!='no'}">
+							<c:if test="${resumedto.portfolio!='no' && resumedto.portfolio!=null}">
 								<span> <a href="download?clip=${resumedto.portfolio}">
 									<span class="glyphicon glyphicon-download-alt"></span>&nbsp;${resumedto.portfolio}</a>
 								</span>
+							</c:if>
+							<c:if test="${resumedto.portfolio=='no' || resumedto.portfolio==null}">
+								첨부된 포트폴리오가 없습니다.
 							</c:if>
 						</div>
 						
