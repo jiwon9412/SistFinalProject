@@ -167,6 +167,8 @@ span.line{
 </head>
 <c:set var="myid" value="${sessionScope.myid }"/>
 <c:set var="logintype" value="${sessionScope.logintype }"/>
+
+
 <body>
 <!-- 상단 타이틀 시작 -->
     <div class="notices-top-box" style="background: url('../images/notices-bg.jpg') no-repeat center center;">
@@ -349,7 +351,15 @@ span.line{
 
 	<tr>
 	  <td colspan="2" align="center" >
+	  <span class="line">
+	  	<span class="glyphicon glyphicon-link link"
+	  	style="font-size: 20px;  vertical-align: middle; color: black; margin-left: 7px; margin-bottom: 7px; cursor: pointer;">
+	  	
+	  	</span>
+	 </span>
 	  <c:if test="${dto.check==0 }">
+	  
+	  
 	  <span class="line">
 		    <span class="glyphicon glyphicon-heart-empty scrap" 
 		    style="font-size: 20px;  vertical-align: middle; color: red; margin-left: 5px; margin-bottom: 5px; cursor: pointer;"
@@ -431,6 +441,38 @@ span.line{
   
 
 </div>
+
+ <!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal-dialog">
+	   
+		<!-- Modal Content -->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<div class="modal-title" id="offer_subject" style="display:inline; width: 650px;" align="center">
+	      	<h4><b>링크공유</b></h4>
+	      	<b>친구들에게 링크를 공유하세요!</b>
+	      	</div>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" id="modal-body" align="center">
+	         
+	         <div id="urlLink" style="border: 1px solid gray; width: 350px; height: 30px; vertical-align: middle" >
+	           
+	         </div>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	 
+	        <button type="button" class="btn btn-info" data-dismiss="modal">닫기</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
   <!-- 카카오맵 -->
 <!-- <div class="kakao" style=" float: left; margin-top: 60px; margin-left: 50px;;
 background-color: #ccc;">
@@ -560,7 +602,13 @@ background-color: #ccc;">
 
 	});
 
-	
+	$("span.link").click(function(){
+		
+		var nowurl = window.location.href;
+		$("#urlLink").html(nowurl);
+		$("#myModal").modal();
+		
+	});
 
 	$("div.godetail").click(function(){
 		
@@ -568,6 +616,9 @@ background-color: #ccc;">
 		
 		location.href="detail?num="+num;
 	});
+	
+	
+	
 	
 	</script>
   
