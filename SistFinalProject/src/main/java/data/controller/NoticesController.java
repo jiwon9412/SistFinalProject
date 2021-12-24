@@ -466,8 +466,14 @@ public class NoticesController {
 			) {
 		
 		ModelAndView mview = new ModelAndView();
+		String user_id = (String) session.getAttribute("myid");
 		//NoticesDto dto = mapper.getNotice(num);
 		NoticesDto dto = mapper.getNoticeInfo(num);
+
+			
+		int check = mapper.checkScrap(user_id, dto.getNum());
+		dto.setCheck(check);
+			
 		
 		//지원자 수 비율
 		int totalAppCnt = mapper.getTotalAppCount(num);
@@ -518,11 +524,11 @@ public class NoticesController {
 		String todayStr = sdf.format(cal.getTime());
 		ArrayList<NoticesDto> hlist = mapper.getHireList(todayStr);
 		//System.out.println(todayStr);
-		String user_id = (String) session.getAttribute("myid");
+		
 		for(NoticesDto hdto : hlist) {
 			
-			int check = mapper.checkScrap(user_id, hdto.getNum());
-			hdto.setCheck(check);
+			int check2 = mapper.checkScrap(user_id, hdto.getNum());
+			hdto.setCheck(check2);
 			
 		}
 		mview.addObject("hlist", hlist);

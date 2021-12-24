@@ -153,6 +153,16 @@ div.intro{
 	align: left;
 }
 
+span.line{
+	border: 1px solid gray;
+	font-size: 25px;
+	border-radius: 100%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+
+
 </style>
 </head>
 <c:set var="myid" value="${sessionScope.myid }"/>
@@ -339,6 +349,21 @@ div.intro{
 
 	<tr>
 	  <td colspan="2" align="center" >
+	  <c:if test="${dto.check==0 }">
+	  <span class="line">
+		    <span class="glyphicon glyphicon-heart-empty scrap" 
+		    style="font-size: 20px;  vertical-align: middle; color: red; margin-left: 5px; margin-bottom: 5px; cursor: pointer;"
+		    num="${dto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </span>
+		    </c:if>
+		    
+		    <c:if test="${dto.check==1 }">
+		    <span class="line">
+		    <span class="glyphicon glyphicon-heart scrapdel"  
+		    style="font-size: 20px;  vertical-align: middle; color: red; margin-left: 5px; margin-bottom: 5px; cursor: pointer;"
+		    num="${dto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </span>
+		    </c:if>
 	    <button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
  		width: 700px; height: 40px; font-size: 10pt; color: white;" 
  		onclick="location.href='apply?notice_num=${dto.num}&company_id=${dto.company_id}&dDay=${dDay }'"><b>지원하기</b></button>
@@ -524,7 +549,7 @@ background-color: #ccc;">
 				
 				//ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
 				tag.attr("class","glyphicon glyphicon-heart-empty scrap");
-				tag.css("color","gray");
+				
 					
 				
 			}
