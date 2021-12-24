@@ -69,9 +69,12 @@ button.perso{
 
 table{
 	margin: 0 auto;
-	
+	 border-spacing: 2px;
+  border-collapse: separate;
 }
-
+table td{
+	width: 300px;
+}
 
 div.noticewrap{
 	margin-top: 30px;
@@ -123,7 +126,7 @@ a:active {
     </div>
     <!-- 상단 타이틀 끝 -->
 
-<table style="width: 1300px;">
+<table >
 <caption class="form-inline">
 <select class="form-control" style="width: 160px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0" id="seltype">
 	<option value="전체">고용선택 전체</option>
@@ -149,10 +152,7 @@ a:active {
     </td>
   
   </c:if>
-  <c:if test="${totalCount<4} }">
-  
-  
-  </c:if>
+ 
   <c:if test="${totalCount>0 }">
   <c:forEach var="ndto" items="${list }" varStatus="i">
   

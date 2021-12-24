@@ -132,7 +132,7 @@ div.com_name{
     <!-- End Top Search -->
 
     <!-- Start Slider -->
-    <div id="slides-shop" class="cover-slides">
+    <div id="slides-shop" class="cover-slides" style="height: 500px;">
         <ul class="slides-container">
             <li class="text-left">
                 <img src="images/banner-01.jpg" alt="">
@@ -295,7 +295,7 @@ div.com_name{
   </table>
 
     <!-- Start Categories  -->
-    <div class="categories-shop">
+    <!-- <div class="categories-shop">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -330,11 +330,11 @@ div.com_name{
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Categories -->
 
     <!-- Start Products  -->
-    <div class="products-box">
+   <!--  <div class="products-box">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -450,11 +450,11 @@ div.com_name{
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Products  -->
 
     <!-- Start Blog  -->
-    <div class="latest-blog">
+    <!-- <div class="latest-blog">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -521,12 +521,12 @@ div.com_name{
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Blog  -->
 
 
     <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
+   <!--  <div class="instagram-box">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
@@ -609,7 +609,7 @@ div.com_name{
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Instagram Feed  -->
 
 
