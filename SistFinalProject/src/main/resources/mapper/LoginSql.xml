@@ -11,8 +11,8 @@
 		select name from user where id = #{id}
 	</select>
 	<insert id="insertUser" parameterType="udto">
-		insert into user (id, pass, name, birth, email, hp, gender, addr)
-		values(#{id}, #{pass}, #{name}, #{birth}, #{email}, #{hp}, #{gender}, #{addr})
+		insert into user (id, pass, name, birth, email, hp, gender, zipcode, addr, addr_detail)
+		values(#{id}, #{pass}, #{name}, #{birth}, #{email}, #{hp}, #{gender}, #{zipcode}, #{addr}, #{addr_detail})
 	</insert>
 	<select id="getIdCheck" parameterType="String" resultType="int">
 		select count(*) from user where id = #{id}
@@ -21,7 +21,8 @@
 		select * from user where id = #{id}	
 	</select>
 	<update id="updateUser" parameterType="udto">
-		update user set name = #{name}, birth = #{birth}, gender = #{gender}, hp = #{hp}, email = #{email}, addr = #{addr} 
+		update user set name = #{name}, birth = #{birth}, gender = #{gender}, hp = #{hp}, email = #{email}, 
+		zipcode = #{zipcode}, addr = #{addr}, addr_detail = #{addr_detail} 
 		where id = #{id}
 	</update>
 	<select id="getAllUser" resultType="udto">
@@ -36,8 +37,8 @@
 		select name from company where id = #{id}
 	</select>
 	<insert id="insertCorp" parameterType="comdto">
-		insert into company (id, pass, name, logo, photo, intro, addr, hp, ceo, employees, establishment, sales, major, insurance, site, industry)
-		values(#{id}, #{pass}, #{name}, #{logo}, #{photo}, #{intro}, #{addr}, #{hp}, #{ceo}, #{employees}, #{establishment}, #{sales}, #{major}, #{insurance}, #{site}, #{industry})
+		insert into company (id, pass, name, logo, photo, intro, zipcode, addr, addr_detail, hp, ceo, employees, establishment, sales, major, insurance, site, industry)
+		values(#{id}, #{pass}, #{name}, #{logo}, #{photo}, #{intro}, #{zipcode}, #{addr}, #{addr_detail}, #{hp}, #{ceo}, #{employees}, #{establishment}, #{sales}, #{major}, #{insurance}, #{site}, #{industry})
 	</insert>
 	<select id="getCorpIdCheck" parameterType="String" resultType="int">
 		select count(*) from company where id = #{id}
@@ -46,9 +47,9 @@
 		select * from company where id = #{id}	
 	</select>
 	<update id="updateCorp" parameterType="comdto">
-		update company set name = #{name}, intro = #{intro}, addr = #{addr}, hp = #{hp}, ceo = #{ceo}, 
-		employees = #{employees}, sales = #{sales}, industry = #{industry}, major = #{major}, insurance = #{insurance},
-		establishment = #{establishment} 
+		update company set name = #{name}, intro = #{intro}, zipcode = #{zipcode}, addr = #{addr}, addr_detail = #{addr_detail} 
+		hp = #{hp}, ceo = #{ceo}, employees = #{employees}, sales = #{sales}, industry = #{industry}, 
+		major = #{major}, insurance = #{insurance}, establishment = #{establishment} 
 		<if test="logo!='no'">
 			, logo = #{logo}
 		</if>

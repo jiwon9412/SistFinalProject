@@ -11,6 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?
 family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript">
 
@@ -36,6 +37,7 @@ $(function () {
 	var ins4 = document.getElementById("ins4").value;
 	var insChk4 = document.getElementById("insChk4").value;
 	
+	//4대보험 값 비교 후 checked 이벤트
 	if(ins1 == insChk1)
 		$("input:checkbox[id='ins1']").prop("checked", true);
 	if(ins2 == insChk2)
@@ -45,8 +47,7 @@ $(function () {
 	if(ins4 == insChk4)
 		$("input:checkbox[id='ins4']").prop("checked", true);
 	
-	var indChk = document.getElementById("indChk").value;
-	
+	//생월 비교 후 selected 이벤트
 	var birthChk2 = document.getElementById("birthChk2").value;
 	$("#birth2 option:eq(" + birthChk2 + ")").prop("selected", true);
 	
@@ -123,9 +124,51 @@ function idnChange(e) {
 		opt.innerHTML = result[x];
 		target.appendChild(opt);
 	}
-	
-	
-	
+}
+
+//카카오 주소 API
+function showPostCode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample4_postcode').value = data.zonecode;
+            document.getElementById("sample4_roadAddress").value = roadAddr;
+
+            var guideTextBox = document.getElementById("guide");
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                guideTextBox.style.display = 'block';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                guideTextBox.style.display = 'block';
+            } 
+        }
+    }).open();
 }
 </script>
 
@@ -213,11 +256,25 @@ function idnChange(e) {
 		</tr>
 		
 		<tr>
-			<th width="150" height="45" style="vertical-align: middle; background-color: #F7F7F7; ">
+			<th rowspan="3" width="150" height="45" style="vertical-align: middle; background-color: #F7F7F7; ">
 				회사주소
 			</th>
 			<td>
-				<input type="text" name="addr" class="form-control" style="width: 400px; height: 30px;" value="${dto.addr }">
+				<input type="text" name="zipcode" id="sample4_postcode" class="form-control" style="width: 100px; height: 30px;" value="${dto.zipcode }"
+				readonly="readonly" onclick="showPostCode()">
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<input type="text" name="addr" id="sample4_roadAddress" class="form-control" style="width: 400px; height: 30px;" value="${dto.addr }"
+				readonly="readonly" onclick="showPostCode()">
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<input type="text" name="addr_detail" class="form-control" style="width: 200px; height: 30px;" value="${dto.addr_detail }">
 			</td>
 		</tr>
 		

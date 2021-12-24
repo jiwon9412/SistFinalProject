@@ -12,9 +12,9 @@ public class CompaniesDto {
 	private String pass;
 	private String name;
 	private String logo;
+	private String zipcode;
 	private String addr;
-	private String addr1;
-	private String addr2;
+	private String addr_detail;
 	private String ceo;
 	private String employees;
 	private String birth1;

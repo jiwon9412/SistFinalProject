@@ -29,8 +29,8 @@ $(function () {
 	//아이디 중복 확인
 	$("#id").blur(function () {
 		
-		var id = $(this).val().trim();
-		if(id.length==0) {
+		var id = $(this).val().trim(); //id값 빈칸 제거
+		if(id.length==0) { //입력안했을시 함수 종료
 			return;
 		}
 		$.ajax({
@@ -68,7 +68,6 @@ function showPostCode() {
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
             
-			
             // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var roadAddr = data.roadAddress; // 도로명 주소 변수
@@ -91,8 +90,6 @@ function showPostCode() {
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('sample4_postcode').value = data.zonecode;
             document.getElementById("sample4_roadAddress").value = roadAddr;
-            
-       		
 
             var guideTextBox = document.getElementById("guide");
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -105,11 +102,9 @@ function showPostCode() {
                 var expJibunAddr = data.autoJibunAddress;
                 guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
                 guideTextBox.style.display = 'block';
-            }
-            
+            } 
         }
     }).open();
-    
 }
 
 </script>
@@ -202,14 +197,12 @@ function showPostCode() {
 		<input type="text" name="zipcode" id="sample4_postcode" class="form-control" onclick="showPostCode()"
 		style="width: 150px; height: 40px;" required="required" placeholder="우편번호" readonly="readonly"><br>
 		
-		<input type="text" name="addr1" id="sample4_roadAddress" class="form-control" onclick="showPostCode()"
+		<input type="text" name="addr" id="sample4_roadAddress" class="form-control" onclick="showPostCode()"
 		style="width: 400px; height: 40px;" required="required" placeholder="도로명주소" readonly="readonly"><br>
 		
-		<input type="text" name="addr2" id="sample4_detailAddress" class="form-control" placeholder="상세주소"
+		<input type="text" name="addr_detail" id="sample4_detailAddress" class="form-control" placeholder="상세주소"
 		style="width: 400px; height: 40px;" required="required">
 		<br>
-		
-		
 		
 		<br><br>
 		<button type="submit" style="width: 400px; height: 40px; color: white; background-color: #40e0d0;

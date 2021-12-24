@@ -24,8 +24,8 @@ public class UserDto {
 	private String hp3;
 	private String gender;
 	private String addr;
-	private String addr1;
-	private String addr2;
+	private String zipcode;
+	private String addr_detail;
 	
 	//position/positionCorp
 	private String num;

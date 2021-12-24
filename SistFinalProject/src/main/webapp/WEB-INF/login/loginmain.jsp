@@ -47,13 +47,15 @@
 
 $(function () {
 	
-	var loginLinks = document.querySelectorAll(".btn-l");
+	//개인회원/기업회원 버튼
+	var loginLinks = document.querySelectorAll(".btn-l"); 
 	
 	window.onload = function() {
 		loginLinks[0].click();
 	}
 	
-	function clickLoginHandler() {
+	//style css active
+	function clickLoginHandler() { 
 		for(var i=0; i<loginLinks.length; i++) {
 			loginLinks[i].classList.remove("btn-active");
 		}
@@ -63,12 +65,10 @@ $(function () {
 	for (var i=0; i<loginLinks.length; i++) {
 		loginLinks[i].addEventListener("click", clickLoginHandler);
 		loginLinks[i].addEventListener("click", function () {
-			//alert($(this).attr("value"));
+			//logintype에 버튼의 value값 저장
 			$("input[name=logintype]").attr("value",$(this).attr("value"));
-			
 		});
 	}
-	
 });
 
 
@@ -100,9 +100,11 @@ $(function () {
 	<span class="user_search" style="margin-top: 5px;">아이디 찾기</span>
 	<br>
 	
-	<div class="sns_login">네이버 로그인</div>
+	<div class="sns_login" style="float: left;">
+		<img alt="" src="${root }/images/naver_login.png" style="width: 190x; height: 45px; margin-top: 2px;">
+	</div>
 	<div class="sns_login" style="float: right;">
-		<img alt="" src="${root }/images/kakao_login.png" width="100px;">
+		<img alt="" src="${root }/images/kakao_login.png" style="width: 190px;">
 	</div>
 	<br><br><br><br>
 	

@@ -121,9 +121,6 @@ public class LoginController {
 		//연락처 형식으로 넣어주기
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
 		
-		//주소 붙여서 저장
-		dto.setAddr(dto.getAddr1() + " " + dto.getAddr2());
-		
 		mapper.insertUser(dto);
 		
 		return "/login/addsuccess";
@@ -204,9 +201,6 @@ public class LoginController {
 		
 		//연락처 형식으로 저장
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
-		
-		//주소 붙여서 저장
-		dto.setAddr(dto.getAddr1() + " " + dto.getAddr2());
 		
 		
 		mapper.insertCorp(dto);
