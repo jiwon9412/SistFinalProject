@@ -16,8 +16,14 @@
 	  <put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
 	
+	<definition name="layout1" template="/WEB-INF/layout/index2.jsp">
+	  	  <put-attribute name="main1" value="/WEB-INF/position/popIntroduce.jsp"/>
+	</definition>
 	
-	
+	<!-- wild card -->
+	<definition name="/1/*/*" extends="layout1">
+	  <put-attribute name="main1" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
 	
 	
 </tiles-definitions>
