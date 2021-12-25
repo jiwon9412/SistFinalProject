@@ -123,6 +123,7 @@ public class PositionController {
 		
 	}
 	
+	
 	//Offer 삭제
 	//실제 학제
 	@GetMapping("/position/delete")
@@ -133,6 +134,7 @@ public class PositionController {
 		
 	}
 	
+	//오퍼 하나 가지고 오기
 	@GetMapping("/position/getOffer")
 	public @ResponseBody HashMap<String, String> getOffer(
 			@RequestParam String user_id, 
@@ -152,5 +154,13 @@ public class PositionController {
 		map.put("content", content);
 		
 		return map;
+	}
+	
+	
+	//개인 이력서 열람
+	@GetMapping("/position/introduce")
+	public String show_introduce(){
+		
+		return "/position/positionIntroduce";
 	}
 }

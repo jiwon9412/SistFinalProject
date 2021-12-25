@@ -12,6 +12,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../css/potision.css">
 
+<style type="text/css">
+
+	.introduce{
+		cursor: pointer;
+	}
+
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -33,7 +41,7 @@
 	<!-- 도착한 Offer 갯수 -->
 	<br>
 	
-	<div class="suggestion">
+	<div class="suggestion" style="margin-bottom: 5%;">
          <div class="title-left">
              <h3 style="display: inline;">포지션 제안</h3>
              
@@ -45,9 +53,9 @@
         <!-- 총갯수에 따른 변화 -->
 		<table id="position-table" style="border-top: #00e1ff">
 			<tr bgcolor="#40e0d0">
-				<th width="100"><center>회원명</center></th>
+				<th width="70"><center>회원명</center></th>
 				<th width="100"><center>직종</center></th>
-				<th width="300"><center>자기소개서</center></th>
+				<th width="180"><center>자기소개서</center></th>
 				<th width="100"><center>포지션 제안</center></th>			
 			</tr>
 			
@@ -56,7 +64,7 @@
 			<tr align="center">
 				<td><b>${user.name }</b></td>
 				<td>${user.job }</td>
-				<td>${user.introduce }</td>
+				<td><span class="introduce" onclick="goIntroduce()">${user.introduce}</span></td>
 				<td>
 					<button type="button" class="btn btn-default btndel" style="width: 100px;">포지션 제안</button>
 				</td>
@@ -64,6 +72,22 @@
 		</c:forEach>
 		</table>
 	</div>	
+
+
+<script type="text/javascript">
+	
+	function goIntroduce(){
+
+		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음		
+		var popupX = (document.body.offsetWidth / 2) - (900 / 2);
+
+		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+		var popupY= (window.screen.height / 2) - (1000 / 2);
+		
+		window.open("pop.jsp","new","width=1000, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+	}	
+	
+</script>
 
 </body>
 </html>

@@ -35,10 +35,14 @@
 		delete from offer where company_id=#{company_id}
 	</delete>
 	
+	
+	<!-- 오퍼 정보 하나 가지고 오기 -->
 	<select id="getOffer" parameterType="HashMap" resultType="odto">
 		select * from offer a where user_id = #{user_id} and company_id = #{company_id}
 	</select>
-	
+
+
+	<!-- 이력서 정보 가지고오게 하기 -->
 	<select id="getAllResume" resultType="udto">
 		select 
 		user.*, 
@@ -49,6 +53,8 @@
 		from user join resume on user.id = resume.user_id
 	</select>
 	
+	
+	<!-- 이력서 하나 가지고 오게 하기 -->
 	<select id="getResume" parameterType="String" resultType="resumedto">
 		select * from resume where num = #{num}
 	</select>
