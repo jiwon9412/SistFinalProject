@@ -158,9 +158,9 @@ public class PositionController {
 	
 	
 	//개인 이력서 열람
-	@GetMapping("/position/introduce")
+	@GetMapping("/position/popIntroduce")
 	public String show_introduce(){
 		
-		return "/position/positionIntroduce";
+		return "position/popIntroduce";
 	}
 }

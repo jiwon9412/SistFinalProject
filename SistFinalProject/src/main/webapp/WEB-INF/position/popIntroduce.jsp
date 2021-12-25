@@ -14,6 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-포지션 인트로듀스
+팝업창입니다.
 </body>
 </html>
