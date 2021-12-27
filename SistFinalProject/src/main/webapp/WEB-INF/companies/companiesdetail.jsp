@@ -124,8 +124,11 @@ button.qual{
 
 <div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
 
-	<p>${dto.addr}</p>
-	<p>${dto.hp}</p>
+	[ 17305 ] <!-- zipcode -->
+	<p>${dto.addr}</p> <!-- addr -->
+	[ 상세주소 ] <!-- addr_detail -->
+	[ 번호 ] <!-- hp -->
+	
 
 </div>
 

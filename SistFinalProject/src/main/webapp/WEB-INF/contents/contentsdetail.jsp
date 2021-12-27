@@ -69,23 +69,5 @@ allowfullscreen></iframe> </div>
 	<span class="glyphicon glyphicon-pushpin job">Job히다TV</span> &nbsp;&nbsp;<b id="anothertxt">내 스펙으로 여의도 입사할 수 있을까?</b>
 </div>
 
-<!-- 더 추가해주던가 ! 해주기이 (위에 복붙한거임) -->
-<div id="condetailblock3">
-	<a href="https://www.youtube.com/watch?v=uv_g0bbC7Oo"><img alt="" src="../images/con01.jpg" id="anotherimg"></a>
-	<span class="glyphicon glyphicon-pushpin job">Job히다TV</span> &nbsp;&nbsp;<b id="anothertxt">#1면접 준비 해보기</b>
-</div>
-<div id="condetailblock3">
-	<a href="https://www.youtube.com/watch?v=0tLTEg-ftvI"><img alt="" src="../images/con02.jpg" id="anotherimg"></a>
-	<span class="glyphicon glyphicon-pushpin job">Job히다TV</span> &nbsp;&nbsp;<b id="anothertxt">취업준비 순서 5단계</b>
-</div>
-<div id="condetailblock3">
-	<a href="https://www.youtube.com/watch?v=33Aw5HG56ro"><img alt="" src="../images/con03.jpg" id="anotherimg"></a>
-	<span class="glyphicon glyphicon-pushpin job">Job히다TV</span> &nbsp;&nbsp;<b id="anothertxt">좋은 중소기업 고르는 방법</b>
-</div>
-<div id="condetailblock3">
-	<a href="https://www.youtube.com/watch?v=WRmCSUyMLsM"><img alt="" src="../images/con04.jpg" id="anotherimg"></a>
-	<span class="glyphicon glyphicon-pushpin job">Job히다TV</span> &nbsp;&nbsp;<b id="anothertxt">내 스펙으로 여의도 입사할 수 있을까?</b>
-</div>
-
 </body>
 </html>
