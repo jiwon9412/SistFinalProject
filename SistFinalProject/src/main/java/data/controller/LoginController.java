@@ -59,16 +59,20 @@ public class LoginController {
 		map.put("pass", pass);
 		
 		int check = 0;
+		String nick = "";
 		
 		if(logintype.equals("개인회원")) {
 			check = mapper.login(map);
+			nick = mapper.getName(id);
 		} else if(logintype.equals("기업회원")){
 			check = mapper.corplogin(map);
+			nick = mapper.getCorpName(id);
 		}
 		
 		if(check==1) {
 			session.setAttribute("myid", id);
 			session.setAttribute("loginok", "yes");
+			session.setAttribute("nick", nick);
 			if(logintype.equals("개인회원")) {
 				session.setAttribute("logintype", "user");
 			} else if (logintype.equals("기업회원")){
@@ -140,7 +144,7 @@ public class LoginController {
 		
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("check", check); // 0 or 1
-			
+		
 		return map;
 	}
 	

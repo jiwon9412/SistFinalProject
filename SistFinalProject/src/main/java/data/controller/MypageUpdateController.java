@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -33,6 +34,8 @@ public class MypageUpdateController {
 	public String updateUserPassCheck(
 			@RequestParam String pass,
 			HttpSession session) {
+		
+		
 		
 		//세션에서 아이디, 로그인 유형
 		String myid = (String)session.getAttribute("myid");

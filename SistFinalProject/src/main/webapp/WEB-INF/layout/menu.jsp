@@ -7,6 +7,8 @@
 <c:set var="root" value="<%=request.getContextPath() %>" />
 <c:set var="loginok" value="${sessionScope.loginok }" />
 <c:set var="myid" value="${sessionScope.myid }" />
+<c:set var="nick" value="${sessionScope.nick }"/>
+<c:set var="logintype" value="${sessionScope.logintype }"/>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -43,13 +45,45 @@ rel="stylesheet">
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <title>Insert title here</title>
+<style type="text/css">
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+</style>
 </head>
 <body>
 <!-- Start Main Top -->
     <header class="main-header">
         <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container" style="height: 100px; margin-top: 10px; ">
+            <div class="container" style="height: 100px; margin-top: 10px; max-width: 1200px;">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,9 +185,28 @@ rel="stylesheet">
                         	</li>
                         <li class="side-menu">
                         <c:if test="${loginok!=null }">
-                        	<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 20px; margin-top:18px;
-							color: white; width: 80px; height: 40px; font-size: 0.9em" onclick="location.href='${root}/login/logoutprocess'"
-						 ><b>로그아웃</b></button>
+                        	<div class="dropdown" style="margin-top: 25px; cursor: pointer;">
+                        	<b style="font-size: 1.1em;">${nick }님</b><span class="glyphicon glyphicon-chevron-right"></span>
+                        	<c:if test="${logintype=='user' }">
+                        		<div class="dropdown-content">
+                        			<a href="${root }/mypage/main">이력서 관리</a>
+                        			<a href="${root }/mypage/applications">입사지원 현황</a>
+                        			<a href="${root }/mypage/scraps">스크랩</a>
+                        			<a href="${root }/position/main">포지션 제안</a>
+                        			<a href="${root }/mypage/updatpassform">개인정보 수정</a>
+                        			<a href="${root }/login/logoutprocess">로그아웃</a>
+                        		</div>
+                        	</c:if>
+                        	<c:if test="${logintype=='corp' }">
+                        		<div class="dropdown-content">
+                        			<a href="${root }/mypage/main">공고 관리</a>
+                        			<a href="${root }/mypage/applicants">지원자 현황</a>
+                        			<a href="${root }/position/main">포지션 제안</a>
+                        			<a href="${root }/mypage/updatpassform">기업정보 수정</a>
+                        			<a href="${root }/login/logoutprocess">로그아웃</a>
+                        		</div>
+                        	</c:if>
+                        	</div>
                         </c:if>
                         <c:if test="${loginok==null }">
                         	<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 20px; margin-top:18px;
