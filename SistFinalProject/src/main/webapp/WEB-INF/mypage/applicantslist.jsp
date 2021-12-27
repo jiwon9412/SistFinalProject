@@ -114,11 +114,11 @@ a.nav-link{
 									<td><a style="color: black;" href="../notices/detail?num=${no.num}">${no.subject}</a></td>
 									<td style="font-size: 0.9em;">${no.period_start} ~ ${no.period_end}</td>
 									<td align="center">${no.personnel}</td>
-									<td align="center"></td>
+									<td align="center">${no.app_cnt}</td>
 									<td>
 										<button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
-										onclick="location.href=#">지원자 리스트 보기</button>
+										data-toggle="modal" data-target="#exampleModal">지원자 목록 보기</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -130,24 +130,46 @@ a.nav-link{
         </div>
     </div>
 
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
-    
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">지원자 목록</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+                        <caption>(공고제목)</caption>
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>이름</th>
+                                    <th>나이</th>
+                                    <th>대학교(전공)</th>
+                                    <th>경력</th>
+                                </tr>
+                            </thead>
+							<tbody>
+							<c:forEach items="${noticesdtolist}" var="no" varStatus="n">
+								<tr>
+									<td align="center">${n.count}</td>
+									<td><a style="color: black;" href="../notices/detail?num=${no.num}">${no.subject}</a></td>
+									<td style="font-size: 0.9em;">${no.period_start} ~ ${no.period_end}</td>
+									<td align="center">${no.personnel}</td>
+									<td align="center">${no.app_cnt}</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #40e0d0;">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

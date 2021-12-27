@@ -28,4 +28,5 @@ public class NoticesDto {
 	private String addr;
 	private String site;
 	private String intro;
+	private String app_cnt; //기업 마이페이지 - 지원자 현황
 }
