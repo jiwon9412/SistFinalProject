@@ -28,6 +28,9 @@ public class LoginController {
 	@Autowired
 	LoginMapper mapper;
 	
+	@Autowired
+	private KaKaoService kakaoService;
+	
 	@GetMapping("/login/main")
 	public String loginform(HttpSession session) {
 		//아이디
@@ -212,8 +215,37 @@ public class LoginController {
 		return "/login/addsuccess";
 	}
 	
-	
-	
-	
+	//카카오 로그인 API
+	@RequestMapping("/login/kakaoLogin")
+    public String home(@RequestParam(value = "code", required = false) String code, 
+    		HttpSession session, 
+    		UserDto dto) throws Exception{
+		
+        System.out.println("#########" + code);
+        String access_Token = kakaoService.getAccessToken(code);
+        System.out.println("###access_Token### : " + access_Token);
+        HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
+        
+        String id = (String)userInfo.get("email");
+        int idx = id.indexOf("@");
+        id = id.substring(0, idx);
+        
+        String nick = (String)userInfo.get("nickname");
+        String email = (String)userInfo.get("email");
+        
+        if(mapper.getIdCheck(id) == 0) {
+        	dto.setId(id);
+            dto.setName(nick);
+            dto.setEmail(email);
+            mapper.insertUser(dto);
+        }
+        
+        session.setAttribute("nick", nick);
+        session.setAttribute("logintype", "user");
+        session.setAttribute("loginok", "yes");
+        session.setAttribute("myid", id);
+        
+        return "/login/tomain";
+    }
 	
 }

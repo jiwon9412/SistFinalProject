@@ -11,6 +11,7 @@ import data.dto.UserDto;
 @Mapper
 public interface LoginMapper {
 	
+	//개인회원
 	public int login(HashMap<String, String> map);
 	public String getName(String id);
 	public void insertUser(UserDto dto);
@@ -19,6 +20,8 @@ public interface LoginMapper {
 	public void updateUser(UserDto dto);
 	public List<UserDto> getAllUser();
 	
+	
+	//기업회원
 	public int corplogin(HashMap<String, String>map);
 	public String getCorpName(String id);
 	public void insertCorp(CompaniesDto comdto);

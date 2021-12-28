@@ -71,6 +71,12 @@ $(function () {
 	}
 });
 
+function kakaoLogin() {
+	var popupX = (document.body.offsetWidth /2) - (200 / 2);
+	var popupY = (document.body.offsetHeight /2) - (200 / 2);
+	window.open("https://kauth.kakao.com/oauth/authorize?client_id=0f410665a17c7a968c70897f67459035&redirect_uri=http://localhost:9003/login/kakaoLogin&response_type=code"
+			, '카카오 로그인', 'left=' +popupX+ ', top=' +popupY+', width=600, height=950, location=no, status=no, scrollbars=no');
+}
 
 </script>
 
@@ -104,7 +110,8 @@ $(function () {
 		<img alt="" src="${root }/images/naver_login.png" style="width: 190x; height: 45px; margin-top: 2px;">
 	</div>
 	<div class="sns_login" style="float: right;">
-		<img alt="" src="${root }/images/kakao_login.png" style="width: 190px;">
+		<img alt="" src="${root }/images/kakao_login.png" style="width: 190px;"
+		onclick="kakaoLogin()">
 	</div>
 	<br><br><br><br>
 	
