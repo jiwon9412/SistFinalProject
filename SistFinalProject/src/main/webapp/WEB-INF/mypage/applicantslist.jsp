@@ -108,17 +108,19 @@ a.nav-link{
                                 </tr>
                             </thead>
 							<tbody>
-							<c:forEach items="${noticesdtolist}" var="no" varStatus="n">
+							<c:forEach items="${noticesdtolist}" var="list" varStatus="n">
 								<tr>
 									<td align="center">${n.count}</td>
-									<td><a style="color: black;" href="../notices/detail?num=${no.num}">${no.subject}</a></td>
-									<td style="font-size: 0.9em;">${no.period_start} ~ ${no.period_end}</td>
-									<td align="center">${no.personnel}</td>
-									<td align="center">${no.app_cnt}</td>
-									<td>
-										<button type="button" class="btn btn-primary" style="background-color: #40e0d0;
+									<td><a style="color: black;" href="../notices/detail?num=${list.num}">${list.subject}</a></td>
+									<td style="font-size: 0.9em;">${list.period_start} ~ ${list.period_end}</td>
+									<td align="center">${list.personnel}</td>
+									<td align="center">${list.app_cnt}</td>
+									<td><button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
-										data-toggle="modal" data-target="#exampleModal">지원자 목록 보기</button>
+										data-toggle="modal" data-target="#exampleModal" data-notifyid="${list.num}"
+										<%-- data-nonnotifyid="${list.NONNOTIFYID }" data-ncontent="${list.NCONTENT }" --%>
+										>
+										지원자 목록 보기</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -153,15 +155,17 @@ a.nav-link{
                                 </tr>
                             </thead>
 							<tbody>
-							<c:forEach items="${noticesdtolist}" var="no" varStatus="n">
+							<%-- <c:forEach items="${applicantsByCompany}" var="list" varStatus="n">
+								<c:if test="${list.notice_num==}">
 								<tr>
 									<td align="center">${n.count}</td>
-									<td><a style="color: black;" href="../notices/detail?num=${no.num}">${no.subject}</a></td>
-									<td style="font-size: 0.9em;">${no.period_start} ~ ${no.period_end}</td>
-									<td align="center">${no.personnel}</td>
-									<td align="center">${no.app_cnt}</td>
+									<td><a style="color: black;" href="../notices/detail?num=${list.num}">${list.subject}</a></td>
+									<td style="font-size: 0.9em;">${list.period_start} ~ ${list.period_end}</td>
+									<td align="center">${list.personnel}</td>
+									<td align="center">${list.app_cnt}</td>
 								</tr>
-							</c:forEach>
+								</c:if>
+							</c:forEach> --%>
 							</tbody>
 						</table>
       </div>
@@ -171,5 +175,17 @@ a.nav-link{
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+ 
+    var NOTIFYID="";
+    
+    $(document).ready(function() {     
+        $('#exampleModal').on('show.bs.modal', function(event) {          
+            NOTIFYID = $(event.relatedTarget).data('notifyid');
+        });
+    });
+</script>
+ 
 </body>
 </html>

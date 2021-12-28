@@ -756,10 +756,14 @@ public class MypageController {
 		String company_id = (String) session.getAttribute("myid");
 		List<NoticesDto> ndtoList = mymapper.getNoticesInfo(company_id);
 		int applicantsCount = mymapper.getTotalNoticesApplicantsCount(company_id);
-		ModelAndView mv = new ModelAndView();
 		
+//		List<UserDto> ndtoList = loginmapper.getUserData(company_id)
+		List<String> applicantsByCompany = mymapper.getApplicantsByCompany(company_id);
+		
+		ModelAndView mv = new ModelAndView();		
 		mv.addObject("noticesdtolist",ndtoList);
 		mv.addObject("applicantsCount",applicantsCount);
+		mv.addObject("applicantsByCompany",applicantsByCompany);
 		mv.setViewName("/mypage/applicantslist");
 		
 		return mv;
