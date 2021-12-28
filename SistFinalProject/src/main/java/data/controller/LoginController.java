@@ -219,8 +219,7 @@ public class LoginController {
 	//카카오 로그인 API
 	@RequestMapping("/login/kakaoLogin")
     public String home(@RequestParam(value = "code", required = false) String code, 
-    		HttpSession session, 
-    		UserDto dto) throws Exception{
+    		HttpSession session) throws Exception{
 		
         System.out.println("#########" + code);
         String access_Token = kakaoService.getAccessToken(code);
@@ -235,6 +234,7 @@ public class LoginController {
         String email = (String)userInfo.get("email");
         
         if(mapper.getIdCheck(id) == 0) {
+        	UserDto dto = new UserDto();
         	dto.setId(id);
             dto.setName(nick);
             dto.setEmail(email);
