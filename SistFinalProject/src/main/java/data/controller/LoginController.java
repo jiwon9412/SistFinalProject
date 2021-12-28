@@ -94,6 +94,7 @@ public class LoginController {
 		session.removeAttribute("myid");
 		session.removeAttribute("loginok");
 		session.removeAttribute("logintype");
+		session.removeAttribute("snspass");
 		
 		return "redirect:main";
 	}
@@ -242,6 +243,7 @@ public class LoginController {
         
         session.setAttribute("nick", nick);
         session.setAttribute("logintype", "user");
+        session.setAttribute("snspass", "yes");
         session.setAttribute("loginok", "yes");
         session.setAttribute("myid", id);
         

@@ -35,8 +35,6 @@ public class MypageUpdateController {
 			@RequestParam String pass,
 			HttpSession session) {
 		
-		
-		
 		//세션에서 아이디, 로그인 유형
 		String myid = (String)session.getAttribute("myid");
 		String logintype = (String)session.getAttribute("logintype");

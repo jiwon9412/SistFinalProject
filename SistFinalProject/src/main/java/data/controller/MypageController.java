@@ -770,7 +770,11 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mypage/updatpassform")
-	public String updateuser() {
+	public String updateuser(HttpSession session) {
+		
+		if(session.getAttribute("snspass")!=null) {
+			return "redirect:/mypage/updateuserform";
+		}
 		
 		return "/mypage/updatepassform";
 	}
