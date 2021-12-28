@@ -118,8 +118,7 @@ a.nav-link{
 									<td><button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
 										data-toggle="modal" data-target="#exampleModal" data-notifyid="${list.num}"
-										<%-- data-nonnotifyid="${list.NONNOTIFYID }" data-ncontent="${list.NCONTENT }" --%>
-										>
+										name="detail_button" value="${list.num}">
 										지원자 목록 보기</button>
 									</td>
 								</tr>
@@ -155,17 +154,17 @@ a.nav-link{
                                 </tr>
                             </thead>
 							<tbody>
-							<%-- <c:forEach items="${applicantsByCompany}" var="list" varStatus="n">
-								<c:if test="${list.notice_num==}">
+							<c:forEach items="${applicantsByCompany}" var="li" varStatus="i" >
+								<c:if test="${li.notice_num eq 5}">
 								<tr>
-									<td align="center">${n.count}</td>
-									<td><a style="color: black;" href="../notices/detail?num=${list.num}">${list.subject}</a></td>
-									<td style="font-size: 0.9em;">${list.period_start} ~ ${list.period_end}</td>
-									<td align="center">${list.personnel}</td>
-									<td align="center">${list.app_cnt}</td>
+									<td align="center">${i.count}</td>
+									<td><a style="color: black;" href="#">${li.notice_num}</a></td>
+									<td>${li.user_id} </td>
+									<td align="center"></td>
+									<td align="center"></td>
 								</tr>
 								</c:if>
-							</c:forEach> --%>
+							</c:forEach>
 							</tbody>
 						</table>
       </div>

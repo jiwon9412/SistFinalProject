@@ -73,8 +73,8 @@
 	select count(*) from application where company_id=#{company_id}
 </select>
 
-<select id="getApplicantsByCompany" parameterType="String" resultType="String">
-	select * from application where company_id=#{company_id}
+<select id="getApplicantsByCompany" parameterType="String" resultType="map">
+	select user_id, notice_num from application where company_id=#{company_id}
 </select>
 
 

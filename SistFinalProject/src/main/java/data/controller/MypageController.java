@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -758,7 +759,7 @@ public class MypageController {
 		int applicantsCount = mymapper.getTotalNoticesApplicantsCount(company_id);
 		
 //		List<UserDto> ndtoList = loginmapper.getUserData(company_id)
-		List<String> applicantsByCompany = mymapper.getApplicantsByCompany(company_id);
+		List<Map<String, String>> applicantsByCompany = mymapper.getApplicantsByCompany(company_id);
 		
 		ModelAndView mv = new ModelAndView();		
 		mv.addObject("noticesdtolist",ndtoList);
@@ -770,11 +771,7 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mypage/updatpassform")
-	public String updateuser(HttpSession session) {
-		
-		if(session.getAttribute("snspass")!=null) {
-			return "redirect:/mypage/updateuserform";
-		}
+	public String updateuser() {
 		
 		return "/mypage/updatepassform";
 	}
