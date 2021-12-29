@@ -118,8 +118,9 @@ a.nav-link{
 									<td><button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
 										data-toggle="modal" data-target="#exampleModal" data-notifyid="${list.num}"
-										name="detail_button" value="${list.num}">
+										name="detail_button" id="detail_button" value="${list.num}">
 										지원자 목록 보기</button>
+										<c:set var="nnn" value=""/>
 									</td>
 								</tr>
 							</c:forEach>
@@ -155,7 +156,7 @@ a.nav-link{
                             </thead>
 							<tbody>
 							<c:forEach items="${applicantsByCompany}" var="li" varStatus="i" >
-								<c:if test="${li.notice_num eq 5}">
+								<c:if test="${li.notice_num eq nnn}">
 								<tr>
 									<td align="center">${i.count}</td>
 									<td><a style="color: black;" href="#">${li.notice_num}</a></td>
@@ -176,13 +177,12 @@ a.nav-link{
 </div>
 
 <script type="text/javascript">
- 
-    var NOTIFYID="";
-    
-    $(document).ready(function() {     
-        $('#exampleModal').on('show.bs.modal', function(event) {          
-            NOTIFYID = $(event.relatedTarget).data('notifyid');
-        });
+    $("#detail_button").click(function() {
+        var notice_num = $(this).val();
+        alert("num: "+notice_num);
+        /* if(${nnn} == true) {
+        	  text.innerHTML = notice_num;
+        } */
     });
 </script>
  
