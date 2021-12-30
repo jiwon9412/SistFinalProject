@@ -161,6 +161,8 @@ public class PositionController {
 	@GetMapping("/position/popIntroduce")
 	public String show_introduce(){
 		
+		
+		
 		return "/1/position/popIntroduce";
 	}
 }

@@ -20,7 +20,8 @@
 		company.name as name,
 		company.major as major,
 		company.logo as logo
-		from offer join company on offer.company_id=company.id
+		from offer join company 
+		on offer.company_id=company.id
 	</select>
 	
 	

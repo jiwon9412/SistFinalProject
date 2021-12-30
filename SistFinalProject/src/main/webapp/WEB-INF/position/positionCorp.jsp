@@ -79,12 +79,12 @@
 	function goIntroduce(){
 
 		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음		
-		var popupX = (document.body.offsetWidth / 2) - (900 / 2);
+		var popupX = (document.body.offsetWidth / 2) - (1200 / 2);
 
 		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 		var popupY= (window.screen.height / 2) - (1000 / 2);
 		
-		window.open("popIntroduce","new","width=1000, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+		window.open("popIntroduce","new","width=1250, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
 	}	
 	
 </script>
