@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>포지션 제안</h2>
-                    <h4>각 인재에서 포지션을 제안할 수 있습니다</h4>
+                    <h4>직군에 따른 포지션을 제안할 수 있습니다</h4>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
 				<td>${user.job }</td>
 				<td><span class="introduce" onclick="goIntroduce('${user.id}')">${user.introduce}</span></td>
 				<td>
-					<button type="button" class="btn btn-default btndel" style="width: 100px;">포지션 제안</button>
+					<button type="button" class="btn btn-default btndel" style="width: 100px;" onclick="insertOffer()">포지션 제안</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -74,8 +74,37 @@
 	</div>	
 
 
+    <!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal-dialog">
+	   
+		<!-- Modal Content -->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<div class="modal-title" id="offer_subject" style="display:inline; width: 650px;"></div>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" id="modal-body">
+	         
+	         
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-info" data-dismiss="modal" style="background-color: #40e0d0"><b>제안하기</b></button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
+
+
+
 <script type="text/javascript">
 	
+	//이력서 페이지 오픈
 	function goIntroduce(user_id){
 
 		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음		
@@ -90,6 +119,14 @@
 		//window.onload로 컨트롤러에 파라미터 전달
 		window.open("popIntroduce?user_id="+user_id,"new","width=1250, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
 	}	
+	
+	
+	//포지션 제안 modal창 오픈
+	function insertOffer(){
+		
+		
+		$("#myModal").modal();
+	}
 	
 </script>
 
