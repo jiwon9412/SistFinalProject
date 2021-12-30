@@ -69,7 +69,7 @@ a.nav-link{
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>~님의 이력서</h2>
+				<h2>${resumedto.name} 님의 이력서</h2>
 			</div>
 		</div>
 	</div>

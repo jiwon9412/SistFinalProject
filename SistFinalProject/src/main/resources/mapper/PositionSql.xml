@@ -61,4 +61,8 @@
 	</select>
 	
 	
+	<!-- Offer 제안 넣기 -->
+	<insert id="insertOffer" parameterType="odto">
+		insert into offer values(#{user_id},#{company_id},#{content},#{notice_num})
+	</insert>	
 </mapper>

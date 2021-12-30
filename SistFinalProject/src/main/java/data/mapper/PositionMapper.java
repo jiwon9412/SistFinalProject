@@ -34,4 +34,7 @@ public interface PositionMapper {
 	
 	//num에 따른 이력서 데이터
 	public MypageResumeDto getResume(String num);
+	
+	//포지션 제안하기 DB에 입력
+	public void insertOffer(OfferDto oDto);
 }
