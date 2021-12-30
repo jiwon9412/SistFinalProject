@@ -1,5 +1,6 @@
 package data.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,9 @@ public class PositionController {
 	
 	@Autowired
 	LoginMapper loginmapper;
+	
+	@Autowired
+	MypageMapper mymapper;
 	
 	
 	//포지션 메인으로 이동
@@ -100,6 +104,7 @@ public class PositionController {
 	}
 	
 	
+	//회사가 개인 회원들 볼 수 있게하기
 	@GetMapping("/position/corp")
 	public ModelAndView postionCorpForm() {
 		
@@ -158,11 +163,98 @@ public class PositionController {
 	
 	
 	//개인 이력서 열람
+	//클릭할 경우 그 개인 아이디로 넘어가야함
 	@GetMapping("/position/popIntroduce")
-	public String show_introduce(){
+	public ModelAndView show_introduce(@RequestParam String user_id){
 		
+		//클릭할 경우 아이디 - 기업으로 로그인된 상태이므로 각 회원 아이디를 가져와야함 - resumedto 얻어오기
+		MypageResumeDto rdto = mymapper.getMypageResume(user_id); 
 		
+		System.out.println(user_id);
+
+		// 자격증 분리 후 리스트에 담기
+		List<String> license1 = new ArrayList<String>();
+		List<String> license2 = new ArrayList<String>();
+		List<String> license3 = new ArrayList<String>();
+
 		
-		return "/1/position/popIntroduce";
+		String[] licenseList = rdto.getLicense().split("\\|");
+		for (int i = 0; i < licenseList.length; i++) {
+			// System.out.println("licenseList["+i+"]"+licenseList[i]);
+			String[] licenseList2 = licenseList[i].split("`");
+			for (int j = 0; j < 1; j++) {
+				// System.out.println("licenseList2[" + j + "]" + licenseList2[j]);
+				license1.add(licenseList2[0]);
+				license2.add(licenseList2[1]);
+				license3.add(licenseList2[2]);
+			}
+		}	
+
+		// 대외활동 분리 후 리스트에 담기
+		List<String> activity1 = new ArrayList<String>();
+		List<String> activity2 = new ArrayList<String>();
+		List<String> activity3 = new ArrayList<String>();
+
+		// System.out.println("getactivity: "+rdto.getactivity());
+		String[] activityList = rdto.getActivity().split("\\|");
+		for (int i = 0; i < activityList.length; i++) {
+			// System.out.println("activityList["+i+"]"+activityList[i]);
+			String[] activityList2 = activityList[i].split("`");
+			for (int j = 0; j < 1; j++) {
+				// System.out.println("activityList2[" + j + "]" + activityList2[j]);
+				activity1.add(activityList2[0]);
+				activity2.add(activityList2[1]);
+				activity3.add(activityList2[2]);
+			}
+		}
+
+		// 경력 분리 후 리스트에 담기
+		List<String> career1 = new ArrayList<String>();
+		List<String> career2 = new ArrayList<String>();
+		List<String> career3 = new ArrayList<String>();
+		List<String> career4 = new ArrayList<String>();
+		List<String> career5 = new ArrayList<String>();
+
+		// System.out.println("getcareer: "+rdto.getcareer());
+		String[] careerList = rdto.getCareer().split("\\|");
+		for (int i = 0; i < careerList.length; i++) {
+			// System.out.println("careerList["+i+"]"+careerList[i]);
+			String[] careerList2 = careerList[i].split("`");
+			for (int j = 0; j < 1; j++) {
+				// System.out.println("careerList2[" + j + "]" + careerList2[j]);
+				career1.add(careerList2[0]);
+				career2.add(careerList2[1]);
+				career3.add(careerList2[2]);
+				career4.add(careerList2[3]);
+				career5.add(careerList2[4]);
+			}
+		}
+
+		String[] hi = rdto.getHighschool().split("`");
+		rdto.setHighschool1(hi[0]);
+		rdto.setHighschool2(hi[1]);
+		rdto.setHighschool3(hi[2]);
+		String[] co = rdto.getCollege().split("`");
+		rdto.setCollege1(co[0]);
+		rdto.setCollege2(co[1]);
+		rdto.setCollege3(co[2]);
+
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("license1", license1);
+		mv.addObject("license2", license2);
+		mv.addObject("license3", license3);
+		mv.addObject("activity1", activity1);
+		mv.addObject("activity2", activity2);
+		mv.addObject("activity3", activity3);
+		mv.addObject("career1", career1);
+		mv.addObject("career2", career2);
+		mv.addObject("career3", career3);
+		mv.addObject("career4", career4);
+		mv.addObject("career5", career5);
+		mv.addObject("resumedto", rdto);
+		mv.setViewName("/1/position/popIntroduce");
+
+		return mv;
 	}
 }

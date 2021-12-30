@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>포지션 제안</h2>
-                    <h4>기업에서 도착한 제안을 확인할 수 있습니다</h4>
+                    <h4>각 인재에서 포지션을 제안할 수 있습니다</h4>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
 			<tr align="center">
 				<td><b>${user.name }</b></td>
 				<td>${user.job }</td>
-				<td><span class="introduce" onclick="goIntroduce()">${user.introduce}</span></td>
+				<td><span class="introduce" onclick="goIntroduce('${user.id}')">${user.introduce}</span></td>
 				<td>
 					<button type="button" class="btn btn-default btndel" style="width: 100px;">포지션 제안</button>
 				</td>
@@ -76,7 +76,7 @@
 
 <script type="text/javascript">
 	
-	function goIntroduce(){
+	function goIntroduce(user_id){
 
 		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음		
 		var popupX = (document.body.offsetWidth / 2) - (1200 / 2);
@@ -84,7 +84,11 @@
 		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 		var popupY= (window.screen.height / 2) - (1000 / 2);
 		
-		window.open("popIntroduce","new","width=1250, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+		//파라미터 검산용
+		console.log(user_id);
+		
+		//window.onload로 컨트롤러에 파라미터 전달
+		window.open("popIntroduce?user_id="+user_id,"new","width=1250, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
 	}	
 	
 </script>

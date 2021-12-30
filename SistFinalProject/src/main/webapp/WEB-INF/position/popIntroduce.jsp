@@ -222,7 +222,9 @@ a.nav-link{
 							</c:if>
 						</div>
 
-					
+						<button type="button" class="btn btn-primary" style="font-size:1.2em; background-color: #40e0d0;
+						border: 0px; border-radius: 20px; width: 110px; height: 50px; font-weight: bold; margin-left: 430px; 
+						margin-top: 60px;" onclick="window.close()">확인</button>
 				</div>
        		</div>
         </form>
