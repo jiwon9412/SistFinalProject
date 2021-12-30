@@ -1,6 +1,8 @@
+<%@page import="data.controller.MypageController"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,12 +117,14 @@ a.nav-link{
 									<td style="font-size: 0.9em;">${list.period_start} ~ ${list.period_end}</td>
 									<td align="center">${list.personnel}</td>
 									<td align="center">${list.app_cnt}</td>
-									<td><button type="button" class="btn btn-primary" style="background-color: #40e0d0;
+										
+									<td>
+										<input type="hidden" id="nonum" name="nonum" value="${list.num}">
+										<button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
 										data-toggle="modal" data-target="#exampleModal" data-notifyid="${list.num}"
 										name="detail_button" id="detail_button" value="${list.num}">
 										지원자 목록 보기</button>
-										<c:set var="nnn" value=""/>
 									</td>
 								</tr>
 							</c:forEach>
@@ -132,18 +136,20 @@ a.nav-link{
         </div>
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">지원자 목록</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">지원자 목록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					 <table class="table">
                         <caption>(공고제목)</caption>
                             <thead>
                                 <tr>
@@ -155,8 +161,16 @@ a.nav-link{
                                 </tr>
                             </thead>
 							<tbody>
+							<tr>
+							<td>
+							<c:out value="${param.nonum}"/>
+							</td>
+							</tr>
 							<c:forEach items="${applicantsByCompany}" var="li" varStatus="i" >
-								<c:if test="${li.notice_num eq nnn}">
+							<c:set var='nnn' value='5'/>
+							<c:set var="search" value="${requestScope['search']}"/>
+								<%-- <c:if test="${fn.contains(li.notice_num, '15')}"> --%>
+								<c:if test="${li.notice_num eq param.nonum}">
 								<tr>
 									<td align="center">${i.count}</td>
 									<td><a style="color: black;" href="#">${li.notice_num}</a></td>
@@ -168,22 +182,74 @@ a.nav-link{
 							</c:forEach>
 							</tbody>
 						</table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #40e0d0;">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal" style="background-color: #40e0d0;">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<script type="text/javascript">
-    $("#detail_button").click(function() {
+	<script type="text/javascript">
+    /* $("#detail_button").click(function() {
         var notice_num = $(this).val();
-        alert("num: "+notice_num);
-        /* if(${nnn} == true) {
-        	  text.innerHTML = notice_num;
-        } */
+        //alert("num: "+notice_num);
+        $("#nonum").val(notice_num);
+        var nonum = $("#nonum").val();
+        alert("nonum: "+nonum);
+        
     });
+     */
+
+    $(document).ready(function() {     
+        $('#exampleModal').on('show.bs.modal', function(event) {          
+            var NOTIFYID = $(event.relatedTarget).data('notifyid');
+            var not = parseInt(NOTIFYID);
+            //alert(not);
+            //alert("NOTIFYID: "+NOTIFYID);
+
+            //var notice_num = $("#detail_button").val();
+            //alert("num: "+notice_num);
+           /*  $("#nonum").val(NOTIFYID);
+            var nonum = $("#nonum").val(); */
+            //alert("nonum: "+nonum);
+            
+			/* var nonum2 = $("#nonum2").val();
+            alert("nonum2: "+nonum2); */
+            /* var s = "";
+			s += "<table class='table'>";
+			s += "<caption>(공고제목)</caption>";
+			s += "<thead>";
+			s += "<tr>";
+			s += "<th>No.</th>";
+			s += "<th>이름</th>";
+			s += "<th>나이</th>";
+			s += "<th>대학교(전공)</th>";
+			s += "<th>경력</th>";
+			s += "</tr>";
+			s += "</thead>";
+			s += "<tbody class='applicant'>";
+			s += "<c:forEach items='${applicantsByCompany}' var='li' varStatus='i'>";
+			s += "<input type='hidden' id='nonum2' name='nonum2' value='${li.notice_num}'>";
+			s += "<c:set var='nnn' value='${";
+			s += not
+			s += "}' />";
+			s += "<c:if test='${fn.contains(li.notice_num,nnn)}'>";
+			s += "<tr>";
+			s += "<td align='center'>${i.count}</td>";
+			s += "<td><a style='color: black;' href='#'>${li.notice_num}</a></td>";
+			s += "<td>${li.user_id}</td>";
+			s += "<td align='center'></td>";
+			s += "<td align='center'></td>";
+			s += "</tr>";
+			s += "</c:if>";
+			s += "</c:forEach>";
+			s += "</tbody>";
+			s += "</table>";
+			$("div.modal-body").html(s); */
+			});
+		});
 </script>
  
 </body>
