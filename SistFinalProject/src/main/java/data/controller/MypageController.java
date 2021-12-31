@@ -770,6 +770,23 @@ public class MypageController {
 		return mv;
 	}
 	
+	//기업- 지원자 목록 보기
+	@GetMapping("/mypage/applicants_list")
+	public ModelAndView applicants_list(HttpSession session) {
+		String company_id = (String) session.getAttribute("myid");
+		int applicantsCount = mymapper.getTotalNoticesApplicantsCount(company_id);
+		
+//		List<UserDto> ndtoList = loginmapper.getUserData(company_id)
+		List<Map<String, String>> applicantsByCompany = mymapper.getApplicantsByCompany(company_id);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("applicantsCount",applicantsCount);
+		mv.addObject("applicantsByCompany",applicantsByCompany);
+		mv.setViewName("/mypage/applicantslist_buttonclick");
+		
+		return mv;
+	}
+	
 	@GetMapping("/mypage/updatpassform")
 	public String updateuser(HttpSession session) {
 		

@@ -123,7 +123,7 @@ a.nav-link{
 										<button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
 										data-toggle="modal" data-target="#exampleModal" data-notifyid="${list.num}"
-										name="detail_button" id="detail_button" value="${list.num}">
+										name="detail_button" id="detail_button" value="${list.num}" onclick="location.href='/mypage/applicants_list'">
 										지원자 목록 보기</button>
 									</td>
 								</tr>
