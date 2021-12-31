@@ -1,0 +1,71 @@
+
+
+/* 아래 채용 리스트 */
+    table{
+	margin: 0 auto;
+	
+}
+    
+div.notice{
+	border-radius: 20px;
+	border: solid 1px gray;
+	width: 250px;
+	height: 400px;
+	
+	margin-top: 30px;
+	
+	
+}
+
+div.godetail{
+	cursor: pointer;
+}
+div.logo>img{
+	border-radius: 20px 20px 0px 0px;
+	width: 250px;
+	height: 200px; 	
+}
+
+div.cinfo{
+	padding-top: 20px;
+	padding-left: 20px;
+	text-align: left;
+	height: 150px;
+	font-size: 14px;
+}
+
+div.period{
+	padding-left: 20px;
+}
+
+
+button.type, button.loc, button.perso{
+	border: solid 1px white;
+	border-radius: 20px;
+	font-size: 0.9em;
+	width: 60px;
+	height: 30px;
+	
+}
+
+button.type{
+	background-color: #87cefa;
+	color: #4169e1    ;
+}
+
+button.loc{
+	background-color: #fffacd    ;
+	color: #deb887   ;
+}
+
+button.perso{
+	background-color: #afeeee   ;
+	color: #3cb371     ;
+}
+
+div.com_name{
+	float: left;
+	margin-right: 180px;
+	color: white;
+	
+}

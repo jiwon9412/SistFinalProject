@@ -22,6 +22,7 @@
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -31,83 +32,17 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <!-- Notices CSS -->
+    <link rel="stylesheet" href="css/mainnotices.css">
+	<!-- Slide CSS -->
+	<link rel="stylesheet" href="css/slidelist.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <style type="text/css">
-    /* 아래 채용 리스트 */
-    table{
-	margin: 0 auto;
-	
-}
     
-div.notice{
-	border-radius: 20px;
-	border: solid 1px gray;
-	width: 250px;
-	height: 400px;
-	
-	margin-top: 30px;
-	
-	
-}
-
-div.godetail{
-	cursor: pointer;
-}
-div.logo>img{
-	border-radius: 20px 20px 0px 0px;
-	width: 250px;
-	height: 200px; 	
-}
-
-div.cinfo{
-	padding-top: 20px;
-	padding-left: 20px;
-	text-align: left;
-	height: 150px;
-	font-size: 14px;
-}
-
-div.period{
-	padding-left: 20px;
-}
-
-
-button.type, button.loc, button.perso{
-	border: solid 1px white;
-	border-radius: 20px;
-	font-size: 0.9em;
-	width: 60px;
-	height: 30px;
-	
-}
-
-button.type{
-	background-color: #87cefa;
-	color: #4169e1    ;
-}
-
-button.loc{
-	background-color: #fffacd    ;
-	color: #deb887   ;
-}
-
-button.perso{
-	background-color: #afeeee   ;
-	color: #3cb371     ;
-}
-
-div.com_name{
-	float: left;
-	margin-right: 180px;
-	color: white;
-	
-}
-    </style>
 
 </head>
 <c:set var="myid" value="${sessionScope.myid }"/>
@@ -293,7 +228,110 @@ div.com_name{
   </tr>
   
   </table>
+  
+  
+  <div class="slide_wrapper">
+    <ul class="slides">
+      
+      <c:forEach var="appdto" items="${applist }" varStatus="i" end="7">
+  	    <li>
+  	    <div class="notice">
+		<div class="godetail" num=${appdto.num }>
+		  <div class="logo">
+		    <img alt="" src="../images/${appdto.photo }">
+		    
+		  </div>
+		  <div class="cinfo">
+		    <b style="font-size: 15px;">${appdto.name }</b> <br>
+		    ${appdto.subject }<br><br>
+		    <button class="type"><b>${appdto.type }</b></button>
+		    <button class="loc"><b>${appdto.location }</b></button>
+		    <button class="perso"><b>${appdto.personnel }명</b></button>
+		  </div>
+		  
+		    
+		 
+		  </div>
+		  
+		  <div class="period">
+		    <hr style="margin-bottom: 5px;">
+		    <b style="color: gray; ">${appdto.period_start } ~ ${appdto.period_end }</b>
+		  
+		    
+		    <c:if test="${appdto.check==0 }">
+		    <span class="glyphicon glyphicon-heart-empty scrap" 
+		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </c:if>
+		    
+		    <c:if test="${appdto.check==1 }">
+		    <span class="glyphicon glyphicon-heart scrapdel" 
+		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
+		    </c:if>
+		  </div>
+		</div>
+        </li>
+      
+      </c:forEach>
+      
+    </ul>
+    <p class="controls">
+      <span class="glyphicon glyphicon-chevron-left pre"></span>
+      <span class="glyphicon glyphicon-chevron-right next"></span>
+    </p>
+  
+  </div>
+  
+  <!-- 임시방편 -->
+  <div style="height: 600px;">
+  
+  </div>
+  
+  <script type="text/javascript">
+  
+  var slides = document.querySelector('.slides');
+  var slide = document.querySelectorAll('.slides li');
+  var currentIdx = 0;
+  var slideCount = slide.length;
+  var preBtn = document.querySelector('.prev');
+  var slideWidth = 250;
+  var slideMargin = 30;
+  var nextBtn = document.querySelector('.next');
+  
+  slides.style.width = (slideWidth+slideMargin)*slideCount - slideMargin + 'px';
+  
+  function moveSlide(num){
+	  slides.style.left = - 280*num + 'px';
+	  currentIdx = num;
+  }  
+  
+  $(".next").click(function(){
+	  if(currentIdx < slideCount-4){
+		  
+		  moveSlide(currentIdx+1); 
+	  }else{
+		  moveSlide(0);
+	  }
+	  
+  });
+  
+  $(".pre").click(function(){
+	  if(currentIdx > 0){
+		  moveSlide(currentIdx-1); 
+	  }else{
+		  moveSlide(slideCount-4);
+	  }
+	  
+  });
+  
 
+ 
+  
+  </script>
+  
+  
+  
     <!-- Start Categories  -->
     <!-- <div class="categories-shop">
         <div class="container">
@@ -670,10 +708,10 @@ div.com_name{
     <!-- End Footer  -->
 
     <!-- Start copyright  -->
-    <div class="footer-copyright">
+   <!--  <div class="footer-copyright">
         <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
             <a href="https://html.design/">html design</a></p>
-    </div>
+    </div> -->
     <!-- End copyright  -->
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

@@ -57,7 +57,7 @@
    
    <select id="getHireList" parameterType="String" resultType="ndto">
       select distinct a.*, b.name, b.photo from company b join notice a on a.period_end<![CDATA[
->
+>=
 ]]> #{today} and b.id=a.company_id order by rand()
    </select>
    

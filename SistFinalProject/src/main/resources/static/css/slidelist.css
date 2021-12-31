@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+
+.slide_wrapper{
+	
+	position: relative;
+	width: 1120px;
+	margin: 0 auto;
+	height: 430px;
+	overflow: hidden;
+	
+}
+
+.slides{
+	
+	position: absolute;
+	left: 0; top: 0;
+	/* width: 2210px; */
+	transition: left 0.5s ease-out;
+}
+
+.slides li:not(:last-child){
+	
+	
+	margin-right: 30px;
+}
+
+.slides li{
+	float: left;
+}
+
+.pre, .next{
+	cursor: pointer;
+}
+
