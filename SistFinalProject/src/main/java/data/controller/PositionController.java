@@ -257,4 +257,9 @@ public class PositionController {
 
 		return mv;
 	}
+	
+	
+	//제안하기 - insert Offer
+	
+	
 }

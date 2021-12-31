@@ -20,6 +20,7 @@
 
 </style>
 
+<c:set var="myid" value="${sessionScope.myid }" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -66,7 +67,7 @@
 				<td>${user.job }</td>
 				<td><span class="introduce" onclick="goIntroduce('${user.id}')">${user.introduce}</span></td>
 				<td>
-					<button type="button" class="btn btn-default btndel" style="width: 100px;" onclick="insertOffer()">포지션 제안</button>
+					<button type="button" class="btn btn-default btndel" style="width: 100px;" onclick="insertOffer('${nick}',' ${user.name}')">포지션 제안</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -87,8 +88,8 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body" id="modal-body">
-	         
-	         
+	      	
+	         <textarea style="width: 100%; height: 100%; border-radius: 10px;"></textarea>
 	      </div>
 	
 	      <!-- Modal footer -->
@@ -122,7 +123,11 @@
 	
 	
 	//포지션 제안 modal창 오픈
-	function insertOffer(){
+	function insertOffer(nick, name){
+		
+		
+		$("#offer_subject").html("<span style='font-size:1.5em;'><b>" + nick + "</b> 에서 <b>"+ name +"</b> 님께 제안드립니다</span>");
+		
 		
 		
 		$("#myModal").modal();
