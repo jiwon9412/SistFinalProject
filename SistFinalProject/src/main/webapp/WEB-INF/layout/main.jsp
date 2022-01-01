@@ -113,6 +113,20 @@
     </div>
     <!-- End Slider -->
 
+<!-- Start Search -->
+<form action="notices/searchlist" method="get">
+	<div class="container" style="margin-top: 30px;">
+		<input type="text" name="search" style="position: relative; outline:none; vertical-align: middle;
+		border: 2px solid #40e0d0; border-radius: 50px; width: 950px; height: 60px; font-size: 15pt; 
+		padding-left: 30px;" placeholder="기업과 직무, 위치를 입력해 보세요">
+        <button type="submit" id="searchgo" style="outline: none; float: right; position: absolute; 
+        margin-left: 10px; background-color: #40e0d0; width: 60px; height: 60px; border: none; 
+        border-radius: 80px; color: white;">
+        	<i class="fa fa-search" style="display: inline; font-size: 20pt;"></i>
+        </button>
+    </div>
+</form>
+<!-- End Search -->
 
 <!-- Start Slide list -->
   <div class="slide_title">
@@ -319,6 +333,7 @@
 	  }
 	  
   });
+  
  
   
   </script>
