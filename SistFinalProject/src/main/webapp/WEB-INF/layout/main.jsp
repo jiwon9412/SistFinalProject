@@ -113,16 +113,23 @@
     </div>
     <!-- End Slider -->
 
-<table style="width: 1100px; margin-top: 30px;" class="deadline">
-  <caption>
-  	<b style="font-size: 18px; color: black">마감 임박 공고</b>
-  	<a href="notices/deadlinelist" style="float: right; "><b>더보기</b></a>
-  </caption>
-    <tr>
-    <c:forEach var="ddto" items="${dlist }" varStatus="i" end="3">
+
+<!-- Start Slide list -->
+  <div class="slide_title">
+    <b style="font-size: 18px; color: black">마감 임박 공고</b>
+    <a href="notices/appcntlist" style="float: right; "><b>더보기</b></a>
+  </div>
+  <div style="position: relative;">
+  <div class="pre_wrap">
+  	<span class="glyphicon glyphicon-chevron-left pre1"></span>
+  </div>
+  <div class="slide_wrapper">
   
-    <td>
-		<div class="notice">
+    <ul class="slides1">
+      
+      <c:forEach var="ddto" items="${dlist }" varStatus="i" end="7">
+  	    <li>
+  	    <div class="notice">
 		<div class="godetail" num=${ddto.num }>
 		  <div class="logo">
 		    <img alt="" src="../images/${ddto.photo }">
@@ -158,79 +165,35 @@
 		    </c:if>
 		  </div>
 		</div>
-    </td>
-    <c:if test="${i.count==8 }">
-    </tr>
-    <tr>
-    </c:if>
-    </c:forEach>
+        </li>
+      
+      </c:forEach>
+      
+    </ul>
     
     
-  </tr>
   
-  </table>
+  </div>
+  <div class="next_wrap">
+  	<span class="glyphicon glyphicon-chevron-right next1"></span>
+  </div>
+  </div>
+  
+ 
   
   <hr width="1100px" align="center" style="margin-top: 30px;">
   
-  <table style="width: 1100px; margin-top: 30px;" class="deadline">
-  <caption>
-  	<b style="font-size: 18px; color: black">지원자가 많은 공고</b>
-  	<a href="notices/appcntlist" style="float: right; "><b>더보기</b></a>
-  </caption>
-    <tr>
-    <c:forEach var="appdto" items="${applist }" varStatus="i" end="3">
   
-    <td>
-		<div class="notice">
-		<div class="godetail" num=${appdto.num }>
-		  <div class="logo">
-		    <img alt="" src="../images/${appdto.photo }">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 15px;">${appdto.name }</b> <br>
-		    ${appdto.subject }<br><br>
-		    <button class="type"><b>${appdto.type }</b></button>
-		    <button class="loc"><b>${appdto.location }</b></button>
-		    <button class="perso"><b>${appdto.personnel }명</b></button>
-		  </div>
-		  
-		    
-		 
-		  </div>
-		  
-		  <div class="period">
-		    <hr style="margin-bottom: 5px;">
-		    <b style="color: gray; ">${appdto.period_start } ~ ${appdto.period_end }</b>
-		  
-		    
-		    <c:if test="${appdto.check==0 }">
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
-		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
-		    </c:if>
-		    
-		    <c:if test="${appdto.check==1 }">
-		    <span class="glyphicon glyphicon-heart scrapdel" 
-		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
-		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
-		    </c:if>
-		  </div>
-		</div>
-    </td>
-    <c:if test="${i.count==8 }">
-    </tr>
-    <tr>
-    </c:if>
-    </c:forEach>
-    
-    
-  </tr>
-  
-  </table>
-  
-  
+  <div class="slide_title">
+    <b style="font-size: 18px; color: black">지원자가 많은 공고</b>
+    <a href="notices/appcntlist" style="float: right; "><b>더보기</b></a>
+  </div>
+  <div style="position: relative;">
+  <div class="pre_wrap">
+  	<span class="glyphicon glyphicon-chevron-left pre"></span>
+  </div>
   <div class="slide_wrapper">
+  
     <ul class="slides">
       
       <c:forEach var="appdto" items="${applist }" varStatus="i" end="7">
@@ -276,13 +239,14 @@
       </c:forEach>
       
     </ul>
-    <p class="controls">
-      <span class="glyphicon glyphicon-chevron-left pre"></span>
-      <span class="glyphicon glyphicon-chevron-right next"></span>
-    </p>
+    
+    
   
   </div>
-  
+  <div class="next_wrap">
+  	<span class="glyphicon glyphicon-chevron-right next"></span>
+  </div>
+  </div>
   <!-- 임시방편 -->
   <div style="height: 600px;">
   
@@ -294,10 +258,8 @@
   var slide = document.querySelectorAll('.slides li');
   var currentIdx = 0;
   var slideCount = slide.length;
-  var preBtn = document.querySelector('.prev');
   var slideWidth = 250;
   var slideMargin = 30;
-  var nextBtn = document.querySelector('.next');
   
   slides.style.width = (slideWidth+slideMargin)*slideCount - slideMargin + 'px';
   
@@ -306,7 +268,7 @@
 	  currentIdx = num;
   }  
   
-  $(".next").click(function(){
+  $("span.next").click(function(){
 	  if(currentIdx < slideCount-4){
 		  
 		  moveSlide(currentIdx+1); 
@@ -316,7 +278,7 @@
 	  
   });
   
-  $(".pre").click(function(){
+  $("span.pre").click(function(){
 	  if(currentIdx > 0){
 		  moveSlide(currentIdx-1); 
 	  }else{
@@ -325,11 +287,43 @@
 	  
   });
   
-
+  var slides1 = document.querySelector('.slides1');
+  var slide1 = document.querySelectorAll('.slides1 li');
+  var currentIdx1 = 0;
+  var slideCount1 = slide1.length;
+  var slideWidth1 = 250;
+  var slideMargin1 = 30;
+  
+  slides1.style.width = (slideWidth1+slideMargin1)*slideCount1 - slideMargin1 + 'px';
+  
+  function moveSlide1(num){
+	  slides1.style.left = - 280*num + 'px';
+	  currentIdx1 = num;
+  }  
+  
+  $("span.next1").click(function(){
+	  if(currentIdx1 < slideCount1-4){
+		  
+		  moveSlide1(currentIdx1+1); 
+	  }else{
+		  moveSlide1(0);
+	  }
+	  
+  });
+  
+  $("span.pre1").click(function(){
+	  if(currentIdx1 > 0){
+		  moveSlide1(currentIdx1-1); 
+	  }else{
+		  moveSlide1(slideCount1-4);
+	  }
+	  
+  });
  
   
   </script>
   
+  <!-- End Slide list -->
   
   
     <!-- Start Categories  -->

@@ -29,7 +29,56 @@
 	float: left;
 }
 
-.pre, .next{
-	cursor: pointer;
+.slides1{
+	
+	position: absolute;
+	left: 0; top: 0;
+	/* width: 2210px; */
+	transition: left 0.5s ease-out;
 }
 
+.slides1 li:not(:last-child){
+	
+	
+	margin-right: 30px;
+}
+
+.slides1 li{
+	float: left;
+}
+
+
+.pre,
+.next,
+.pre1,
+.next1  {
+  cursor: pointer;
+  position: absolute;
+  font-size: 25px;
+  color: #40e0d0;
+}
+
+
+.pre_wrap{
+	position: absolute;
+	left: 160px;
+	top: 200px;
+}
+.next_wrap{
+	position: absolute;
+	right: 200px;
+	top: 200px;
+}
+.pre_wrap,
+.next_wrap{
+	
+	
+	
+}
+
+.slide_title{
+	
+	margin: 0 auto;
+	width: 1100px;
+	margin-top: 30px;
+}
