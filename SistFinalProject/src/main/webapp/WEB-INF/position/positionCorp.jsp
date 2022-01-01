@@ -67,7 +67,7 @@
 				<td>${user.job }</td>
 				<td><span class="introduce" onclick="goIntroduce('${user.id}')">${user.introduce}</span></td>
 				<td>
-					<button type="button" class="btn btn-default btndel" style="width: 100px;" onclick="insertOffer('${nick}',' ${user.name}')">포지션 제안</button>
+					<button type="button" class="btn btn-default btndel" style="width: 100px;" onclick="insertOffer('${nick}',' ${user.name}', '${user.id}')">포지션 제안</button>
 				</td>
 			</tr>
 		</c:forEach>
@@ -88,13 +88,13 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body" id="modal-body">
-	      	
-	         <textarea style="width: 100%; height: 100%; border-radius: 10px;"></textarea>
+	         <textarea style="width: 100%; height: 100%; border-radius: 10px;" id="content"></textarea>
 	      </div>
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-info" data-dismiss="modal" style="background-color: #40e0d0"><b>제안하기</b></button>
+	        <button type="button" class="btn btn-info" data-dismiss="modal" style="background-color: #40e0d0"
+	        onclick="suggest('${myid}')"><b>제안하기</b></button>
 	      </div>
 	
 	    </div>
@@ -119,19 +119,43 @@
 		
 		//window.onload로 컨트롤러에 파라미터 전달
 		window.open("popIntroduce?user_id="+user_id,"new","width=1250, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
-	}	
+	}
 	
 	
 	//포지션 제안 modal창 오픈
-	function insertOffer(nick, name){
+	function insertOffer(nick, name, user_id){
 		
 		
-		$("#offer_subject").html("<span style='font-size:1.5em;'><b>" + nick + "</b> 에서 <b>"+ name +"</b> 님께 제안드립니다</span>");
-		
-		
+		$("#offer_subject").html("<span id='header' style='font-size:1.5em;' user_id='"+user_id+"'><b>" + nick + "</b> 에서 <b>"+ name +"</b> 님께 제안드립니다</span>");
 		
 		$("#myModal").modal();
 	}
+	
+	
+	//모달 내용 insert
+	function suggest(myid){
+		
+		var company_id = myid;
+		var user_id = $("#header").attr("user_id");
+		var content = $("#content").val();
+		
+		console.log(company_id);
+		console.log(user_id);
+		console.log(content);
+		
+			$.ajax({
+					
+				type:"post",
+				//데이터타입 반환값 X라서 일단 text로 그냥해줌
+				dataType:"text",
+				url:"insertOffer",
+				data:{"company_id":company_id,"user_id":user_id,"content":content},
+				success:function(data){
+						
+					document.getElementById("content").value='';
+				}
+			});
+	};	
 	
 </script>
 
