@@ -123,8 +123,8 @@ a.nav-link{
 										<button type="button" class="btn btn-primary" style="background-color: #40e0d0;
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
 										name="detail_button" id="detail_button" value="${list.num}"
-										onclick="window.open('/mypage/applicantslist_detail?notice_n=${list.num}','지원자 목록',
-										'width=600,height=900,location=no,status=no,scrollbars=yes')">
+										onclick="window.open('/mypage/applicantslist_detail?noticeNum=${list.num}','지원자 목록',
+										'width=600,height=600,location=no,status=no,scrollbars=yes')">
 										지원자 목록 보기</button>
 									</td>
 								</tr>

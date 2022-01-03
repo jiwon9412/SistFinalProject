@@ -2,6 +2,8 @@ package data.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -773,17 +775,63 @@ public class MypageController {
 	//기업 - 지원자 현황 - 지원자 목록 보기
 	@GetMapping("/mypage/applicantslist_detail")
 	public ModelAndView applicantslist_detail(HttpSession session,
-			@RequestParam String notice_n) {
+			@RequestParam String noticeNum) {
 		String company_id = (String) session.getAttribute("myid");
 		int applicantsCount = mymapper.getTotalNoticesApplicantsCount(company_id);
 		
-//		List<UserDto> ndtoList = loginmapper.getUserData(company_id)
-		List<Map<String, String>> applicantsByCompany = mymapper.getApplicantsByCompany(company_id);
+		List<MypageResumeDto> applicants_info = mymapper.getInfoByNoticeNum(noticeNum);
+		
+		//대학교 입학,졸업월 생략하고 학교명만 넣기
+		for (int i = 0; i < applicants_info.size(); i++) {
+			String a [] = applicants_info.get(i).getCollege().split("`");
+			applicants_info.get(i).setCollege(a[0]);			
+		}
+
+		//경력 입사,퇴사월 생략하고 회사명,부서,직급만 넣기
+		for (int i = 0; i < applicants_info.size(); i++) {
+			String car = "";
+			String a [] = applicants_info.get(i).getCareer().split("\\|");
+			for (int j = 0; j < a.length; j++) {
+				String b [] = a[j].split("`");
+				car += b[0]+" "+b[1]+" "+b[2];
+				car += ", ";
+			}
+			car = car.substring(0, car.length()-2);
+			applicants_info.get(i).setCareer(car);
+		}
+		
+		//생년월일로 나이 계산해서 넣기
+		for (int i = 0; i < applicants_info.size(); i++) {
+			String zero [] = applicants_info.get(i).getBirth().split("-");
+			if(zero[1].length()==1)
+				zero[1] = "0"+zero[1];
+			else if(zero[2].length()==1)
+				zero[2] = "0"+zero[2];			
+			String birthday = zero[0]+zero[1]+zero[2];
+			
+			LocalDate now = LocalDate.now();
+			LocalDate parsedBirthDate = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("yyyyMMdd"));
+		 
+			int americanAge = now.minusYears(parsedBirthDate.getYear()).getYear(); // (1)
+		 
+			// (2)
+			// 생일이 지났는지 여부를 판단하기 위해 (1)을 입력받은 생년월일의 연도에 더한다.
+			// 연도가 같아짐으로 생년월일만 판단할 수 있다
+			if (parsedBirthDate.plusYears(americanAge).isAfter(now)) { 
+				americanAge = americanAge -1;
+			}
+			String bir = americanAge+"세";
+			applicants_info.get(i).setBirth(bir);
+		}
+		
+		//공고 제목 얻기
+		String noticeSubject = nomapper.getNotice(noticeNum).getSubject();
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("applicantsCount",applicantsCount);
-		mv.addObject("applicantsByCompany",applicantsByCompany);
-		mv.addObject("notice_n",notice_n);
+		mv.addObject("applicants_info",applicants_info);
+		mv.addObject("noticeNum",noticeNum);
+		mv.addObject("noticeSubject",noticeSubject);
 		mv.setViewName("/1/mypage/applicantslist_detail");
 		
 		return mv;

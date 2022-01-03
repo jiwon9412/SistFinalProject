@@ -13,30 +13,25 @@
 </head>
 <body>
 	<table class="table">
-		<caption>(공고제목)</caption>
-		<thead>
+		<caption>${noticeSubject} (공고번호: ${noticeNum})</caption>
+		<thead style="background-color: #40e0d0; color: white;">
 			<tr>
-				<th>No.</th>
-				<th>이름</th>
-				<th>나이</th>
-				<th>대학교(전공)</th>
-				<th>경력</th>
+				<th width="20" class="text-center">No.</th>
+				<th width="70" class="text-center">이름</th>
+				<th width="50" class="text-center">나이</th>
+				<th width="120" class="text-center">대학교(전공)</th>
+				<th class="text-center">경력</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td><c:out value="${param.nonum}" /></td>
-			</tr>
-			<c:forEach items="${applicantsByCompany}" var="li" varStatus="i">
-				<c:if test="${li.notice_num eq notice_n}">
+			<c:forEach items="${applicants_info}" var="li" varStatus="i">
 					<tr>
 						<td align="center">${i.count}</td>
-						<td><a style="color: black;" href="#">${li.notice_num}</a></td>
-						<td>${li.user_id}</td>
-						<td align="center"></td>
-						<td align="center"></td>
+						<td align="center">${li.name}</td>
+						<td align="center">${li.birth}</td>
+						<td align="center">${li.college}</td>
+						<td>${li.career}</td>
 					</tr>
-				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>
