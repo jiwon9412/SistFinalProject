@@ -83,7 +83,7 @@ rel="stylesheet">
     <header class="main-header">
         <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container" style="height: 100px; margin-top: 10px; max-width: 1200px;">
+            <div class="container" style="height: 100px; margin-top: 10px; max-width: 1250px;">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">

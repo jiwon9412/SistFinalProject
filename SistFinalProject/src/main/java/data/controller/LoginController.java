@@ -139,6 +139,7 @@ public class LoginController {
 		//연락처 형식으로 넣어주기
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
 		
+		//패스워드 암호화
 		dto.setPass(passwordEncoder.encode(dto.getPass()));
 		
 		mapper.insertUser(dto);
