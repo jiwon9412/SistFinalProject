@@ -28,7 +28,7 @@
 	<select id="getAllUser" resultType="udto">
 		select * from user
 	</select>
-	<select id="getLogin" resultType="udto">
+	<select id="getUserLogin" resultType="udto">
 		select id, pass from user where id = #{id}
 	</select>
 	
@@ -61,5 +61,8 @@
 		</if>
 		where id = #{id}
 	</update>
+	<select id="getCorpLogin" resultType="comdto">
+		select id, pass from company where id = #{id}
+	</select>
 
 </mapper>

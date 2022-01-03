@@ -61,27 +61,28 @@ public class LoginController {
 			HttpSession session
 			) {
 		
-		UserDto dto = mapper.getLogin(id);
-		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pass", pass);
 		
-		String encodedPassword = passwordEncoder.encode(pass);
-		
 		int check = 0;
 		String nick = "";
+		boolean loginChk = false;
 		
 		if(logintype.equals("개인회원")) {
 			check = mapper.login(map);
+			UserDto udto = mapper.getUserLogin(id);
+			loginChk = passwordEncoder.matches(pass, udto.getPass());
 			nick = mapper.getName(id);
 		} else if(logintype.equals("기업회원")){
 			check = mapper.corplogin(map);
+			CompaniesDto cdto = mapper.getCorpLogin(id);
+			loginChk = passwordEncoder.matches(pass, cdto.getPass());
 			nick = mapper.getCorpName(id);
 		}
 		
 		//if(check==1) {
-		if(passwordEncoder.matches(pass, dto.getPass()) || check == 1) {
+		if(loginChk == true || check == 1) {
 			session.setAttribute("myid", id);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("nick", nick);
