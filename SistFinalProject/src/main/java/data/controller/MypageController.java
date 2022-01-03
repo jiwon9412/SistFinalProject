@@ -770,9 +770,10 @@ public class MypageController {
 		return mv;
 	}
 	
-	//기업- 지원자 목록 보기
-	@GetMapping("/mypage/applicants_list")
-	public ModelAndView applicants_list(HttpSession session) {
+	//기업 - 지원자 현황 - 지원자 목록 보기
+	@GetMapping("/mypage/applicantslist_detail")
+	public ModelAndView applicantslist_detail(HttpSession session,
+			@RequestParam String notice_n) {
 		String company_id = (String) session.getAttribute("myid");
 		int applicantsCount = mymapper.getTotalNoticesApplicantsCount(company_id);
 		
@@ -782,7 +783,8 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("applicantsCount",applicantsCount);
 		mv.addObject("applicantsByCompany",applicantsByCompany);
-		mv.setViewName("/mypage/applicantslist_buttonclick");
+		mv.addObject("notice_n",notice_n);
+		mv.setViewName("/1/mypage/applicantslist_detail");
 		
 		return mv;
 	}

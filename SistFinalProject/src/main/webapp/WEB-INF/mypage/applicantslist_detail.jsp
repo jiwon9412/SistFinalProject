@@ -28,10 +28,7 @@
 				<td><c:out value="${param.nonum}" /></td>
 			</tr>
 			<c:forEach items="${applicantsByCompany}" var="li" varStatus="i">
-				<c:set var='nnn' value='5' />
-				<c:set var="search" value="${requestScope['search']}" />
-				<%-- <c:if test="${fn.contains(li.notice_num, '15')}"> --%>
-				<c:if test="${li.notice_num eq param.nonum}">
+				<c:if test="${li.notice_num eq notice_n}">
 					<tr>
 						<td align="center">${i.count}</td>
 						<td><a style="color: black;" href="#">${li.notice_num}</a></td>
