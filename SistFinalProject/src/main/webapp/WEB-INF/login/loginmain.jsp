@@ -125,8 +125,10 @@ function kakaoLogin() {
 	<span style="font-size: 0.8em; float: right; margin-right: 10px;">좋은 인재를 구하시나요?</span>
 	<br>
 	
+	<br><br>
 
 </form>
 </div>
 </body>
+
 </html>

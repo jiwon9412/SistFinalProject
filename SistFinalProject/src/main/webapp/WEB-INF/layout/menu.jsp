@@ -83,7 +83,7 @@ rel="stylesheet">
     <header class="main-header">
         <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container" style="height: 100px; margin-top: 10px; max-width: 1250px;">
+            <div class="container" style="height: 100px; margin-top: 10px; max-width: 1300px;">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header" >
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,6 +186,12 @@ rel="stylesheet">
                         <li class="side-menu">
                         <c:if test="${loginok!=null }">
                         	<div class="dropdown" style="margin-top: 25px; cursor: pointer;">
+                        	<c:if test="${logintype=='user' }">
+                        		<span style="font-size: 1.1em;" class="glyphicon glyphicon-user"></span>
+                        	</c:if>
+                        	<c:if test="${logintype=='corp' }">
+                        		<span style="font-size: 1.1em;" class="glyphicon glyphicon-briefcase"></span>
+                        	</c:if>
                         	<b style="font-size: 1.1em;">${nick }님</b><span class="glyphicon glyphicon-chevron-right"></span>
                         	<c:if test="${logintype=='user' }">
                         		<div class="dropdown-content">
