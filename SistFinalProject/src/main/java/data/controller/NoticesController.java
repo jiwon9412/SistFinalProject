@@ -157,8 +157,6 @@ public class NoticesController {
 		int start;   //각페이지의 시작번호
 		int perPage=16;  //한페이지에 보여질 글수
 		int perBlock=5;  //한페이지에 보여지는 페이지 개수
-		//int no;
-
 
 		//총페이지개수구하기
 		totalPage = totalCount/perPage + (totalCount%perPage==0?0:1);
@@ -181,7 +179,6 @@ public class NoticesController {
 		start=(currentPage-1)*perPage;
 
 		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
-		
 		
 		List<NoticesDto> list = mapper.getTypeInfo(type, start, perPage);
 		
@@ -225,15 +222,15 @@ public class NoticesController {
 		ModelAndView mview = new ModelAndView();
 		
 		int totalCount = mapper.getSearchCount(search);
-		//페이징처리에 필요한 변수
 		
+		//페이징처리에 필요한 변수		
 		int totalPage;   //총 페이지수
 		int startPage;   //각 블럭의 시작페이지
 		int endPage;   //각 블럭의 끝페이지
 		int start;   //각페이지의 시작번호
 		int perPage=16;  //한페이지에 보여질 글수
 		int perBlock=5;  //한페이지에 보여지는 페이지 개수
-		//int no;
+		
 
 
 		//총페이지개수구하기

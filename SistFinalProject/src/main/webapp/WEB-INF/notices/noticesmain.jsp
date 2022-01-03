@@ -266,18 +266,11 @@ $(document).on('click','span.scrap',function(){
 				
 				//ajax로 스크랩이 되면서 success에서 이거 실행하기
 				tag.attr("class","glyphicon glyphicon-heart scrapdel");
-				tag.css("color","red");
-					
-				
+				tag.css("color","red");				
 			}
 			
 		});
 	}
-	
-	
-	
-	
-
 });
 
 $(document).on('click','span.scrapdel',function(){

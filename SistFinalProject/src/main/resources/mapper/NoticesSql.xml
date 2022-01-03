@@ -57,8 +57,8 @@
    
    <select id="getHireList" parameterType="String" resultType="ndto">
       select distinct a.*, b.name, b.photo from company b join notice a on a.period_end<![CDATA[
->=
-]]> #{today} and b.id=a.company_id order by rand()
+ 	  >=
+	  ]]> #{today} and b.id=a.company_id order by rand()
    </select>
    
    <select id="checkApplication" parameterType="HashMap" resultType="int">
@@ -67,7 +67,8 @@
    
    <select id="getSearchList" parameterType="String" resultType="ndto">
       select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id and 
-      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%') or b.major like concat('%',#{search},'%'))
+      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%')
+       or b.major like concat('%',#{search},'%'))
    </select>
    
    <select id="getSearchCount" parameterType="String" resultType="int">
