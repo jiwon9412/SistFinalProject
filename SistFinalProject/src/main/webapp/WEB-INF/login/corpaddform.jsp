@@ -252,10 +252,10 @@ function showPostCode() {
 	<input type="text" name="zipcode" id="sample4_postcode" class="form-control" onclick="showPostCode()"
 	style="width: 150px; height: 40px;" required="required" placeholder="우편번호" readonly="readonly"><br>
 		
-	<input type="text" name="addr1" id="sample4_roadAddress" class="form-control" onclick="showPostCode()"
+	<input type="text" name="addr" id="sample4_roadAddress" class="form-control" onclick="showPostCode()"
 	style="width: 400px; height: 40px;" required="required" placeholder="도로명주소" readonly="readonly"><br>
 		
-	<input type="text" name="addr2" id="sample4_detailAddress" class="form-control" placeholder="상세주소"
+	<input type="text" name="addr_detail" id="sample4_detailAddress" class="form-control" placeholder="상세주소"
 	style="width: 400px; height: 40px;" required="required">
 	<br>
 	
