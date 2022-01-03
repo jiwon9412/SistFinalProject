@@ -34,7 +34,7 @@
 <!-- 기업 랜덤 리스트 -->
 <table style="width: 1300px;">
 <caption class="form-inline">
-<select class="form-control" style="width: 200px; height: 30px; border-radius: 20px; border: 1px solid #40e0d0;" id="selmajor">
+<select class="form-control" style="width: 200px; height: 30px; border-radius: 20px; border: 1px solid #80cbc4;" id="selmajor">
 	<option value="전체">산업군 전체</option>
 	<option value="서비스업">서비스업</option>
     <option value="금융은행업">금융은행업</option>
@@ -45,8 +45,8 @@
     <option value="기관·협회">기관·협회</option>
 </select>
 &nbsp;&nbsp;&nbsp;
-<button style="background-color: #40e0d0; border: 2px solid #fff; border-radius: 20px;
-width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검색</b></button>
+<button style="background-color: #80cbc4; border: 2px solid #fff; border-radius: 20px;
+width: 90px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검색</b></button>
 </caption>
 	<tr>
 	
@@ -64,9 +64,9 @@ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검�
 		<div class="pic">
 			<img alt="" src="../images/${dto.logo}">
 		</div>
-		<hr>
+		<hr id="comhr">
 		<div class="txt">
-			<p style="color: #40e0d0">${dto.major}</p>
+			<p style="color: #80cbc4">${dto.major}</p>
 			<p style="font-weight: bold;">${dto.name}</p>
 			<p>${dto.addr}</p>
 		</div>
@@ -91,10 +91,10 @@ width: 60px; height: 40px; font-size: 10pt; color: white;" id="btnmajor"><b>검�
 		<div class="pic">
 			<img alt="" src="../images/${hdto.logo}">
 		</div>
-		<hr>
+		<hr id="comhr">
 		<div class="txt">
 			<button class="hirebtn" type="button">채용중</button>
-			<p style="color: #40e0d0">${hdto.major}</p>
+			<p style="color: #80cbc4">${hdto.major}</p>
 			<p style="font-weight: bold;">${hdto.name}</p>
 			<p>${hdto.addr}</p>
 		</div>

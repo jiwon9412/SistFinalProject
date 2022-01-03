@@ -33,10 +33,15 @@
 div.companies{
 	width: 300px;
 	height: 300px;
-	border: 1px solid lightgray;
+	border: 3px solid #eeeeee;
 	border-radius: 20px;
 	margin-bottom: 30px;
 	cursor: pointer;
+}
+
+#comhr{
+	background-color: #e0e0e0;
+	border: 2px dashed #80cbc4;  
 }
 
 div.pic{
@@ -70,7 +75,7 @@ div.wrapper{
 
 div.txt>.hirebtn{
 	
-	background-color:#40e0d0;
+	background-color:#bdbdbd;
     color:#fff;
     font-size: 12px;
     font-weight: 700;

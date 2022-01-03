@@ -60,6 +60,18 @@ button.qual{
 	color: #008080   ;
 }
 /* notice에서 가져온 리스트 css 끝 */
+
+/* p태그에 글자 사이즈랑 볼드 조정 */
+#txt{
+	font-size: 13pt;
+	font-weight: bold;
+}
+
+#txt2{
+	font-size: 12pt;
+	font-weight: bold;
+	color: gray;
+}
 </style>
 
 </head>
@@ -82,26 +94,26 @@ button.qual{
 <br><br>
 
 <!-- 기업소개,이미지 div -->
-<h4 class="companytitle" style="margin-left: 50px;"><b>기업 소개</b></h4>
+<h4 class="companytitle" style="margin-left: 50px;"><span class="glyphicon glyphicon-th-list" style="width: 50px; height: 50px;"></span><b>기업 소개</b></h4>
 				
 <div style="border: 1px solid fff; float: left; width: 20%; height: 400px;">
 
-	<p style="margin-left: 50px;">업계</p>
-	<p style="margin-left: 50px;">대표자</p>
-	<p style="margin-left: 50px;">설립일</p>
-	<p style="margin-left: 50px;">사원수</p>
-	<p style="margin-left: 50px;">매출액</p>
+	<p style="margin-left: 50px;" id="txt">업계</p>
+	<p style="margin-left: 50px;" id="txt">대표자</p>
+	<p style="margin-left: 50px;" id="txt">설립일</p>
+	<p style="margin-left: 50px;" id="txt">사원수</p>
+	<p style="margin-left: 50px;" id="txt">매출액</p>
 
 </div>
 
 <div style="border: 1px solid fff; float: left; width: 40%; height: 400px;">
 
-	<p>${dto.industry}</p>
-	<p>${dto.ceo}</p>
-	<p>${dto.establishment}</p>
-	<p>${dto.employees} 명</p>
-	<p>${dto.sales}</p> <br>
-	<p>#${dto.intro}</p>
+	<p id="txt2">${dto.industry}</p>
+	<p id="txt2">${dto.ceo}</p>
+	<p id="txt2">${dto.establishment}</p>
+	<p id="txt2">${dto.employees} 명</p>
+	<p id="txt2">${dto.sales}</p> <br>
+	<p id="txt2" style="line-height: 30px;">#${dto.intro}</p>
 
 </div>
 
@@ -117,18 +129,16 @@ button.qual{
 <!-- 기업 위치, aqi -->
 <div style="border: 1px solid fff; float: left; width: 20%; height: 300px;">
 
-	<b style="margin-left: 50px;"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px; color: gray; cursor: pointer;"></span></a>기업 위치</b>
+	<p style="margin-left: 50px;" id="txt"><a href="${dto.site}"><span class="glyphicon glyphicon-home" style="width: 50px; height: 50px; color: #80cbc4; cursor: pointer;"></span></a>기업 위치</p>
 	
 
 </div>
 
 <div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
 
-	[ 17305 ] <!-- zipcode -->
-	<p>${dto.addr}</p> <!-- addr -->
-	[ 상세주소 ] <!-- addr_detail -->
-	[ 번호 ] <!-- hp -->
-	
+	<p id="txt2">[ ${dto.zipcode} ]</p>
+	<p id="txt2">${dto.addr}</p>
+	<p id="txt2">${dto.addr_detail}</p>
 
 </div>
 
@@ -141,20 +151,24 @@ button.qual{
 <!-- 4대보험 -->
 <div style="border: 1px solid fff; float: left; width: 20%; height: 300px; background-color: #eeeeee;">
 	<br><br>
-	<p style="margin-left: 50px;"> <span class="glyphicon glyphicon-plus" style="width: 50px; height: 50px;"></span> <b>복리 후생</b></p>
+	<p style="margin-left: 50px;" id="txt"> <span class="glyphicon glyphicon-plus" style="width: 50px; height: 50px;"></span> <b>복리 후생</b></p>
 </div>
 
 <div style="border: 1px solid fff; float: left; width: 80%; height: 300px; background-color: #eeeeee">
 	<br><br>
-	<button type="button" style="width: 300px; height: 200px; border: 5px solid #eeeeee; background-color: white; border-radius: 70px; ">
+	<button type="button" style="width: 300px; height: 200px; background-color: white;
+	border: 5px dashed #80cbc4; border-radius: 70px; ">
 	${dto.insurance}</button>
 	
 	
-	<img alt="" src="../images/${dto.logo}" style="width: 300px; height: 200px; border-radius: 70px; border: 5px solid #eeeeee;">
+	<img alt="" src="../images/${dto.logo}" style="width: 300px; height: 200px; border-radius: 70px; background-color: white;
+	border: 5px dashed #80cbc4;">
 	
-	<img alt="" src="../images/${dto.photo}" style="width: 300px; height: 200px; border-radius: 70px; border: 5px solid #eeeeee;">
+	<img alt="" src="../images/${dto.photo}" style="width: 300px; height: 200px; border-radius: 70px; background-color: white;
+	border: 5px dashed #80cbc4;">
 	
-	<img alt="" src="../images/com_image.jpg" style="width: 300px; height: 200px; border-radius: 70px; border: 5px solid #eeeeee;">
+	<img alt="" src="../images/com_image.jpg" style="width: 300px; height: 200px; border-radius: 70px; background-color: white;
+	border: 5px dashed #80cbc4;">
 </div>
 
 
@@ -170,10 +184,10 @@ button.qual{
 		<div class="pic">
 			<img alt="" src="../images/${hdto.logo}">
 		</div>
-		<hr>
+		<hr id="comhr">
 		<div class="txt">
 			<button class="hirebtn" type="button">채용중</button>
-			<p style="color: #40e0d0">${hdto.major}</p>
+			<p style="color: #80cbc4">${hdto.major}</p>
 			<p style="font-weight: bold;">${hdto.name}</p>
 			<p>${hdto.addr}</p>
 		</div>
