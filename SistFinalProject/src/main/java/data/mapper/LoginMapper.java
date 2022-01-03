@@ -19,6 +19,7 @@ public interface LoginMapper {
 	public UserDto getUserData(String id);
 	public void updateUser(UserDto dto);
 	public List<UserDto> getAllUser();
+	public UserDto getLogin(String id);
 	
 	
 	//기업회원

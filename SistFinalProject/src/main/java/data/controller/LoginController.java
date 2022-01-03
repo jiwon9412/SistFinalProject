@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +31,9 @@ public class LoginController {
 	
 	@Autowired
 	private KaKaoService kakaoService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/login/main")
 	public String loginform(HttpSession session) {
@@ -57,9 +61,13 @@ public class LoginController {
 			HttpSession session
 			) {
 		
+		UserDto dto = mapper.getLogin(id);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pass", pass);
+		
+		String encodedPassword = passwordEncoder.encode(pass);
 		
 		int check = 0;
 		String nick = "";
@@ -72,7 +80,8 @@ public class LoginController {
 			nick = mapper.getCorpName(id);
 		}
 		
-		if(check==1) {
+		//if(check==1) {
+		if(passwordEncoder.matches(pass, dto.getPass()) || check == 1) {
 			session.setAttribute("myid", id);
 			session.setAttribute("loginok", "yes");
 			session.setAttribute("nick", nick);
@@ -128,6 +137,8 @@ public class LoginController {
 		
 		//연락처 형식으로 넣어주기
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
+		
+		dto.setPass(passwordEncoder.encode(dto.getPass()));
 		
 		mapper.insertUser(dto);
 		
@@ -209,6 +220,9 @@ public class LoginController {
 		
 		//연락처 형식으로 저장
 		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
+		
+		//비밀번호 암호화
+		dto.setPass(passwordEncoder.encode(dto.getPass()));
 		
 		
 		mapper.insertCorp(dto);
