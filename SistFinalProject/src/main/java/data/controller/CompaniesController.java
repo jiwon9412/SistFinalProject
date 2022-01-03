@@ -38,7 +38,7 @@ public class CompaniesController {
 		int startPage; //각 블럭의 시작페이지
 		int endPage; //각 블럭의 끝페이지
 		int start; //각 페이지의 시작번호
-		int perPage=8; //한 페이지에 보여질 글의 개수
+		int perPage=16; //한 페이지에 보여질 글의 개수
 		int perBlock=5; //한 페이지에 보여지는 페이지 개수
 
 		//총페이지개수구하기
@@ -169,6 +169,7 @@ public class CompaniesController {
 		ModelAndView mview=new ModelAndView();
 		
 		CompaniesDto dto=mapper.getData(id);
+		
 		
 		//채용중인 기업 리스트
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
