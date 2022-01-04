@@ -228,6 +228,18 @@ a:active {
 						    <hr style="margin-bottom: 5px;">
 						    <b style="color: gray; ">${ndto.period_start } ~ ${ndto.period_end }</b>
 						  
+						    <c:if test="${ndto.check==0 }">
+						    <span class="glyphicon glyphicon-heart-empty scrap" 
+						    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+						    num="${ndto.num }" userId="${myid }" logintype="${logintype }"></span>
+						    </c:if>
+						    
+						    <c:if test="${ndto.check==1 }">
+						    <span class="glyphicon glyphicon-heart scrapdel" 
+						    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+						    num="${ndto.num }" userId="${myid }" logintype="${logintype }"></span>
+						    </c:if>
+						    
 						  </div>
 						</div>
 				    </td>

@@ -18,27 +18,36 @@ tr.ro:hover {
 </head>
 <body>
 	<table class="table">
-		<caption>${noticeSubject} (공고번호: ${noticeNum})</caption>
-		<thead style="background-color: #40e0d0; color: white;">
+		<caption>${noticeSubject} (공고번호: ${noticeNum}) <br></caption>
+		
+		<c:if test="${appcnt==0}">
 			<tr>
-				<th width="20" class="text-center">No.</th>
-				<th width="70" class="text-center">이름</th>
-				<th width="50" class="text-center">나이</th>
-				<th width="120" class="text-center">대학교(전공)</th>
-				<th class="text-center">경력</th>
+				<td><span style="font-size: 2em; font-weight: bold; color: #40e0d0; padding-left: 185px;">지원자가 없습니다.</span></td>
 			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${applicants_info}" var="li" varStatus="i">
-					<tr onclick="goIntroduce('${li.user_id}')" class="ro">
-						<td align="center">${i.count}</td>
-						<td align="center">${li.name}</td>
-						<td align="center">${li.birth}</td>
-						<td align="center">${li.college}</td>
-						<td>${li.career}</td>
-					</tr>
-			</c:forEach>
-		</tbody>
+		</c:if>
+		
+		<c:if test="${appcnt>0}">
+			<thead style="background-color: #40e0d0; color: white;">
+				<tr>
+					<th width="20" class="text-center">No.</th>
+					<th width="70" class="text-center">이름</th>
+					<th width="50" class="text-center">나이</th>
+					<th width="120" class="text-center">대학교(전공)</th>
+					<th class="text-center">경력</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${applicants_info}" var="li" varStatus="i">
+						<tr onclick="goIntroduce('${li.user_id}')" class="ro">
+							<td align="center">${i.count}</td>
+							<td align="center">${li.name}</td>
+							<td align="center">${li.birth}</td>
+							<td align="center">${li.college}</td>
+							<td>${li.career}</td>
+						</tr>
+				</c:forEach>
+			</tbody>
+		</c:if>
 	</table>
 
 	<script type="text/javascript">

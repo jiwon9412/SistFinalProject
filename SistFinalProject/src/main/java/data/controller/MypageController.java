@@ -840,6 +840,14 @@ public class MypageController {
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("currentPage", currentPage);
 
+		String user_id = (String) session.getAttribute("myid"); 
+		  for(NoticesDto dto :list) { 
+			  
+			  int check = nomapper.checkScrap(user_id, dto.getNum()); 
+			  dto.setCheck(check);
+		   
+		  }
+		
 		int scrapCount = mymapper.getScrapCount(myid);
 		mview.addObject("scrapCount",scrapCount);
 		mview.addObject("list", list);
@@ -922,11 +930,15 @@ public class MypageController {
 		//공고 제목 얻기
 		String noticeSubject = nomapper.getNotice(noticeNum).getSubject();
 		
+		//공고당 지원자 수 얻기
+		int appcnt = mymapper.getApplicantsCount(noticeNum);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("applicantsCount",applicantsCount);
 		mv.addObject("applicants_info",applicants_info);
 		mv.addObject("noticeNum",noticeNum);
 		mv.addObject("noticeSubject",noticeSubject);
+		mv.addObject("appcnt",appcnt);
 		mv.setViewName("/1/mypage/applicantslist_detail");
 		
 		return mv;

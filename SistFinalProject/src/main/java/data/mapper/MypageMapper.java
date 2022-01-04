@@ -26,6 +26,7 @@ public interface MypageMapper {
 	public void insertMypageNotice(NoticesDto ndto);
 	public int getNoticeCountByCompany(String company_id);
 	public void updateMypageNotice(NoticesDto ndto);
+	public int getApplicantsCount(String company_id); //공고의 지원자 수
 	public List<NoticesDto> getNoticesInfo(String company_id); //지원자 현황 리스트 출력
 	public int getTotalNoticesApplicantsCount(String company_id); //동회사 모든 공고의 지원자 수 합계
 	public List<Map<String, String>> getApplicantsByCompany(String company_id); //회사별 지원자 아이디와 공고num 얻기
