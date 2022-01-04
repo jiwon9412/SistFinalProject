@@ -84,7 +84,7 @@ span.content, #list_company_name{
 				<tr align="center">
 					<td><b id="list_company_name" onclick="location.href='../companies/detail?id=${list.company_id}'">${list.name}</b></td>
 					<td>${list.major}</td>
-					<td><span class="content" notice_num = ${list.notice_num } content = ${list.content } company_name = ${list.name } logo = ${list.logo }>${list.content}</span></td>
+					<td><span class="content" notice_num = "${list.notice_num }" content = "${list.content }" company_name = "${list.name }" logo = "${list.logo }">${list.content}</span></td>
 					<td>
 						<button type="button" class="btn btn-default btndel" style="width: 100px;" 
 						company_id="${list.company_id}">삭제</button>
@@ -284,6 +284,7 @@ span.content, #list_company_name{
 		$("#modal-body").html(s);
 		
 		var notice_num = $(this).attr("notice_num");
+		alert(notice_num);
 		document.getElementById("notice_check").onclick = function () {
 			location.href="/notices/detail?num="+notice_num;
 		}
