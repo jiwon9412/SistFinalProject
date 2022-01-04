@@ -95,7 +95,7 @@ rel="stylesheet">
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp" style="width: 650px;">
                         <li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/notices/main">채용공고</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/companies/main">기업탐색</a></li>
@@ -176,7 +176,7 @@ rel="stylesheet">
 
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
-                    <ul>
+                    <ul style="width: 400px;">
                     	<li class="search">
                         	<input type="text" style="width: 140px; margin-top: 22px;" class="form-control" id="keyword"></li>
                         <li class="search1">
