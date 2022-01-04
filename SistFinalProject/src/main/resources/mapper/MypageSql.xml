@@ -45,6 +45,30 @@
 <select id="checkResume" parameterType="String" resultType="int">
 	select count(*) from resume where user_id=#{user_id}
 </select>
+
+<select id="getNoticeListByUser" parameterType="HashMap" resultType="ndto">
+	select a.*, b.logo, b.name, b.addr, b.site, b.photo, b.intro 
+	from notice a join company b 
+	on a.company_id=b.id
+	where a.num in (select notice_num from application where user_id=#{user_id})	
+	limit #{start},#{perpage}
+</select>
+
+<select id="getNoticeListByUserScrap" parameterType="HashMap" resultType="ndto">
+	select a.*, b.logo, b.name, b.addr, b.site, b.photo, b.intro 
+	from notice a join company b 
+	on a.company_id=b.id
+	where a.num in (select notice_num from scrap where user_id=#{user_id})	
+	limit #{start},#{perpage}
+</select>
+
+<select id="getAppCount" resultType="int">
+	select count(*) from application where user_id=#{user_id}
+</select>
+
+<select id="getScrapCount" resultType="int">
+	select count(*) from scrap where user_id=#{user_id}
+</select>
 <!-- 개인-이력서 끝 -->
 
 <!-- 기업-공고 시작-->
@@ -90,6 +114,12 @@
 	where a.notice_num=#{notice_num}
 </select>
 
+<select id="getNoticeListByCompany" parameterType="HashMap"	resultType="ndto">
+	select a.*, b.logo, b.name, b.addr, b.site, b.photo,
+	b.intro from notice a join company b on a.company_id=b.id
+	where company_id=#{company_id}
+	limit #{start},#{perpage}
+</select>
 
 
 <!-- 기업-공고 끝-->

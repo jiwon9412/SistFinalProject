@@ -120,9 +120,6 @@ public class MypageController {
 				activity3.add(activityList2[2]);
 			}
 		}
-//		System.out.println("activity1: "+activity1);
-//		System.out.println("activity2: "+activity2);
-//		System.out.println("activity3: "+activity3);
 
 		// 경력 분리 후 리스트에 담기
 		List<String> career1 = new ArrayList<String>();
@@ -145,11 +142,6 @@ public class MypageController {
 				career5.add(careerList2[4]);
 			}
 		}
-//		System.out.println("career1: "+career1);
-//		System.out.println("career2: "+career2);
-//		System.out.println("career3: "+career3);
-//		System.out.println("career4: "+career4);
-//		System.out.println("career5: "+career5);
 
 		String[] hi = rdto.getHighschool().split("`");
 		rdto.setHighschool1(hi[0]);
@@ -181,9 +173,10 @@ public class MypageController {
 	
 	//공고리스트 가기
 	@GetMapping("/mypage/noticelist_map") //NoticesController 복사해오기
-	public ModelAndView noticelist(@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
-			HttpSession session) {
-		//System.out.println("noticelist_map");
+	public ModelAndView noticelist(
+			@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
+			HttpSession session
+			) {
 		
 		ModelAndView mview = new ModelAndView();
 		
@@ -222,7 +215,8 @@ public class MypageController {
 		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
-		List<NoticesDto> list = nomapper.getList(start, perPage);
+		String myid = (String) session.getAttribute("myid");
+		List<NoticesDto> list = mymapper.getNoticeListByCompany(start, perPage, myid);
 		
 		
 		//각 글앞에 붙힐 시작번호 구하기
@@ -236,22 +230,12 @@ public class MypageController {
 		mview.addObject("endPage", endPage);
 		mview.addObject("totalPage", totalPage);
 		mview.addObject("currentPage", currentPage);
-		
-		
-		String myid = (String) session.getAttribute("myid");
-		for(NoticesDto dto : list) {
-			String photo = comapper.getPhoto(dto.getCompany_id());
-			int check = nomapper.checkScrap(myid, dto.getNum());
-			dto.setCheck(check);
-			dto.setPhoto(photo);
-		}
-		
-		
-		mview.addObject("list", list);
-		
+
 		int noticesCount = mymapper.getNoticeCountByCompany(myid);
 		mview.addObject("noticesCount",noticesCount);
+		mview.addObject("list", list);
 		mview.setViewName("/mypage/mynoticelist");
+		
 		return mview;
 	}
 	
@@ -468,9 +452,6 @@ public class MypageController {
 						license3.add(licenseList2[2]);
 					}
 				}
-//				System.out.println("license1: "+license1);
-//				System.out.println("license2: "+license2);
-//				System.out.println("license3: "+license3);		
 
 				// 대외활동 분리 후 리스트에 담기
 				List<String> activity1 = new ArrayList<String>();
@@ -489,9 +470,6 @@ public class MypageController {
 						activity3.add(activityList2[2]);
 					}
 				}
-//				System.out.println("activity1: "+activity1);
-//				System.out.println("activity2: "+activity2);
-//				System.out.println("activity3: "+activity3);
 
 				// 경력 분리 후 리스트에 담기
 				List<String> career1 = new ArrayList<String>();
@@ -514,11 +492,6 @@ public class MypageController {
 						career5.add(careerList2[4]);
 					}
 				}
-//				System.out.println("career1: "+career1);
-//				System.out.println("career2: "+career2);
-//				System.out.println("career3: "+career3);
-//				System.out.println("career4: "+career4);
-//				System.out.println("career5: "+career5);
 				
 		// 학력 분리 후 다시 dto에 담기
 		String[] hi = rdto.getHighschool().split("`");
@@ -741,16 +714,138 @@ public class MypageController {
 	
 	//개인 - 지원 관리
 	@GetMapping("/mypage/applications")
-	public String applications() {
+	public ModelAndView applications(
+			@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
+			HttpSession session
+			) {
 		
-		return "/mypage/notice_applied_list";
+		ModelAndView mview = new ModelAndView();
+		
+		int totalCount = nomapper.getTotalCount();
+		//페이징처리에 필요한 변수
+		
+		int totalPage;   //총 페이지수
+		int startPage;   //각 블럭의 시작페이지
+		int endPage;   //각 블럭의 끝페이지
+		int start;   //각페이지의 시작번호
+		int perPage=16;  //한페이지에 보여질 글수
+		int perBlock=5;  //한페이지에 보여지는 페이지 개수
+		//int no;
+
+
+		//총페이지개수구하기
+		totalPage = totalCount/perPage + (totalCount%perPage==0?0:1);
+
+		//각블럭의 시작페이지
+		//예: 현재페이지:3, startPage:1,endPage:5
+		//예: 현재페이지:6, startPage:6,endPage:10;
+		startPage = (currentPage-1)/perBlock*perBlock+1;
+		endPage = startPage+perBlock-1;
+
+		//만약 총페이지수가 8일경우
+		//2번째 블럭은 start:6, endPage:10되야?
+		//이때는 endpage를 8로 수정해준다
+		if(endPage>totalPage){
+			endPage=totalPage;
+		}
+
+		//각 페이지에서 불러올 시작번호
+		//현재페이지가 1 일경우 start는 1,  2일 경우6...
+		start=(currentPage-1)*perPage;
+
+		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		String myid = (String) session.getAttribute("myid");
+		List<NoticesDto> list = mymapper.getNoticeListByUser(myid, start, perPage);
+		
+		
+		//각 글앞에 붙힐 시작번호 구하기
+		//총글이 20개일경우 1페이지는 20, 2페이지는 15부터
+		//출력해서 1씩 감소해가며 출력할것
+		//no = totalCount-(currentPage-1)*perPage;
+
+		mview.addObject("totalCount", totalCount);
+		mview.addObject("list", list);
+		mview.addObject("startPage", startPage);
+		mview.addObject("endPage", endPage);
+		mview.addObject("totalPage", totalPage);
+		mview.addObject("currentPage", currentPage);
+
+		int appCount = mymapper.getAppCount(myid);
+		mview.addObject("appCount",appCount);
+		mview.addObject("list", list);
+		mview.setViewName("/mypage/notice_applied_list");
+		
+		return mview;
 	}
 	
 	//개인 - 스크랩 공고
 	@GetMapping("/mypage/scraps")
-	public String scraps() {
+	public ModelAndView scraps(
+			@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
+			HttpSession session
+			) {
 		
-		return "/mypage/notice_scrapped_list";
+		ModelAndView mview = new ModelAndView();
+		
+		int totalCount = nomapper.getTotalCount();
+		//페이징처리에 필요한 변수
+		
+		int totalPage;   //총 페이지수
+		int startPage;   //각 블럭의 시작페이지
+		int endPage;   //각 블럭의 끝페이지
+		int start;   //각페이지의 시작번호
+		int perPage=16;  //한페이지에 보여질 글수
+		int perBlock=5;  //한페이지에 보여지는 페이지 개수
+		//int no;
+
+
+		//총페이지개수구하기
+		totalPage = totalCount/perPage + (totalCount%perPage==0?0:1);
+
+		//각블럭의 시작페이지
+		//예: 현재페이지:3, startPage:1,endPage:5
+		//예: 현재페이지:6, startPage:6,endPage:10;
+		startPage = (currentPage-1)/perBlock*perBlock+1;
+		endPage = startPage+perBlock-1;
+
+		//만약 총페이지수가 8일경우
+		//2번째 블럭은 start:6, endPage:10되야?
+		//이때는 endpage를 8로 수정해준다
+		if(endPage>totalPage){
+			endPage=totalPage;
+		}
+
+		//각 페이지에서 불러올 시작번호
+		//현재페이지가 1 일경우 start는 1,  2일 경우6...
+		start=(currentPage-1)*perPage;
+
+		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		String myid = (String) session.getAttribute("myid");
+		List<NoticesDto> list = mymapper.getNoticeListByUserScrap(myid, start, perPage);
+		
+		
+		//각 글앞에 붙힐 시작번호 구하기
+		//총글이 20개일경우 1페이지는 20, 2페이지는 15부터
+		//출력해서 1씩 감소해가며 출력할것
+		//no = totalCount-(currentPage-1)*perPage;
+
+		mview.addObject("totalCount", totalCount);
+		mview.addObject("list", list);
+		mview.addObject("startPage", startPage);
+		mview.addObject("endPage", endPage);
+		mview.addObject("totalPage", totalPage);
+		mview.addObject("currentPage", currentPage);
+
+		int scrapCount = mymapper.getScrapCount(myid);
+		mview.addObject("scrapCount",scrapCount);
+		mview.addObject("list", list);
+		mview.setViewName("/mypage/notice_scrapped_list");
+		
+		return mview;
 	}
 	
 	//기업- 지원자 현황 가기

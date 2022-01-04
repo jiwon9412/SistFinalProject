@@ -45,11 +45,12 @@ rel="stylesheet">
 	color: #40e0d0;
 }
 
-.resume_table tr{
+.resume_table tr {
 	height: 35px;
 }
+
 ul.mypage_category {
-　　　list-style-type: none;
+	　　　list-style-type: none;
 	text-align: center;
 }
 
@@ -57,9 +58,100 @@ li.mypage_category {
 	display: inline-block;
 	font-weight: bold;
 }
-a.nav-link{
-	color: white;	
+
+a.nav-link {
+	color: white;
 }
+
+div.notice {
+	border-radius: 20px;
+	border: solid 1px gray;
+	width: 250px;
+	height: 400px;
+	margin-top: 30px;
+}
+
+div.godetail {
+	cursor: pointer;
+}
+
+div.logo>img {
+	border-radius: 20px 20px 0px 0px;
+	width: 250px;
+	height: 200px;
+}
+
+div.cinfo {
+	padding-top: 20px;
+	padding-left: 20px;
+	text-align: left;
+	height: 140px;
+}
+
+div.period {
+	padding-left: 20px;
+}
+
+button {
+	border: solid 1px white;
+	border-radius: 20px;
+	font-size: 3px;
+	width: 50px;
+	height: 30px;
+}
+
+button.type {
+	background-color: #87cefa;
+	color: #4169e1;
+}
+
+button.loc {
+	background-color: #fffacd;
+	color: #deb887;
+}
+
+button.perso {
+	background-color: #afeeee;
+	color: #3cb371;
+}
+
+table {
+	margin: 0 auto;
+	border-spacing: 2px;
+	border-collapse: separate;
+}
+
+table td {
+	width: 300px;
+}
+
+div.noticewrap {
+	margin-top: 30px;
+}
+
+select option {
+	font-size: 16px;
+	/* font-weight: bolder;
+	color: #40e0d0;  */
+	/* font-family: Gamja Flower; */
+}
+
+/* a.hover{
+	color: black;
+	text-decoration: none;
+}
+a:link {
+	color: gray;
+    text-decoration: none;
+} */
+
+/* a:visited {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+} */
 </style>
 
 <title>Insert title here</title>
@@ -107,14 +199,59 @@ a.nav-link{
 			</c:if>
 			
 			<c:if test="${noticesCount>0}">
-				<span style="float: right;">${noticesCount} 개의 공고를 등록하셨습니다.</span>
-				
-				<br><br>공고리스트는 나중에 채용공고 부분 완성되면 복붙할 예정~~
+				<span style="float: right; padding-right: 32px;">${noticesCount} 개의 공고를 등록하셨습니다.</span>
+				<br><br>
+				<table >
+				  <tr>
+				 
+				  <c:if test="${totalCount>0 }">
+				  <c:forEach var="ndto" items="${list }" varStatus="i">
+				  
+				    <td>
+						<div class="notice">
+						<div class="godetail" num=${ndto.num }>
+						  <div class="logo">
+						    <img alt="" src="../images/${ndto.photo }">
+						    
+						  </div>
+						  <div class="cinfo">
+						    <b style="font-size: 1.1em;">${ndto.name }</b> <br>
+						    ${ndto.subject }<br><br>
+						   
+						    <button class="type"><b>${ndto.type }</b></button>
+						    <button class="loc"><b>${ndto.location }</b></button>
+						    <button class="perso"><b>${ndto.personnel }명</b></button>
+						    
+						  </div>
+						  </div>
+						  <div class="period">
+						    <hr style="margin-bottom: 5px;">
+						    <b style="color: gray; ">${ndto.period_start } ~ ${ndto.period_end }</b>
+						  
+						  </div>
+						</div>
+				    </td>
+				    <c:if test="${i.count%4==0 }">
+				    </tr>
+				    <tr>
+				    </c:if>
+				    </c:forEach>
+				    </c:if>
+				    
+				  </tr>
+				</table>
 			</c:if>
         </div>
         </form>
     </div>
-    <!-- End Cart -->
 
+<script type="text/javascript">
+$("div.godetail").click(function(){
+	
+	var num = $(this).attr("num");
+	
+	location.href="${root}/notices/detail?num="+num;
+});
+</script>
 </body>
 </html>

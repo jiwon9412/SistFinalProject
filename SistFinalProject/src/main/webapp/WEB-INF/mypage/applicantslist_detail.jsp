@@ -8,7 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
+<style type="text/css">
+tr.ro:hover {
+	background-color: lightyellow;
+	cursor: pointer;
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,7 +30,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${applicants_info}" var="li" varStatus="i">
-					<tr>
+					<tr onclick="goIntroduce('${li.user_id}')" class="ro">
 						<td align="center">${i.count}</td>
 						<td align="center">${li.name}</td>
 						<td align="center">${li.birth}</td>
@@ -35,5 +40,25 @@
 			</c:forEach>
 		</tbody>
 	</table>
+
+	<script type="text/javascript">
+	
+	//이력서 페이지 오픈
+	function goIntroduce(user_id){
+
+		//&nbsp;만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음		
+		var popupX = (document.body.offsetWidth / 2) - (1200 / 2);
+
+		//&nbsp;만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+		var popupY= (window.screen.height / 2) - (1000 / 2);
+		
+		//파라미터 검산용
+		console.log(user_id);
+		
+		//window.onload로 컨트롤러에 파라미터 전달
+		window.open("/position/popIntroduce?user_id="+user_id,"new","width=1250, height=1000, left="+ popupX +", top="+ popupY +", resizable=no, scrollbars=no, status=no, location=no, directories=no;");
+	}
+
+	</script>
 </body>
 </html>
