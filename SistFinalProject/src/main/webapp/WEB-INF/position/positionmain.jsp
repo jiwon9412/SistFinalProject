@@ -282,7 +282,7 @@ span.content, #list_company_name{
 		$("#modal-body").html(s);
 		
 		var notice_num = $(this).attr("notice_num");
-		alert(notice_num);
+		/* alert(notice_num); */
 		document.getElementById("notice_check").onclick = function () {
 			location.href="/notices/detail?num="+notice_num;
 		}
