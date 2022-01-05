@@ -121,9 +121,7 @@ span.content, #list_company_name{
 												
 												<div class="txt">
 													<p>${dto.major}</p>
-										
-														<!-- 채용중이면 보이게 , 채용중이 아니면 안보이게 ??????-->
-														<button class="jobs-tag">테스트</button>			
+												
 														<p style="font-weight: bold;">${dto.name}</p>
 														<p>${dto.addr}</p>
 												</div>
