@@ -102,6 +102,7 @@ rel="stylesheet">
                         <li class="nav-item"><a class="nav-link" href="${root }/mypage/main">마이페이지</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/contents/main">콘텐츠</a></li>
                         <li class="nav-item"><a class="nav-link" href="${root }/position/main">포지션제안</a></li>
+                        
                         <!-- <li class="dropdown megamenu-fw">
                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
