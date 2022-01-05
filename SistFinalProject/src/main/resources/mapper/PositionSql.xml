@@ -13,7 +13,6 @@
 	<!-- !!!조인문 작성완료!!! -->
 	<select id="getAllOffers" parameterType="String" resultType="odto">
 		select
-		offer.user_id as user_id,
 		offer.company_id as company_id,
 		offer.notice_num as notice_num,
 		offer.content as content,
@@ -21,7 +20,7 @@
 		company.major as major,
 		company.logo as logo
 		from offer join company 
-		on offer.company_id=company.id
+		on offer.company_id=company.id and user_id=#{myid}
 	</select>
 	
 	
