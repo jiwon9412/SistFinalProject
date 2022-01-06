@@ -130,7 +130,7 @@
 </form>
 <!-- End Search -->
 
-<!-- Start Slide list -->
+<!-- Start Slide Notice List -->
   <div class="slide_title">
     <b style="font-size: 18px; color: black">마감 임박 공고</b>
     <a href="notices/appcntlist" style="float: right; "><b>더보기</b></a>
@@ -263,14 +263,59 @@
   	<span class="glyphicon glyphicon-chevron-right next"></span>
   </div>
   </div>
+  <!-- End Slide Notice List -->
+  <hr width="1100px" align="center" style="margin-top: 30px;">
+  <!-- Start Slide Company List -->
+  <div class="slide_title">
+    <b style="font-size: 18px; color: black">채용중인 기업</b>
+    <a href="companies/main" style="float: right; "><b>더보기</b></a>
+  </div>
+  <div style="position: relative; height: 320px;">
+  <div class="pre_wrap">
+  	<span class="glyphicon glyphicon-chevron-left pre2"></span>
+  </div>
+  <div class="slide_wrapper" style="margin-top: 20px;">
   
+    <ul class="slides2">
+      
+      <c:forEach var="comdto" items="${comlist }" varStatus="i" end="7">
+  	    <li>
+  	    	<div class="companies" id=${comdto.id}>
+				<div class="pic">
+					<img alt="" src="../images/${comdto.logo}">
+				</div>
+				<hr id="comhr">
+				<div class="txt">
+					<p style="color: #80cbc4">${comdto.major}</p>
+					<p style="font-weight: bold;">${comdto.name}</p>
+					<p>${comdto.addr}</p>
+				</div>
+			</div>
+        </li>
+      
+      </c:forEach>
+      
+    </ul>
+    
+    
+  
+  </div>
+  <div class="next_wrap">
+  	<span class="glyphicon glyphicon-chevron-right next2"></span>
+  </div>
+  </div>
+  
+<!-- End Slide Company List -->
+  
+  
+  <!-- Start Contents Div -->
   <div class="contents_wrap form-inline">
   	<div class="intro">
   		<h2><b>취준생에게 필요한 커리어 정보</b></h2>
   		<br>
   		<b>취업에 필요한 정보가 필요하세요?<br>
-  		Job히다 에서 제공하는 다양한 커리어 팁<br>
-  		취준생들을 위한 꿀팁!! 콘텐츠에서 확인하세요!<br><br>
+  		Job히다 에서 제공하는 다양한 커리어 팁과
+  		취준생들을 위한 꿀 영상들!! 콘텐츠에서 확인하세요!<br><br>
   		<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 15px;
 		color: white; width: 160px; height: 40px; font-size: 0.9em" onclick="location.href='contents/main'"
 		><b>콘텐츠 바로가기</b></button>
@@ -281,12 +326,16 @@
  	 </div>
   	
   </div>
+  <!-- End Contents Div -->
   
+ 
+  
+<!-- Start Position Div -->
    <div class="position_wrap form-inline">
    <div class="imgs">
  	 <img alt="" src="images/mainposition5.png" style="width: 340px;">
  	 </div>
-  	<div class="intro">
+  	<div class="intro1">
   		<h2><b>포지션 제안 확인</b></h2>
   		<br>
   		<b>기업으로 부터 제안을 받고 싶으신가요?<br>
@@ -300,7 +349,7 @@
  	 
   	
   </div>
-  
+<!-- End Position Div -->  
   <!-- 임시방편 -->
   <div style="height: 600px;">
   
@@ -485,6 +534,45 @@ $("span.pre1").click(function(){
 	  
 });
 
+var slides2 = document.querySelector('.slides2');
+var slide2 = document.querySelectorAll('.slides2 li');
+var currentIdx2 = 0;
+var slideCount2 = slide2.length;
+var slideWidth2 = 300;
+var slideMargin2 = 95;
+
+slides2.style.width = (slideWidth2+slideMargin2)*slideCount2 - slideMargin2 + 'px';
+
+function moveSlide2(num){
+	  slides2.style.left = - 395*num + 'px';
+	  currentIdx2 = num;
+}  
+
+$("span.next2").click(function(){
+	  if(currentIdx2 < slideCount2-4){
+		  
+		  moveSlide2(currentIdx2+1); 
+	  }else{
+		  moveSlide2(0);
+	  }
+	  
+});
+
+$("span.pre2").click(function(){
+	  if(currentIdx2 > 0){
+		  moveSlide2(currentIdx2-1); 
+	  }else{
+		  moveSlide2(slideCount2-4);
+	  }
+	  
+});
+
+$("div.companies").click(function(){
+	
+	var id = $(this).attr("id");
+	
+	location.href="companies/detail?id="+id;
+});
 </script>
 </body>
 

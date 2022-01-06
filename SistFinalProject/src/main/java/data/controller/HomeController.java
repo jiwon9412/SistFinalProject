@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import data.dto.CompaniesDto;
 import data.dto.NoticesDto;
+import data.mapper.CompaniesMapper;
 import data.mapper.NoticesMapper;
 
 @Controller
@@ -20,6 +22,8 @@ public class HomeController {
 	
 	@Autowired
 	NoticesMapper nmapper;
+	@Autowired
+	CompaniesMapper cmapper;
 	
 	@GetMapping("/")
 	public ModelAndView home(
@@ -37,6 +41,7 @@ public class HomeController {
 		
 		ArrayList<NoticesDto> dlist = nmapper.getDeadlineList(today);
 		ArrayList<NoticesDto> applist = nmapper.getAppCntList(today);
+		ArrayList<CompaniesDto> comlist = cmapper.getHireListForMain(today);
 		 for(NoticesDto ddto :dlist) { 
 			  
 			  int check = nmapper.checkScrap(user_id, ddto.getNum()); 
@@ -51,6 +56,7 @@ public class HomeController {
 		  }
 		mview.addObject("dlist", dlist);
 		mview.addObject("applist", applist);
+		mview.addObject("comlist", comlist);
 		
 		mview.setViewName("/layout/main");
 		return mview;

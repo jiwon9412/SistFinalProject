@@ -33,4 +33,7 @@ public interface CompaniesMapper {
 	
 	//notice 단일 데이터조회
 	public NoticesDto getOneNotice(String num);
+	
+	//메인페이지에 나타날 채용 중인 기업리스트
+	public ArrayList<CompaniesDto> getHireListForMain(String todeay);
 }
