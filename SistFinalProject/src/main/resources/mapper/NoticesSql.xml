@@ -76,6 +76,14 @@
       (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%') or b.major like concat('%',#{search},'%'))
    </select>
    
+   <!-- 전체 텍스트 검색 활용 -->
+   <select id="getGoodSearchList" parameterType="String" resultType="ndto">
+   	  select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id 
+   	  and match(b.name) against (concat('*',#{search},'*') in boolean mode)
+   	   or match(a.location) against (concat('*',#{search},'*') in boolean mode)
+   	   or match(b.major) against (concat('*',#{search},'*') in boolean mode)
+   </select>
+   
    
    <!-- 공고 지원자 수 -->
    <select id="getTotalAppCount" parameterType="String" resultType="int">

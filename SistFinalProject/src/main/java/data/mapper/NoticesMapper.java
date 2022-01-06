@@ -37,6 +37,9 @@ public interface NoticesMapper {
 	public ArrayList<NoticesDto> getSearchList(String search);
 	public int getSearchCount(String search);
 	
+	//전체 텍스트 활용 검색
+	public ArrayList<NoticesDto> getGoodSearchList(String search);
+	
 	//채용중인 공고리스트 수
 	public int getHireCnt(String today);
 	
