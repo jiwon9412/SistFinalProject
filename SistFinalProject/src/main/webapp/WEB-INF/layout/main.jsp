@@ -283,6 +283,9 @@
   </div>
   
    <div class="position_wrap form-inline">
+   <div class="imgs">
+ 	 <img alt="" src="images/mainposition5.png" style="width: 340px;">
+ 	 </div>
   	<div class="intro">
   		<h2><b>포지션 제안 확인</b></h2>
   		<br>
@@ -294,9 +297,7 @@
 		><b>포지션 제안 바로가기</b></button>
   		</b>
  	 </div>
- 	 <div class="imgs">
- 	 <img alt="" src="images/positionmain.png" style="width: 340px;">
- 	 </div>
+ 	 
   	
   </div>
   
