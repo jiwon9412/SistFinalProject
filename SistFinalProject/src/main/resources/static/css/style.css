@@ -584,12 +584,12 @@
 }
  .hvr-hover{
      display: inline-block;
+     border: 1px solid #40e0d0;
      vertical-align: middle;
      -webkit-transform: perspective(1px) translateZ(0);
      transform: perspective(1px) translateZ(0);
      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
      position: relative;
-     background: #40e0d0;
      -webkit-transition-property: color;
      transition-property: color;
      -webkit-transition-duration: 0.3s;
@@ -605,7 +605,7 @@
      bottom: 0;
      left: 0;
      right: 0;
-     background: #010101;
+     background: #98ebe2;
      -webkit-transform: scaleY(0);
      transform: scaleY(0);
      -webkit-transform-origin: 50%;
@@ -621,8 +621,6 @@
      -webkit-transform: scaleY(1);
      transform: scaleY(1);
      color: #ffffff;
-}
- .hvr-hover{
 }
  ul.cart-list > li.total > .btn:hover{
      color: #ffffff;
@@ -685,23 +683,22 @@
      height: 100vh;
 }
  .slides-navigation a {
-     background: #40e0d0;
      position: absolute;
      height: 70px;
      width: 70px;
      top: 50%;
      font-size: 20px;
      display: block;
-     color: #fff;
+     color: #40e0d0;
      line-height: 90px;
      text-align: center;
      transition: all .3s ease-in-out;
 }
  .slides-navigation a i{
-     font-size: 40px;
+     font-size: 90px;
 }
  .slides-navigation a:hover {
-     background: #010101;
+     color: white;
 }
  .cover-slides .container{
      height: 100%;

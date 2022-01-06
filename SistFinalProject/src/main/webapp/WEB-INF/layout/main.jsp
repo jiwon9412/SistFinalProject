@@ -78,7 +78,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> Job히다</strong></h1>
                             <p class="m-b-40">We light up your future.<br> Our site will be your lighthouse. We cheer for your future.</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                            <p><a class="btn hvr-hover" href="/notices/main" style="border: 2px solid #98ebe2">채용공고 보러가기</a></p>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> Job히다</strong></h1>
                             <p class="m-b-40">We light up your future. <br> Our site will be your lighthouse. We cheer for your future.</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                            <p><a class="btn hvr-hover" href="/companies/main" style="border: 2px solid #98ebe2">기업 탐색하기</a></p>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> Job히다</strong></h1>
                             <p class="m-b-40">We light up your future. <br> Our site will be your lighthouse. We cheer for your future.</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                            <p><a class="btn hvr-hover" href="/contents/main" style="border: 2px solid #98ebe2">취뽀 꿀팁이 궁금하다면?</a></p>
                         </div>
                     </div>
                 </div>
