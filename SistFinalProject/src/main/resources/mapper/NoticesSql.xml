@@ -65,20 +65,33 @@
       select count(*) from application where user_id=#{user_id} and company_id=#{company_id} and notice_num=#{notice_num}
    </select>
    
+   
+   <!-- 예전 방식 -->
    <select id="getSearchList" parameterType="String" resultType="ndto">
-      select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id and 
-      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%')
+      select a.*, b.name, b.photo 
+      from notice a join company b 
+      on a.company_id=b.id 
+      and b.name like concat('%',#{search},'%') 
+       or a.location like concat('%',#{search},'%')
        or b.major like concat('%',#{search},'%'))
    </select>
    
+   
    <select id="getSearchCount" parameterType="String" resultType="int">
-      select count(*) from notice a join company b on a.company_id=b.id and 
-      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%') or b.major like concat('%',#{search},'%'))
+      select count(*) 
+      from notice a join company b 
+      on a.company_id=b.id 
+       or a.location like concat('%',#{search},'%') 
+       or b.major like concat('%',#{search},'%'))
    </select>
    
+   
    <!-- 전체 텍스트 검색 활용 -->
+   <!-- 개선하려는 방식 : like - match against 사용하여 전체 텍스트 검색 - 전체 인덱스를 꼭 만들어야 사용가능 -->
    <select id="getGoodSearchList" parameterType="String" resultType="ndto">
-   	  select a.*, b.name, b.photo from notice a join company b on a.company_id=b.id 
+   	  select a.*, b.name, b.photo 
+   	  from notice a join company b 
+   	  on a.company_id=b.id 
    	  and match(b.name) against (concat('*',#{search},'*') in boolean mode)
    	   or match(a.location) against (concat('*',#{search},'*') in boolean mode)
    	   or match(b.major) against (concat('*',#{search},'*') in boolean mode)
