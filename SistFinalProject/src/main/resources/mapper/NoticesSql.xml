@@ -78,21 +78,20 @@
    
    
    <select id="getSearchCount" parameterType="String" resultType="int">
-      select count(*) 
-      from notice a join company b 
-      on a.company_id=b.id 
-       or a.location like concat('%',#{search},'%') 
-       or b.major like concat('%',#{search},'%'))
+      select count(*) from notice a join company b on a.company_id=b.id and 
+      (b.name like concat('%',#{search},'%') or a.location like concat('%',#{search},'%') or b.major like concat('%',#{search},'%'))
    </select>
    
    
    <!-- 전체 텍스트 검색 활용 -->
    <!-- 개선하려는 방식 : like - match against 사용하여 전체 텍스트 검색 - 전체 인덱스를 꼭 만들어야 사용가능 -->
+   <!-- where - on 뒤에 쓸 수 있으며 -->
+   <!-- and 쓸거면 ()를 제대로 달아야 함 ex) select * from company where name="정지원" and gender="남자" or  -->
    <select id="getGoodSearchList" parameterType="String" resultType="ndto">
    	  select a.*, b.name, b.photo 
    	  from notice a join company b 
    	  on a.company_id=b.id 
-   	  and match(b.name) against (concat('*',#{search},'*') in boolean mode)
+   	  where match(b.name) against (concat('*',#{search},'*') in boolean mode)
    	   or match(a.location) against (concat('*',#{search},'*') in boolean mode)
    	   or match(b.major) against (concat('*',#{search},'*') in boolean mode)
    </select>
