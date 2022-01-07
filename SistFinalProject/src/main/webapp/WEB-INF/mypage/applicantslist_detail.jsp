@@ -49,7 +49,9 @@ tr.ro:hover {
 			</tbody>
 		</c:if>
 	</table>
-
+	<button type="button" class="btn btn-primary" style="font-size:1.2em; background-color: #40e0d0;
+	border: 0px; border-radius: 20px; width: 110px; height: 50px; font-weight: bold; float: right;
+	margin-top: 50px; margin-right: 15px;" onclick="window.close()">닫기</button>
 	<script type="text/javascript">
 	
 	//이력서 페이지 오픈

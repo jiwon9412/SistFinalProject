@@ -124,7 +124,7 @@ a.nav-link{
 										border: 0px; border-radius: 20px; height: 40px; font-weight: bold;"
 										name="detail_button" id="detail_button" value="${list.num}"
 										onclick="window.open('/mypage/applicantslist_detail?noticeNum=${list.num}','지원자 목록',
-										'width=600,height=600,location=no,status=no,scrollbars=yes')">
+										'width=600,height=500,location=no,status=no,scrollbars=yes')">
 										지원자 목록 보기</button>
 									</td>
 								</tr>
@@ -136,122 +136,5 @@ a.nav-link{
             </div>
         </div>
     </div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">지원자 목록</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					 <table class="table">
-                        <caption>(공고제목)</caption>
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>이름</th>
-                                    <th>나이</th>
-                                    <th>대학교(전공)</th>
-                                    <th>경력</th>
-                                </tr>
-                            </thead>
-							<tbody>
-							<tr>
-							<td>
-							<c:out value="${param.nonum}"/>
-							</td>
-							</tr>
-							<c:forEach items="${applicantsByCompany}" var="li" varStatus="i" >
-							<c:set var='nnn' value='5'/>
-							<c:set var="search" value="${requestScope['search']}"/>
-								<%-- <c:if test="${fn.contains(li.notice_num, '15')}"> --%>
-								<c:if test="${li.notice_num eq param.nonum}">
-								<tr>
-									<td align="center">${i.count}</td>
-									<td><a style="color: black;" href="#">${li.notice_num}</a></td>
-									<td>${li.user_id} </td>
-									<td align="center"></td>
-									<td align="center"></td>
-								</tr>
-								</c:if>
-							</c:forEach>
-							</tbody>
-						</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal" style="background-color: #40e0d0;">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-    /* $("#detail_button").click(function() {
-        var notice_num = $(this).val();
-        //alert("num: "+notice_num);
-        $("#nonum").val(notice_num);
-        var nonum = $("#nonum").val();
-        alert("nonum: "+nonum);
-        
-    });
-     */
-
-    /* $(document).ready(function() {     
-        $('#exampleModal').on('show.bs.modal', function(event) {          
-            var NOTIFYID = $(event.relatedTarget).data('notifyid');
-            var not = parseInt(NOTIFYID);
-            //alert(not);
-            //alert("NOTIFYID: "+NOTIFYID);
-
-            //var notice_num = $("#detail_button").val();
-            //alert("num: "+notice_num);
-           /*  $("#nonum").val(NOTIFYID);
-            var nonum = $("#nonum").val(); */
-            //alert("nonum: "+nonum);
-            
-			/* var nonum2 = $("#nonum2").val();
-            alert("nonum2: "+nonum2); */
-            /* var s = "";
-			s += "<table class='table'>";
-			s += "<caption>(공고제목)</caption>";
-			s += "<thead>";
-			s += "<tr>";
-			s += "<th>No.</th>";
-			s += "<th>이름</th>";
-			s += "<th>나이</th>";
-			s += "<th>대학교(전공)</th>";
-			s += "<th>경력</th>";
-			s += "</tr>";
-			s += "</thead>";
-			s += "<tbody class='applicant'>";
-			s += "<c:forEach items='${applicantsByCompany}' var='li' varStatus='i'>";
-			s += "<input type='hidden' id='nonum2' name='nonum2' value='${li.notice_num}'>";
-			s += "<c:set var='nnn' value='${";
-			s += not
-			s += "}' />";
-			s += "<c:if test='${fn.contains(li.notice_num,nnn)}'>";
-			s += "<tr>";
-			s += "<td align='center'>${i.count}</td>";
-			s += "<td><a style='color: black;' href='#'>${li.notice_num}</a></td>";
-			s += "<td>${li.user_id}</td>";
-			s += "<td align='center'></td>";
-			s += "<td align='center'></td>";
-			s += "</tr>";
-			s += "</c:if>";
-			s += "</c:forEach>";
-			s += "</tbody>";
-			s += "</table>";
-			$("div.modal-body").html(s); */
-			}); */
-		});
-</script>
- 
 </body>
 </html>
