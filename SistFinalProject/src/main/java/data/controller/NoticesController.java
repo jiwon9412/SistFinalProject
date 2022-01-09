@@ -256,7 +256,7 @@ public class NoticesController {
 		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
 		
 		
-		List<NoticesDto> list = mapper.getGoodSearchList(search);
+		List<NoticesDto> list = mapper.getSearchList(search);
 		
 		
 		

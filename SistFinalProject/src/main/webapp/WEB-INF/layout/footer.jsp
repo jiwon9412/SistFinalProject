@@ -49,9 +49,12 @@ rel="stylesheet">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-widget">
-                            <h4>About ThewayShop</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                </p>
+                            <h4>About Job히다</h4>
+                            <p>
+                            Job히다는 취업준비생들이 원하는 기업에 취업할 수 있도록 도와주고,<br>
+                            기업들이 원하는 인재들을 채용할 수 있도록 지원하는 구직지원사이트입니다.
+                            
+                            </p>
                             <ul>
                                 <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
@@ -65,14 +68,13 @@ rel="stylesheet">
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="footer-link">
-                            <h4>Information</h4>
+                            <h4>Member</h4>
                             <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Our Sitemap</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Delivery Information</a></li>
+                                <li style="color: white">정지원</li>
+                                <li style="color: white">장아린</li>
+                                <li style="color: white">김도현</li>
+                                <li style="color: white">김수환</li>
+                                <li style="color: white">이연희</li>                                
                             </ul>
                         </div>
                     </div>
@@ -81,13 +83,14 @@ rel="stylesheet">
                             <h4>Contact Us</h4>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: 서울특별시 강남구 테헤란로 132(역삼동)
+									<br> 한독약품빌딩 8층 쌍용교육센터</p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">02-777-7777~9 </a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">jobhida@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>
