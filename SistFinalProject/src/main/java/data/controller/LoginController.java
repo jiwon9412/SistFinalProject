@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.CompaniesDto;
 import data.dto.UserDto;
@@ -72,7 +73,7 @@ public class LoginController {
 		if(logintype.equals("개인회원")) {
 			check = mapper.login(map);
 			UserDto udto = mapper.getUserLogin(id);
-			loginChk = passwordEncoder.matches(pass, udto.getPass());
+			loginChk = passwordEncoder.matches(pass, udto.getPass()); // 패스워드 매칭(입력한 값, 저장된 값)
 			nick = mapper.getName(id);
 		} else if(logintype.equals("기업회원")){
 			check = mapper.corplogin(map);
@@ -128,7 +129,9 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login/insertuser")
-	public String insertUser(@ModelAttribute UserDto dto) {
+	public ModelAndView insertUser(@ModelAttribute UserDto dto, HttpSession session) {
+		
+		ModelAndView mview = new ModelAndView();
 		
 		//날짜 형식으로 넣어주기
 		dto.setBirth(dto.getBirth1() + "-" + dto.getBirth2() + "-" + dto.getBirth3());
@@ -144,7 +147,13 @@ public class LoginController {
 		
 		mapper.insertUser(dto);
 		
-		return "/login/addsuccess";
+		session.setAttribute("signupType", "user");
+		
+		mview.addObject("name", dto.getName());
+		mview.addObject("id", dto.getId());
+		mview.setViewName("/login/addsuccess");
+	
+		return mview;
 	}
 	
 	@GetMapping("/login/corpadd")
@@ -166,11 +175,13 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login/insertcorp")
-	public String insertCorp(
+	public ModelAndView insertCorp(
 			@ModelAttribute CompaniesDto dto,
 			@RequestParam MultipartFile logoimage,
 			@RequestParam ArrayList<MultipartFile> photoimage,
 			HttpSession session) {
+		
+		ModelAndView mview = new ModelAndView();
 		
 		String path = session.getServletContext().getRealPath("/images");
 		
@@ -226,10 +237,27 @@ public class LoginController {
 		//비밀번호 암호화
 		dto.setPass(passwordEncoder.encode(dto.getPass()));
 		
-		
 		mapper.insertCorp(dto);
 		
-		return "/login/addsuccess";
+		session.setAttribute("signupType", "corp");
+		
+		mview.addObject("name", dto.getName());
+		mview.addObject("id", dto.getId());
+		mview.setViewName("/login/addsuccess");
+		
+		return mview;
+	}
+	
+	@GetMapping("/login/addsuccess")
+	public ModelAndView addSuccessForm(HttpSession session) {
+		
+		ModelAndView mview = new ModelAndView();
+		
+		String type = (String)session.getAttribute("loginType");
+		
+		mview.setViewName("/login/addsuccess");
+		
+		return mview;
 	}
 	
 	//카카오 로그인 API

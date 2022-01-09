@@ -50,6 +50,19 @@ $(function () {
 		});
 		
 	});
+	
+	//비밀번호 정규식 확인
+	$("#pass").blur(function () {
+		var txt = $(this).val().trim(); //pass값 빈칸 제거
+		if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(txt)) {
+		    $("b.passmsg").html("<font color='red'>하나 이상의 소대문자, 숫자, 특수기호를 입력해주세요</font>");
+		    $("#pass").val("");
+		    $("#pass").focus();
+		}
+		else {
+			$("b.passmsg").html("<font color='green'>사용가능한 비밀번호입니다</font>");
+		}
+	});
 });
 
 function check(f) {
@@ -131,8 +144,9 @@ function showPostCode() {
 		
 		<span style="font-weight: bold; font-size: 1.1em;">비밀번호</span>
 		<span style="color: red;">*</span>
-		<input type="password" name="pass" class="form-control"
-		style="width: 400px; height: 40px;" required="required" placeholder="&nbsp;비밀번호(8~16자의 영문, 숫자, 특수기호)"><br>
+		<input type="password" name="pass" id="pass" class="form-control"
+		style="width: 400px; height: 40px;" required="required" placeholder="&nbsp;비밀번호(8~16자의 영문, 숫자, 특수기호)">
+		<b class="passmsg" style="font-size: 0.5em; "></b><br>
 		
 		<span style="font-weight: bold; font-size: 1.1em;">비밀번호 재확인</span>
 		<span style="color: red;">*</span>
