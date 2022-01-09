@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Gaegu&family=Gugi&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 <style type="text/css">
 
@@ -78,6 +79,14 @@ function kakaoLogin() {
 			, '카카오 로그인', 'left=' +popupX+ ', top=' +popupY+', width=600, height=950, location=no, status=no, scrollbars=no');
 }
 
+function naverLogin() {
+	var popupX = (document.body.offsetWidth /2) - (200 / 2);
+	var popupY = (document.body.offsetHeight /2) - (200 / 2);
+	var apiURL = $("#apiURL").val();
+	window.open(apiURL
+			, '네이버 로그인', 'left=' +popupX+ ', top=' +popupY+', width=600, height=950, location=no, status=no, scrollbars=no');
+}
+
 </script>
 
 <title>Insert title here</title>
@@ -94,6 +103,8 @@ function kakaoLogin() {
 
 <br><br>
 <form action="loginprocess" method="post" class="form form-inline" style="display: inline-block;">
+
+	<input type="hidden" id="apiURL" value="${apiURL }">
 	
 	<input type="hidden" name="logintype">
 	<input type="text" name="id" placeholder="&nbsp;아이디"  style="width: 280px; height: 50px;" class="form form-control">
@@ -107,7 +118,8 @@ function kakaoLogin() {
 	<br>
 	
 	<div class="sns_login" style="float: left;">
-		<img alt="" src="${root }/images/naver_login.png" style="width: 190x; height: 45px; margin-top: 2px;">
+		<img alt="" src="${root }/images/naver_login.png" style="width: 190x; height: 45px; margin-top: 2px;"
+		onclick="naverLogin()">
 	</div>
 	<div class="sns_login" style="float: right;">
 		<img alt="" src="${root }/images/kakao_login.png" style="width: 190px;"

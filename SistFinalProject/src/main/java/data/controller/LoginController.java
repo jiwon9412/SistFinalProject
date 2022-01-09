@@ -2,6 +2,11 @@ package data.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.URLEncoder;
+import java.net.UnknownHostException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,8 +42,11 @@ public class LoginController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	private String CLIENT_ID = "lAKSwHKCFttsryyK8HWl"; //애플리케이션 클라이언트 아이디값";
+	private String CLI_SECRET = "LsHuqKXvaP"; //애플리케이션 클라이언트 시크릿값";
+	
 	@GetMapping("/login/main")
-	public String loginform(HttpSession session) {
+	public String loginform(HttpSession session, Model model) throws UnsupportedEncodingException, UnknownHostException {
 		//아이디
 		String myid = (String)session.getAttribute("myid");
 		
@@ -46,6 +55,17 @@ public class LoginController {
 		
 		//로그인 타입
 		String logintype = (String)session.getAttribute("logintype");
+		
+		String redirectURI = URLEncoder.encode("http://localhost:9003/login/callback1", "UTF-8");
+
+	    SecureRandom random = new SecureRandom();
+	    String state = new BigInteger(130, random).toString();
+	    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+	    apiURL += String.format("&client_id=%s&redirect_uri=%s&state=%s",
+	        CLIENT_ID, redirectURI, state);
+	    session.setAttribute("state", state);
+
+	    model.addAttribute("apiURL", apiURL);
 		
 		if(loginok==null)
 			return "/login/loginmain";
