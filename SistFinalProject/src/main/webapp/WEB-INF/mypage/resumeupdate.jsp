@@ -379,7 +379,7 @@ small.photo, span.photo{
 								<option value="" selected disabled hidden>관심산업</option>
 								<option value="서비스업">서비스업</option>
 								<option value="금융은행업">금융은행업</option>
-								<option value="IT·정보통신업">IT·정보통신산업</option>
+								<option value="IT·정보통신산업">IT·정보통신산업</option>
 								<option value="판매·유통업">판매·유통업</option>
 								<option value="제조·생산·화학업">제조·생산·화학업</option>
 								<option value="미디어·광고업">미디어·광고업</option>
