@@ -108,11 +108,13 @@ public class PositionController {
 	
 	//회사가 개인 회원들 볼 수 있게하기
 	@GetMapping("/position/corp")
-	public ModelAndView postionCorpForm() {
+	public ModelAndView postionCorpForm(HttpSession session) {
 		
 		ModelAndView mview = new ModelAndView();
 		
-		List<UserDto> user_list = mapper.getAllResume();
+		String myid = (String)session.getAttribute("myid");
+		
+		List<UserDto> user_list = mapper.getAllResume(myid);
 		
 		for(UserDto dto : user_list) {
 			if(dto.getIntroduce().length()>=10) {

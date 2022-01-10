@@ -43,14 +43,18 @@
 
 
 	<!-- 이력서 정보 가지고오게 하기 -->
-	<select id="getAllResume" resultType="udto">
+	<select id="getAllResume" parameterType="String" resultType="udto">
 		select 
 		user.*, 
 		resume.num,
 		resume.job,
 		resume.career,
-		resume.introduce
-		from user join resume on user.id = resume.user_id
+		resume.introduce,
+		company.industry
+		from user, resume, company
+		where company.id = #{id}
+		and user.id = resume.user_id
+		and resume.job = company.industry
 	</select>
 	
 	

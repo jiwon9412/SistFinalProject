@@ -30,7 +30,7 @@ public interface PositionMapper {
 	public OfferDto getOffer(HashMap<String, String> map);
 	
 	//모든 이력서 데이터
-	public List<UserDto> getAllResume();
+	public List<UserDto> getAllResume(String id);
 	
 	//num에 따른 이력서 데이터
 	public MypageResumeDto getResume(String num);
