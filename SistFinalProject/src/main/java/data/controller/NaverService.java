@@ -156,13 +156,13 @@ public class NaverService {
 	  
 	  Map<String, String> requestHeaders = new HashMap<>();
       requestHeaders.put("Authorization", header);
-      String responseBody = get(apiURL,requestHeaders);
+      String responseBody = get(apiURL,requestHeaders); //JSON으로 반환
 
 
       System.out.println("response body : " + responseBody);
     
 	  JsonParser parser = new JsonParser();
-	  JsonElement element = parser.parse(responseBody);
+	  JsonElement element = parser.parse(responseBody); // json > java 변환
 	  JsonObject response = element.getAsJsonObject().get("response").getAsJsonObject();
 	  
 	  String name = response.getAsJsonObject().get("name").getAsString();

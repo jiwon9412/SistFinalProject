@@ -69,6 +69,11 @@ public class MypageController {
 			//System.out.println("loginok==null");
 			mv.setViewName("redirect:../login/main");
 		}
+		
+		//메뉴 세션값 
+		session.removeAttribute("pageName");
+		session.setAttribute("pageName", "mypage");
+		
 		return mv;
 	}
 	

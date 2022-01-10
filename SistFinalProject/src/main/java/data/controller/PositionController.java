@@ -45,6 +45,10 @@ public class PositionController {
 		//넣어줄 Model 생성
 		ModelAndView mview = new ModelAndView();
 		
+		//메뉴 세션값 
+		session.removeAttribute("pageName");
+		session.setAttribute("pageName", "position");
+		
 		String loginok = (String)session.getAttribute("loginok");
 		String logintype = (String)session.getAttribute("logintype");
 		
@@ -71,7 +75,8 @@ public class PositionController {
 			//mview.setView(new RedirectView("/login/main",true));			
 			
 			return "redirect:/login/main";
-		}		
+		}
+		
 	}
 		
 	@GetMapping("/position/user")

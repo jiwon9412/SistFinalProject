@@ -54,9 +54,14 @@ public class HomeController {
 			 appdto.setCheck(check);
 		   
 		  }
+		
 		mview.addObject("dlist", dlist);
 		mview.addObject("applist", applist);
-		mview.addObject("comlist", comlist);
+		mview.addObject("comlist", comlist);	
+		
+		//메뉴 세션값 
+		session.removeAttribute("pageName");
+		session.setAttribute("pageName", "main");	
 		
 		mview.setViewName("/layout/main");
 		return mview;

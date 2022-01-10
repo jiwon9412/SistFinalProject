@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,8 @@ public class CompaniesController {
 	
 	@GetMapping("/companies/main")
 	public ModelAndView loginform(
-			@RequestParam(value = "currentPage",defaultValue = "1")int currentPage
+			@RequestParam(value = "currentPage",defaultValue = "1")int currentPage,
+			HttpSession session
 			) {
 
 		ModelAndView mview=new ModelAndView();
@@ -90,13 +93,18 @@ public class CompaniesController {
 		
 		mview.setViewName("/companies/companiesmain");
 		
+		//메뉴 세션값 
+		session.removeAttribute("pageName");
+		session.setAttribute("pageName", "find");
+		
 		return mview;
 	}
 	
 	@GetMapping("/companies/industrylist")
 	public ModelAndView majorlist(
 			@RequestParam (value = "currentPage", defaultValue = "1") int currentPage,
-			@RequestParam String industry
+			@RequestParam String industry,
+			HttpSession session
 			)
 	{
 		ModelAndView mview = new ModelAndView();
@@ -156,6 +164,9 @@ public class CompaniesController {
 		mview.addObject("totalPage",totalPage);
 		mview.addObject("currentPage",currentPage);
 		mview.addObject("totalCount", totalCount);
+		
+			
+		
 				
 		mview.setViewName("/companies/companiesmain");
 		
@@ -164,7 +175,7 @@ public class CompaniesController {
 	
 	// 기업리스트에서 -> 기업선택해서 누르면 상세페이지로 이동하게	
 	@GetMapping("/companies/detail")
-	public ModelAndView companiesdetail(@RequestParam String id)
+	public ModelAndView companiesdetail(@RequestParam String id, HttpSession session)
 	{
 		ModelAndView mview=new ModelAndView();
 		
@@ -191,6 +202,10 @@ public class CompaniesController {
 		mview.addObject("dto", dto);
 		
 		mview.setViewName("/companies/companiesdetail");
+		
+		//메뉴 세션값 
+		session.removeAttribute("pageName");
+		session.setAttribute("pageName", "find");
 		
 		return mview;
 	}

@@ -22,7 +22,7 @@
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -34,10 +34,10 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Notices CSS -->
     <link rel="stylesheet" href="css/mainnotices.css">
-	<!-- Slide CSS -->
-	<link rel="stylesheet" href="css/slidelist.css">
-	<!-- Divs CSS -->
-	<link rel="stylesheet" href="css/maindiv.css">
+   <!-- Slide CSS -->
+   <link rel="stylesheet" href="css/slidelist.css">
+   <!-- Divs CSS -->
+   <link rel="stylesheet" href="css/maindiv.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -49,6 +49,9 @@
 </head>
 <c:set var="myid" value="${sessionScope.myid }"/>
 <c:set var="logintype" value="${sessionScope.logintype }"/>
+
+
+
 <body>
 
     
@@ -117,14 +120,14 @@
 
 <!-- Start Search -->
 <form action="notices/searchlist" method="get">
-	<div class="container" style="margin-top: 30px;">
-		<input type="text" name="search" style="position: relative; outline:none; vertical-align: middle;
-		border: 2px solid #40e0d0; border-radius: 50px; width: 950px; height: 60px; font-size: 15pt; 
-		padding-left: 30px;" placeholder="기업과 직무, 위치를 입력해 보세요">
+   <div class="container" style="margin-top: 30px;">
+      <input type="text" name="search" style="position: relative; outline:none; vertical-align: middle;
+      border: 2px solid #40e0d0; border-radius: 50px; width: 950px; height: 60px; font-size: 15pt; 
+      padding-left: 30px;" placeholder="기업과 직무, 위치를 입력해 보세요">
         <button type="submit" id="searchgo" style="outline: none; float: right; position: absolute; 
         margin-left: 10px; background-color: #40e0d0; width: 60px; height: 60px; border: none; 
         border-radius: 80px; color: white;">
-        	<i class="fa fa-search" style="display: inline; font-size: 20pt;"></i>
+           <i class="fa fa-search" style="display: inline; font-size: 20pt;"></i>
         </button>
     </div>
 </form>
@@ -137,50 +140,50 @@
   </div>
   <div style="position: relative;">
   <div class="pre_wrap">
-  	<span class="glyphicon glyphicon-chevron-left pre1"></span>
+     <span class="glyphicon glyphicon-chevron-left pre1"></span>
   </div>
   <div class="slide_wrapper">
   
     <ul class="slides1">
       
       <c:forEach var="ddto" items="${dlist }" varStatus="i" end="7">
-  	    <li>
-  	    <div class="notice">
-		<div class="godetail" num=${ddto.num }>
-		  <div class="logo">
-		    <img alt="" src="../images/${ddto.photo }">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 15px;">${ddto.name }</b> <br>
-		    ${ddto.subject }<br><br>
-		    <button class="type"><b>${ddto.type }</b></button>
-		    <button class="loc"><b>${ddto.location }</b></button>
-		    <button class="perso"><b>${ddto.personnel }명</b></button>
-		  </div>
-		  
-		    
-		 
-		  </div>
-		  
-		  <div class="period">
-		    <hr style="margin-bottom: 5px;">
-		    <b style="color: gray; ">${ddto.period_start } ~ ${ddto.period_end }</b>
-		  
-		    
-		    <c:if test="${ddto.check==0 }">
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
-		    num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
-		    </c:if>
-		    
-		    <c:if test="${ddto.check==1 }">
-		    <span class="glyphicon glyphicon-heart scrapdel" 
-		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
-		    num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
-		    </c:if>
-		  </div>
-		</div>
+         <li>
+         <div class="notice">
+      <div class="godetail" num=${ddto.num }>
+        <div class="logo">
+          <img alt="" src="../images/${ddto.photo }">
+          
+        </div>
+        <div class="cinfo">
+          <b style="font-size: 15px;">${ddto.name }</b> <br>
+          ${ddto.subject }<br><br>
+          <button class="type"><b>${ddto.type }</b></button>
+          <button class="loc"><b>${ddto.location }</b></button>
+          <button class="perso"><b>${ddto.personnel }명</b></button>
+        </div>
+        
+          
+       
+        </div>
+        
+        <div class="period">
+          <hr style="margin-bottom: 5px;">
+          <b style="color: gray; ">${ddto.period_start } ~ ${ddto.period_end }</b>
+        
+          
+          <c:if test="${ddto.check==0 }">
+          <span class="glyphicon glyphicon-heart-empty scrap" 
+          style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+          num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
+          </c:if>
+          
+          <c:if test="${ddto.check==1 }">
+          <span class="glyphicon glyphicon-heart scrapdel" 
+          style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+          num="${ddto.num }" userId="${myid }" logintype="${logintype }"></span>
+          </c:if>
+        </div>
+      </div>
         </li>
       
       </c:forEach>
@@ -191,7 +194,7 @@
   
   </div>
   <div class="next_wrap">
-  	<span class="glyphicon glyphicon-chevron-right next1"></span>
+     <span class="glyphicon glyphicon-chevron-right next1"></span>
   </div>
   </div>
   
@@ -206,50 +209,50 @@
   </div>
   <div style="position: relative;">
   <div class="pre_wrap">
-  	<span class="glyphicon glyphicon-chevron-left pre"></span>
+     <span class="glyphicon glyphicon-chevron-left pre"></span>
   </div>
   <div class="slide_wrapper">
   
     <ul class="slides">
       
       <c:forEach var="appdto" items="${applist }" varStatus="i" end="7">
-  	    <li>
-  	    <div class="notice">
-		<div class="godetail" num=${appdto.num }>
-		  <div class="logo">
-		    <img alt="" src="../images/${appdto.photo }">
-		    
-		  </div>
-		  <div class="cinfo">
-		    <b style="font-size: 15px;">${appdto.name }</b> <br>
-		    ${appdto.subject }<br><br>
-		    <button class="type"><b>${appdto.type }</b></button>
-		    <button class="loc"><b>${appdto.location }</b></button>
-		    <button class="perso"><b>${appdto.personnel }명</b></button>
-		  </div>
-		  
-		    
-		 
-		  </div>
-		  
-		  <div class="period">
-		    <hr style="margin-bottom: 5px;">
-		    <b style="color: gray; ">${appdto.period_start } ~ ${appdto.period_end }</b>
-		  
-		    
-		    <c:if test="${appdto.check==0 }">
-		    <span class="glyphicon glyphicon-heart-empty scrap" 
-		    style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
-		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
-		    </c:if>
-		    
-		    <c:if test="${appdto.check==1 }">
-		    <span class="glyphicon glyphicon-heart scrapdel" 
-		    style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
-		    num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
-		    </c:if>
-		  </div>
-		</div>
+         <li>
+         <div class="notice">
+      <div class="godetail" num=${appdto.num }>
+        <div class="logo">
+          <img alt="" src="../images/${appdto.photo }">
+          
+        </div>
+        <div class="cinfo">
+          <b style="font-size: 15px;">${appdto.name }</b> <br>
+          ${appdto.subject }<br><br>
+          <button class="type"><b>${appdto.type }</b></button>
+          <button class="loc"><b>${appdto.location }</b></button>
+          <button class="perso"><b>${appdto.personnel }명</b></button>
+        </div>
+        
+          
+       
+        </div>
+        
+        <div class="period">
+          <hr style="margin-bottom: 5px;">
+          <b style="color: gray; ">${appdto.period_start } ~ ${appdto.period_end }</b>
+        
+          
+          <c:if test="${appdto.check==0 }">
+          <span class="glyphicon glyphicon-heart-empty scrap" 
+          style="margin-left: 25px; font-size: 20px; color: gray; cursor: pointer;" 
+          num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
+          </c:if>
+          
+          <c:if test="${appdto.check==1 }">
+          <span class="glyphicon glyphicon-heart scrapdel" 
+          style="margin-left: 25px; font-size: 20px; color: red; cursor: pointer;" 
+          num="${appdto.num }" userId="${myid }" logintype="${logintype }"></span>
+          </c:if>
+        </div>
+      </div>
         </li>
       
       </c:forEach>
@@ -260,7 +263,7 @@
   
   </div>
   <div class="next_wrap">
-  	<span class="glyphicon glyphicon-chevron-right next"></span>
+     <span class="glyphicon glyphicon-chevron-right next"></span>
   </div>
   </div>
   <!-- End Slide Notice List -->
@@ -272,25 +275,25 @@
   </div>
   <div style="position: relative; height: 320px;">
   <div class="pre_wrap">
-  	<span class="glyphicon glyphicon-chevron-left pre2"></span>
+     <span class="glyphicon glyphicon-chevron-left pre2"></span>
   </div>
   <div class="slide_wrapper" style="margin-top: 20px;">
   
     <ul class="slides2">
       
       <c:forEach var="comdto" items="${comlist }" varStatus="i" end="7">
-  	    <li>
-  	    	<div class="companies" id=${comdto.id}>
-				<div class="pic">
-					<img alt="" src="../images/${comdto.logo}">
-				</div>
-				<hr id="comhr">
-				<div class="txt">
-					<p style="color: #80cbc4">${comdto.major}</p>
-					<p style="font-weight: bold;">${comdto.name}</p>
-					<p>${comdto.addr}</p>
-				</div>
-			</div>
+         <li>
+            <div class="companies" id=${comdto.id}>
+            <div class="pic">
+               <img alt="" src="../images/${comdto.logo}">
+            </div>
+            <hr id="comhr">
+            <div class="txt">
+               <p style="color: #80cbc4">${comdto.major}</p>
+               <p style="font-weight: bold;">${comdto.name}</p>
+               <p>${comdto.addr}</p>
+            </div>
+         </div>
         </li>
       
       </c:forEach>
@@ -301,7 +304,7 @@
   
   </div>
   <div class="next_wrap">
-  	<span class="glyphicon glyphicon-chevron-right next2"></span>
+     <span class="glyphicon glyphicon-chevron-right next2"></span>
   </div>
   </div>
   
@@ -310,21 +313,21 @@
   
   <!-- Start Contents Div -->
   <div class="contents_wrap form-inline">
-  	<div class="intro">
-  		<h2><b>취준생에게 필요한 커리어 정보</b></h2>
-  		<br>
-  		<b>취업에 필요한 정보가 필요하세요?<br>
-  		Job히다 에서 제공하는 다양한 커리어 팁과
-  		취준생들을 위한 꿀 영상들!! 콘텐츠에서 확인하세요!<br><br>
-  		<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 15px;
-		color: white; width: 160px; height: 40px; font-size: 0.9em" onclick="location.href='contents/main'"
-		><b>콘텐츠 바로가기</b></button>
-  		</b>
- 	 </div>
- 	 <div class="imgs">
- 	 <img alt="" src="images/maincontents11.png" style="width: 400px;">
- 	 </div>
-  	
+     <div class="intro">
+        <h2><b>취준생에게 필요한 커리어 정보</b></h2>
+        <br>
+        <b>취업에 필요한 정보가 필요하세요?<br>
+        Job히다 에서 제공하는 다양한 커리어 팁과
+        취준생들을 위한 꿀 영상들!! 콘텐츠에서 확인하세요!<br><br>
+        <button style="background-color: #40e0d0; border: solid 1px white; border-radius: 15px;
+      color: white; width: 160px; height: 40px; font-size: 0.9em" onclick="location.href='contents/main'"
+      ><b>콘텐츠 바로가기</b></button>
+        </b>
+     </div>
+     <div class="imgs">
+     <img alt="" src="images/maincontents.png" style="width: 400px;">
+     </div>
+     
   </div>
   <!-- End Contents Div -->
   
@@ -333,24 +336,27 @@
 <!-- Start Position Div -->
    <div class="position_wrap form-inline">
    <div class="imgs">
- 	 <img alt="" src="images/mainposition11.png" style="width: 340px;">
- 	 </div>
-  	<div class="intro1">
-  		<h2><b>포지션 제안 확인</b></h2>
-  		<br>
-  		<b>기업으로 부터 제안을 받고 싶으신가요?<br>
-  		원하는 지원자에게 포지션 제안을 보내고 싶나요?<br>
-  		Job히다의 유용한 시스템! 포지션 제안을 이용하세요!!<br><br>
-  		<button style="background-color: #40e0d0; border: solid 1px white; border-radius: 15px;
-		color: white; width: 190px; height: 40px; font-size: 0.9em" onclick="location.href='position/main'"
-		><b>포지션 제안 바로가기</b></button>
-  		</b>
- 	 </div>
- 	 
-  	
+     <img alt="" src="images/mainposition5.png" style="width: 340px;">
+     </div>
+     <div class="intro1">
+        <h2><b>포지션 제안 확인</b></h2>
+        <br>
+        <b>기업으로 부터 제안을 받고 싶으신가요?<br>
+        원하는 지원자에게 포지션 제안을 보내고 싶나요?<br>
+        Job히다의 유용한 시스템! 포지션 제안을 이용하세요!!<br><br>
+        <button style="background-color: #40e0d0; border: solid 1px white; border-radius: 15px;
+      color: white; width: 190px; height: 40px; font-size: 0.9em" onclick="location.href='position/main'"
+      ><b>포지션 제안 바로가기</b></button>
+        </b>
+     </div>
+     
+     
   </div>
 <!-- End Position Div -->  
- 
+  <!-- 임시방편 -->
+  <div style="height: 600px;">
+  
+  </div>
   
 
   
@@ -376,93 +382,93 @@
    <script type="text/javascript">
 
 $(document).on('click','span.scrap',function(){
-	
-	var tag = $(this);
-	var user_id = $(this).attr("userId");
-	var notice_num = $(this).attr("num");
-	var logintype = $(this).attr("logintype");
-	//alert(user_id+","+notice_num);
-	
-	
-	if(${sessionScope.loginok==null}){
-		 alert("로그인이 필요한 서비스입니다");
-		 location.href='/login/main';
-		 return;
-	}else if(logintype=="corp"){
-		alert("개인 회원만 이용 가능한 서비스입니다");
-		return;
-	}else{
-		$.ajax({
-			
-			type: "get",
-			url: "notices/insertscrap",
-			data: {"user_id":user_id,"notice_num":notice_num},
-			success: function(data){
-				
-				//ajax로 스크랩이 되면서 success에서 이거 실행하기
-				tag.attr("class","glyphicon glyphicon-heart scrapdel");
-				tag.css("color","red");
-					
-				
-			}
-			
-		});
-	}
-	
-	
-	
-	
+   
+   var tag = $(this);
+   var user_id = $(this).attr("userId");
+   var notice_num = $(this).attr("num");
+   var logintype = $(this).attr("logintype");
+   //alert(user_id+","+notice_num);
+   
+   
+   if(${sessionScope.loginok==null}){
+       alert("로그인이 필요한 서비스입니다");
+       location.href='/login/main';
+       return;
+   }else if(logintype=="corp"){
+      alert("개인 회원만 이용 가능한 서비스입니다");
+      return;
+   }else{
+      $.ajax({
+         
+         type: "get",
+         url: "notices/insertscrap",
+         data: {"user_id":user_id,"notice_num":notice_num},
+         success: function(data){
+            
+            //ajax로 스크랩이 되면서 success에서 이거 실행하기
+            tag.attr("class","glyphicon glyphicon-heart scrapdel");
+            tag.css("color","red");
+               
+            
+         }
+         
+      });
+   }
+   
+   
+   
+   
 
 });
 
 $(document).on('click','span.scrapdel',function(){
-	var tag = $(this);
-	var user_id = $(this).attr("userId");
-	var notice_num = $(this).attr("num");
-	
-	$.ajax({
-		
-		type: "get",
-		url: "notices/deletetscrap",
-		data: {"user_id":user_id,"notice_num":notice_num},
-		success: function(data){
-			
-			//ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
-			tag.attr("class","glyphicon glyphicon-heart-empty scrap");
-			tag.css("color","gray");
-				
-			
-		}
-		
-	});
-	
-	
+   var tag = $(this);
+   var user_id = $(this).attr("userId");
+   var notice_num = $(this).attr("num");
+   
+   $.ajax({
+      
+      type: "get",
+      url: "notices/deletetscrap",
+      data: {"user_id":user_id,"notice_num":notice_num},
+      success: function(data){
+         
+         //ajax로 스크랩이 삭제되면서 success에서 이거 실행하기
+         tag.attr("class","glyphicon glyphicon-heart-empty scrap");
+         tag.css("color","gray");
+            
+         
+      }
+      
+   });
+   
+   
 
 });
 
 $("#btntype").click(function(){
-	
-	var idx = $("#seltype option").index($("#seltype option:selected"));
-	if(idx==0){
-		location.href='main';
-		return;
-	}else{
-		var hireType=$("#seltype option:selected").text();
-		location.href='notices/typelist?type='+hireType;
-		return;
-	}
-	
-	
-	
-	//alert(hireType);
+   
+   var idx = $("#seltype option").index($("#seltype option:selected"));
+   if(idx==0){
+      location.href='main';
+      return;
+   }else{
+      var hireType=$("#seltype option:selected").text();
+      location.href='notices/typelist?type='+hireType;
+      return;
+   }
+   
+   
+   
+   //alert(hireType);
 
 });
 
 $("div.godetail").click(function(){
-	
-	var num = $(this).attr("num");
-	
-	location.href="notices/detail?num="+num;
+   
+   var num = $(this).attr("num");
+   
+   location.href="notices/detail?num="+num;
 });
 
 var slides = document.querySelector('.slides');
@@ -475,27 +481,27 @@ var slideMargin = 30;
 slides.style.width = (slideWidth+slideMargin)*slideCount - slideMargin + 'px';
 
 function moveSlide(num){
-	  slides.style.left = - 280*num + 'px';
-	  currentIdx = num;
+     slides.style.left = - 280*num + 'px';
+     currentIdx = num;
 }  
 
 $("span.next").click(function(){
-	  if(currentIdx < slideCount-4){
-		  
-		  moveSlide(currentIdx+1); 
-	  }else{
-		  moveSlide(0);
-	  }
-	  
+     if(currentIdx < slideCount-4){
+        
+        moveSlide(currentIdx+1); 
+     }else{
+        moveSlide(0);
+     }
+     
 });
 
 $("span.pre").click(function(){
-	  if(currentIdx > 0){
-		  moveSlide(currentIdx-1); 
-	  }else{
-		  moveSlide(slideCount-4);
-	  }
-	  
+     if(currentIdx > 0){
+        moveSlide(currentIdx-1); 
+     }else{
+        moveSlide(slideCount-4);
+     }
+     
 });
 
 var slides1 = document.querySelector('.slides1');
@@ -508,27 +514,27 @@ var slideMargin1 = 30;
 slides1.style.width = (slideWidth1+slideMargin1)*slideCount1 - slideMargin1 + 'px';
 
 function moveSlide1(num){
-	  slides1.style.left = - 280*num + 'px';
-	  currentIdx1 = num;
+     slides1.style.left = - 280*num + 'px';
+     currentIdx1 = num;
 }  
 
 $("span.next1").click(function(){
-	  if(currentIdx1 < slideCount1-4){
-		  
-		  moveSlide1(currentIdx1+1); 
-	  }else{
-		  moveSlide1(0);
-	  }
-	  
+     if(currentIdx1 < slideCount1-4){
+        
+        moveSlide1(currentIdx1+1); 
+     }else{
+        moveSlide1(0);
+     }
+     
 });
 
 $("span.pre1").click(function(){
-	  if(currentIdx1 > 0){
-		  moveSlide1(currentIdx1-1); 
-	  }else{
-		  moveSlide1(slideCount1-4);
-	  }
-	  
+     if(currentIdx1 > 0){
+        moveSlide1(currentIdx1-1); 
+     }else{
+        moveSlide1(slideCount1-4);
+     }
+     
 });
 
 var slides2 = document.querySelector('.slides2');
@@ -541,34 +547,34 @@ var slideMargin2 = 95;
 slides2.style.width = (slideWidth2+slideMargin2)*slideCount2 - slideMargin2 + 'px';
 
 function moveSlide2(num){
-	  slides2.style.left = - 395*num + 'px';
-	  currentIdx2 = num;
+     slides2.style.left = - 395*num + 'px';
+     currentIdx2 = num;
 }  
 
 $("span.next2").click(function(){
-	  if(currentIdx2 < slideCount2-4){
-		  
-		  moveSlide2(currentIdx2+1); 
-	  }else{
-		  moveSlide2(0);
-	  }
-	  
+     if(currentIdx2 < slideCount2-4){
+        
+        moveSlide2(currentIdx2+1); 
+     }else{
+        moveSlide2(0);
+     }
+     
 });
 
 $("span.pre2").click(function(){
-	  if(currentIdx2 > 0){
-		  moveSlide2(currentIdx2-1); 
-	  }else{
-		  moveSlide2(slideCount2-4);
-	  }
-	  
+     if(currentIdx2 > 0){
+        moveSlide2(currentIdx2-1); 
+     }else{
+        moveSlide2(slideCount2-4);
+     }
+     
 });
 
 $("div.companies").click(function(){
-	
-	var id = $(this).attr("id");
-	
-	location.href="companies/detail?id="+id;
+   
+   var id = $(this).attr("id");
+   
+   location.href="companies/detail?id="+id;
 });
 </script>
 </body>

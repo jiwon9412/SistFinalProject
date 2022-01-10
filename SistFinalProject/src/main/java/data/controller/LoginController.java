@@ -56,15 +56,14 @@ public class LoginController {
 		//로그인 타입
 		String logintype = (String)session.getAttribute("logintype");
 		
+		//콜백 주소
 		String redirectURI = URLEncoder.encode("http://localhost:9003/login/callback1", "UTF-8");
-
 	    SecureRandom random = new SecureRandom();
 	    String state = new BigInteger(130, random).toString();
-	    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+	    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"; //api 주소
 	    apiURL += String.format("&client_id=%s&redirect_uri=%s&state=%s",
 	        CLIENT_ID, redirectURI, state);
 	    session.setAttribute("state", state);
-
 	    model.addAttribute("apiURL", apiURL);
 		
 		if(loginok==null)

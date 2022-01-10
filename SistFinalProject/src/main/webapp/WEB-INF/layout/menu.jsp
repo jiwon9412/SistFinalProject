@@ -33,17 +33,17 @@ rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="${root }/css/bootstrap.min.css">
+    
     <!-- Site CSS -->
     <link rel="stylesheet" href="${root }/css/style.css">
+    
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="${root }/css/responsive.css">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="${root }/css/custom.css">
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -96,12 +96,12 @@ rel="stylesheet">
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp" style="width: 650px;">
-                        <li class="nav-item active"><a class="nav-link" href="/">메인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${root }/notices/main">채용공고</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${root }/companies/main">기업탐색</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${root }/mypage/main">마이페이지</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${root }/contents/main">콘텐츠</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${root }/position/main">포지션제안</a></li>
+                        <li class="nav-item" id="main"><a class="nav-link" href="/">메인</a></li>
+                        <li class="nav-item" id="notice"><a class="nav-link" href="${root }/notices/main" style="">채용공고</a></li>
+                        <li class="nav-item" id="find"><a class="nav-link" href="${root }/companies/main">기업탐색</a></li>
+                        <li class="nav-item" id="mypage"><a class="nav-link" href="${root }/mypage/main">마이페이지</a></li>
+                        <li class="nav-item" id="content"><a class="nav-link" href="${root }/contents/main">콘텐츠</a></li>
+                        <li class="nav-item" id="position"><a class="nav-link" href="${root }/position/main">포지션제안</a></li>
                         
                         <!-- <li class="dropdown megamenu-fw">
                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
@@ -238,7 +238,19 @@ rel="stylesheet">
     		location.href="${root}/notices/searchlist?search="+keyword;
     		
     	});
-    
+    	
+    	
+    	
+    	$(function(){
+    		
+    		$(".nav-item").removeClass("active");
+    		
+    		let pageName = "<c:out value='${sessionScope.pageName}' />";
+    		
+    		$("#" + pageName).addClass("active");
+    		
+    	});
+    	
     </script>
 </body>
 </html>
