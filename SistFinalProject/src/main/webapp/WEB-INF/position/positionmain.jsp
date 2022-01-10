@@ -275,10 +275,10 @@ span.content, #list_company_name{
 		var content = $(this).attr("content");
 		var company_name = $(this).attr("company_name");
 		var logo = $(this).attr("logo");
-		$("#offer_subject").html("<span style='font-size:1.5em; display:inline;'><b>" + company_name + "</b><img src='../images/"+logo+"' style='width:100px; display:inline; float:right;'><br>" + content + "</span>");
+		$("#offer_subject").html("<span style='font-size:1.5em; display:inline;'><b>" + company_name + "</b><img src='../images/"+logo+"' style='width:100px; display:inline; float:right;'><br></span>");
 		
 		var s = "";
-		s += "<span>포지션 내용</span>";
+		s += "<span>"+content+"</span>";
 		$("#modal-body").html(s);
 		
 		var notice_num = $(this).attr("notice_num");
