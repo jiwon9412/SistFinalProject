@@ -122,9 +122,9 @@ small.photo, span.photo{
 <!-- 상단 바 끝-->
 	
 	<!-- 작성/수정 페이지 구분 위해 표시 -->
-    <div style=" position: absolute; left: 50%; width: 300px; margin-left: -150px; text-align: center;">
+    <!-- <div style=" position: absolute; left: 50%; width: 300px; margin-left: -150px; text-align: center;">
     	<h4>공고 작성</h4>
-    </div>
+    </div> -->
     
     <div class="cart-box-main">
     	<form action="notice_insert" method="post">
