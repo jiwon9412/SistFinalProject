@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import data.dto.CompaniesDto;
 import data.dto.MypageResumeDto;
 import data.dto.NoticesDto;
 import data.dto.UserDto;
@@ -211,9 +208,6 @@ public class MypageController {
 		//각 페이지에서 불러올 시작번호
 		//현재페이지가 1 일경우 start는 1,  2일 경우6...
 		start=(currentPage-1)*perPage;
-
-		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
 		String myid = (String) session.getAttribute("myid");
 		List<NoticesDto> list = mymapper.getNoticeListByCompany(start, perPage, myid);
@@ -632,7 +626,6 @@ public class MypageController {
 	public ModelAndView updatenoticeform(HttpSession session,
 			@RequestParam String notice_num) {
 
-		String myid = (String) session.getAttribute("myid");
 		NoticesDto ndto = nomapper.getNoticeInfo(notice_num);
 
 		//지원자격 항목 나누어서 리스트에 담기
@@ -752,9 +745,6 @@ public class MypageController {
 		//각 페이지에서 불러올 시작번호
 		//현재페이지가 1 일경우 start는 1,  2일 경우6...
 		start=(currentPage-1)*perPage;
-
-		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
 		String myid = (String) session.getAttribute("myid");
 		List<NoticesDto> list = mymapper.getNoticeListByUser(myid, start, perPage);
@@ -820,9 +810,6 @@ public class MypageController {
 		//각 페이지에서 불러올 시작번호
 		//현재페이지가 1 일경우 start는 1,  2일 경우6...
 		start=(currentPage-1)*perPage;
-
-		//각페이지에서 필요한 게시글 가져오기...dao에서 만든거
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		
 		String myid = (String) session.getAttribute("myid");
 		List<NoticesDto> list = mymapper.getNoticeListByUserScrap(myid, start, perPage);
