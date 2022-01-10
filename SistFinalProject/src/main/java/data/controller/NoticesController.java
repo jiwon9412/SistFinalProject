@@ -47,7 +47,7 @@ public class NoticesController {
 		int startPage;   //각 블럭의 시작페이지
 		int endPage;   //각 블럭의 끝페이지
 		int start;   //각페이지의 시작번호
-		int perPage=16;  //한페이지에 보여질 글수
+		int perPage=12;  //한페이지에 보여질 글수
 		int perBlock=5;  //한페이지에 보여지는 페이지 개수
 		//int no;
 
