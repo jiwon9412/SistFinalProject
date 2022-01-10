@@ -213,7 +213,7 @@ a.nav-link{
 						</div>
 						<div class="mb-4">
 							<c:if test="${resumedto.portfolio!='no' && resumedto.portfolio!=null}">
-								<span> <a href="download?clip=${resumedto.portfolio}">
+								<span> <a href="/mypage/download?clip=${resumedto.portfolio}">
 									<span class="glyphicon glyphicon-download-alt"></span>&nbsp;${resumedto.portfolio}</a>
 								</span>
 							</c:if>
