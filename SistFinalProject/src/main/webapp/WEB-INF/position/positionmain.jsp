@@ -232,7 +232,7 @@ span.content, #list_company_name{
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" id="notice_check">공고 확인</button>
+	        
 	        <button type="button" class="btn btn-info" data-dismiss="modal">확인</button>
 	      </div>
 	
@@ -283,9 +283,7 @@ span.content, #list_company_name{
 		
 		var notice_num = $(this).attr("notice_num");
 		/* alert(notice_num); */
-		document.getElementById("notice_check").onclick = function () {
-			location.href="/notices/detail?num="+notice_num;
-		}
+		
 		
 		
 	/* 	$.ajax({
