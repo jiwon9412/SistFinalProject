@@ -136,7 +136,7 @@ button.qual{
 
 <div style="border: 1px solid fff; float: left; width: 40%; height: 300px;">
 
-	<p id="txt2">[ ${dto.zipcode} ]</p>
+	<p id="txt2">${dto.zipcode}</p>
 	<p id="txt2">${dto.addr}</p>
 	<p id="txt2">${dto.addr_detail}</p>
 
