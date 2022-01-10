@@ -13,6 +13,7 @@ public class OfferDto {
 	private String company_id;
 	private String notice_num;
 	private String content;
+	private String shortContent;
 
 	
 	//Companies Dto 끌어오기	private String id;

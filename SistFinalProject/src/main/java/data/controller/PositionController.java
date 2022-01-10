@@ -95,6 +95,12 @@ public class PositionController {
 				
 		//id값에 해당되는 Offer 전체출력
 		List<OfferDto> list = mapper.getAllOffers(myid);
+		for(OfferDto dto : list) {
+			if(dto.getContent().length()>=10) {
+				String introduce = dto.getContent().substring(0, 13);
+				dto.setShortContent(introduce + "...");
+			}
+		}
 				
 		//랜덤 출력용
 		List<CompaniesDto> list2 = mapper.getRndList();
