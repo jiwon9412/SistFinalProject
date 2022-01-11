@@ -325,7 +325,7 @@
         </b>
      </div>
      <div class="imgs">
-     <img alt="" src="images/maincontents.png" style="width: 400px;">
+     <img alt="" src="images/maincontents11.png" style="width: 400px;">
      </div>
      
   </div>
@@ -336,7 +336,7 @@
 <!-- Start Position Div -->
    <div class="position_wrap form-inline">
    <div class="imgs">
-     <img alt="" src="images/mainposition5.png" style="width: 340px;">
+     <img alt="" src="images/mainposition11.png" style="width: 340px;">
      </div>
      <div class="intro1">
         <h2><b>포지션 제안 확인</b></h2>
@@ -353,8 +353,8 @@
      
   </div>
 <!-- End Position Div -->  
-  <!-- 임시방편 -->
-  <div style="height: 600px;">
+  
+  <div style="height: 10px;">
   
   </div>
   
