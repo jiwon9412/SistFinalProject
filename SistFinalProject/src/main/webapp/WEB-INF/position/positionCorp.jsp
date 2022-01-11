@@ -137,7 +137,7 @@
 		
 		var company_id = myid;
 		var user_id = $("#header").attr("user_id");
-		var content = $("#content").val();
+		var content = $("textarea#content").val();
 		
 		console.log(company_id);
 		console.log(user_id);
