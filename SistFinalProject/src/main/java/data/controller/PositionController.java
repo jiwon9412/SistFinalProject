@@ -97,9 +97,13 @@ public class PositionController {
 		List<OfferDto> list = mapper.getAllOffers(myid);
 		for(OfferDto dto : list) {
 			if(dto.getContent().length()>=10) {
-				String introduce = dto.getContent().substring(0, 13);
-				dto.setShortContent(introduce + "...");
+				String shortContent = dto.getContent().substring(0, 13);
+				dto.setShortContent(shortContent + "...");
+			}else {
+				dto.setShortContent(dto.getContent());
 			}
+			String newContent = dto.getContent().replace("\n", "<br>");
+			dto.setContent(newContent);
 		}
 				
 		//랜덤 출력용
