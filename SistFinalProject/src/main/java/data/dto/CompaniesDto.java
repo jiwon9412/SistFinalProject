@@ -3,6 +3,9 @@ package data.dto;
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 
 @Data
 @Alias("comdto")
@@ -36,6 +39,8 @@ public class CompaniesDto {
 	private String hp2;
 	private String hp3;
 	private String industry;
+	private MultipartFile logoimage;
+	private ArrayList<MultipartFile> photoimage;
 	
 	
 }

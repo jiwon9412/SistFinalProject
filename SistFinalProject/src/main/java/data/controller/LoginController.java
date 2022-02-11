@@ -13,6 +13,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import data.dto.LoginChkDto;
+import data.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,30 +43,17 @@ public class LoginController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private LoginService loginService;
 	
 	private String CLIENT_ID = "lAKSwHKCFttsryyK8HWl"; //애플리케이션 클라이언트 아이디값";
 	private String CLI_SECRET = "LsHuqKXvaP"; //애플리케이션 클라이언트 시크릿값";
 	
 	@GetMapping("/login/main")
-	public String loginform(HttpSession session, Model model) throws UnsupportedEncodingException, UnknownHostException {
-		//아이디
-		String myid = (String)session.getAttribute("myid");
-		
-		//로그인 확인
-		String loginok = (String)session.getAttribute("loginok");
-		
-		//로그인 타입
-		String logintype = (String)session.getAttribute("logintype");
-		
-		//콜백 주소
-		String redirectURI = URLEncoder.encode("http://localhost:9003/login/callback1", "UTF-8");
-	    SecureRandom random = new SecureRandom();
-	    String state = new BigInteger(130, random).toString();
-	    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"; //api 주소
-	    apiURL += String.format("&client_id=%s&redirect_uri=%s&state=%s",
-	        CLIENT_ID, redirectURI, state);
-	    session.setAttribute("state", state);
-	    model.addAttribute("apiURL", apiURL);
+	public String loginform(HttpSession session, Model model) throws UnsupportedEncodingException {
+
+		String loginok = loginService.getLoginForm(session, model);
 		
 		if(loginok==null)
 			return "/login/loginmain";
@@ -74,44 +63,13 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login/loginprocess")
-	public String loginProcess(
-			@RequestParam String id,
-			@RequestParam String pass,
-			@RequestParam String logintype,
+	public String loginProcess(@ModelAttribute LoginChkDto dto,
 			HttpSession session
 			) {
+
+		int loginChk = loginService.LoginProcess(dto, session);
 		
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
-		map.put("pass", pass);
-		
-		int check = 0;
-		String nick = "";
-		boolean loginChk = false;
-		
-		if(logintype.equals("개인회원")) {
-			check = mapper.login(map);
-			UserDto udto = mapper.getUserLogin(id);
-			loginChk = passwordEncoder.matches(pass, udto.getPass()); // 패스워드 매칭(입력한 값, 저장된 값)
-			nick = mapper.getName(id);
-		} else if(logintype.equals("기업회원")){
-			check = mapper.corplogin(map);
-			CompaniesDto cdto = mapper.getCorpLogin(id);
-			loginChk = passwordEncoder.matches(pass, cdto.getPass());
-			nick = mapper.getCorpName(id);
-		}
-		
-		//if(check==1) {
-		if(loginChk == true || check == 1) {
-			session.setAttribute("myid", id);
-			session.setAttribute("loginok", "yes");
-			session.setAttribute("nick", nick);
-			if(logintype.equals("개인회원")) {
-				session.setAttribute("logintype", "user");
-			} else if (logintype.equals("기업회원")){
-				session.setAttribute("logintype", "corp");
-			}
-			//체크했을때 on, 안하면 null
+		if(loginChk==1) {
 			return "redirect:/";
 		} else {
 			return "/login/passfail";
@@ -120,11 +78,8 @@ public class LoginController {
 	
 	@GetMapping("/login/logoutprocess")
 	public String logout(HttpSession session) {
-		
-		session.removeAttribute("myid");
-		session.removeAttribute("loginok");
-		session.removeAttribute("logintype");
-		session.removeAttribute("snspass");
+
+		session.invalidate(); //세션 모두 제거
 		
 		return "redirect:main";
 	}
@@ -149,28 +104,8 @@ public class LoginController {
 	
 	@PostMapping("/login/insertuser")
 	public ModelAndView insertUser(@ModelAttribute UserDto dto, HttpSession session) {
-		
-		ModelAndView mview = new ModelAndView();
-		
-		//날짜 형식으로 넣어주기
-		dto.setBirth(dto.getBirth1() + "-" + dto.getBirth2() + "-" + dto.getBirth3());
-		
-		//이메일 형식으로 넣어주기
-		dto.setEmail(dto.getEmail1()+ "@" + dto.getEmail2());
-		
-		//연락처 형식으로 넣어주기
-		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
-		
-		//패스워드 암호화
-		dto.setPass(passwordEncoder.encode(dto.getPass()));
-		
-		mapper.insertUser(dto);
-		
-		session.setAttribute("signupType", "user");
-		
-		mview.addObject("name", dto.getName());
-		mview.addObject("id", dto.getId());
-		mview.setViewName("/login/addsuccess");
+
+		ModelAndView mview = loginService.addUser(dto, session);
 	
 		return mview;
 	}
@@ -196,73 +131,9 @@ public class LoginController {
 	@PostMapping("/login/insertcorp")
 	public ModelAndView insertCorp(
 			@ModelAttribute CompaniesDto dto,
-			@RequestParam MultipartFile logoimage,
-			@RequestParam ArrayList<MultipartFile> photoimage,
 			HttpSession session) {
-		
-		ModelAndView mview = new ModelAndView();
-		
-		String path = session.getServletContext().getRealPath("/images");
-		
-		String photo = "";
-		String logo = logoimage.getOriginalFilename();
-		
-		try {
-			logoimage.transferTo(new File(path + "\\" + logo));
-		} catch (IllegalStateException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		if(photoimage.get(0).getOriginalFilename().equals(""))
-			photo = "no";
-		else {
-			for(MultipartFile f:photoimage) {
-				String fName = f.getOriginalFilename();
-				photo += fName+",";
-				
-				//업로드
-				try {
-					f.transferTo(new File(path + "\\" + fName));
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch blockz
-					e.printStackTrace();
-				}
-			}
-			photo = photo.substring(0, photo.length()-1); //photo 쉼표 제거
-		}
-		
-		String[] type = {"선택안함", "서비스업", "금융은행업", "IT·정보통신산업", "판매·유통업", "제조·생산·화학업", "미디어·광고업", "기관·협회"};
-		for(int i=0; i<type.length; i++) {
-			if(dto.getIndustry().equals(Integer.toString(i)))
-				dto.setIndustry(type[i]);
-		}
-		
-		//로고 이미지 dto에 저장
-		dto.setLogo(logo);
-		
-		//사진 파일명 저장 (구분기호 , )
-		dto.setPhoto(photo);
-		
-		//날짜 형식으로 저장
-		dto.setEstablishment(dto.getBirth1() + ". " + dto.getBirth2() + ". " + dto.getBirth3());
-		
-		//연락처 형식으로 저장
-		dto.setHp(dto.getHp1() + "-" + dto.getHp2() + "-" + dto.getHp3());
-		
-		//비밀번호 암호화
-		dto.setPass(passwordEncoder.encode(dto.getPass()));
-		
-		mapper.insertCorp(dto);
-		
-		session.setAttribute("signupType", "corp");
-		
-		mview.addObject("name", dto.getName());
-		mview.addObject("id", dto.getId());
-		mview.setViewName("/login/addsuccess");
+
+		ModelAndView mview = loginService.addCorp(dto, session);
 		
 		return mview;
 	}

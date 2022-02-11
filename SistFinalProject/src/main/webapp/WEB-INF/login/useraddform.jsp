@@ -182,13 +182,13 @@ function showPostCode() {
 		
 		<span style="font-weight: bold; font-size: 1.1em;">연락처</span>
 		<span style="color: red;">*</span><br>
-		<input type="text" name="hp1" id="email2" class="form-control"
+		<input type="text" name="hp1" class="form-control"
 		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="000">
 		<b>-</b>
-		<input type="text" name="hp2" id="email2" class="form-control"
+		<input type="text" name="hp2" class="form-control"
 		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="0000">
 		<b>-</b>
-		<input type="text" name="hp3" id="email2" class="form-control"
+		<input type="text" name="hp3" class="form-control"
 		style="width: 124px; height: 40px; display: inline;" required="required" placeholder="0000"><br><br>
 		
 		<span style="font-weight: bold; font-size: 1.1em;">이메일</span>
